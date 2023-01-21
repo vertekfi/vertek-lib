@@ -4,6 +4,7 @@ import { join } from 'path';
 import {
   activateTokenAdmin,
   approveTokenAdminActivation,
+  runAuthSetup,
   updateVaultAuthorizer,
 } from './services/deployment';
 import {
@@ -13,16 +14,15 @@ import {
 import { getAddress } from '@ethersproject/address';
 import { getVault } from './utils/contract.utils';
 import { getPoolId } from './services/pools/pool.utils';
+import { runPoolsSetup } from './services/pools/pools';
 
 async function run() {
   config({ path: join(process.cwd(), '.env') });
   // console.log(calcOutGivenIn(2.4, 0.8, 2, 0.2, 1));
-  const vault = await getVault();
-  // await createConfigWeightedPool(0);
-  // await completeWeightedSetup('0x762b77980Ea2d624CDc5F774352F25C598E469CE');
-  // await updateVaultAuthorizer();
-  // await approveTokenAdminActivation();
-  // await activateTokenAdmin();
+  // const vault = await getVault();
+
+  await runAuthSetup();
+  // await runPoolsSetup();
 }
 
 run();

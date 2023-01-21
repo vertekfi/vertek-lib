@@ -7,6 +7,7 @@ import * as AuthEntrypointAbi from '../abis/AuthorizerAdapterEntrypoint.json';
 import * as AuthAdapterAbi from '../abis/AuthorizerAdaptor.json';
 import * as Vaultbi from '../abis/Vault.json';
 import * as GovTokenAbi from '../abis/GovernanceToken.json';
+import * as MinterAbi from '../abis/BalancerMinter.json';
 
 import { getChainId, getSigner } from './account.util';
 import { ERC20_ABI } from 'src/abis/ERC20ABI';
@@ -50,6 +51,14 @@ export async function getGovToken() {
 
 export async function getVault() {
   return new Contract(getContractAddress('Vault'), Vaultbi, await getSigner());
+}
+
+export async function getBalMinter() {
+  return new Contract(
+    getContractAddress('BalancerMinter'),
+    MinterAbi,
+    await getSigner(),
+  );
 }
 
 export async function getERC20(address: string) {

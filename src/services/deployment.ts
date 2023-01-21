@@ -2,8 +2,7 @@ import { Contract } from 'ethers';
 import { getSigner, getSignerAddress } from 'src/utils/account.util';
 import { ZERO_BYTES32 } from 'src/utils/constants';
 import {
-  getAuthAdapterEntrypoint,
-  getAuthorizerAdapter,
+  getBalMinter,
   getContractAddress,
   getGovToken,
   getSighash,
@@ -13,6 +12,13 @@ import {
 } from 'src/utils/contract.utils';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 import { performAuthEntrypointAction } from './auth';
+
+export async function runAuthSetup() {
+  // await updateVaultAuthorizer();
+  // await approveTokenAdminActivation();
+  // await activateTokenAdmin();
+  await giveBalMinterPermission();
+}
 
 export async function updateVaultAuthorizer() {
   const vault = await getVault();
@@ -63,4 +69,17 @@ export async function approveTokenAdminActivation() {
 export async function activateTokenAdmin() {
   const tokenAdmin = await getTokenAdmin();
   await performAuthEntrypointAction(tokenAdmin, 'activate');
+}
+
+export async function giveBalMinterPermission() {
+  const tokenAdmin = await getTokenAdmin();
+  const actionId = await tokenAdmin.getActionId(getSighash(tokenAdmin, 'mint'));
+
+  const minter = await getBalMinter();
+  const authorizer = await getTimelockAuthorizer();
+  await awaitTransactionComplete(
+    authorizer.grantPermissions([actionId], minter.address, [
+      tokenAdmin.address,
+    ]),
+  );
 }

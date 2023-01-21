@@ -6,6 +6,11 @@ import { getContractAddress } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 
+export async function runPoolsSetup() {
+  // await createConfigWeightedPool(0);
+  // await completeWeightedSetup('');
+}
+
 export async function createWeightedPool(
   args: CreateWeightedPoolArgs,
 ): Promise<ContractReceipt> {

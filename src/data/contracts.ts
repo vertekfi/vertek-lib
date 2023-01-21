@@ -5,11 +5,11 @@ export const CONTRACT_MAP = {
   },
   Vault: {
     5: '0xD8a14084e92d6187F1945cB31995d67de54906cD',
-    56: '0xEE1c8DbfBf958484c6a4571F5FB7b99B74A54AA7',
+    56: '',
   },
   ProtocolFeesCollector: {
     5: '0x5a339BD967471265C445dB2AD0A5427D1D972C40',
-    56: '0x2b1698d24ab6Ad022E64DaC5F2aBf2A4e1A10caC',
+    56: '',
   },
   MockAuthorizer: {
     5: '0x660dE75CBaF98120EaBe4f16cacaAB44Afc3eD25',
@@ -17,7 +17,7 @@ export const CONTRACT_MAP = {
   },
   TimelockAuthorizer: {
     5: '0xCfB3F1B76c9a3E944ff64DECd3108c1378dDD7f9',
-    56: '0x7Bdc7b728cf0a45F0464B84CB90BD9beF01C5E0b',
+    56: '',
   },
   TimelockExecutor: {
     5: '0x5135a6cFCa3a02BfaBaF94DF05F86D268a68658B',
@@ -25,7 +25,7 @@ export const CONTRACT_MAP = {
   },
   AuthorizerAdaptor: {
     5: '0xF046F36dda25B7e9da301BFB1B40B8496D376B29',
-    56: '0x12fd0D8d8dA6A5c423CdcF7f6481353A5E13CfBc',
+    56: '',
   },
   AuthorizerAdaptorEntrypoint: {
     5: '0x2cE9d3246dd0F98b0B6C5754e55E8d81C5b30Ce2',
@@ -37,35 +37,35 @@ export const CONTRACT_MAP = {
   },
   WeightedPoolFactory: {
     5: '0x0E7EBca7B9cbFB2797d812D52Bb6DD09598e3601',
-    56: '0xAB9Fc4857c46489B316CA919Bf4a78d4556A3523',
+    56: '',
   },
   StablePoolFactory: {
     5: '',
-    56: '0xe2983b13b8f6631523a6177Cc7D926f49cEf3490',
+    56: '',
   },
   LiquidityBootstrappingPoolFactory: {
     5: '',
-    56: '0xfb3057D522Fa106cDEf6D7879A3941e369Bb70b9',
+    56: '',
   },
   MetaStablePoolFactory: {
     5: '',
-    56: '0x01BCa9D1355132Bb06e74bFb248390bd42cF0B2B',
+    56: '',
   },
   ERC4626LinearPoolFactory: {
     5: '',
-    56: '0xAC3BD1BED54c7DeE8F47424002656849639164B9',
+    56: '',
   },
   StablePhantomPoolFactory: {
     5: '',
-    56: '0xd3b0FEc464290268e43684eeB05013Ea01aF64BC',
+    56: '',
   },
   SingleRecipientGauge: {
-    5: '',
-    56: '0xf7fE0c29A251a8A8E5Cd36A54daBD0357a98b591',
+    5: '0xC4FA82CE7517B43Ba642B122b26970e204877fb3',
+    56: '',
   },
   SingleRecipientGaugeFactory: {
-    5: '',
-    56: '0xf7fE0c29A251a8A8E5Cd36A54daBD0357a98b591',
+    5: '0x497bb2Ee89eb55C0bF092837E26951Dfaff6354d',
+    56: '',
   },
   MulticallV1: {
     5: '0x1050Bcfb2ec4CAe624BD1Eec5dadc2a3b4f4559a',
@@ -73,72 +73,70 @@ export const CONTRACT_MAP = {
   },
   MulticallV2: {
     5: '',
-    56: '0xa4746ea7B23d91b7e73bAE42BaDbF786211fcA38',
+    56: '',
   },
   BalancerTokenAdmin: {
     5: '0x04d825AC6480A6D877cD74C811bE61909D3Bd1be',
-    56: '0xDe3258Fce4Afe0aB38CA3A61B21ACAD802250880',
+    56: '',
   },
   BalancerMinter: {
-    5: '',
-    56: '0x513f235C0bCCdeeecb81e2688453CAfaDf65c5e3',
+    5: '0x4D6405223C183E7897467D667a71Ef4933DEdD10',
+    56: '',
   },
-  BAL_TOKEN_HOLDER: {
+  BalTokenHolder: {
     5: '',
-    56: '0x97a1b849857bF8656fb150C45d125B0a8BAa88D0',
+    56: '',
   },
   VotingEscrow: {
-    5: '',
-    56: '0x06Aba6E8F69A0Be680f96D923EFB682E63Db6a9f',
+    5: '0x8F9c3B9b55E5bc1c44ca251d4cA2b625fa36A3da',
+    56: '',
   },
   VeBoostV2: {
-    5: '0x88Bf96e192e5dD8C7c2Ccf9BBd7F6523322b6195',
+    5: '0x46e23f97aC714f7629105E29A9D48Aedd1CAeCCa',
     56: '',
   },
   VotingEscrowDelegationProxy: {
-    5: '',
-    56: '0x63BeeBDc3Bad6893E96A6138641BF694c42b2CB4',
+    5: '0xE43abfc9C666B504Fc3A4eFfdCe33B2ddec1d3f1',
+    56: '',
   },
   VeBalHelper: {
-    5: '',
-    56: '0x13C3d00FB2F37dEea036B1dF6Ca9963e8690fAa6',
+    5: '0xEA68eC736EaaccA554cBDcb05e11b7037d73FBc9',
+    56: '',
   },
   GaugeController: {
-    5: '',
-    56: '0x585ECE7932226CCf5A259c367781F07EBBB1950F',
+    5: '0x10320e8318bFF7259ecf94f9aF03ceA62B1B30D0',
+    56: '',
   },
   LiquidityGaugeFactory: {
-    5: '',
-    56: '0x0FA1097A49F54420CC5895455345dC605ee8d3c4',
+    5: '0x3a31977D0901bC227cd42b310E3B97B3c971e33A',
+    56: '',
   },
   LiquidityGaugeV5: {
-    5: '',
-    56: '0xDABb6553138E11CFEb865e5c7874533cAe6eaB69',
+    5: '0xc7BdF80a3CdD03994e991f567f8B182E8F32CeD7',
+    56: '',
   },
-
-  FEE_DISTRIBUTOR: {
+  FeeDistrinutor: {
     5: '',
-    56: '0x5215012e7509C63f4B78020b02842e930BCf0a82',
+    56: '',
   },
-  RELAYER: {
+  Relater: {
     5: '',
-    56: '0xA00A8c4746978aC7b38fa7dfD07504aA4e99415e',
+    56: '',
   },
-  BAL_HELPERS: {
+  BalHelpers: {
     5: '',
-    56: '0x9Db29429D0f8AF8b9b2cAC4733695d52DBcd36a9',
+    56: '',
   },
-
-  REWARD_BRIDGE: {
+  RewardBridge: {
     5: '',
-    56: '0x28517cF270602eCB56c02ECA51832074EcbffD90',
+    56: '',
   },
-  QUERY_PROCESSOR: {
+  QueryProcessor: {
     5: '',
-    56: '0x2CFb1ca2087883f5562240F1db9b39a1f86db01a',
+    56: '',
   },
-  BNBx_MANAGER: {
+  BNBxManager: {
     5: '',
-    56: '0x7276241a669489E4BBB76f63d2A43Bfe63080F2F',
+    56: '',
   },
 };
