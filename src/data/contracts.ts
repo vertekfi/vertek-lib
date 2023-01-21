@@ -4,31 +4,39 @@ export const CONTRACT_MAP = {
     56: '',
   },
   Vault: {
-    5: '0x91CcDddA911C5a9720A93B6130A1F35d44d9C93f',
+    5: '0xD8a14084e92d6187F1945cB31995d67de54906cD',
     56: '0xEE1c8DbfBf958484c6a4571F5FB7b99B74A54AA7',
   },
+  ProtocolFeesCollector: {
+    5: '0x5a339BD967471265C445dB2AD0A5427D1D972C40',
+    56: '0x2b1698d24ab6Ad022E64DaC5F2aBf2A4e1A10caC',
+  },
+  MockAuthorizer: {
+    5: '0x660dE75CBaF98120EaBe4f16cacaAB44Afc3eD25',
+    56: '',
+  },
   TimelockAuthorizer: {
-    5: '0x1CD6A2fAe0E8E8ac562e498d6b1ECf6b0C7c2548',
+    5: '0xCfB3F1B76c9a3E944ff64DECd3108c1378dDD7f9',
     56: '0x7Bdc7b728cf0a45F0464B84CB90BD9beF01C5E0b',
   },
   TimelockExecutor: {
-    5: '0xEFE85C821c8c9E6212D6e7CC41aB84396F24D128',
+    5: '0x5135a6cFCa3a02BfaBaF94DF05F86D268a68658B',
     56: '',
   },
   AuthorizerAdaptor: {
-    5: '0xd10FDB4912dcF242879658d8D98B47FEA43093f6',
+    5: '0xF046F36dda25B7e9da301BFB1B40B8496D376B29',
     56: '0x12fd0D8d8dA6A5c423CdcF7f6481353A5E13CfBc',
   },
   AuthorizerAdaptorEntrypoint: {
-    5: '0xf8103D2c68896F6523653bF2E1DFbd19AC004D7f',
+    5: '0x2cE9d3246dd0F98b0B6C5754e55E8d81C5b30Ce2',
     56: '',
   },
   ProtocolFeePercentagesProvider: {
-    5: '0xBA8089b6448a09F30c25d174de46A2a68D0F2295',
+    5: '',
     56: '',
   },
   WeightedPoolFactory: {
-    5: '0x183a7E2a7c5Ca43414B5c061373A4ee11E1Ef706',
+    5: '',
     56: '0xAB9Fc4857c46489B316CA919Bf4a78d4556A3523',
   },
   StablePoolFactory: {
@@ -68,7 +76,7 @@ export const CONTRACT_MAP = {
     56: '0xa4746ea7B23d91b7e73bAE42BaDbF786211fcA38',
   },
   BalancerTokenAdmin: {
-    5: '0xcae84DAe163f4Aa47C41b3cE0F7ac88Fb2161B1A',
+    5: '',
     56: '0xDe3258Fce4Afe0aB38CA3A61B21ACAD802250880',
   },
   BalancerMinter: {
@@ -107,10 +115,7 @@ export const CONTRACT_MAP = {
     5: '',
     56: '0xDABb6553138E11CFEb865e5c7874533cAe6eaB69',
   },
-  ProtocolFeesCollector: {
-    5: '0x27b105F59077B03a34Eec94ab559E128ba9bC7d2',
-    56: '0x2b1698d24ab6Ad022E64DaC5F2aBf2A4e1A10caC',
-  },
+
   FEE_DISTRIBUTOR: {
     5: '',
     56: '0x5215012e7509C63f4B78020b02842e930BCf0a82',

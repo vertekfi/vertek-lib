@@ -38,27 +38,3 @@ export async function createWeightedPool(
 
   return await awaitTransactionComplete(tx);
 }
-
-export async function getPoolCreationData(poolAddress: string) {
-  try {
-    const pool = new Contract(
-      poolAddress,
-      ['function getPoolId() public view returns (bytes32)'],
-      await getSigner(),
-    );
-
-    const data = {
-      poolId: await pool.getPoolId(),
-      poolAddress,
-      // txHash: receipt.transactionHash,
-      date: new Date().toLocaleString(),
-    };
-
-    console.log(data);
-
-    return data;
-  } catch (error) {
-    logger.error(`getPoolCreationData:`, error);
-    return null;
-  }
-}

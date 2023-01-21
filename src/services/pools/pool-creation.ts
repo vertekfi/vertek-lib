@@ -5,10 +5,13 @@ import { getSignerAddress } from 'src/utils/account.util';
 import { logger } from 'src/utils/logger';
 import {
   getAllPoolConfigs,
+  getPoolCreationData,
+  getPoolId,
   getWeightedPoolArgsFromConfig,
+  initWeightedJoin,
   updatePoolConfig,
 } from './pool.utils';
-import { createWeightedPool, getPoolCreationData } from './pools';
+import { createWeightedPool } from './pools';
 
 export async function createConfigWeightedPool(poolConfigIndex: number) {
   const pools = await getAllPoolConfigs();
@@ -32,31 +35,42 @@ export async function createConfigWeightedPool(poolConfigIndex: number) {
   };
   await updatePoolConfig(pool);
 
+  // Will have to etherscan it or run a function over the txHash after a delay
   const poolAddress = tryGetPoolAddressFromReceipt(receipt);
   if (!poolAddress) {
     return;
   }
 
-  const poolData = await getPoolCreationData(
-    '0xD8C27d007AC23d0196f8f30551C40673E08CeaA7',
+  await completeWeightedSetup(poolAddress);
+}
+
+export async function completeWeightedSetup(poolAddress: string) {
+  const pools = await getAllPoolConfigs();
+  const pool = pools.find((p) => p.poolAddress === poolAddress);
+
+  _require(!!pool, 'Pool not found');
+
+  // const poolData = await getPoolCreationData(poolAddress);
+  // if (!poolData) {
+  //   return;
+  // }
+
+  // await updatePoolConfig({
+  //   ...pool,
+  //   ...poolData,
+  // });
+
+  const poolId = await getPoolId(pool.poolAddress);
+
+  await initWeightedJoin(
+    poolId,
+    pool.deploymentArgs.tokens,
+    pool.deploymentArgs.initialBalances,
+    await getSignerAddress(),
   );
-  if (!poolData) {
-    return;
-  }
 
-  await updatePoolConfig({
-    ...pool,
-    ...poolData,
-  });
-
-  // const rx = await initWeightedJoin(
-  //   vaultAddress,
-  //   pool.poolId,
-  //   pool.deploymentArgs.tokens,
-  //   pool.deploymentArgs.initialBalances,
-  //   signer.address,
-  //   signer
-  // );
+  // pool.initJoinComplete = true;
+  // await updatePoolConfig(pool);
 }
 
 function tryGetPoolAddressFromReceipt(receipt: ContractReceipt) {

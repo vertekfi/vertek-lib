@@ -4,6 +4,7 @@ import { ZERO_BYTES32 } from 'src/utils/constants';
 import {
   getAuthAdapterEntrypoint,
   getAuthorizerAdapter,
+  getContractAddress,
   getSighash,
   getTimelockAuthorizer,
   getTokenAdmin,
@@ -14,10 +15,10 @@ import { performAuthEntrypointAction } from './auth';
 
 export async function updateVaultAuthorizer() {
   const vault = await getVault();
-  const vaultId = await vault.getActionId(getSighash(vault, 'setAuthorizer'));
 
-  const fml = new Contract(
-    '0x7Ba299187FD38111D567964d4577EfF932f0E41A',
+  const vaultId = await vault.getActionId(getSighash(vault, 'setAuthorizer'));
+  const dummy = new Contract(
+    getContractAddress('MockAuthorizer'),
     [
       'function grantRolesToMany(bytes32[], address[]) public',
       'function DEFAULT_ADMIN_ROLE() public view returns (address)',
@@ -28,15 +29,13 @@ export async function updateVaultAuthorizer() {
     await getSigner(),
   );
 
-  console.log(await fml.getRoleMember(ZERO_BYTES32, 0));
+  await awaitTransactionComplete(
+    dummy.grantRolesToMany([vaultId], [await getSignerAddress()]),
+  );
 
-  // await awaitTransactionComplete(
-  //   fml.grantRolesToMany([vaultId], [await getSignerAddress()]),
-  // );
-
-  // "MockBasicAuthorizer": "0x7Ba299187FD38111D567964d4577EfF932f0E41A",
-  // "Vault": "0x1F56FDcB9E3a818E4BB2E6Fe2cb73F7385D3Aeac",
-  // "ProtocolFeesCollector": "0xd8b1182B67cC615F0295843f52AA4E9DBdB319B0"
+  await awaitTransactionComplete(
+    vault.setAuthorizer(getContractAddress('TimelockAuthorizer')),
+  );
 }
 
 export async function approveTokenAdminActivation() {

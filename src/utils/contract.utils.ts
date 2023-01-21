@@ -8,6 +8,7 @@ import * as AuthAdapterAbi from '../abis/AuthorizerAdaptor.json';
 import * as Vaultbi from '../abis/Vault.json';
 
 import { getChainId, getSigner } from './account.util';
+import { ERC20_ABI } from 'src/abis/ERC20ABI';
 
 export async function getTokenAdmin() {
   return new Contract(
@@ -43,6 +44,10 @@ export async function getAuthorizerAdapter() {
 
 export async function getVault() {
   return new Contract(getContractAddress('Vault'), Vaultbi, await getSigner());
+}
+
+export async function getERC20(address: string) {
+  return new Contract(address, ERC20_ABI, await getSigner());
 }
 
 /**
