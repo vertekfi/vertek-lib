@@ -49,7 +49,7 @@ export async function canPerformAction(
 export async function getActionIdsPath() {
   return join(
     process.cwd(),
-    'src/data/actions-ids',
+    'src/data/vertek/actions-ids',
     `${CHAIN_KEYS[await getChainId()]}-action-ids.json`,
   );
 }

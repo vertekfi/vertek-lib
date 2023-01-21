@@ -70,7 +70,7 @@ export function getStablePoolCreationArgs(
 export async function getPoolConfigPath() {
   return join(
     process.cwd(),
-    'src/data',
+    'src/data/vertek',
     `${CHAIN_KEYS[await getChainId()]}-pools.json`,
   );
 }
