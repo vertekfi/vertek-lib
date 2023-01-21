@@ -1,6 +1,9 @@
 import { Interface } from '@ethersproject/abi';
 import { Contract } from '@ethersproject/contracts';
-import { getAuthAdapterEntrypoint } from 'src/utils/contract.utils';
+import {
+  getAuthAdapterEntrypoint,
+  getTimelockAuthorizer,
+} from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 
@@ -28,4 +31,13 @@ export async function performAuthEntrypointAction(
   await awaitTransactionComplete(
     adaptorEntrypoint.performAction(performingOn.address, calldata),
   );
+}
+
+export async function canPerformAction(
+  actionId: string,
+  who: string,
+  whatContract: string,
+) {
+  const authorizer = await getTimelockAuthorizer();
+  return await authorizer.canPerform(actionId, who, whatContract);
 }

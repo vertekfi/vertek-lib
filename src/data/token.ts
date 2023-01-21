@@ -4,7 +4,7 @@ export const TOKENS = {
     [56]: '0x0dDef12012eD645f12AEb1B845Cb5ad61C7423F5',
   },
   VRTK: {
-    [5]: '0x0bD5AC1eDcA0380E8709773F502C2960DeCcaF79',
+    [5]: '0xa5694789C0BaED77d16ca36edC45C9366DBFe0A9',
     [56]: '',
   },
   AMES: {

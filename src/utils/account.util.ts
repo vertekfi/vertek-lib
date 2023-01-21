@@ -3,6 +3,11 @@ import { ChainProvider } from 'src/types/account.types';
 
 let chainProvider: ChainProvider;
 
+export const CHAIN_KEYS = {
+  [5]: 'goerli',
+  [56]: 'bsc',
+};
+
 const getAccount = async (): Promise<ChainProvider> => {
   if (chainProvider) {
     return chainProvider;
@@ -45,4 +50,8 @@ export function getChainId() {
 
 export async function getSigner() {
   return (await getAccount()).signer;
+}
+
+export async function getSignerAddress() {
+  return (await getSigner()).address;
 }

@@ -5,6 +5,8 @@ import * as TokenAdminAbi from '../abis/BalancerTokenAdmin.json';
 import * as TimelockAuthAbi from '../abis/TimelockAuthorizer.json';
 import * as AuthEntrypointAbi from '../abis/AuthorizerAdapterEntrypoint.json';
 import * as AuthAdapterAbi from '../abis/AuthorizerAdaptor.json';
+import * as Vaultbi from '../abis/Vault.json';
+
 import { getChainId, getSigner } from './account.util';
 
 export async function getTokenAdmin() {
@@ -37,6 +39,10 @@ export async function getAuthorizerAdapter() {
     AuthAdapterAbi,
     await getSigner(),
   );
+}
+
+export async function getVault() {
+  return new Contract(getContractAddress('Vault'), Vaultbi, await getSigner());
 }
 
 /**
