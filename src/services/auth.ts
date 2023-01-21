@@ -6,6 +6,10 @@ import {
 } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
+import { join } from 'path';
+import { CHAIN_KEYS, getChainId } from 'src/utils/account.util';
+import { ActionIdItem } from 'src/types/auth.types';
+import * as fs from 'fs-extra';
 
 export async function getActionId(
   instance: Contract,
@@ -41,3 +45,17 @@ export async function canPerformAction(
   const authorizer = await getTimelockAuthorizer();
   return await authorizer.canPerform(actionId, who, whatContract);
 }
+
+export async function getActionIdsPath() {
+  return join(
+    process.cwd(),
+    'src/data/actions-ids',
+    `${CHAIN_KEYS[await getChainId()]}-action-ids.json`,
+  );
+}
+
+export async function getActionIds(): Promise<ActionIdItem[]> {
+  return fs.readJSON(await getActionIdsPath());
+}
+
+export async function updateActionIds() {}

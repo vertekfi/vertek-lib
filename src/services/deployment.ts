@@ -13,7 +13,10 @@ import {
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 import { performAuthEntrypointAction } from './auth';
 
-export async function runAuthSetup() {
+/**
+ * Items core to base system setup. (Vault authorizer switch, TokenAdmin, Minter, etc)
+ */
+export async function initBaseAuthSetup() {
   // await updateVaultAuthorizer();
   // await approveTokenAdminActivation();
   // await activateTokenAdmin();

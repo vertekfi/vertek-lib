@@ -4,7 +4,7 @@ import { join } from 'path';
 import {
   activateTokenAdmin,
   approveTokenAdminActivation,
-  runAuthSetup,
+  initBaseAuthSetup,
   updateVaultAuthorizer,
 } from './services/deployment';
 import {
@@ -21,7 +21,7 @@ async function run() {
   // console.log(calcOutGivenIn(2.4, 0.8, 2, 0.2, 1));
   // const vault = await getVault();
 
-  await runAuthSetup();
+  await initBaseAuthSetup();
   // await runPoolsSetup();
 }
 
