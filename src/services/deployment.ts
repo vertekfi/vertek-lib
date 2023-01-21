@@ -5,6 +5,7 @@ import {
   getAuthAdapterEntrypoint,
   getAuthorizerAdapter,
   getContractAddress,
+  getGovToken,
   getSighash,
   getTimelockAuthorizer,
   getTokenAdmin,
@@ -40,24 +41,23 @@ export async function updateVaultAuthorizer() {
 
 export async function approveTokenAdminActivation() {
   const tokenAdmin = await getTokenAdmin();
-  // const adapter = await getAuthorizerAdapter();
-  // const actionId = await tokenAdmin.getActionId(
-  //   getSighash(tokenAdmin, 'activate'),
-  // );
+  const actionId = await tokenAdmin.getActionId(
+    getSighash(tokenAdmin, 'activate'),
+  );
 
-  // const authorizer = await getTimelockAuthorizer();
-  // await awaitTransactionComplete(
-  //   authorizer.grantPermissions([actionId], (await getSigner()).address, [
-  //     tokenAdmin.address,
-  //   ]),
-  //   3,
-  // );
+  const authorizer = await getTimelockAuthorizer();
+  await awaitTransactionComplete(
+    authorizer.grantPermissions([actionId], (await getSigner()).address, [
+      tokenAdmin.address,
+    ]),
+  );
 
-  // const adaptorEntrypoint = await getAuthAdapterEntrypoint();
-  // const calldata = tokenAdmin.interface.encodeFunctionData('activate');
-  // await awaitTransactionComplete(
-  //   adaptorEntrypoint.performAction(tokenAdmin.address, calldata),
-  // );
+  const govToken = await getGovToken();
+  await awaitTransactionComplete(
+    govToken.grantRole(ZERO_BYTES32, tokenAdmin.address),
+  );
+
+  await awaitTransactionComplete(tokenAdmin.activate());
 }
 
 export async function activateTokenAdmin() {

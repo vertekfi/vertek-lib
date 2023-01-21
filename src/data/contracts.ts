@@ -32,11 +32,11 @@ export const CONTRACT_MAP = {
     56: '',
   },
   ProtocolFeePercentagesProvider: {
-    5: '',
+    5: '0x85D75df3Aa064596F4f611FBf3d93383Bf413541',
     56: '',
   },
   WeightedPoolFactory: {
-    5: '',
+    5: '0x0E7EBca7B9cbFB2797d812D52Bb6DD09598e3601',
     56: '0xAB9Fc4857c46489B316CA919Bf4a78d4556A3523',
   },
   StablePoolFactory: {
@@ -76,7 +76,7 @@ export const CONTRACT_MAP = {
     56: '0xa4746ea7B23d91b7e73bAE42BaDbF786211fcA38',
   },
   BalancerTokenAdmin: {
-    5: '',
+    5: '0x04d825AC6480A6D877cD74C811bE61909D3Bd1be',
     56: '0xDe3258Fce4Afe0aB38CA3A61B21ACAD802250880',
   },
   BalancerMinter: {

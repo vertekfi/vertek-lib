@@ -165,7 +165,7 @@ export async function initWeightedJoin(
     );
 
     const joinPoolRequest: JoinPoolRequest = {
-      assets: tokens,
+      assets: tokens.map((t) => getAddress(t)),
       maxAmountsIn: balancesBN,
       userData: initUserData,
       fromInternalBalance: false,
@@ -174,7 +174,7 @@ export async function initWeightedJoin(
     const vault = await getVault();
 
     // Vault needs approval to pull the tokens in
-    // await approveTokensIfNeeded(tokens, recipient, vault.address);
+    await approveTokensIfNeeded(tokens, recipient, vault.address);
 
     const rx = await awaitTransactionComplete(
       await vault.joinPool(poolId, recipient, recipient, joinPoolRequest),

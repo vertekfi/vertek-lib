@@ -24,6 +24,8 @@ export async function createConfigWeightedPool(poolConfigIndex: number) {
   validatePoolConfig(pool);
 
   const args = getWeightedPoolArgsFromConfig(pool, await getSignerAddress());
+  pool.deploymentArgs = args;
+  await updatePoolConfig(pool);
 
   const receipt = await createWeightedPool(args);
 
@@ -50,17 +52,21 @@ export async function completeWeightedSetup(poolAddress: string) {
 
   _require(!!pool, 'Pool not found');
 
-  // const poolData = await getPoolCreationData(poolAddress);
-  // if (!poolData) {
-  //   return;
-  // }
+  const poolData = await getPoolCreationData(poolAddress);
+  if (!poolData) {
+    return;
+  }
 
-  // await updatePoolConfig({
-  //   ...pool,
-  //   ...poolData,
-  // });
+  await updatePoolConfig({
+    ...pool,
+    ...poolData,
+  });
 
   const poolId = await getPoolId(pool.poolAddress);
+
+  console.log(poolId);
+
+  console.log(pool.deploymentArgs.tokens);
 
   await initWeightedJoin(
     poolId,
@@ -69,8 +75,8 @@ export async function completeWeightedSetup(poolAddress: string) {
     await getSignerAddress(),
   );
 
-  // pool.initJoinComplete = true;
-  // await updatePoolConfig(pool);
+  pool.initJoinComplete = true;
+  await updatePoolConfig(pool);
 }
 
 function tryGetPoolAddressFromReceipt(receipt: ContractReceipt) {
