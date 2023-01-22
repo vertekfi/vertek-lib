@@ -6,16 +6,22 @@ import {
   PoolType,
 } from 'src/types/pool.types';
 import { _require } from 'src/utils';
-import { getSigner, getSignerAddress } from 'src/utils/account.util';
+import {
+  getChainId,
+  getSigner,
+  getSignerAddress,
+} from 'src/utils/account.util';
 import { getContractAddress } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 import {
   getAllPoolConfigs,
+  getDexPoolDataConfig,
   getPoolCreationData,
   getPoolId,
   getWeightedPoolArgsFromConfig,
   initWeightedJoin,
+  updateDexPoolDataConfig,
   updatePoolConfig,
 } from './pool.utils';
 
@@ -61,7 +67,7 @@ export async function createConfigWeightedPool(poolConfigIndex: number) {
 
 export async function completeWeightedSetup(poolAddress: string) {
   const pools = await getAllPoolConfigs();
-  const pool = pools.find((p) => p.poolAddress === poolAddress);
+  let pool = pools.find((p) => p.poolAddress === poolAddress);
 
   _require(!!pool, 'Pool not found');
 
@@ -83,7 +89,11 @@ export async function completeWeightedSetup(poolAddress: string) {
   );
 
   pool.initJoinComplete = true;
-  await updatePoolConfig(pool);
+  pool = await updatePoolConfig(pool);
+
+  const dexPoolData = await getDexPoolDataConfig();
+  dexPoolData[await getChainId()].incentivizedPools.push(pool.poolId);
+  await updateDexPoolDataConfig(dexPoolData);
 }
 
 async function tryGetPoolAddressFromReceipt(receipt: ContractReceipt) {

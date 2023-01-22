@@ -75,6 +75,18 @@ export async function getPoolConfigPath() {
   );
 }
 
+export function getDexPoolDataConfigPath() {
+  return join(process.cwd(), 'src/data/vertek/pool-data-config.json');
+}
+
+export function getDexPoolDataConfig() {
+  return fs.readJSON(getDexPoolDataConfigPath());
+}
+
+export async function updateDexPoolDataConfig(data) {
+  await fs.writeJSON(getDexPoolDataConfigPath(), data);
+}
+
 export async function getAllPoolConfigs(): Promise<PoolCreationConfig[]> {
   return await fs.readJSON(await getPoolConfigPath());
 }
@@ -99,6 +111,8 @@ export async function updatePoolConfig(pool: PoolCreationConfig) {
   await savePoolsData(poolConfigs);
 
   logger.success(`updatePoolConfig: pool update complete`);
+
+  return updating;
 }
 
 export async function savePoolsData(pools: PoolCreationConfig[]) {
