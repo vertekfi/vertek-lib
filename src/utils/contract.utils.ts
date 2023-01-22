@@ -11,6 +11,7 @@ import * as MinterAbi from '../abis/BalancerMinter.json';
 import * as GaugeControllerAbi from '../abis/GaugeController.json';
 import * as VeAbi from '../abis/VotingEscrow.json';
 import * as GaugeAbi from '../abis/LiquidityGaugeV5.json';
+import * as GaugeAdderAbi from '../abis/GaugeAdder.json';
 
 import { getChainId, getSigner } from './account.util';
 import { ERC20_ABI } from 'src/abis/ERC20ABI';
@@ -92,13 +93,21 @@ export async function getLiquidityGaugeTemplate() {
   );
 }
 
+export async function getGaugeAdder() {
+  return new Contract(
+    getContractAddress('GaugeAdder'),
+    GaugeAdderAbi,
+    await getSigner(),
+  );
+}
+
 /**
  * Gets a contract address for the current chain id.
  * @param contractName
  * @returns
  */
 export function getContractAddress(contractName: string): string {
-  // TODO: type this
+  // TODO: maybe type this
   const address = CONTRACT_MAP[contractName]
     ? CONTRACT_MAP[contractName][getChainId()]
     : null;

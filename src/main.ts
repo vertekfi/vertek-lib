@@ -25,7 +25,6 @@ async function run() {
   // await initBaseAuthSetup();
   // await runPoolsSetup();
   await runGaugeSetup();
-  process.exit(0);
 }
 
 run();

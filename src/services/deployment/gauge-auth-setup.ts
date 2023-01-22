@@ -3,6 +3,7 @@ import { ActionIdItem } from 'src/types/auth.types';
 import { getChainId } from 'src/utils/account.util';
 import { ANY_ADDRESS } from 'src/utils/constants';
 import {
+  getGaugeAdder,
   getGaugeController,
   getLiquidityGaugeTemplate,
   getVotingEscrow,
@@ -12,134 +13,89 @@ import { getAuthAdapterActionId, updateActionIds } from '../auth/action-ids';
 import { grantVaultAuthorizerPermissions } from '../auth/auth';
 
 export async function initGaugeAuthItems() {
-  /**
-   * Set items globally/everywhere for gauge instances,
-   * so setting per address is not needed (will map to the same action id for all regardless)
-   */
-  //
-  // auth to add_gauge, add_reward
-  // on gauges (use template address?) auth to set fee/withdraw fee, to withdraw fees, add_reward, etc
-  // these need to go through the AuthorizerAdaptor(by way of entrypoint) due to the vyper thing
-  // save off action id's for convenience
+  // These need to go through the AuthorizerAdaptor(by way of entrypoint) due to the vyper thing.
+  // Save off action id's for convenience.
 
   /**
    * Collect action ids and targets and grant permissions all in one transaction
    */
 
-  const gaugeController = await getGaugeController();
-
   let actionItems: ActionIdItem[] = [];
   const actionIds: string[] = [];
   const targets: string[] = [];
 
-  const controllerActionItems = await getGaugeControllerActionItems(
-    gaugeController,
-  );
-  actionItems = actionItems.concat(controllerActionItems);
-  controllerActionItems.forEach((action) => {
-    actionIds.push(action.actionId);
-    targets.push(gaugeController.address);
-  });
+  const gaugeController = await getGaugeController();
+  actionItems = actionItems
+    .concat(await getControllerActionItems(gaugeController))
+    .map((action) => {
+      actionIds.push(action.actionId);
+      targets.push(gaugeController.address);
+      return action;
+    });
 
   const votingEsrow = await getVotingEscrow();
-  const veActionItems = await getVotingEscrowActionItems(votingEsrow);
-  actionItems = actionItems.concat(veActionItems);
-  veActionItems.forEach((action) => {
-    actionIds.push(action.actionId);
-    targets.push(votingEsrow.address);
-  });
+  actionItems = actionItems
+    .concat(await getVotinEscrowActionItems(votingEsrow))
+    .map((action) => {
+      actionIds.push(action.actionId);
+      targets.push(votingEsrow.address);
+      return action;
+    });
 
   const gaugeTemplate = await getLiquidityGaugeTemplate();
-  const gaugeActionItems = await getLiquidityGaugeActionItems(gaugeTemplate);
-  actionItems = actionItems.concat(gaugeActionItems);
-  gaugeActionItems.forEach((action) => {
-    actionIds.push(action.actionId);
-    targets.push(ANY_ADDRESS); // will set for all gauge instances/addresses
-  });
+  actionItems = actionItems
+    .concat(await getLiquidityGaugeActionItems(gaugeTemplate))
+    .map((action) => {
+      actionIds.push(action.actionId);
+      targets.push(ANY_ADDRESS); // will set for all gauge instances/addresses
+      return action;
+    });
+
+  const gaugeAdder = await getGaugeAdder();
+  actionItems = actionItems
+    .concat(await getGaugeAdderActionItems(gaugeAdder))
+    .map((action) => {
+      actionIds.push(action.actionId);
+      targets.push(gaugeAdder.address); // will set for all gauge instances/addresses
+      return action;
+    });
 
   await grantVaultAuthorizerPermissions(actionIds, targets);
 
   await updateActionIds(actionItems);
 }
 
-export async function getGaugeControllerActionItems(
-  gaugeController: Contract,
-): Promise<ActionIdItem[]> {
-  logger.info('getGaugeControllerActionItems');
+async function getVotinEscrowActionItems(votingEsrow: Contract) {
+  logger.info('getControllerActionItems');
 
-  const contractName = ' GaugeController';
-  const contractAddress = gaugeController.address;
-  const chainId = await getChainId();
-
-  const actionItems: ActionIdItem[] = [];
-
-  function addItem(actionId: string, method: string) {
-    actionItems.push({
-      actionId,
-      contractName,
-      contractAddress,
-      chainId,
-      method,
-    });
-  }
-
-  let method = 'add_type';
-  let actionId = await getAuthAdapterActionId(gaugeController, method);
-  addItem(actionId, method);
-
-  method = 'add_gauge';
-  actionId = await getAuthAdapterActionId(gaugeController, method);
-  addItem(actionId, method);
-
-  method = 'change_type_weight';
-  actionId = await getAuthAdapterActionId(gaugeController, method);
-  addItem(actionId, method);
-
-  return actionItems;
+  return getActionItems(votingEsrow, 'VotingEscrow', [
+    'admin_create_lock_for',
+    'admin_increase_amount_for',
+    'admin_increase_total_stake_for',
+    'commit_smart_wallet_checker',
+    'apply_smart_wallet_checker',
+  ]);
 }
 
-export async function getVotingEscrowActionItems(
-  votingEsrow: Contract,
-): Promise<ActionIdItem[]> {
-  logger.info('getVotingEscrowActionItems');
+async function getControllerActionItems(gaugeController: Contract) {
+  logger.info('getControllerActionItems');
 
-  const contractName = ' VotingEscrow';
-  const contractAddress = votingEsrow.address;
-  const chainId = await getChainId();
+  return getActionItems(gaugeController, 'GaugeController', [
+    'admin_create_lock_for',
+    'admin_increase_amount_for',
+    'admin_increase_total_stake_for',
+    'commit_smart_wallet_checker',
+    'apply_smart_wallet_checker',
+  ]);
+}
 
-  const actionItems: ActionIdItem[] = [];
+export async function getGaugeAdderActionItems(gaugeAdder: Contract) {
+  logger.info('getGaugeAdderActionItems');
 
-  function addItem(actionId: string, method: string) {
-    actionItems.push({
-      actionId,
-      contractName,
-      contractAddress,
-      chainId,
-      method,
-    });
-  }
-
-  let method = 'admin_create_lock_for';
-  let actionId = await getAuthAdapterActionId(votingEsrow, method);
-  addItem(actionId, method);
-
-  method = 'admin_increase_amount_for';
-  actionId = await getAuthAdapterActionId(votingEsrow, method);
-  addItem(actionId, method);
-
-  method = 'admin_increase_total_stake_for';
-  actionId = await getAuthAdapterActionId(votingEsrow, method);
-  addItem(actionId, method);
-
-  method = 'apply_smart_wallet_checker';
-  actionId = await getAuthAdapterActionId(votingEsrow, method);
-  addItem(actionId, method);
-
-  method = 'commit_smart_wallet_checker';
-  actionId = await getAuthAdapterActionId(votingEsrow, method);
-  addItem(actionId, method);
-
-  return actionItems;
+  return getActionItems(gaugeAdder, 'GaugeAdder', [
+    'addEthereumGauge',
+    'addGaugeFactory',
+  ]);
 }
 
 export async function getLiquidityGaugeActionItems(
@@ -147,13 +103,32 @@ export async function getLiquidityGaugeActionItems(
 ): Promise<ActionIdItem[]> {
   logger.info('getLiquidityGaugeActionItems');
 
-  const contractName = ' LiquidityGaugeV5';
+  return getActionItems(instance, 'LiquidityGaugeV5', [
+    'add_reward',
+    'set_reward_distributor',
+    'killGauge',
+    'unkillGauge',
+    'setRelativeWeightCap',
+    'setDepositFee',
+    'setWithdrawFee',
+    'updateFeeExempt',
+    'withdrawFees',
+  ]);
+}
+
+export async function getActionItems(
+  instance: Contract,
+  contractName: string,
+  methods: string[],
+) {
+  logger.info('getLiquidityGaugeActionItems');
+
   const contractAddress = instance.address;
   const chainId = await getChainId();
-
   const actionItems: ActionIdItem[] = [];
 
-  function addItem(actionId: string, method: string) {
+  async function addItem(method: string) {
+    const actionId = await getAuthAdapterActionId(instance, method);
     actionItems.push({
       actionId,
       contractName,
@@ -163,41 +138,9 @@ export async function getLiquidityGaugeActionItems(
     });
   }
 
-  let method = 'add_reward';
-  let actionId = await getAuthAdapterActionId(instance, method);
-  addItem(actionId, method);
-
-  method = 'set_reward_distributor';
-  actionId = await getAuthAdapterActionId(instance, method);
-  addItem(actionId, method);
-
-  method = 'killGauge';
-  actionId = await getAuthAdapterActionId(instance, method);
-  addItem(actionId, method);
-
-  method = 'unkillGauge';
-  actionId = await getAuthAdapterActionId(instance, method);
-  addItem(actionId, method);
-
-  method = 'setRelativeWeightCap';
-  actionId = await getAuthAdapterActionId(instance, method);
-  addItem(actionId, method);
-
-  method = 'setDepositFee';
-  actionId = await getAuthAdapterActionId(instance, method);
-  addItem(actionId, method);
-
-  method = 'setWithdrawFee';
-  actionId = await getAuthAdapterActionId(instance, method);
-  addItem(actionId, method);
-
-  method = 'updateFeeExempt';
-  actionId = await getAuthAdapterActionId(instance, method);
-  addItem(actionId, method);
-
-  method = 'withdrawFees';
-  actionId = await getAuthAdapterActionId(instance, method);
-  addItem(actionId, method);
+  for (const fn of methods) {
+    await await addItem(fn);
+  }
 
   return actionItems;
 }

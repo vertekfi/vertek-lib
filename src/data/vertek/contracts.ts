@@ -115,6 +115,10 @@ export const CONTRACT_MAP = {
     5: '0xc7BdF80a3CdD03994e991f567f8B182E8F32CeD7',
     56: '',
   },
+  GaugeAdder: {
+    5: '0xbDfA9B0e34AB14D632182F24F99dE428B1dD0559',
+    56: '',
+  },
   SmartWalletChecker: {
     5: '0x4D2C9A63bb6C55088aD7A6d28255D5001734c287',
     56: '',
