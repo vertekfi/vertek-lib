@@ -1,8 +1,15 @@
-import { ContractReceipt } from 'ethers';
-import { PoolCreationConfig, PoolType } from 'src/types/pool.types';
+import { Contract, ContractReceipt, Event } from 'ethers';
+import { parseUnits } from 'ethers/lib/utils';
+import {
+  CreateWeightedPoolArgs,
+  PoolCreationConfig,
+  PoolType,
+} from 'src/types/pool.types';
 import { _require } from 'src/utils';
-import { getSignerAddress } from 'src/utils/account.util';
+import { getSigner, getSignerAddress } from 'src/utils/account.util';
+import { getContractAddress } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
+import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 import {
   getAllPoolConfigs,
   getPoolCreationData,
@@ -11,7 +18,6 @@ import {
   initWeightedJoin,
   updatePoolConfig,
 } from './pool.utils';
-import { createWeightedPool } from './pools';
 
 export async function createConfigWeightedPool(poolConfigIndex: number) {
   const pools = await getAllPoolConfigs();
@@ -38,12 +44,19 @@ export async function createConfigWeightedPool(poolConfigIndex: number) {
   await updatePoolConfig(pool);
 
   // Will have to etherscan it or run a function over the txHash after a delay
-  const poolAddress = tryGetPoolAddressFromReceipt(receipt);
-  if (!poolAddress) {
+  const poolData = await tryGetPoolAddressFromReceipt(receipt);
+  if (!poolData.poolAddress) {
+    pool.txHash = poolData.txHash;
+    await updatePoolConfig(pool);
     return;
   }
 
-  await completeWeightedSetup(poolAddress);
+  await updatePoolConfig({
+    ...pool,
+    ...poolData,
+  });
+
+  await completeWeightedSetup(poolData.poolAddress);
 }
 
 export async function completeWeightedSetup(poolAddress: string) {
@@ -62,14 +75,8 @@ export async function completeWeightedSetup(poolAddress: string) {
     ...poolData,
   });
 
-  const poolId = await getPoolId(pool.poolAddress);
-
-  console.log(poolId);
-
-  console.log(pool.deploymentArgs.tokens);
-
   await initWeightedJoin(
-    poolId,
+    poolData.poolId,
     pool.deploymentArgs.tokens,
     pool.deploymentArgs.initialBalances,
     await getSignerAddress(),
@@ -79,18 +86,70 @@ export async function completeWeightedSetup(poolAddress: string) {
   await updatePoolConfig(pool);
 }
 
-function tryGetPoolAddressFromReceipt(receipt: ContractReceipt) {
+async function tryGetPoolAddressFromReceipt(receipt: ContractReceipt) {
   try {
     // We need to get the new pool address out of the PoolCreated event
-    const events = receipt.events.filter((e) => e.event === 'PoolCreated');
-    const poolAddress = events[0].args.pool;
-    console.log(poolAddress);
-    return poolAddress;
+    // const events = receipt.events.filter(
+    //   (e: Event) => e.event && e.event === 'PoolCreated',
+    // );
+    // if (!events.length) {
+    //   logger.error(`Unable to get pool address`);
+    //   console.log(await receipt.events[0].getTransaction());
+    //   return null;
+    // }
+    // Working differently now for some reason
+    // But this should pull out the new pool address
+    const poolAddress = receipt.events[0].address;
+    console.log('poolAddress: ' + poolAddress);
+    const poolId = receipt.events[1].topics[1];
+    console.log('poolId: ' + poolId);
+    return {
+      txHash: receipt.transactionHash,
+      poolId,
+      poolAddress,
+      date: new Date().toLocaleString(),
+    };
   } catch (error) {
     logger.error(`Unable to get pool address`);
-    console.log(receipt.events);
-    return null;
+    // console.log(receipt.events);
+    return {
+      txHash: receipt.transactionHash,
+      date: new Date().toLocaleString(),
+    };
   }
+}
+
+export async function createWeightedPool(
+  args: CreateWeightedPoolArgs,
+): Promise<ContractReceipt> {
+  logger.info('createWeightedPool: creating pool...');
+  const factory = new Contract(
+    getContractAddress('WeightedPoolFactory'),
+    [
+      `function create(
+      string  name,
+      string  symbol,
+      address[]  tokens,
+      uint256[]  normalizedWeights,
+      address[]  rateProviders,
+      uint256 swapFeePercentage,
+      address owner
+  ) external returns (address) `,
+    ],
+    await getSigner(),
+  );
+
+  const tx = await factory.create(
+    args.name,
+    args.symbol,
+    args.tokens,
+    args.weights.map((w) => parseUnits(w)),
+    args.rateProviders,
+    parseUnits(args.swapFeePercentage),
+    args.owner,
+  );
+
+  return await awaitTransactionComplete(tx);
 }
 
 export function validatePoolConfig(pool: PoolCreationConfig) {

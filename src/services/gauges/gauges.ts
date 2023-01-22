@@ -2,7 +2,7 @@ export async function runGaugeSetup() {
   // await initGaugeAuthItems()
 }
 
-export async function giveGaugeAuthorizationFor() {
+export async function giveGaugeAuthorizationForMethod() {
   // one off's if needed for other accounts or migrations, etc.
 }
 

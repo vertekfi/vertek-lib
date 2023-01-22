@@ -21,9 +21,8 @@ async function run() {
   config({ path: join(process.cwd(), '.env') });
   // console.log(calcOutGivenIn(2.4, 0.8, 2, 0.2, 1));
   // const vault = await getVault();
-
   // await initBaseAuthSetup();
-  // await runPoolsSetup();
+  await runPoolsSetup();
 }
 
 run();

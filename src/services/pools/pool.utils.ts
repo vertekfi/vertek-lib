@@ -87,11 +87,15 @@ export async function getMainPoolConfig() {
 export async function updatePoolConfig(pool: PoolCreationConfig) {
   logger.info(`updatePoolConfig: updating ${pool.name}`);
   const poolConfigs = await getAllPoolConfigs();
+
   let updating = poolConfigs.find((p) => p.name === pool.name);
+  const idx = poolConfigs.indexOf(updating);
   updating = {
     ...updating,
     ...pool,
   };
+
+  poolConfigs[idx] = updating;
   await savePoolsData(poolConfigs);
 
   logger.success(`updatePoolConfig: pool update complete`);
@@ -113,14 +117,8 @@ export async function getPoolId(poolAddress: string) {
 
 export async function getPoolCreationData(poolAddress: string) {
   try {
-    const pool = new Contract(
-      poolAddress,
-      ['function getPoolId() public view returns (bytes32)'],
-      await getSigner(),
-    );
-
     const data = {
-      poolId: await pool.getPoolId(),
+      poolId: await getPoolId(poolAddress),
       poolAddress,
       // txHash: receipt.transactionHash,
       date: new Date().toLocaleString(),
@@ -181,8 +179,6 @@ export async function initWeightedJoin(
     );
 
     logger.success('INIT_JOIN complete');
-
-    console.log(rx);
 
     return rx;
   } catch (error) {
