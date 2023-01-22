@@ -110,6 +110,47 @@ export interface RewardPoolArgs {
   admin: string;
 }
 
+export interface IRewardPool {
+  address: string;
+
+  rewardToken: {
+    address: string;
+    name: string;
+    symbol: string;
+    logoURI: string;
+    rewardPerBlock: string;
+  };
+
+  amountStaked: string;
+  amountStakedValue: string;
+  startBlock: number;
+  endBlock: number;
+  blocksRemaining: string;
+
+  isPartnerPool: boolean;
+  partnerInfo?: {
+    siteLink?: string;
+  };
+
+  userInfo?: IRewardPoolUserInfo;
+
+  rates: {
+    apr: string;
+    daily: string;
+  };
+}
+
+export interface IRewardPoolUserInfo {
+  poolAddress: string;
+  amountDeposited: string;
+  amountDepositedFull: string;
+  depositValue: string;
+  hasPendingRewards: boolean;
+  pendingRewards: string;
+  pendingRewardValue: string;
+  percentageOwned: string;
+}
+
 export interface PoolTokenInfo {
   address: string;
   initialBalance: string;

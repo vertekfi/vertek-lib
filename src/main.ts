@@ -19,10 +19,11 @@ import { runPoolsSetup } from './services/pools/pools';
 async function run() {
   console.log('vertekfi run:');
   config({ path: join(process.cwd(), '.env') });
-  // console.log(calcOutGivenIn(2.4, 0.8, 2, 0.2, 1));
+  //  console.log(calcOutGivenIn(17000, 0.8, 30000, 0.2, 1));
   // const vault = await getVault();
   // await initBaseAuthSetup();
   await runPoolsSetup();
+  process.exit(0);
 }
 
 run();

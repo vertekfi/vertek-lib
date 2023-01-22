@@ -11,6 +11,6 @@ import {
 } from './pool-creation';
 
 export async function runPoolsSetup() {
-  await createConfigWeightedPool(1);
+  await createConfigWeightedPool(3);
   // await completeWeightedSetup('0x75f981cC341b29657901379903c0164051a52495');
 }

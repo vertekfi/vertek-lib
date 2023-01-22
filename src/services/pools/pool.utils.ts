@@ -9,6 +9,7 @@ import {
   StablePoolCreationArgs,
   JoinPoolRequest,
 } from 'src/types/pool.types';
+import { ProtocolPoolDataConfig } from 'src/types/protocol.types';
 import { CHAIN_KEYS, getChainId, getSigner } from 'src/utils/account.util';
 import { getVault } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
@@ -79,8 +80,8 @@ export function getDexPoolDataConfigPath() {
   return join(process.cwd(), 'src/data/vertek/pool-data-config.json');
 }
 
-export function getDexPoolDataConfig() {
-  return fs.readJSON(getDexPoolDataConfigPath());
+export function getDexPoolDataConfig(chainId: number): ProtocolPoolDataConfig {
+  return fs.readJSON(getDexPoolDataConfigPath())[chainId];
 }
 
 export async function updateDexPoolDataConfig(data) {

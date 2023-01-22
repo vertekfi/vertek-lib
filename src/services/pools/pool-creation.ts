@@ -91,24 +91,14 @@ export async function completeWeightedSetup(poolAddress: string) {
   pool.initJoinComplete = true;
   pool = await updatePoolConfig(pool);
 
-  const dexPoolData = await getDexPoolDataConfig();
+  // Add to the list for frontend while we're here
+  const dexPoolData = await getDexPoolDataConfig(await getChainId());
   dexPoolData[await getChainId()].incentivizedPools.push(pool.poolId);
   await updateDexPoolDataConfig(dexPoolData);
 }
 
 async function tryGetPoolAddressFromReceipt(receipt: ContractReceipt) {
   try {
-    // We need to get the new pool address out of the PoolCreated event
-    // const events = receipt.events.filter(
-    //   (e: Event) => e.event && e.event === 'PoolCreated',
-    // );
-    // if (!events.length) {
-    //   logger.error(`Unable to get pool address`);
-    //   console.log(await receipt.events[0].getTransaction());
-    //   return null;
-    // }
-    // Working differently now for some reason
-    // But this should pull out the new pool address
     const poolAddress = receipt.events[0].address;
     console.log('poolAddress: ' + poolAddress);
     const poolId = receipt.events[1].topics[1];
