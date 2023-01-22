@@ -11,7 +11,7 @@ import {
   getVault,
 } from 'src/utils/contract.utils';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
-import { performAuthEntrypointAction } from './auth';
+import { performAuthEntrypointAction } from '../auth/auth';
 
 /**
  * Items core to base system setup. (Vault authorizer switch, TokenAdmin, Minter, etc)
@@ -20,7 +20,7 @@ export async function initBaseAuthSetup() {
   // await updateVaultAuthorizer();
   // await approveTokenAdminActivation();
   // await activateTokenAdmin();
-  await giveBalMinterPermission();
+  // await giveBalMinterPermission();
 }
 
 export async function updateVaultAuthorizer() {

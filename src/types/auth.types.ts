@@ -3,5 +3,5 @@ export interface ActionIdItem {
   actionId: string;
   contractName: string;
   contractAddress: string;
-  description?: string;
+  method: string;
 }

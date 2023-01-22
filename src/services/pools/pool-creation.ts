@@ -18,7 +18,6 @@ import {
   getAllPoolConfigs,
   getDexPoolDataConfig,
   getPoolCreationData,
-  getPoolId,
   getWeightedPoolArgsFromConfig,
   initWeightedJoin,
   updateDexPoolDataConfig,
@@ -30,7 +29,8 @@ export async function createConfigWeightedPool(poolConfigIndex: number) {
   const pool = pools[poolConfigIndex];
 
   if (pool.created) {
-    throw new Error(`Pool ${pool.name} already created`);
+    logger.error(`Pool ${pool.name} already created`);
+    return;
   }
 
   validatePoolConfig(pool);

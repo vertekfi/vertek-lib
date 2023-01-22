@@ -7,7 +7,11 @@ import {
 import { logger } from 'src/utils/logger';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 import { join } from 'path';
-import { CHAIN_KEYS, getChainId } from 'src/utils/account.util';
+import {
+  CHAIN_KEYS,
+  getChainId,
+  getSignerAddress,
+} from 'src/utils/account.util';
 import { ActionIdItem } from 'src/types/auth.types';
 import * as fs from 'fs-extra';
 
@@ -20,6 +24,23 @@ export async function getActionId(
   const actionId = await instance.getActionId(selector);
   logger.info(`Action ID: ${actionId}`);
   return actionId;
+}
+
+export async function grantVaultAuthorizerPermissions(
+  actionIds: string[],
+  targetContracts: string[],
+  who?: string,
+) {
+  logger.info('grantVaultAuthorizerPermissions');
+
+  const authorizer = await getTimelockAuthorizer();
+  return await awaitTransactionComplete(
+    authorizer.grantPermissions(
+      actionIds,
+      who ?? (await getSignerAddress()),
+      targetContracts,
+    ),
+  );
 }
 
 export async function performAuthEntrypointAction(
@@ -57,5 +78,3 @@ export async function getActionIdsPath() {
 export async function getActionIds(): Promise<ActionIdItem[]> {
   return fs.readJSON(await getActionIdsPath());
 }
-
-export async function updateActionIds() {}

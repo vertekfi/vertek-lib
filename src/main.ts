@@ -6,7 +6,7 @@ import {
   approveTokenAdminActivation,
   initBaseAuthSetup,
   updateVaultAuthorizer,
-} from './services/deployment';
+} from './services/deployment/base-setup';
 import {
   completeWeightedSetup,
   createConfigWeightedPool,
@@ -15,6 +15,7 @@ import { getAddress } from '@ethersproject/address';
 import { getVault } from './utils/contract.utils';
 import { getPoolId } from './services/pools/pool.utils';
 import { runPoolsSetup } from './services/pools/pools';
+import { runGaugeSetup } from './services/deployment/gauges-setup';
 
 async function run() {
   console.log('vertekfi run:');
@@ -22,7 +23,8 @@ async function run() {
   //  console.log(calcOutGivenIn(17000, 0.8, 30000, 0.2, 1));
   // const vault = await getVault();
   // await initBaseAuthSetup();
-  await runPoolsSetup();
+  // await runPoolsSetup();
+  await runGaugeSetup();
   process.exit(0);
 }
 

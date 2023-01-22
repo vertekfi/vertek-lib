@@ -327,18 +327,6 @@
       {
         "name": "_name",
         "type": "string"
-      }
-    ],
-    "outputs": []
-  },
-  {
-    "stateMutability": "nonpayable",
-    "type": "function",
-    "name": "add_type",
-    "inputs": [
-      {
-        "name": "_name",
-        "type": "string"
       },
       {
         "name": "weight",
