@@ -85,11 +85,9 @@ async function getControllerActionItems(gaugeController: Contract) {
   logger.info('getControllerActionItems');
 
   return getActionItems(gaugeController, 'GaugeController', [
-    'admin_create_lock_for',
-    'admin_increase_amount_for',
-    'admin_increase_total_stake_for',
-    'commit_smart_wallet_checker',
-    'apply_smart_wallet_checker',
+    'add_gauge',
+    'add_type',
+    'change_type_weight',
   ]);
 }
 

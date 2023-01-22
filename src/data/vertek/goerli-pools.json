@@ -47,7 +47,7 @@
     },
     "gauge": {
       "address": "",
-      "startingWeight": "0.7",
+      "startingWeight": "0.65",
       "added": false,
       "controllerTxHash": "",
       "txHash": ""
@@ -98,11 +98,12 @@
       "initialBalances": ["3192", "21828"]
     },
     "gauge": {
-      "address": "0x8E40553b4B1D0F5150C3D8bf22136AE64771db1a",
+      "address": "0x53c5B5C391FD8d7f538fb6Ac6E50Ec47e0680CE0",
       "startingWeight": "0",
       "added": true,
-      "txHash": "0x812972f154b08fd34e1052093b686df82c1b7f9907aa14742f065002d73424f3",
-      "controllerTxHash": "0x1ecaf60385b51c9a56cd12723ee540f271b634d85e7a4b8d07824e439e2834f2"
+      "txHash": "0x5b3583b1e9a8662211cf96bea6bd1b83e68ba4d13c3e74f8436200f7777cd0ba",
+      "controllerTxHash": "0x83bb34485cd74dd19379189c33dfe31769110a425015772376a279da6a066759",
+      "addedToController": true
     },
     "isVePool": false
   },
@@ -154,11 +155,12 @@
       "initialBalances": ["13696", "6818"]
     },
     "gauge": {
-      "address": "0xd348e36E33cbb94748942a131f9aAdaeA8850cf4",
+      "address": "0xa64DE16c3D674F4F56aa5b8978eCeb4C2Cceb7A9",
       "startingWeight": "0",
       "added": true,
-      "txHash": "0xcb28424cb4e6ef965b8e2637beba1e8e4f563f3b919ce59ae4c852e196da1c09",
-      "controllerTxHash": "0xd761ede6ea60ab6855efa48f4cf69a9c8d56e1bd1296a59eb054d88bbaada4f5"
+      "txHash": "0x40bcd10f43e3ed58776e00da8db3f3bf72c7c0cd33fe923e98e363c10b6a0fea",
+      "controllerTxHash": "0xaf42c67cb5edf17eab0b655a49c357243ce54bdc65c25a236be02b91fbe12b62",
+      "addedToController": true
     },
     "isVePool": false
   },
@@ -206,11 +208,12 @@
       "initialBalances": ["30000", "17000"]
     },
     "gauge": {
-      "address": "0x10eE890fC395506bb9Ca33C8e2F2C5adfD33Ac0E",
+      "address": "0xdcae01e5f3103178Cf06EB3037c9b8E5FA9FD848",
       "startingWeight": "0",
       "added": true,
-      "txHash": "0xc6d59dd636d3a8f1eff10bb74554b3444c58e1e4b7cfafa46ee4c13d42d05670",
-      "controllerTxHash": "0x1427e00cd494373ab3036bc51db980646492513956cf58a4b25cd6bb8179747a"
+      "txHash": "0x898a37c8c2c50f124acb514063c6d7ebb00dedfddc51f61ffb5488fb4165b0ef",
+      "controllerTxHash": "0x62962e022a20e2b58fa88c7cd06703e5e1775b60c944493cb71eb6a2d422a30d",
+      "addedToController": true
     },
     "isVePool": false
   }

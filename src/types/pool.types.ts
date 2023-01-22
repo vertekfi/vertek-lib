@@ -202,5 +202,6 @@ export interface PoolCreationConfig {
     added: Boolean;
     txHash: string;
     controllerTxHash?: string;
+    addedToController: boolean;
   };
 }

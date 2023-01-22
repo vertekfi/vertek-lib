@@ -53,7 +53,7 @@ export async function performAuthEntrypointAction(
     functionName,
     args,
   );
-  await awaitTransactionComplete(
+  return await awaitTransactionComplete(
     adaptorEntrypoint.performAction(performingOn.address, calldata),
   );
 }
