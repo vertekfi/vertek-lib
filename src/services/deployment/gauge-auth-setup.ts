@@ -9,7 +9,11 @@ import {
   getVotingEscrow,
 } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
-import { getAuthAdapterActionId, updateActionIds } from '../auth/action-ids';
+import {
+  getActionIds,
+  getAuthAdapterActionId,
+  addNewActionIds,
+} from '../auth/action-ids';
 import { grantVaultAuthorizerPermissions } from '../auth/auth';
 
 export async function initGaugeAuthItems() {
@@ -56,13 +60,13 @@ export async function initGaugeAuthItems() {
     .concat(await getGaugeAdderActionItems(gaugeAdder))
     .map((action) => {
       actionIds.push(action.actionId);
-      targets.push(gaugeAdder.address); // will set for all gauge instances/addresses
+      targets.push(gaugeAdder.address);
       return action;
     });
 
   await grantVaultAuthorizerPermissions(actionIds, targets);
 
-  await updateActionIds(actionItems);
+  await addNewActionIds(actionItems);
 }
 
 async function getVotinEscrowActionItems(votingEsrow: Contract) {
@@ -92,10 +96,22 @@ async function getControllerActionItems(gaugeController: Contract) {
 export async function getGaugeAdderActionItems(gaugeAdder: Contract) {
   logger.info('getGaugeAdderActionItems');
 
-  return getActionItems(gaugeAdder, 'GaugeAdder', [
-    'addEthereumGauge',
-    'addGaugeFactory',
-  ]);
+  const chainId = await getChainId();
+  const actionItems: ActionIdItem[] = [];
+
+  // Do not need entrypoint for these. So get action id off of the contract instance itself
+  for (const method of ['addEthereumGauge', 'addGaugeFactory']) {
+    const actionId = await gaugeAdder.getActionId();
+    actionItems.push({
+      actionId,
+      contractName: 'GaugeAdder',
+      contractAddress: gaugeAdder.address,
+      chainId,
+      method,
+    });
+  }
+
+  return actionItems;
 }
 
 export async function getLiquidityGaugeActionItems(
@@ -121,8 +137,6 @@ export async function getActionItems(
   contractName: string,
   methods: string[],
 ) {
-  logger.info('getLiquidityGaugeActionItems');
-
   const contractAddress = instance.address;
   const chainId = await getChainId();
   const actionItems: ActionIdItem[] = [];

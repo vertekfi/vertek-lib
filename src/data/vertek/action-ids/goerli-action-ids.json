@@ -117,5 +117,19 @@
     "contractAddress": "0xc7BdF80a3CdD03994e991f567f8B182E8F32CeD7",
     "chainId": 5,
     "method": "withdrawFees"
+  },
+  {
+    "actionId": "0x7d194d919b67fddf8d2e2b3c7151137c7f5d371965ff63bba2988b104d48836d",
+    "contractName": "GaugeAdder",
+    "contractAddress": "0xbDfA9B0e34AB14D632182F24F99dE428B1dD0559",
+    "chainId": 5,
+    "method": "addEthereumGauge"
+  },
+  {
+    "actionId": "0x40eac441997376bcaa59f028850ec1d1807dc51d1ef80bda46c34a5f995db3c0",
+    "contractName": "GaugeAdder",
+    "contractAddress": "0xbDfA9B0e34AB14D632182F24F99dE428B1dD0559",
+    "chainId": 5,
+    "method": "addGaugeFactory"
   }
 ]

@@ -38,6 +38,9 @@ export async function getActionIds(): Promise<ActionIdItem[]> {
   return fs.readJSON(await getActionIdsPath());
 }
 
-export async function updateActionIds(items: ActionIdItem[]) {
-  await fs.writeJSON(await getActionIdsPath(), items);
+export async function addNewActionIds(actionItems: ActionIdItem[]) {
+  let ids = await getActionIds();
+  ids = ids.concat(actionItems);
+
+  await fs.writeJSON(await getActionIdsPath(), ids);
 }

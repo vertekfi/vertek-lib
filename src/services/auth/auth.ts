@@ -66,15 +66,3 @@ export async function canPerformAction(
   const authorizer = await getTimelockAuthorizer();
   return await authorizer.canPerform(actionId, who, whatContract);
 }
-
-export async function getActionIdsPath() {
-  return join(
-    process.cwd(),
-    'src/data/vertek/actions-ids',
-    `${CHAIN_KEYS[await getChainId()]}-action-ids.json`,
-  );
-}
-
-export async function getActionIds(): Promise<ActionIdItem[]> {
-  return fs.readJSON(await getActionIdsPath());
-}

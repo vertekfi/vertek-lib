@@ -13,11 +13,6 @@ export enum ExitKindStable {
   BPT_IN_FOR_EXACT_TOKENS_OUT,
 }
 
-export enum GaugeType {
-  LiquidityMiningCommittee = 'LiquidityMiningCommittee',
-  veBAL = 'veBAL',
-}
-
 export enum PoolType {
   Weighted = 'Weighted',
   Stable = 'Stable',
