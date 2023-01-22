@@ -1,5 +1,5 @@
 import { Contract } from 'ethers';
-import { CONTRACT_MAP } from 'src/data/contracts';
+import { CONTRACT_MAP } from 'src/data/vertek/contracts';
 
 import * as TokenAdminAbi from '../abis/BalancerTokenAdmin.json';
 import * as TimelockAuthAbi from '../abis/TimelockAuthorizer.json';

@@ -86,3 +86,7 @@ export async function giveBalMinterPermission() {
     ]),
   );
 }
+
+export async function doInitialVotingEscrowDeposit() {
+  // fee dist needs ve total supply > 0 if start time is the current week/epoch
+}

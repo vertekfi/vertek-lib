@@ -100,7 +100,7 @@ export const CONTRACT_MAP = {
     56: '',
   },
   VeBalHelper: {
-    5: '0xEA68eC736EaaccA554cBDcb05e11b7037d73FBc9',
+    5: '0xd59c27c69072B613D2beC3c1926B288a3f06714f',
     56: '',
   },
   GaugeController: {
