@@ -127,6 +127,7 @@ export async function getLiquidityGaugeActionItems(
     'setWithdrawFee',
     'updateFeeExempt',
     'withdrawFees',
+    'deposit_reward_token',
   ]);
 }
 

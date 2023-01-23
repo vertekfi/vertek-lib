@@ -93,6 +93,9 @@ export async function getLiquidityGaugeTemplate() {
     await getSigner(),
   );
 }
+export async function getLiquidityGaugeInstance(address: string) {
+  return new Contract(address, GaugeAbi, await getSigner());
+}
 
 export async function getLiquidityGaugeFactory() {
   return new Contract(

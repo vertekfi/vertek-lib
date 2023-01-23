@@ -1,4 +1,5 @@
 import { GaugeType, GaugeTypeNum } from 'src/types/gauge.types';
+import { getChainId } from 'src/utils/account.util';
 import {
   getContractAddress,
   getGaugeAdder,
@@ -9,7 +10,12 @@ import { logger } from 'src/utils/logger';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 import { performAuthEntrypointAction } from '../auth/auth';
 import { validatePoolConfig } from '../pools/pool-creation';
-import { getAllPoolConfigs, updatePoolConfig } from '../pools/pool.utils';
+import {
+  getAllPoolConfigs,
+  getDexPoolDataConfig,
+  updateDexPoolDataConfig,
+  updatePoolConfig,
+} from '../pools/pool.utils';
 import { initGaugeAuthItems } from './gauge-auth-setup';
 
 export async function runGaugeSetup() {
@@ -114,6 +120,11 @@ export async function addConfigPoolGaugesToController() {
     await updatePoolConfig(pool);
 
     logger.success(`Pool ${pool.name} gauge added to controller`);
+
+    // Add to the list for frontend while we're here
+    const dexPoolData = await getDexPoolDataConfig();
+    dexPoolData.gauges.push(pool.poolId);
+    await updateDexPoolDataConfig(dexPoolData);
   }
 }
 

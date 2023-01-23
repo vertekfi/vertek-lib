@@ -92,8 +92,8 @@ export async function completeWeightedSetup(poolAddress: string) {
   pool = await updatePoolConfig(pool);
 
   // Add to the list for frontend while we're here
-  const dexPoolData = await getDexPoolDataConfig(await getChainId());
-  dexPoolData[await getChainId()].incentivizedPools.push(pool.poolId);
+  const dexPoolData = await getDexPoolDataConfig();
+  dexPoolData.incentivizedPools.push(pool.poolId);
   await updateDexPoolDataConfig(dexPoolData);
 }
 

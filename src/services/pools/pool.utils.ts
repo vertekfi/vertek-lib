@@ -80,8 +80,8 @@ export function getDexPoolDataConfigPath() {
   return join(process.cwd(), 'src/data/vertek/pool-data-config.json');
 }
 
-export function getDexPoolDataConfig(chainId: number): ProtocolPoolDataConfig {
-  return fs.readJSON(getDexPoolDataConfigPath())[chainId];
+export async function getDexPoolDataConfig(): Promise<ProtocolPoolDataConfig> {
+  return fs.readJSON(getDexPoolDataConfigPath())[await getChainId()];
 }
 
 export async function updateDexPoolDataConfig(data) {

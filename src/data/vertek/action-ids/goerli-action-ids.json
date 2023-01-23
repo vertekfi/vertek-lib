@@ -63,6 +63,13 @@
     "method": "add_reward"
   },
   {
+    "actionId": "0xcafc9dae1039eca54d964c92c5a59ce904aeb6ec938aaf6537d539d080155c58",
+    "contractName": " LiquidityGaugeV5",
+    "contractAddress": "0xc7BdF80a3CdD03994e991f567f8B182E8F32CeD7",
+    "chainId": 5,
+    "method": "deposit_reward_token"
+  },
+  {
     "actionId": "0xb13f68c6ffc38ee99462eb85eff77519abc30c596deedb04ff16b4db550c7579",
     "contractName": " LiquidityGaugeV5",
     "contractAddress": "0xc7BdF80a3CdD03994e991f567f8B182E8F32CeD7",
