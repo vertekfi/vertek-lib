@@ -124,7 +124,7 @@ export const CONTRACT_MAP = {
     56: '',
   },
   FeeDistrinutor: {
-    5: '',
+    5: '0x4F59A7b0172F2F44B1B8beb9a161DA55fE7DB3b4',
     56: '',
   },
   Relater: {

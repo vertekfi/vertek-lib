@@ -13,14 +13,20 @@ import { getMainPoolConfig } from '../pools/pool.utils';
 export async function doInitialVotingEscrowDeposit() {
   const votingEsrow = await getVotingEscrow();
   const mainPool = await getMainPoolConfig();
+
   await approveTokensIfNeeded(
     [mainPool.poolAddress],
     await getSignerAddress(),
     votingEsrow.address,
   );
+
   return await awaitTransactionComplete(
     votingEsrow.create_lock(parseEther('1'), moment().add(14, 'days').unix()),
   );
+
+  // return await awaitTransactionComplete(
+  //   votingEsrow.increase_amount(parseEther('1000')),
+  // );
 }
 
 export async function stakeForUser() {
