@@ -130,7 +130,7 @@ async function createLocksCSV() {
   await csvService.write(allCsvPath, allHeaders, allLocks);
 
   // valid
-  const validLocks = getValidSnapshots();
+  let validLocks = getValidSnapshots();
   const validCsvPath = join(
     baseSnapshotPath,
     'valid-veAEQ-locks-at-block-22721125.csv',
@@ -139,6 +139,7 @@ async function createLocksCSV() {
     { id: 'percentOwned', title: 'Total veAEQ % Owned' },
   ]);
   validLocks.forEach((l) => (l.percentOwned = l.percentOwned * 100));
+  validLocks = validLocks.filter((l) => l.percentOwned > 0);
   await csvService.write(validCsvPath, validHeaders, validLocks);
 
   // expired
