@@ -23,13 +23,9 @@ export async function doInitialVotingEscrowDeposit() {
   return await awaitTransactionComplete(
     votingEsrow.create_lock(parseEther('1'), moment().add(14, 'days').unix()),
   );
-
-  // return await awaitTransactionComplete(
-  //   votingEsrow.increase_amount(parseEther('1000')),
-  // );
 }
 
-export async function stakeForUser() {
+export async function stakeForUser(who: string) {
   //
 }
 

@@ -51,7 +51,7 @@ async function run() {
 
   // await doInitialVotingEscrowDeposit();
 
-  await doVeAeqSnapshot();
+  // await doVeAeqSnapshot();
 }
 
 run();
