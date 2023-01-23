@@ -13,6 +13,7 @@ import * as VeAbi from '../abis/VotingEscrow.json';
 import * as GaugeAbi from '../abis/LiquidityGaugeV5.json';
 import * as GaugeAdderAbi from '../abis/GaugeAdder.json';
 import * as GaugeFactoryAbi from '../abis/LiquidityGaugeFactory.json';
+import * as PoolTokenAbi from '../abis/BalancerPoolToken.json';
 
 import { getChainId, getSigner } from './account.util';
 import { ERC20_ABI } from 'src/abis/ERC20ABI';
@@ -84,6 +85,10 @@ export async function getVotingEscrow() {
 
 export async function getERC20(address: string) {
   return new Contract(address, ERC20_ABI, await getSigner());
+}
+
+export async function getBalancerPoolToken(address: string) {
+  return new Contract(address, PoolTokenAbi, await getSigner());
 }
 
 export async function getLiquidityGaugeTemplate() {

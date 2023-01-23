@@ -1,8 +1,12 @@
 import { BigNumber } from 'ethers';
 import { getSignerAddress } from 'src/utils/account.util';
 import { ANY_ADDRESS } from 'src/utils/constants';
-import { getLiquidityGaugeInstance } from 'src/utils/contract.utils';
+import {
+  getBalancerPoolToken,
+  getLiquidityGaugeInstance,
+} from 'src/utils/contract.utils';
 import { approveTokensIfNeeded } from 'src/utils/token.utils';
+import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 import { getAuthAdapterActionId } from '../auth/action-ids';
 import {
   grantVaultAuthorizerPermissions,
@@ -48,4 +52,16 @@ export async function depositRewardToGauge(
     token,
     amount,
   ]);
+}
+
+export async function doGaugeDeposit(gaugeAddress: string, amount: BigNumber) {
+  const gauge = await getLiquidityGaugeInstance(gaugeAddress);
+
+  await approveTokensIfNeeded(
+    [await gauge.lp_token()],
+    await getSignerAddress(),
+    gauge.address,
+  );
+
+  return await awaitTransactionComplete(await gauge.deposit(amount));
 }

@@ -1,4 +1,6 @@
 import { Contract } from 'ethers';
+import { parseEther } from 'ethers/lib/utils';
+import * as moment from 'moment-timezone';
 import { getSigner, getSignerAddress } from 'src/utils/account.util';
 import { ZERO_BYTES32 } from 'src/utils/constants';
 import {
@@ -9,9 +11,13 @@ import {
   getTimelockAuthorizer,
   getTokenAdmin,
   getVault,
+  getVotingEscrow,
 } from 'src/utils/contract.utils';
+import { approveTokensIfNeeded } from 'src/utils/token.utils';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 import { performAuthEntrypointAction } from '../auth/auth';
+import { doInitialVotingEscrowDeposit } from '../gauges/voting-escrow';
+import { getMainPoolConfig } from '../pools/pool.utils';
 
 /**
  * Items core to base system setup. (Vault authorizer switch, TokenAdmin, Minter, etc)
@@ -21,6 +27,7 @@ export async function initBaseAuthSetup() {
   // await approveTokenAdminActivation();
   // await activateTokenAdmin();
   // await giveBalMinterPermission();
+  // await doInitialVotingEscrowDeposit();
 }
 
 export async function updateVaultAuthorizer() {
@@ -85,8 +92,4 @@ export async function giveBalMinterPermission() {
       tokenAdmin.address,
     ]),
   );
-}
-
-export async function doInitialVotingEscrowDeposit() {
-  // fee dist needs ve total supply > 0 if start time is the current week/epoch
 }
