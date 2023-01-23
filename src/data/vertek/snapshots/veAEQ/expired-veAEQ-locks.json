@@ -1,0 +1,1330 @@
+[
+  {
+    "user": "0xd550517a08be476eb2f5a72d76cfe59c9a4c1aca",
+    "unlockTime": 1661385600,
+    "lockedBalance": 0,
+    "updatedAt": "Fri Aug 26 2022",
+    "unlockDateUTC": "Thu, 25 Aug 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xb288607e428ab487b284690495a7143345ea6633",
+    "unlockTime": 1661385600,
+    "lockedBalance": 0,
+    "updatedAt": "Fri Aug 26 2022",
+    "unlockDateUTC": "Thu, 25 Aug 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x2d131949ecdee6a8899a0c391559e37da9ad21fb",
+    "unlockTime": 1661385600,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 01 2022",
+    "unlockDateUTC": "Thu, 25 Aug 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xe3816e9a83b4de7392f888ceca30b05165dfb162",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Aug 31 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xe2fc618b1973a2e6faea551648c17fa5a6954b13",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Fri Sep 02 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xd44580c4024e8e4a0022afad0fd4e78d0f575fd8",
+    "unlockTime": 1661990400,
+    "lockedBalance": 1.3027054621068332,
+    "updatedAt": "Sun Aug 21 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xd2f2f6b0f48e7a12496d8c9f7a2c18e6b76e49e0",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 01 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xc6fac988c94c34af9e9f85330039f838c94262f3",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 29 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xc48e6c2ad56e8c19bc368e5c92728ffcd93525fc",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 01 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xbdc121cb124bd62c61ffe0954ab9420dc3d083a1",
+    "unlockTime": 1661990400,
+    "lockedBalance": 1.1966453947381153,
+    "updatedAt": "Wed Aug 17 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xafaa71df19e5f5c275a793ae5b42277c1e84c70d",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Aug 31 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xa02d6c1cb1e7018f9afbfd6a9a8dbfa344fd3732",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 01 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x9981763271b19e76c15a90c7078da084d3f49478",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Aug 31 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x94a76fb41516b00e15fc0751a5f10ee044146e7b",
+    "unlockTime": 1661990400,
+    "lockedBalance": 2.1239451774472333,
+    "updatedAt": "Sun Aug 21 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x8ca0d3abf6138a8852f70286c59d997d05858a21",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Fri Sep 09 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x86d2b66b977d8e99ac032ea58904065ca481359c",
+    "unlockTime": 1661990400,
+    "lockedBalance": 6.38379541026892,
+    "updatedAt": "Sun Aug 21 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x821a2538e8afa1d640b4f445ea7d879c1f02fbc3",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 01 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x7ca256f198215414e637d595f281968c2d24c4e7",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 01 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x721f5d24c041d02f9316245d96dac0094429ce53",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 01 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x62e185b1c13728d9802380d8518762b9a2ae4227",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 01 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x5bfde069e01114fea71a239254604eb65b3fc638",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 01 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x58658836e5389a9f62dee633d6733c7747872210",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0.34217657080367053,
+    "updatedAt": "Sat Aug 20 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x570108e54d11348bd3734ff73dc55ec52c28d3ef",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0.47,
+    "updatedAt": "Fri Aug 26 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x5580ba66f8d6dc71adb0ca1d1c6b3d142ff7aaca",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Aug 31 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x5482ec6b95969fd56a45e15d773ed1927583a767",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Sun Sep 04 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x53d1a6dfa25f973f39b69561d3aae5d86193524d",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Tue Sep 13 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x50574a8cbb1766ee80be183963f2dd60b937065a",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Aug 31 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x4f51c358e4c9330ad1a03f22cdb2c4cc651bd307",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Aug 31 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x4b914f7b6cdbd3af915a8f4089ce3a62449a7f41",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Mon Sep 12 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x4918e5f311ae562157412cb57a8030d17d8d4ee8",
+    "unlockTime": 1661990400,
+    "lockedBalance": 2.445497454616876,
+    "updatedAt": "Tue Aug 23 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x454a31b41113c675548b86aad9037e4288b709c8",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Aug 31 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x42ae216f5a6c99c9d7dcd98e9114b0d8f6f248b5",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Aug 31 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x30632e0b0767d31ca5fa2d762f537e369f1d4736",
+    "unlockTime": 1661990400,
+    "lockedBalance": 1,
+    "updatedAt": "Thu Aug 18 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x2c8cab98fa6322dd6d885221d8f5cc1db6947476",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 01 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x295b00f553978a3cb60c714547031b233d6dca36",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 01 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x0cbf0b33549479a08b0e3ef7d3a72c1c90b5b5f9",
+    "unlockTime": 1661990400,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 01 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x0c3441906dbfb65857ede3e405387a8659ad46e0",
+    "unlockTime": 1661990400,
+    "lockedBalance": 19.317649331527967,
+    "updatedAt": "Tue Aug 23 2022",
+    "unlockDateUTC": "Thu, 01 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xf0427ac2ef4f751c55c13fe0db99fb7decf4407c",
+    "unlockTime": 1662595200,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 08 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xe48fc63f31225febc1470f1049d22020e3c85beb",
+    "unlockTime": 1662595200,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 08 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xe3d276337d6ff40ee39ed92669348cb9129bf4e3",
+    "unlockTime": 1662595200,
+    "lockedBalance": 2.042352759335402,
+    "updatedAt": "Sun Aug 21 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xe2b6bb95f2284e16a758457ca6bdf534c94b2f25",
+    "unlockTime": 1662595200,
+    "lockedBalance": 0,
+    "updatedAt": "Fri Sep 09 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xdf327c3cfd5711a376c39197a6f7e2bc2c74124b",
+    "unlockTime": 1662595200,
+    "lockedBalance": 0,
+    "updatedAt": "Fri Sep 16 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xdd9809dbd4cd2d39f8b4282af14e630b3092681a",
+    "unlockTime": 1662595200,
+    "lockedBalance": 0,
+    "updatedAt": "Sun Sep 11 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xd8cf225a155862a28f89bdb3086f5654eed70dd2",
+    "unlockTime": 1662595200,
+    "lockedBalance": 0,
+    "updatedAt": "Fri Sep 09 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xce5c4665e6c17d8dff8dba274b15c96464395779",
+    "unlockTime": 1662595200,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Sep 07 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xaafe7184ac380976bdd0cdd0eb1c3da4b998b5ce",
+    "unlockTime": 1662595200,
+    "lockedBalance": 5,
+    "updatedAt": "Wed Aug 24 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xa59303bc0237760c55cc66c34b6c6ba46dac0c68",
+    "unlockTime": 1662595200,
+    "lockedBalance": 0,
+    "updatedAt": "Sat Sep 10 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x98173a047fe3a708c57a04b8f90ed1610fe0727b",
+    "unlockTime": 1662595200,
+    "lockedBalance": 1.971660753395181,
+    "updatedAt": "Wed Aug 24 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x95245286dba88140074c74fb2b4e7374785b54c9",
+    "unlockTime": 1662595200,
+    "lockedBalance": 0,
+    "updatedAt": "Mon Sep 12 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x5c9de63470d0d6d8103f7c83f1be4f55998706fc",
+    "unlockTime": 1662595200,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 08 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x5853ed4f26a3fcea565b3fbc698bb19cdf6deb85",
+    "unlockTime": 1662595200,
+    "lockedBalance": 0.024230227210704176,
+    "updatedAt": "Thu Aug 25 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x527e384be1f3e19394ccf667fb191565fec75c03",
+    "unlockTime": 1662595200,
+    "lockedBalance": 0,
+    "updatedAt": "Sun Sep 25 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x24ef43f07aa6aef3a37fdd345539f7f87912c99e",
+    "unlockTime": 1662595200,
+    "lockedBalance": 0,
+    "updatedAt": "Mon Sep 12 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x1ce186e5578404b7c63b39569e29223de0a0385f",
+    "unlockTime": 1662595200,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 08 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x1532ae55d8ca89363c22c8a1dbb7685fa4759e69",
+    "unlockTime": 1662595200,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Sep 07 2022",
+    "unlockDateUTC": "Thu, 08 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xf10e9cdbb7ddd20d9a43c5746b73df2a2c78d2d1",
+    "unlockTime": 1663200000,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Sep 14 2022",
+    "unlockDateUTC": "Thu, 15 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xf092ca027a2dc87d60586c658d8279018c4a6c74",
+    "unlockTime": 1663200000,
+    "lockedBalance": 1204.90112510446,
+    "updatedAt": "Fri Aug 26 2022",
+    "unlockDateUTC": "Thu, 15 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xea9933b3e8d0b13bcf18eea143a7644bd820fc75",
+    "unlockTime": 1663200000,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 15 2022",
+    "unlockDateUTC": "Thu, 15 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xd6dc4a8465b36e4af645dd83a39c5ccc18b22313",
+    "unlockTime": 1663200000,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 15 2022",
+    "unlockDateUTC": "Thu, 15 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xc6ffe6c36c1cbb44297c80ce47a09b91e5d103da",
+    "unlockTime": 1663200000,
+    "lockedBalance": 0,
+    "updatedAt": "Fri Sep 30 2022",
+    "unlockDateUTC": "Thu, 15 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xaa6953de38a7f221b2a225018bc72ed428bf86b4",
+    "unlockTime": 1663200000,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Sep 14 2022",
+    "unlockDateUTC": "Thu, 15 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x9dc15f618e7dbee2d4390279dd583f1fd86017b2",
+    "unlockTime": 1663200000,
+    "lockedBalance": 0,
+    "updatedAt": "Fri Sep 16 2022",
+    "unlockDateUTC": "Thu, 15 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x840c284c4c4531ac7ba11c147b995ad70269e01d",
+    "unlockTime": 1663200000,
+    "lockedBalance": 38.483749800512186,
+    "updatedAt": "Sun Aug 28 2022",
+    "unlockDateUTC": "Thu, 15 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x8373443e92b6f5aaf0b738855cd41d665d6453a0",
+    "unlockTime": 1663200000,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 15 2022",
+    "unlockDateUTC": "Thu, 15 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x67ee0f15e92728ee34519d8cc73e6f510777832e",
+    "unlockTime": 1663200000,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 15 2022",
+    "unlockDateUTC": "Thu, 15 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x56f01cb51adc025f75513c234a58b1cebb1f21ed",
+    "unlockTime": 1663200000,
+    "lockedBalance": 0,
+    "updatedAt": "Mon Oct 31 2022",
+    "unlockDateUTC": "Thu, 15 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x4eeb0f5aad6349f3c587fba1176ba164b95ea8bf",
+    "unlockTime": 1663200000,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Sep 14 2022",
+    "unlockDateUTC": "Thu, 15 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x3a293c8562d634b51b95f7c74f18c562a0518d00",
+    "unlockTime": 1663200000,
+    "lockedBalance": 0,
+    "updatedAt": "Fri Sep 16 2022",
+    "unlockDateUTC": "Thu, 15 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x2e1ceef912b5003dbe56dc58550ede28d5a58fa7",
+    "unlockTime": 1663200000,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 15 2022",
+    "unlockDateUTC": "Thu, 15 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xff4f7b726ee86f810531d2842b3bdd8a512db594",
+    "unlockTime": 1663804800,
+    "lockedBalance": 0,
+    "updatedAt": "Sun Sep 25 2022",
+    "unlockDateUTC": "Thu, 22 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xedf1a0dd80d1eada7e25b321c84ddbf31a2e5369",
+    "unlockTime": 1663804800,
+    "lockedBalance": 378.1609008748928,
+    "updatedAt": "Wed Aug 17 2022",
+    "unlockDateUTC": "Thu, 22 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xa4805eec0aa8b205c9f1aaaaab78f54af541a5ee",
+    "unlockTime": 1663804800,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 22 2022",
+    "unlockDateUTC": "Thu, 22 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x9dcae8f5bcea6350055fbb17808bb610f43ff9ab",
+    "unlockTime": 1663804800,
+    "lockedBalance": 0,
+    "updatedAt": "Sat Sep 24 2022",
+    "unlockDateUTC": "Thu, 22 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x96ab370638751c2eb503cbd74d78d44df6526f1c",
+    "unlockTime": 1663804800,
+    "lockedBalance": 10.020190878926972,
+    "updatedAt": "Wed Aug 17 2022",
+    "unlockDateUTC": "Thu, 22 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x93aa522033470fc853563995229039d9f2b3cf34",
+    "unlockTime": 1663804800,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Sep 21 2022",
+    "unlockDateUTC": "Thu, 22 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x891efc56f5cd6580b2fea416adc960f2a6156494",
+    "unlockTime": 1663804800,
+    "lockedBalance": 1,
+    "updatedAt": "Tue Aug 16 2022",
+    "unlockDateUTC": "Thu, 22 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x825558126a059fa2c353ff85be4dd4c817760974",
+    "unlockTime": 1663804800,
+    "lockedBalance": 0,
+    "updatedAt": "Sun Sep 25 2022",
+    "unlockDateUTC": "Thu, 22 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x6c293b9ce048bc656aa8c944ddc4ff232fd4d709",
+    "unlockTime": 1663804800,
+    "lockedBalance": 46.62360368195693,
+    "updatedAt": "Mon Sep 12 2022",
+    "unlockDateUTC": "Thu, 22 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x613235dd73ad263dc429384bc7b77d47ada75731",
+    "unlockTime": 1663804800,
+    "lockedBalance": 0,
+    "updatedAt": "Sun Sep 25 2022",
+    "unlockDateUTC": "Thu, 22 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x5d0f5e26eb479dbced0938c2310ddf47f227e0fc",
+    "unlockTime": 1663804800,
+    "lockedBalance": 3.4536663758796267,
+    "updatedAt": "Thu Sep 01 2022",
+    "unlockDateUTC": "Thu, 22 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x27a5119064bdf9567322ba1a6d2abb3dd64c6f7c",
+    "unlockTime": 1663804800,
+    "lockedBalance": 356.1945661079494,
+    "updatedAt": "Thu Aug 18 2022",
+    "unlockDateUTC": "Thu, 22 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x20144c31d380bdc127dd76422a5627b41d4cca1f",
+    "unlockTime": 1663804800,
+    "lockedBalance": 0,
+    "updatedAt": "Fri Sep 30 2022",
+    "unlockDateUTC": "Thu, 22 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xfe916249feb19b2099c9e16266b24a23e9c44ed3",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 29 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xfe2f7f9f48f9b0dc079c9658d155e491548b173c",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Sep 28 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xf8fba84260641f9ce6f619b199dabe76d27c461e",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Fri Sep 30 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xf46288c820c6cc64e09a59b59049eff4c9fa6b82",
+    "unlockTime": 1664409600,
+    "lockedBalance": 22.94136597565087,
+    "updatedAt": "Sat Aug 20 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xeccb9b9c6fb7590a4d0588953b3170a1a84e3341",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Tue Oct 18 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xec964b6c91abde8f583f744de48da87b9f43035e",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Sun Oct 02 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xe84e213becc8c50faa5400b6da1e520214692f86",
+    "unlockTime": 1664409600,
+    "lockedBalance": 19.656676158655653,
+    "updatedAt": "Sat Aug 20 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xe14b67fcb6c44872e1112818798e2b4f08367d86",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 29 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xde0d7d61523b53d7d5d62d26dccd787e10a71fb3",
+    "unlockTime": 1664409600,
+    "lockedBalance": 5.679699584971164,
+    "updatedAt": "Mon Aug 22 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xdc1e0166cd090acb3ec7fa9c0dab880055cba939",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 29 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xd6984b46bb246f0caccab9b11b3b73fe6f5e9716",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 29 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xd3a9dccb4cfd983ff69e688ddb6491e010301b7a",
+    "unlockTime": 1664409600,
+    "lockedBalance": 4.022541546278664,
+    "updatedAt": "Sun Aug 21 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xd31290692bbb478c7b1995b50b6f34267fa43122",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Tue Oct 04 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xcfe9c7dbfd91ef533d04227ea844292315b10653",
+    "unlockTime": 1664409600,
+    "lockedBalance": 30.327046941842575,
+    "updatedAt": "Tue Aug 23 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xc578d755cd56255d3ff6e92e1b6371ba945e3984",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0.1,
+    "updatedAt": "Sat Sep 17 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xc25fa6c5e3ce1799b2bf7bab8023785298f35c46",
+    "unlockTime": 1664409600,
+    "lockedBalance": 534.7974002417915,
+    "updatedAt": "Sat Aug 20 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xbdab9069a0667b06771bce75cb5509fbd0939d3d",
+    "unlockTime": 1664409600,
+    "lockedBalance": 6.821539171453814,
+    "updatedAt": "Fri Aug 19 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xba19e3d480143267ecbcb83b3ec33022a6935e24",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Fri Sep 30 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xb666be826459f232adbec5c4e0ea6876ed75ad38",
+    "unlockTime": 1664409600,
+    "lockedBalance": 1.1393713783360848,
+    "updatedAt": "Tue Aug 23 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xb22c731549bfdb3a8665ba49a31175e38f9fc080",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Sat Oct 08 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xae37084f0b2c8df0381eb4486216d0ffa619528f",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Tue Oct 25 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xadf7e608c11c675ba9d896de8f1c906f46b7b272",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 29 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xa9d3b84b64abcceecbfbecd7dfc3ff52b9e62723",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Nov 02 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xa8b5132e731bc78f9e88b81b67baa02fd457e5cf",
+    "unlockTime": 1664409600,
+    "lockedBalance": 37.025835080424585,
+    "updatedAt": "Tue Aug 23 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xa7dc12c0342e4b99b8f1f9405c9aa3b59dc8f507",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 29 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x9ee20e0273a440b7e19735bbe01ebb81bd5b5971",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Oct 06 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x92f76921421831b4db5c778d13f50c6b949d1153",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 29 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x91188246480ff95367c8f608b0ad03b68d2c32e1",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Sat Oct 01 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x898fd6b248294df8bd1d54ef00ea38799a86780f",
+    "unlockTime": 1664409600,
+    "lockedBalance": 21.100063308914887,
+    "updatedAt": "Fri Aug 19 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x8459821342ae304736abcd54fe595753c3069fae",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Sep 28 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x826d8bf70da731ea94e4f92c17bec5bda2faf557",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0.8428323066232524,
+    "updatedAt": "Sat Aug 20 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x8220d19174a6da05529963a86a8f66b6aa8090d5",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Tue Oct 04 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x80ff59d3518ca8954c5c2a642fc3d553486a9bbd",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Mon Oct 03 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x7dd354fa9a2ca68f4da5ff32e9aa4a8e4a3bd554",
+    "unlockTime": 1664409600,
+    "lockedBalance": 9.538540445975041,
+    "updatedAt": "Sun Aug 21 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x6f9968e3cd5ac226a5cdb1e8d5a1d09175837ada",
+    "unlockTime": 1664409600,
+    "lockedBalance": 10.515857481820408,
+    "updatedAt": "Sun Aug 21 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x6a289c9ef63a1becbdb4f14855cc4862e13e3e2a",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Sep 28 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x68ae261e6ee6c25206b4f78df6fa645d79d38a66",
+    "unlockTime": 1664409600,
+    "lockedBalance": 39.45157110950126,
+    "updatedAt": "Sat Aug 20 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x62e7f2d286cbd19cf0e2610366c91e2aa4776996",
+    "unlockTime": 1664409600,
+    "lockedBalance": 10.610987163699479,
+    "updatedAt": "Thu Aug 18 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x55c050aea523944bd940ee3d6dcf43ba6741e0f4",
+    "unlockTime": 1664409600,
+    "lockedBalance": 9.835268726673474,
+    "updatedAt": "Sun Aug 21 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x507e014f4198707a9f01ec8f8374369b3f09f31e",
+    "unlockTime": 1664409600,
+    "lockedBalance": 3.303042924551869,
+    "updatedAt": "Tue Aug 23 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x4694bd0bb2178c65397c4f59cd1b7b3d78d4c94b",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Sun Oct 02 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x46906853575a340cb52893b114aff93f22be6bda",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0.6360326658072706,
+    "updatedAt": "Thu Sep 01 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x4503d8fa6e6c7e1ff6f3190e98fb9a362f1e519e",
+    "unlockTime": 1664409600,
+    "lockedBalance": 16.615478480634092,
+    "updatedAt": "Sun Aug 28 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x40d015d66e14d24b3acb0923ec5845fc1e377da8",
+    "unlockTime": 1664409600,
+    "lockedBalance": 7.120826384140927,
+    "updatedAt": "Mon Aug 22 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x3a6df78751bc7bd57d4e5cd5ca49dc1c09df368a",
+    "unlockTime": 1664409600,
+    "lockedBalance": 4.330936838598597,
+    "updatedAt": "Sun Aug 21 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x37f53d6fc07f982dd7c3f976bc2f524d6d1b2756",
+    "unlockTime": 1664409600,
+    "lockedBalance": 20,
+    "updatedAt": "Mon Aug 22 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x315577e2d3d9f071a00d7c9b8989bee5c45ce424",
+    "unlockTime": 1664409600,
+    "lockedBalance": 33.676116437912725,
+    "updatedAt": "Wed Aug 31 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x21fddfd3557f807fb308a97950c613bbe89baa7f",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 29 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x1f338a463fe5e90acec6ee5429c1748c34b25b7b",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 29 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x0d6211baa6e18b2d281b607d15024fb7f38abdfd",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Sat Oct 22 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x0d60c4a9a47759b5ecf400a66ae647e9cc44756e",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Sep 29 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x03cae5ef37e2dc448e23b470153c3b8412f04bd8",
+    "unlockTime": 1664409600,
+    "lockedBalance": 5.090920462728059,
+    "updatedAt": "Wed Aug 24 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x00d55e4875ade402becffd67dedc01f8515c491c",
+    "unlockTime": 1664409600,
+    "lockedBalance": 0,
+    "updatedAt": "Fri Sep 30 2022",
+    "unlockDateUTC": "Thu, 29 Sep 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xfe532cefca43954589cefd3d78386e1a02c405ff",
+    "unlockTime": 1665014400,
+    "lockedBalance": 0,
+    "updatedAt": "Tue Oct 11 2022",
+    "unlockDateUTC": "Thu, 06 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xdf8243b405e66a1c24acdfd3ce24f19bd51cc697",
+    "unlockTime": 1665014400,
+    "lockedBalance": 0,
+    "updatedAt": "Fri Oct 07 2022",
+    "unlockDateUTC": "Thu, 06 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xa995b19209255f1bb3461a5a358943f332ee044b",
+    "unlockTime": 1665014400,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Oct 06 2022",
+    "unlockDateUTC": "Thu, 06 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x97d0d242d850b322f33ff24624b8cf85606268e1",
+    "unlockTime": 1665014400,
+    "lockedBalance": 0,
+    "updatedAt": "Sun Oct 09 2022",
+    "unlockDateUTC": "Thu, 06 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x7746efa02d514b174d59f239623302b3fd46e74e",
+    "unlockTime": 1665014400,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Oct 13 2022",
+    "unlockDateUTC": "Thu, 06 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x714b422493cf618f789500b1511a0f92971c7f02",
+    "unlockTime": 1665014400,
+    "lockedBalance": 30.158291927857135,
+    "updatedAt": "Fri Sep 23 2022",
+    "unlockDateUTC": "Thu, 06 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x64a553aa0e1c46118f49653d305eb0137f1ac82d",
+    "unlockTime": 1665014400,
+    "lockedBalance": 6.036342618733263,
+    "updatedAt": "Thu Aug 25 2022",
+    "unlockDateUTC": "Thu, 06 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x44244fe7d10d076c078bb9e669a1bb4154c10c65",
+    "unlockTime": 1665014400,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Oct 06 2022",
+    "unlockDateUTC": "Thu, 06 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x27c356e780c118870d55a73da49367c6269e6308",
+    "unlockTime": 1665014400,
+    "lockedBalance": 12.962748084261719,
+    "updatedAt": "Tue Aug 30 2022",
+    "unlockDateUTC": "Thu, 06 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x2673b7c87a2fd1018626268354934cacc59881dc",
+    "unlockTime": 1665014400,
+    "lockedBalance": 5.52883690806013,
+    "updatedAt": "Sun Sep 04 2022",
+    "unlockDateUTC": "Thu, 06 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x01ea8648218356d344ac1e0160cf5c51b9173fce",
+    "unlockTime": 1665014400,
+    "lockedBalance": 4.876649619253445,
+    "updatedAt": "Thu Aug 25 2022",
+    "unlockDateUTC": "Thu, 06 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xee145ea51813901a69a265c44345ce0d85979271",
+    "unlockTime": 1665619200,
+    "lockedBalance": 0,
+    "updatedAt": "Tue Oct 18 2022",
+    "unlockDateUTC": "Thu, 13 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xe5845761e7773976055f2559ca54be41f09d9e88",
+    "unlockTime": 1665619200,
+    "lockedBalance": 0,
+    "updatedAt": "Sun Oct 23 2022",
+    "unlockDateUTC": "Thu, 13 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xd1c4bdf1e61e10998305a1e991533fc54d24ac10",
+    "unlockTime": 1665619200,
+    "lockedBalance": 0,
+    "updatedAt": "Sun Oct 30 2022",
+    "unlockDateUTC": "Thu, 13 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xcfb9720ceec369cf68f96de452403be7010db191",
+    "unlockTime": 1665619200,
+    "lockedBalance": 5.990294469386564,
+    "updatedAt": "Thu Sep 01 2022",
+    "unlockDateUTC": "Thu, 13 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xb465af2329b5b11157b88a3b47900342cbff8564",
+    "unlockTime": 1665619200,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Oct 13 2022",
+    "unlockDateUTC": "Thu, 13 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x9876b8cfa1b44ab7087c242a5c65bf707c8f215d",
+    "unlockTime": 1665619200,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Oct 13 2022",
+    "unlockDateUTC": "Thu, 13 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x8a4c7b4cd79b6bc4318b4fd5db680f74283c9ab5",
+    "unlockTime": 1665619200,
+    "lockedBalance": 25.760530968745396,
+    "updatedAt": "Sun Sep 04 2022",
+    "unlockDateUTC": "Thu, 13 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x666d0231107ca54d4f20cfe60227fe1bc7a84e32",
+    "unlockTime": 1665619200,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Oct 12 2022",
+    "unlockDateUTC": "Thu, 13 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x48ee01572965658f0d8a83fa51553b492fa9a19e",
+    "unlockTime": 1665619200,
+    "lockedBalance": 77.01484223800887,
+    "updatedAt": "Thu Sep 01 2022",
+    "unlockDateUTC": "Thu, 13 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x409a451c6450dc9a82e6e0c5850c714e702af7a8",
+    "unlockTime": 1665619200,
+    "lockedBalance": 0,
+    "updatedAt": "Thu Oct 13 2022",
+    "unlockDateUTC": "Thu, 13 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xce4014d4c9c90c9c84ec5306e50a67712adfc867",
+    "unlockTime": 1666224000,
+    "lockedBalance": 7.344851142605439,
+    "updatedAt": "Sat Sep 10 2022",
+    "unlockDateUTC": "Thu, 20 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xc78f9855b909e70ce53dbcd9408fc8d5b6084bb8",
+    "unlockTime": 1666224000,
+    "lockedBalance": 0,
+    "updatedAt": "Mon Oct 31 2022",
+    "unlockDateUTC": "Thu, 20 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x806a2097f6a54661cf526aa27fac1995330d73e9",
+    "unlockTime": 1666224000,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Oct 26 2022",
+    "unlockDateUTC": "Thu, 20 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x26030eb9fadf4ba37ba5eccd7c8f44c9e5c68c95",
+    "unlockTime": 1666224000,
+    "lockedBalance": 0,
+    "updatedAt": "Tue Oct 25 2022",
+    "unlockDateUTC": "Thu, 20 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xf35de2bb87070efd124cf4cf83806293f819cf06",
+    "unlockTime": 1666828800,
+    "lockedBalance": 7.546928709441032,
+    "updatedAt": "Tue Sep 20 2022",
+    "unlockDateUTC": "Thu, 27 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0xc3a2487eb8a59a65feb477dba0df089a2d54af0e",
+    "unlockTime": 1666828800,
+    "lockedBalance": 40.677222940626805,
+    "updatedAt": "Fri Sep 16 2022",
+    "unlockDateUTC": "Thu, 27 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x951dc6c2efd84cd0c469ddf5886257a3ce5b88cc",
+    "unlockTime": 1666828800,
+    "lockedBalance": 9.734256261737299,
+    "updatedAt": "Sat Sep 17 2022",
+    "unlockDateUTC": "Thu, 27 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x8bb27255bccfe3f2a3749e3175f1992140712eb1",
+    "unlockTime": 1666828800,
+    "lockedBalance": 0,
+    "updatedAt": "Wed Oct 26 2022",
+    "unlockDateUTC": "Thu, 27 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x7d54ee31151a6d47a18d922a9426f1c221f94d4f",
+    "unlockTime": 1666828800,
+    "lockedBalance": 272.648708502069,
+    "updatedAt": "Mon Oct 17 2022",
+    "unlockDateUTC": "Thu, 27 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  },
+  {
+    "user": "0x27eceafde06a27f6c8cc7b3cea975b3764f785c1",
+    "unlockTime": 1666828800,
+    "lockedBalance": 129.40197719713024,
+    "updatedAt": "Tue Sep 20 2022",
+    "unlockDateUTC": "Thu, 27 Oct 2022 00:00:00 GMT",
+    "userBalanceAtTimestamp": 0
+  }
+]

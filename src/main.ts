@@ -33,7 +33,9 @@ import { getSigner, getSignerAddress } from './utils/account.util';
 import { awaitTransactionComplete } from './utils/transaction.utils';
 import { doInitialVotingEscrowDeposit } from './services/gauges/voting-escrow';
 
-import * as moment from 'moment-timezone';
+import { subgraphsClient } from './services/subgraphs/subgraph-client';
+import { gql } from 'graphql-request';
+import { doVeAeqSnapshot } from './data/vertek/snapshots/veAEQ/veAEQ-snapshot';
 
 async function run() {
   console.log('vertekfi run:');
@@ -48,6 +50,8 @@ async function run() {
   const gauge = '0x53c5B5C391FD8d7f538fb6Ac6E50Ec47e0680CE0';
 
   // await doInitialVotingEscrowDeposit();
+
+  await doVeAeqSnapshot();
 }
 
 run();
