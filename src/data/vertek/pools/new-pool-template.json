@@ -1,0 +1,53 @@
+{
+  "created": false,
+  "initJoinComplete": false,
+  "name": "",
+  "symbol": "",
+  "assetManager": "0x0000000000000000000000000000000000000000",
+  "type": "Weighted",
+  "txHash": "",
+  "poolId": "",
+  "poolAddress": "",
+  "date": "",
+  "initialBalances": ["", ""],
+  "tokenInfo": [
+    {
+      "address": "",
+      "weight": "",
+      "initialBalance": "",
+      "symbol": ""
+    },
+    {
+      "address": "",
+      "weight": "",
+      "initialBalance": "",
+      "symbol": ""
+    }
+  ],
+  "deploymentArgs": {
+    "name": "P",
+    "symbol": "",
+    "owner": "",
+    "tokens": ["", ""],
+    "swapFeePercentage": "",
+    "weights": ["", ""],
+    "assetManagers": [
+      "0x0000000000000000000000000000000000000000",
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "rateProviders": [
+      "0x0000000000000000000000000000000000000000",
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "initialBalances": ["", ""]
+  },
+  "gauge": {
+    "address": "",
+    "startingWeight": "0",
+    "added": false,
+    "txHash": "",
+    "controllerTxHash": "",
+    "addedToController": false
+  },
+  "isVePool": false
+}

@@ -81,7 +81,7 @@ export function getDexPoolDataConfigPath() {
 }
 
 export async function getDexPoolDataConfig(): Promise<ProtocolPoolDataConfig> {
-  return fs.readJSON(getDexPoolDataConfigPath())[await getChainId()];
+  return fs.readJSON(getDexPoolDataConfigPath())[String(await getChainId())];
 }
 
 export async function updateDexPoolDataConfig(data) {

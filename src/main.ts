@@ -1,4 +1,4 @@
-import { calcOutGivenIn } from './math';
+import { calcInGivenOut, calcOutGivenIn } from './math';
 import { config } from 'dotenv';
 import { join } from 'path';
 import {
@@ -10,6 +10,7 @@ import {
 import {
   completeWeightedSetup,
   createConfigWeightedPool,
+  createMainPool,
 } from './services/pools/pool-creation';
 import { getAddress } from '@ethersproject/address';
 import {
@@ -35,11 +36,13 @@ import * as moment from 'moment-timezone';
 async function run() {
   console.log('VertekFi run:');
   config({ path: join(process.cwd(), '.env') });
-  // console.log(calcOutGivenIn(17000, 0.8, 30000, 0.2, 1));
 
-  // await testVeStakeFor();
-  // await setupBSC();
-  // await updateVaultAuthorizer();
+  // BNB@~$310 vrtk@$7 = 0.0225806452 BNB -> 1 VRTK ---- RATIO 180 TO 1 (VRTK -> BNB)
+  // 10 BNB = $3,100, Need then 1800 VRTK = $12,600 ($15,700 initial liquidity value)
+  // console.log(calcOutGivenIn(175, 0.8, 1, 0.2, 1));
+  // console.log(calcInGivenOut(1, 0.2, 180, 0.8, 1));
+
+  await createMainPool('0xa5694789C0BaED77d16ca36edC45C9366DBFe0A9');
 }
 
 async function setupBSC() {

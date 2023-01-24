@@ -1,4 +1,4 @@
-import { Contract, ContractReceipt, Event } from 'ethers';
+import { Contract, ContractReceipt } from 'ethers';
 import { parseUnits } from 'ethers/lib/utils';
 import {
   CreateWeightedPoolArgs,
@@ -6,23 +6,32 @@ import {
   PoolType,
 } from 'src/types/pool.types';
 import { _require } from 'src/utils';
-import {
-  getChainId,
-  getSigner,
-  getSignerAddress,
-} from 'src/utils/account.util';
+import { getSigner, getSignerAddress } from 'src/utils/account.util';
 import { getContractAddress } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 import {
   getAllPoolConfigs,
   getDexPoolDataConfig,
+  getMainPoolConfig,
   getPoolCreationData,
   getWeightedPoolArgsFromConfig,
   initWeightedJoin,
   updateDexPoolDataConfig,
   updatePoolConfig,
 } from './pool.utils';
+
+export async function createMainPool(vertkAddress: string) {
+  const pool = await getMainPoolConfig();
+
+  const vrtkInfo = pool.tokenInfo.find((t) => t.symbol === 'VRTK');
+  vrtkInfo.address = vertkAddress;
+  await updatePoolConfig(pool);
+
+  await createConfigWeightedPool(0);
+
+  // Needs StakelessGauge then
+}
 
 export async function createConfigWeightedPool(poolConfigIndex: number) {
   const pools = await getAllPoolConfigs();

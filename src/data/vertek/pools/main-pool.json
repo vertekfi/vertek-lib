@@ -1,0 +1,51 @@
+{
+  "created": false,
+  "initJoinComplete": false,
+  "name": "The Vertek",
+  "symbol": "VRTK-BNB",
+  "assetManager": "0x0000000000000000000000000000000000000000",
+  "type": "Weighted",
+  "txHash": "",
+  "poolId": "",
+  "poolAddress": "",
+  "date": "",
+  "initialBalances": ["", ""],
+  "tokenInfo": [
+    {
+      "address": "",
+      "weight": "0.8",
+      "initialBalance": "",
+      "symbol": "VRTK"
+    },
+    {
+      "address": "",
+      "weight": "0.2",
+      "initialBalance": ""
+    }
+  ],
+  "deploymentArgs": {
+    "name": "The Vertek",
+    "symbol": "VRTK-BNB",
+    "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
+    "tokens": ["", ""],
+    "swapFeePercentage": "0.01",
+    "weights": ["0.8", "0.2"],
+    "assetManagers": [
+      "0x0000000000000000000000000000000000000000",
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "initialBalances": ["", ""],
+    "rateProviders": [
+      "0x0000000000000000000000000000000000000000",
+      "0x0000000000000000000000000000000000000000"
+    ]
+  },
+  "gauge": {
+    "address": "",
+    "startingWeight": "0.65",
+    "added": false,
+    "controllerTxHash": "",
+    "txHash": ""
+  },
+  "isVePool": true
+}
