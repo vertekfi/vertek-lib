@@ -30,21 +30,20 @@ export async function initBaseAuthSetup() {
   // await doInitialVotingEscrowDeposit();
 }
 
+/**
+ * This setup is required as part of how the Vault authorizer is set
+ * at deployment time now. Do to a circular dependency between auth contracts.
+ */
 export async function updateVaultAuthorizer() {
   const vault = await getVault();
 
-  const vaultId = await vault.getActionId(getSighash(vault, 'setAuthorizer'));
   const dummy = new Contract(
     getContractAddress('MockAuthorizer'),
-    [
-      'function grantRolesToMany(bytes32[], address[]) public',
-      'function DEFAULT_ADMIN_ROLE() public view returns (address)',
-      'function getRoleAdmin(bytes32 role) external view returns (bytes32)',
-      'function getRoleMemberCount(bytes32 role) external view returns (uint256)',
-      'function getRoleMember(bytes32 role, uint256 index) external view returns (address)',
-    ],
+    ['function grantRolesToMany(bytes32[], address[]) public'],
     await getSigner(),
   );
+
+  const vaultId = await vault.getActionId(getSighash(vault, 'setAuthorizer'));
 
   await awaitTransactionComplete(
     dummy.grantRolesToMany([vaultId], [await getSignerAddress()]),

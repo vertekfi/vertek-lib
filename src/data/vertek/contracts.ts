@@ -17,19 +17,19 @@ export const CONTRACT_MAP = {
   },
   TimelockAuthorizer: {
     5: '0xCfB3F1B76c9a3E944ff64DECd3108c1378dDD7f9',
-    56: '',
+    56: '0xD5DCC8EF9B87e1F966e9b1ca3a7b319a85e45429',
   },
   TimelockExecutor: {
     5: '0x5135a6cFCa3a02BfaBaF94DF05F86D268a68658B',
-    56: '',
+    56: '0x0e27E8c42984117b993D0Ba434D2fB2581e233fE',
   },
   AuthorizerAdaptor: {
     5: '0xF046F36dda25B7e9da301BFB1B40B8496D376B29',
-    56: '',
+    56: '0xC36E4d42Ee9eA51ea876161fdB31f2670A3860B3',
   },
   AuthorizerAdaptorEntrypoint: {
     5: '0x2cE9d3246dd0F98b0B6C5754e55E8d81C5b30Ce2',
-    56: '',
+    56: '0x2C9ce53F90457e72CeA8291232ca225207eF616F',
   },
   ProtocolFeePercentagesProvider: {
     5: '0x85D75df3Aa064596F4f611FBf3d93383Bf413541',

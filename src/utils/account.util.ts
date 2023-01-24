@@ -8,13 +8,16 @@ export const CHAIN_KEYS = {
   [56]: 'bsc',
 };
 
-const getAccount = async (): Promise<ChainProvider> => {
+const getDefaultAccount = async (): Promise<ChainProvider> => {
   if (chainProvider) {
     return chainProvider;
   }
 
+  return getChainProvider(parseInt(process.env.CHAIN_ID));
+};
+
+export async function getChainProvider(chainId: number) {
   let rpcUrl = '';
-  const chainId = parseInt(process.env.CHAIN_ID);
   if (chainId === 5) {
     rpcUrl = process.env.GOERLI_RPC;
   } else if (chainId === 56) {
@@ -42,14 +45,14 @@ const getAccount = async (): Promise<ChainProvider> => {
   };
 
   return chainProvider;
-};
+}
 
 export function getChainId() {
   return parseInt(process.env.CHAIN_ID);
 }
 
 export async function getSigner() {
-  return (await getAccount()).signer;
+  return (await getDefaultAccount()).signer;
 }
 
 export async function getSignerAddress() {
