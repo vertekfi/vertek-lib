@@ -1,15 +1,15 @@
 [
   {
-    "created": true,
-    "initJoinComplete": true,
+    "created": false,
+    "initJoinComplete": false,
     "chainId": 5,
-    "name": "That Main Pool Thing",
+    "name": "The Vertek",
     "symbol": "VRTK-BNB",
     "assetManager": "0x0000000000000000000000000000000000000000",
     "type": "Weighted",
     "txHash": "",
-    "poolId": "0x762b77980ea2d624cdc5f774352f25c598e469ce000200000000000000000000",
-    "poolAddress": "0x762b77980Ea2d624CDc5F774352F25C598E469CE",
+    "poolId": "",
+    "poolAddress": "",
     "date": "",
     "initialBalances": ["10800", "100"],
     "tokenInfo": [
@@ -55,29 +55,29 @@
     "isVePool": true
   },
   {
-    "created": true,
-    "initJoinComplete": true,
+    "created": false,
+    "initJoinComplete": false,
     "chainId": 5,
     "name": "A Share of Seigniorage",
     "symbol": "ASHARE-BUSD",
     "assetManager": "0x0000000000000000000000000000000000000000",
     "type": "Weighted",
-    "txHash": "0x803c60f1b21cb1ad80b182dd5f966e9c255924824a3aeea3c049122ef2134f0d",
-    "poolId": "0x3bfa70096af40bb8b7b792a21d6b662d8a5129e4000200000000000000000002",
-    "poolAddress": "0x3bFa70096aF40Bb8B7b792A21D6B662D8a5129E4",
-    "date": "1/22/2023, 7:09:40 AM",
-    "initialBalances": ["3192", "21828"],
+    "txHash": "",
+    "poolId": "",
+    "poolAddress": "",
+    "date": "",
+    "initialBalances": ["", ""],
     "tokenInfo": [
       {
         "address": "0x626355410729525eec3fd5628D840d683F24456d",
-        "weight": "0.8",
-        "initialBalance": "3192",
+        "weight": "0.7",
+        "initialBalance": "",
         "symbol": "ASHARE"
       },
       {
         "address": "0x7faA8158FaA037CC7516eF1f6864af44d75654AE",
-        "weight": "0.2",
-        "initialBalance": "21828",
+        "weight": "0.3",
+        "initialBalance": "",
         "symbol": "BUSD"
       }
     ],
@@ -94,16 +94,16 @@
         "0x0000000000000000000000000000000000000000",
         "0x0000000000000000000000000000000000000000"
       ],
-      "weights": ["0.8", "0.2"],
-      "initialBalances": ["3192", "21828"]
+      "weights": ["0.7", "0.3"],
+      "initialBalances": ["", ""]
     },
     "gauge": {
-      "address": "0x53c5B5C391FD8d7f538fb6Ac6E50Ec47e0680CE0",
+      "address": "",
       "startingWeight": "0",
-      "added": true,
-      "txHash": "0x5b3583b1e9a8662211cf96bea6bd1b83e68ba4d13c3e74f8436200f7777cd0ba",
-      "controllerTxHash": "0x83bb34485cd74dd19379189c33dfe31769110a425015772376a279da6a066759",
-      "addedToController": true
+      "added": false,
+      "txHash": "",
+      "controllerTxHash": "",
+      "addedToController": false
     },
     "isVePool": false
   },

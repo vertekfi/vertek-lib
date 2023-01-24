@@ -28,8 +28,9 @@ import {
   deGaugeRewardTokenDeposit,
   doGaugeDeposit,
 } from './services/gauges/gauge-utils';
-import { formatEther, parseEther } from 'ethers/lib/utils';
+import { formatEther, parseEther, parseUnits } from 'ethers/lib/utils';
 import { stakeForUser } from './services/gauges/voting-escrow';
+import * as moment from 'moment-timezone';
 
 async function run() {
   console.log('VertekFi run:');

@@ -32,11 +32,11 @@ export const CONTRACT_MAP = {
     56: '0x2C9ce53F90457e72CeA8291232ca225207eF616F',
   },
   ProtocolFeePercentagesProvider: {
-    5: '',
-    56: '',
+    5: '0x9aBDFa8aB0b2e96179952083d9E68F0052422BC0',
+    56: '0xae5c815CB1A7d7790406355F3df5b3780e02B3C7',
   },
   WeightedPoolFactory: {
-    5: '',
+    5: '0xadeb52D9FBe11a5e076cE212c47e3BF8E777Cbba',
     56: '',
   },
   StablePoolFactory: {
