@@ -38,7 +38,7 @@ async function run() {
 
   // await testVeStakeFor();
   // await setupBSC();
-  await updateVaultAuthorizer();
+  // await updateVaultAuthorizer();
 }
 
 async function setupBSC() {

@@ -4,39 +4,39 @@ export const CONTRACT_MAP = {
     56: '',
   },
   Vault: {
-    5: '0xD8a14084e92d6187F1945cB31995d67de54906cD',
+    5: '0x516015fE217Bd8e5e7103AD7F64303A37894299f',
     56: '0x2a59fCaa63efBEFe8816A4dF510E8f216D88F6FE',
   },
   ProtocolFeesCollector: {
-    5: '0x5a339BD967471265C445dB2AD0A5427D1D972C40',
+    5: '0x869233CF6367fd94E530ac3a1b8C98aE42C49191',
     56: '0xC2d05120A92416091FD026D412f647441AA0b1D8',
   },
   MockAuthorizer: {
-    5: '0x660dE75CBaF98120EaBe4f16cacaAB44Afc3eD25',
+    5: '0xe2dD34c98cc80366AD53bF8b42FD9Bd3eF866F81',
     56: '0xDFC83C2DF90f7eC477489F537af4F1CA6ad0d208',
   },
   TimelockAuthorizer: {
-    5: '0xCfB3F1B76c9a3E944ff64DECd3108c1378dDD7f9',
-    56: '0xD5DCC8EF9B87e1F966e9b1ca3a7b319a85e45429',
+    5: '0x9Aed49fF5bCFEbCBCf0CCD54964917daFe930de7',
+    56: '0xaAE29518b72cB1Af62EDbADbf8F6f90649f33e1B',
   },
   TimelockExecutor: {
-    5: '0x5135a6cFCa3a02BfaBaF94DF05F86D268a68658B',
+    5: '0x014BFbcd8Bdf4FBa074E99eB11909a0a72f4727E',
     56: '0x0e27E8c42984117b993D0Ba434D2fB2581e233fE',
   },
   AuthorizerAdaptor: {
-    5: '0xF046F36dda25B7e9da301BFB1B40B8496D376B29',
+    5: '0x260c9Dce78D7cf30db16f5AE068B8AF9F37e92F7',
     56: '0xC36E4d42Ee9eA51ea876161fdB31f2670A3860B3',
   },
   AuthorizerAdaptorEntrypoint: {
-    5: '0x2cE9d3246dd0F98b0B6C5754e55E8d81C5b30Ce2',
+    5: '0xe278858D55848cf70908F427E0e0D1CD723035a2',
     56: '0x2C9ce53F90457e72CeA8291232ca225207eF616F',
   },
   ProtocolFeePercentagesProvider: {
-    5: '0x85D75df3Aa064596F4f611FBf3d93383Bf413541',
+    5: '',
     56: '',
   },
   WeightedPoolFactory: {
-    5: '0x0E7EBca7B9cbFB2797d812D52Bb6DD09598e3601',
+    5: '',
     56: '',
   },
   StablePoolFactory: {
@@ -60,11 +60,11 @@ export const CONTRACT_MAP = {
     56: '',
   },
   SingleRecipientGauge: {
-    5: '0xC4FA82CE7517B43Ba642B122b26970e204877fb3',
+    5: '',
     56: '',
   },
   SingleRecipientGaugeFactory: {
-    5: '0x497bb2Ee89eb55C0bF092837E26951Dfaff6354d',
+    5: '',
     56: '',
   },
   MulticallV1: {
@@ -76,11 +76,11 @@ export const CONTRACT_MAP = {
     56: '',
   },
   BalancerTokenAdmin: {
-    5: '0x04d825AC6480A6D877cD74C811bE61909D3Bd1be',
+    5: '',
     56: '',
   },
   BalancerMinter: {
-    5: '0x4D6405223C183E7897467D667a71Ef4933DEdD10',
+    5: '',
     56: '',
   },
   BalTokenHolder: {
@@ -88,43 +88,43 @@ export const CONTRACT_MAP = {
     56: '',
   },
   VotingEscrow: {
-    5: '0x8F9c3B9b55E5bc1c44ca251d4cA2b625fa36A3da',
+    5: '',
     56: '',
   },
   VeBoostV2: {
-    5: '0x46e23f97aC714f7629105E29A9D48Aedd1CAeCCa',
+    5: '',
     56: '',
   },
   VotingEscrowDelegationProxy: {
-    5: '0xE43abfc9C666B504Fc3A4eFfdCe33B2ddec1d3f1',
+    5: '',
     56: '',
   },
   VeBalHelper: {
-    5: '0xd59c27c69072B613D2beC3c1926B288a3f06714f',
+    5: '',
     56: '',
   },
   GaugeController: {
-    5: '0x10320e8318bFF7259ecf94f9aF03ceA62B1B30D0',
+    5: '',
     56: '',
   },
   LiquidityGaugeFactory: {
-    5: '0x3a31977D0901bC227cd42b310E3B97B3c971e33A',
+    5: '',
     56: '',
   },
   LiquidityGaugeV5: {
-    5: '0xc7BdF80a3CdD03994e991f567f8B182E8F32CeD7',
+    5: '',
     56: '',
   },
   GaugeAdder: {
-    5: '0xbDfA9B0e34AB14D632182F24F99dE428B1dD0559',
+    5: '',
     56: '',
   },
   SmartWalletChecker: {
-    5: '0x4D2C9A63bb6C55088aD7A6d28255D5001734c287',
+    5: '',
     56: '',
   },
   FeeDistrinutor: {
-    5: '0x4F59A7b0172F2F44B1B8beb9a161DA55fE7DB3b4',
+    5: '',
     56: '',
   },
   Relater: {
