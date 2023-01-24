@@ -2,9 +2,7 @@ import { BigNumber } from 'ethers';
 import { GaugeType, GaugeTypeNum } from 'src/types/gauge.types';
 import { PoolCreationConfig } from 'src/types/pool.types';
 import { getSignerAddress } from 'src/utils/account.util';
-import { ANY_ADDRESS } from 'src/utils/constants';
 import {
-  getBalancerPoolToken,
   getGaugeController,
   getLiquidityGaugeFactory,
   getLiquidityGaugeInstance,
@@ -12,11 +10,7 @@ import {
 import { logger } from 'src/utils/logger';
 import { approveTokensIfNeeded } from 'src/utils/token.utils';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
-import { getAuthAdapterActionId } from '../auth/action-ids';
-import {
-  grantVaultAuthorizerPermissions,
-  performAuthEntrypointAction,
-} from '../auth/auth';
+import { performAuthEntrypointAction } from '../auth/auth';
 import { validatePoolConfig } from '../pools/pool-creation';
 import {
   getDexPoolDataConfig,
@@ -25,44 +19,37 @@ import {
 } from '../pools/pool.utils';
 
 /**
- * Caller should already be Vault authorized to call this function
+ * Caller should already be Vault authorized to call this function.
  * @param address
  * @param token
  * @param distributor
  */
-export async function addRewardToGauge(
+export async function addRewardTokenToGauge(
   gaugeAddress: string,
   token: string,
-  distributor?: string,
 ) {
-  distributor = distributor ?? (await getSignerAddress());
   const gauge = await getLiquidityGaugeInstance(gaugeAddress);
+  const distributor = await getSignerAddress();
 
   await approveTokensIfNeeded([token], distributor, gauge.address);
-
-  return await performAuthEntrypointAction(gauge, 'add_reward', [
-    token,
-    distributor,
-  ]);
+  // Registering a token requires going through auth adapter
+  await performAuthEntrypointAction(gauge, 'add_reward', [token, distributor]);
 }
 
 /**
- * Caller should already be Vault authorized to call this function.
- * `addRewardToGauge` should have been called beforehand to add token plus set token approval for gauge.
- * @param address
+ * Requires already having been set as the tokens distributor for the gauge
+ * @param gaugeAddress
  * @param token
- * @param distributor
+ * @param amount
  */
-export async function depositRewardToGauge(
+export async function deGaugeRewardTokenDeposit(
   gaugeAddress: string,
   token: string,
   amount: BigNumber,
 ) {
   const gauge = await getLiquidityGaugeInstance(gaugeAddress);
-  return await performAuthEntrypointAction(gauge, 'deposit_reward_token', [
-    token,
-    amount,
-  ]);
+  // Once auth approved
+  await awaitTransactionComplete(gauge.deposit_reward_token(token, amount));
 }
 
 export async function doGaugeDeposit(gaugeAddress: string, amount: BigNumber) {

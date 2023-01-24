@@ -155,7 +155,7 @@
       "initialBalances": ["13696", "6818"]
     },
     "gauge": {
-      "address": "0xa64DE16c3D674F4F56aa5b8978eCeb4C2Cceb7A9",
+      "address": "0xa64de16c3d674f4f56aa5b8978eceb4c2cceb7a9",
       "startingWeight": "0",
       "added": true,
       "txHash": "0x40bcd10f43e3ed58776e00da8db3f3bf72c7c0cd33fe923e98e363c10b6a0fea",

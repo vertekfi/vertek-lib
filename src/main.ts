@@ -24,34 +24,24 @@ import { getPoolId } from './services/pools/pool.utils';
 import { runPoolsSetup } from './services/pools/pools';
 import { runGaugeSetup } from './services/deployment/gauges-setup';
 import {
-  addRewardToGauge,
-  depositRewardToGauge,
+  addRewardTokenToGauge,
+  deGaugeRewardTokenDeposit,
   doGaugeDeposit,
 } from './services/gauges/gauge-utils';
 import { formatEther, parseEther } from 'ethers/lib/utils';
-import { getSigner, getSignerAddress } from './utils/account.util';
-import { awaitTransactionComplete } from './utils/transaction.utils';
-import { doInitialVotingEscrowDeposit } from './services/gauges/voting-escrow';
-
-import { subgraphsClient } from './services/subgraphs/subgraph-client';
-import { gql } from 'graphql-request';
-import { doVeAeqSnapshot } from './data/vertek/snapshots/veAEQ/veAEQ-snapshot';
 
 async function run() {
   console.log('vertekfi run:');
   config({ path: join(process.cwd(), '.env') });
   // console.log(calcOutGivenIn(17000, 0.8, 30000, 0.2, 1));
-  // const vault = await getVault();
-  // await initBaseAuthSetup();
-  // await runPoolsSetup();
-  // await runGaugeSetup();
 
-  const tokenAddy = '0xa5694789C0BaED77d16ca36edC45C9366DBFe0A9';
-  const gauge = '0x53c5B5C391FD8d7f538fb6Ac6E50Ec47e0680CE0';
+  const vrtkAddy = '0xa5694789C0BaED77d16ca36edC45C9366DBFe0A9';
+  const ashareGauge = '0x53c5B5C391FD8d7f538fb6Ac6E50Ec47e0680CE0';
+  const amesGauge = '0xa64DE16c3D674F4F56aa5b8978eCeb4C2Cceb7A9';
+  const vrtkBusdGauge = '0xdcae01e5f3103178Cf06EB3037c9b8E5FA9FD848';
 
-  // await doInitialVotingEscrowDeposit();
-
-  // await doVeAeqSnapshot();
+  // await addRewardTokenToGauge(ashareGauge, vrtkAddy);
+  // await deGaugeRewardTokenDeposit(ashareGauge, vrtkAddy, parseEther('100'));
 }
 
 run();
