@@ -37,7 +37,8 @@ async function run() {
   // console.log(calcOutGivenIn(17000, 0.8, 30000, 0.2, 1));
 
   // await testVeStakeFor();
-  await setupBSC();
+  // await setupBSC();
+  await updateVaultAuthorizer();
 }
 
 async function setupBSC() {

@@ -31,8 +31,8 @@ export async function initBaseAuthSetup() {
 }
 
 /**
- * This setup is required as part of how the Vault authorizer is set
- * at deployment time now. Do to a circular dependency between auth contracts.
+ * This setup is required as part of how the Vault authorizer is set at deployment time now.
+ * Due to a circular dependency between auth contracts created through a bug fix.
  */
 export async function updateVaultAuthorizer() {
   const vault = await getVault();
