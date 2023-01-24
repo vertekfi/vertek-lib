@@ -5,15 +5,15 @@ export const CONTRACT_MAP = {
   },
   Vault: {
     5: '0xD8a14084e92d6187F1945cB31995d67de54906cD',
-    56: '',
+    56: '0x2a59fCaa63efBEFe8816A4dF510E8f216D88F6FE',
   },
   ProtocolFeesCollector: {
     5: '0x5a339BD967471265C445dB2AD0A5427D1D972C40',
-    56: '',
+    56: '0xC2d05120A92416091FD026D412f647441AA0b1D8',
   },
   MockAuthorizer: {
     5: '0x660dE75CBaF98120EaBe4f16cacaAB44Afc3eD25',
-    56: '',
+    56: '0xDFC83C2DF90f7eC477489F537af4F1CA6ad0d208',
   },
   TimelockAuthorizer: {
     5: '0xCfB3F1B76c9a3E944ff64DECd3108c1378dDD7f9',
