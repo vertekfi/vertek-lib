@@ -9,6 +9,8 @@ import { getMainPoolConfig } from '../pools/pool.utils';
 
 import * as fs from 'fs-extra';
 import { join } from 'path';
+import { performAuthEntrypointAction } from '../auth/auth';
+import { logger } from 'src/utils/logger';
 
 export enum VotingEscrowStakeType {
   CREATE = 'CREATE',
@@ -58,6 +60,7 @@ export async function stakeForUser(
 ) {
   const mainPool = await getMainPoolConfig();
   const votingEsrow = await getVotingEscrow();
+
   // Could add certain checks here and account for contracts rounding of time to weeks, etc
   // But the way this is used right now is more of a manual interactive process anyway
   const unlockTime = moment()
@@ -72,8 +75,15 @@ export async function stakeForUser(
     votingEsrow.address,
   );
 
-  const receipt = await awaitTransactionComplete(
-    votingEsrow.admin_create_lock_for(who, amount, unlockTime),
+  const receipt = await performAuthEntrypointAction(
+    votingEsrow,
+    'admin_create_lock_for',
+    [who, amount, unlockTime],
+  );
+
+  logger.success(
+    'Stake for user balance: ' +
+      formatEther(await votingEsrow['balanceOf(address)'](who)),
   );
 
   await saveStake(

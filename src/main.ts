@@ -45,7 +45,7 @@ async function setupForNetwork() {
   // await doPoolInitJoin(await getMainPoolConfig()); // GOERLI -> '✅'
   // await doInitialVotingEscrowDeposit(); // GOERLI -> '✅'
   // await getVotinEscrowActionItems(); // GOERLI -> '✅'
-  // await testVeStakeFor()
+  await testVeStakeFor();
 }
 
 async function testVeStakeFor() {
