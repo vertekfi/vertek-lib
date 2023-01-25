@@ -1,25 +1,25 @@
+import { BigNumber, Contract } from 'ethers';
+import { parseUnits } from 'ethers/lib/utils';
 import { GaugeType, GaugeTypeNum } from 'src/types/gauge.types';
-import { getChainId } from 'src/utils/account.util';
-import {
-  getContractAddress,
-  getGaugeAdder,
-  getGaugeController,
-  getLiquidityGaugeFactory,
-} from 'src/utils/contract.utils';
+import { getSigner } from 'src/utils/account.util';
+import { getContractAddress } from 'src/utils/contract.utils';
+import { logger } from 'src/utils/logger';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 import {
   addGaugeToController,
   addGaugeTypeToController,
   createLiquidityGauge,
 } from '../gauges/gauge-utils';
-import { validatePoolConfig } from '../pools/pool-creation';
-import { getAllPoolConfigs } from '../pools/pool.utils';
+import {
+  getAllPoolConfigs,
+  getMainPoolConfig,
+  updatePoolConfig,
+} from '../pools/pool.utils';
 import { initGaugeAuthItems } from './gauge-auth-setup';
 
 export async function runGaugeSetup() {
-  // await initGaugeAuthItems();
-  // await addGaugeTypes();
-  // await addGaugeFactories();
+  await initGaugeAuthItems();
+  await addGaugeTypes();
   await createConfigPoolGauges();
   await addConfigPoolGaugesToController();
 }
@@ -41,19 +41,6 @@ export async function addGaugeTypes() {
   await addGaugeTypeToController(GaugeType.Ethereum, 1);
 }
 
-export async function addGaugeFactories() {
-  // authorization should already be given
-  const gaugeAdder = await getGaugeAdder();
-
-  // Do not need entrypoint for this
-  await awaitTransactionComplete(
-    gaugeAdder.addGaugeFactory(
-      getContractAddress('LiquidityGaugeFactory'),
-      GaugeTypeNum.Ethereum,
-    ),
-  );
-}
-
 export async function createConfigPoolGauges() {
   const pools = await getAllPoolConfigs();
   for (const pool of pools) {
@@ -64,10 +51,43 @@ export async function createConfigPoolGauges() {
 export async function addConfigPoolGaugesToController() {
   const pools = await getAllPoolConfigs();
   for (const pool of pools) {
-    await addGaugeToController(pool);
+    await addGaugeToController(pool, GaugeTypeNum.Ethereum, BigNumber.from(0));
   }
 }
 
-export async function addMainPoolGauge() {
-  // SingleRecipientGauge type (can not be voted for)
+export async function addMainPoolGaugeSetup() {
+  try {
+    // SingleRecipientGauge type (can not be voted for)
+    const mainPool = await getMainPoolConfig();
+    if (mainPool.gauge.added) {
+      logger.error('Main pool gauge already created');
+      return;
+    }
+
+    const singleFactory = new Contract(
+      getContractAddress('SingleRecipientGaugeFactory'),
+      [
+        'function create(address recipient, uint256 relativeWeightCap) external returns (address)',
+      ],
+      await getSigner(),
+    );
+
+    const receipt = await awaitTransactionComplete(
+      singleFactory.create(getContractAddress('BalTokenHolder'), 0),
+    );
+
+    mainPool.gauge.added = true;
+    mainPool.gauge.address = receipt.events[1].address;
+    mainPool.gauge.txHash = receipt.transactionHash;
+    await updatePoolConfig(mainPool);
+
+    // add to controller
+    await await addGaugeToController(
+      mainPool,
+      GaugeTypeNum.veBAL,
+      parseUnits('0.65'),
+    );
+  } catch (error) {
+    console.error(error);
+  }
 }

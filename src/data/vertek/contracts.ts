@@ -51,10 +51,7 @@ export const CONTRACT_MAP = {
     5: '0xd48397ad761D622AE42e551b8C1cb0E3C5a03E3B',
     56: '',
   },
-  BalTokenHolder: {
-    5: '',
-    56: '',
-  },
+
   VotingEscrow: {
     5: '0x76B64524071b3e56EE8EFBc125a53BBbF04D41aB',
     56: '',
@@ -112,12 +109,16 @@ export const CONTRACT_MAP = {
     56: '',
   },
   SingleRecipientGauge: {
-    5: '',
+    5: '0x496f704178783eb7a3FaDA82De2d8e62bFd86800',
     56: '',
   },
   SingleRecipientGaugeFactory: {
-    5: '',
+    5: '0x00534e6eAbB8Bc3e67cf8414F7D0D99Ba39837bb',
     56: '',
+  },
+  BalTokenHolder: {
+    5: '0x8C5A8b10A34Ef7F0027F8672f0200751ff5117Db',
+    56: '0x84e4992F913BC64F92C48665BE454d739EF2279b',
   },
   MulticallV1: {
     5: '0x1050Bcfb2ec4CAe624BD1Eec5dadc2a3b4f4559a',

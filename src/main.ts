@@ -14,10 +14,12 @@ import {
 } from './services/pools/pool-creation';
 import { runPoolsSetup } from './services/pools/pools';
 import {
+  addMainPoolGaugeSetup,
   createConfigPoolGauges,
   runGaugeSetup,
 } from './services/deployment/gauges-setup';
 import {
+  addGaugeToController,
   addRewardTokenToGauge,
   deGaugeRewardTokenDeposit,
 } from './services/gauges/gauge-utils';
@@ -26,7 +28,11 @@ import {
   doInitialVotingEscrowDeposit,
   stakeForUser,
 } from './services/gauges/voting-escrow';
-import { getTokenAddress } from './utils/contract.utils';
+import {
+  getBalMinter,
+  getTokenAddress,
+  getTokenAdmin,
+} from './utils/contract.utils';
 import { getMainPoolConfig, getPoolConfig } from './services/pools/pool.utils';
 import {
   doAuthVotinEscrowActionItems,
@@ -60,8 +66,9 @@ async function setupForNetwork() {
   // let pool = await getPoolConfig(2);; // GOERLI -> '✅'
   // await doPoolInitJoin(pool);; // GOERLI -> '✅'
   // await initGaugeAuthItems(); // GOERLI -> '✅'
-  await runGaugeSetup();
-  // await createConfigPoolGauges()
+  // await runGaugeSetup();
+  // await addMainPoolGaugeSetup(); // GOERLI -> '✅'
+  // await createConfigPoolGauges() // GOERLI -> '✅'
 }
 
 async function testVeStakeFor() {

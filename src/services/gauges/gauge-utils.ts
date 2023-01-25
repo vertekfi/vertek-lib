@@ -12,11 +12,7 @@ import { approveTokensIfNeeded } from 'src/utils/token.utils';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 import { performAuthEntrypointAction } from '../auth/auth';
 import { validatePoolConfig } from '../pools/pool-creation';
-import {
-  getDexPoolDataConfig,
-  updateDexPoolDataConfig,
-  updatePoolConfig,
-} from '../pools/pool.utils';
+import { updatePoolConfig } from '../pools/pool.utils';
 
 /**
  * Caller should already be Vault authorized to call this function.
@@ -95,7 +91,11 @@ export async function createLiquidityGauge(pool: PoolCreationConfig) {
  * @param pool
  * @returns
  */
-export async function addGaugeToController(pool: PoolCreationConfig) {
+export async function addGaugeToController(
+  pool: PoolCreationConfig,
+  gaugeType: GaugeTypeNum,
+  startingWeight: BigNumber,
+) {
   if (pool.gauge.addedToController) {
     logger.warn(`Pool ${pool.name} already added to controller. Skipping`);
     return;
@@ -114,7 +114,7 @@ export async function addGaugeToController(pool: PoolCreationConfig) {
   const receipt = await performAuthEntrypointAction(
     gaugeController,
     'add_gauge',
-    [pool.gauge.address, GaugeTypeNum.Ethereum, 0],
+    [pool.gauge.address, gaugeType, startingWeight],
   );
 
   pool.gauge.addedToController = true;
