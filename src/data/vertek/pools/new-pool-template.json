@@ -47,7 +47,10 @@
     "added": false,
     "txHash": "",
     "controllerTxHash": "",
-    "addedToController": false
+    "addedToController": false,
+    "depositFee": 0,
+    "withdrawFee": 0,
+    "initFeesSet": false
   },
   "isVePool": false
 }

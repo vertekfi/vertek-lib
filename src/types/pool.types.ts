@@ -201,7 +201,10 @@ export interface PoolCreationConfig {
     startingWeight: string;
     added: Boolean;
     txHash: string;
-    controllerTxHash?: string;
+    controllerTxHash: string;
     addedToController: boolean;
+    depositFee: number; // max 1000 (10%)
+    withdrawFee: number; // max 1000 (10%)
+    initFeesSet: boolean;
   };
 }

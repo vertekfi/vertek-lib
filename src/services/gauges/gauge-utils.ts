@@ -1,6 +1,7 @@
 import { BigNumber } from 'ethers';
 import { GaugeType, GaugeTypeNum } from 'src/types/gauge.types';
 import { PoolCreationConfig } from 'src/types/pool.types';
+import { _require } from 'src/utils';
 import { getSignerAddress } from 'src/utils/account.util';
 import {
   getGaugeController,
@@ -11,8 +12,12 @@ import { logger } from 'src/utils/logger';
 import { approveTokensIfNeeded } from 'src/utils/token.utils';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 import { performAuthEntrypointAction } from '../auth/auth';
-import { validatePoolConfig } from '../pools/pool-creation';
-import { updatePoolConfig } from '../pools/pool.utils';
+import { updatePoolConfig, validatePoolConfig } from '../pools/pool.utils';
+
+export enum GaugeFeeType {
+  Deposit,
+  Withdraw,
+}
 
 /**
  * Caller should already be Vault authorized to call this function.
@@ -38,7 +43,7 @@ export async function addRewardTokenToGauge(
  * @param token
  * @param amount
  */
-export async function deGaugeRewardTokenDeposit(
+export async function doGaugeRewardTokenDeposit(
   gaugeAddress: string,
   token: string,
   amount: BigNumber,
@@ -48,7 +53,10 @@ export async function deGaugeRewardTokenDeposit(
   await awaitTransactionComplete(gauge.deposit_reward_token(token, amount));
 }
 
-export async function doGaugeDeposit(gaugeAddress: string, amount: BigNumber) {
+export async function doTestUserGaugeDeposit(
+  gaugeAddress: string,
+  amount: BigNumber,
+) {
   const gauge = await getLiquidityGaugeInstance(gaugeAddress);
 
   await approveTokensIfNeeded(
@@ -101,8 +109,8 @@ export async function addGaugeToController(
     return;
   }
 
-  if (!pool.gauge.address) {
-    logger.warn(`No gauge address set for pool ${pool.name}. Skipping`);
+  if (!pool.gauge.added || !pool.gauge.address) {
+    logger.warn(`No gauge set for pool ${pool.name}. Skipping`);
     return;
   }
 
@@ -138,4 +146,26 @@ export async function addGaugeTypeToController(
     type,
     weight,
   ]);
+}
+
+export async function updateGaugeFee(
+  gaugeAddress: string,
+  feeType: GaugeFeeType,
+  fee: number,
+) {
+  _require(fee <= 1000, 'Fee is above max');
+
+  try {
+    const gauge = await getLiquidityGaugeInstance(gaugeAddress);
+    switch (feeType) {
+      case GaugeFeeType.Deposit:
+        return performAuthEntrypointAction(gauge, 'setDepositFee', [fee]);
+      case GaugeFeeType.Withdraw:
+        return performAuthEntrypointAction(gauge, 'setWithdrawFee', [fee]);
+      default:
+        throw new Error('Unknown gauge fee type: ' + feeType);
+    }
+  } catch (error) {
+    logger.error('Setting gauge fee failed');
+  }
 }

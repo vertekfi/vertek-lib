@@ -17,11 +17,14 @@ import {
   addMainPoolGaugeSetup,
   createConfigPoolGauges,
   runGaugeSetup,
+  setGaugeFees,
 } from './services/deployment/gauges-setup';
 import {
   addGaugeToController,
   addRewardTokenToGauge,
-  deGaugeRewardTokenDeposit,
+  doGaugeRewardTokenDeposit,
+  GaugeFeeType,
+  updateGaugeFee,
 } from './services/gauges/gauge-utils';
 import { formatEther, parseEther, parseUnits } from 'ethers/lib/utils';
 import {
@@ -30,6 +33,7 @@ import {
 } from './services/gauges/voting-escrow';
 import {
   getBalMinter,
+  getGaugeController,
   getTokenAddress,
   getTokenAdmin,
 } from './utils/contract.utils';
@@ -38,6 +42,7 @@ import {
   doAuthVotinEscrowActionItems,
   initGaugeAuthItems,
 } from './services/deployment/gauge-auth-setup';
+import { GaugeTypeNum } from './types/gauge.types';
 
 async function run() {
   console.log('VertekFi run:');
@@ -55,17 +60,17 @@ async function setupForNetwork() {
   // await updateVaultAuthorizer(); // GOERLI -> '✅', BSC -> '✅'
   // await setupTokenAdminBeforeActivation(); // GOERLI -> '✅'
   // await activateTokenAdmin(); // GOERLI -> '✅'
+  // await initGaugeAuthItems() // GOERLI -> '✅'
   // await createMainPool(getTokenAddress('VRTK')); // GOERLI -> '✅'
   // await doPoolInitJoin(await getMainPoolConfig()); // GOERLI -> '✅'
-  // await doInitialVotingEscrowDeposit(); // GOERLI -> '✅'
   // await doAuthVotinEscrowActionItems(); // GOERLI -> '✅'
+  // await doInitialVotingEscrowDeposit(); // GOERLI -> '✅'
   // await createConfigWeightedPool(1); // GOERLI -> '✅'
   // await createConfigWeightedPool(2); // GOERLI -> '✅'
   // let pool = await getPoolConfig(1);; // GOERLI -> '✅'
   // await doPoolInitJoin(pool);; // GOERLI -> '✅'
   // let pool = await getPoolConfig(2);; // GOERLI -> '✅'
   // await doPoolInitJoin(pool);; // GOERLI -> '✅'
-  // await initGaugeAuthItems(); // GOERLI -> '✅'
   // await runGaugeSetup();
   // await addMainPoolGaugeSetup(); // GOERLI -> '✅'
   // await createConfigPoolGauges() // GOERLI -> '✅'
@@ -83,7 +88,7 @@ async function testGaugeRewardDeposits() {
   const vrtkBusdGauge = '0xdcae01e5f3103178Cf06EB3037c9b8E5FA9FD848';
 
   await addRewardTokenToGauge(ashareGauge, vrtkAddy);
-  await deGaugeRewardTokenDeposit(ashareGauge, vrtkAddy, parseEther('100'));
+  await doGaugeRewardTokenDeposit(ashareGauge, vrtkAddy, parseEther('100'));
 }
 
 run();

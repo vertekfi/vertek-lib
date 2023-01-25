@@ -19,6 +19,7 @@ import {
   initWeightedJoin,
   updateDexPoolDataConfig,
   updatePoolConfig,
+  validatePoolConfig,
 } from './pool.utils';
 
 export async function createMainPool(vertkAddress: string) {
@@ -59,6 +60,8 @@ export async function createConfigWeightedPool(poolConfigIndex: number) {
     ...pool.deploymentArgs,
     ...args,
   };
+  pool.name = pool.deploymentArgs.name;
+  pool.symbol = pool.deploymentArgs.symbol;
   await updatePoolConfig(pool);
 
   // Will have to etherscan it or run a function over the txHash after a delay
@@ -164,34 +167,4 @@ export async function createWeightedPool(
   );
 
   return await awaitTransactionComplete(tx);
-}
-
-export function validatePoolConfig(pool: PoolCreationConfig) {
-  logger.info(`validatePoolConfig: Validating pool config`);
-
-  _require(!!pool.type, '!pool type');
-  _require(pool.type in PoolType, '!invalid pool type');
-
-  pool.tokenInfo.forEach((info) => {
-    if (pool.type === PoolType.Weighted) {
-      _require(!!info.weight, '!token info weight');
-    }
-
-    _require(!!info.address, '!token info address');
-    _require(!!info.initialBalance?.length, '!token info init balance');
-  });
-
-  if (pool.type === PoolType.Stable) {
-    _require(!!pool.amp, '!Amp not provided');
-  }
-
-  _require(!!pool.deploymentArgs.swapFeePercentage, `!swapFeePercentage`);
-  _require(!!pool.deploymentArgs.name, `!name`);
-  _require(!!pool.deploymentArgs.symbol, `!symbol`);
-  _require(!!pool.deploymentArgs.owner, `!owner`);
-
-  _require(!!pool.gauge, '!gauge info');
-  _require(!!pool.gauge.startingWeight, '!gauge startingWeight');
-
-  logger.success(`validatePoolConfig: Validation all good`);
 }

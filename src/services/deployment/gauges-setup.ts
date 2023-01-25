@@ -9,6 +9,8 @@ import {
   addGaugeToController,
   addGaugeTypeToController,
   createLiquidityGauge,
+  GaugeFeeType,
+  updateGaugeFee,
 } from '../gauges/gauge-utils';
 import {
   getAllPoolConfigs,
@@ -22,6 +24,56 @@ export async function runGaugeSetup() {
   await addGaugeTypes();
   await createConfigPoolGauges();
   await addConfigPoolGaugesToController();
+  await setGaugeFees();
+}
+
+/**
+ * Sets the deposit and withdraw fees for a gauge based on the pools config values.
+ * Auth permissions should have already been granted to do so.
+ */
+export async function setGaugeFees() {
+  logger.info(`setGaugeFees:`);
+
+  const pools = await getAllPoolConfigs();
+  for (const pool of pools) {
+    if (pool.isVePool) {
+      logger.error(`Can not set gauge fees for "${pool.name}"`);
+      continue;
+    }
+
+    if (!pool.gauge.added) {
+      logger.warn(
+        `Skipping gauge fee setting for pool "${pool.name}". Gauge not created`,
+      );
+      continue;
+    }
+
+    if (!pool.gauge.initFeesSet) {
+      logger.warn(
+        `Skipping gauge fee setting for pool "${pool.name}". Fees already set`,
+      );
+      continue;
+    }
+
+    if (pool.gauge.depositFee > 0) {
+      await updateGaugeFee(
+        pool.gauge.address,
+        GaugeFeeType.Deposit,
+        pool.gauge.depositFee,
+      );
+    }
+
+    if (pool.gauge.withdrawFee > 0) {
+      await updateGaugeFee(
+        pool.gauge.address,
+        GaugeFeeType.Withdraw,
+        pool.gauge.withdrawFee,
+      );
+    }
+
+    pool.gauge.initFeesSet = true;
+    await updatePoolConfig(pool);
+  }
 }
 
 export async function addGaugeTypes() {

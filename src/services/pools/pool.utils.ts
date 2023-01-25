@@ -8,10 +8,12 @@ import {
   CreateWeightedPoolArgs,
   StablePoolCreationArgs,
   JoinPoolRequest,
+  PoolType,
 } from 'src/types/pool.types';
 import { ProtocolPoolDataConfig } from 'src/types/protocol.types';
+import { _require } from 'src/utils';
 import { CHAIN_KEYS, getChainId, getSigner } from 'src/utils/account.util';
-import { getVault } from 'src/utils/contract.utils';
+import { getLiquidityGaugeInstance, getVault } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import { approveTokensIfNeeded } from 'src/utils/token.utils';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
@@ -206,4 +208,50 @@ export async function initWeightedJoin(
     console.log(error);
     throw error;
   }
+}
+
+export async function getPoolGaugeInstance(poolId: string) {
+  const pools = await getAllPoolConfigs();
+  const pool = pools.find((p) => p.poolId === poolId);
+  if (!pool) throw new Error(`Pool ${poolId} not found`);
+
+  if (!pool.gauge.address) logger.error(`Pool does not have a gauge address`);
+
+  return getLiquidityGaugeInstance(pool.gauge.address);
+}
+
+/**
+ * Makes assertions against the JSON fields/configuration for a pool.
+ * @param pool
+ */
+export function validatePoolConfig(pool: PoolCreationConfig) {
+  logger.info(`validatePoolConfig: Validating pool config`);
+
+  _require(!!pool.type, '!pool type');
+  _require(pool.type in PoolType, '!invalid pool type');
+
+  pool.tokenInfo.forEach((info) => {
+    if (pool.type === PoolType.Weighted) {
+      _require(!!info.weight, '!token info weight');
+    }
+
+    _require(!!info.address, '!token info address');
+    _require(!!info.initialBalance?.length, '!token info init balance');
+  });
+
+  if (pool.type === PoolType.Stable) {
+    _require(!!pool.amp, '!Amp not provided');
+  }
+
+  _require(!!pool.deploymentArgs.swapFeePercentage, `!swapFeePercentage`);
+  _require(!!pool.deploymentArgs.name, `!name`);
+  _require(!!pool.deploymentArgs.symbol, `!symbol`);
+  _require(!!pool.deploymentArgs.owner, `!owner`);
+
+  _require(!!pool.gauge, '!gauge info');
+  _require(!!pool.gauge.startingWeight, '!gauge startingWeight');
+  _require(!!pool.gauge.depositFee, '!gauge depositFee');
+  _require(!!pool.gauge.withdrawFee, '!gauge withdrawFee');
+
+  logger.success(`validatePoolConfig: Validation all good`);
 }
