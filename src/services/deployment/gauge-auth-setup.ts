@@ -37,14 +37,14 @@ export async function initGaugeAuthItems() {
       return action;
     });
 
-  const votingEsrow = await getVotingEscrow();
-  actionItems = actionItems
-    .concat(await getVotinEscrowActionItems(votingEsrow))
-    .map((action) => {
-      actionIds.push(action.actionId);
-      targets.push(votingEsrow.address);
-      return action;
-    });
+  // const votingEsrow = await getVotingEscrow();
+  // actionItems = actionItems
+  //   .concat(await getVotinEscrowActionItems(votingEsrow))
+  //   .map((action) => {
+  //     actionIds.push(action.actionId);
+  //     targets.push(votingEsrow.address);
+  //     return action;
+  //   });
 
   const gaugeTemplate = await getLiquidityGaugeTemplate();
   actionItems = actionItems
@@ -69,16 +69,33 @@ export async function initGaugeAuthItems() {
   await addNewActionIds(actionItems);
 }
 
-async function getVotinEscrowActionItems(votingEsrow: Contract) {
+export async function getVotinEscrowActionItems() {
   logger.info('getControllerActionItems');
 
-  return getActionItems(votingEsrow, 'VotingEscrow', [
+  let actionItems: ActionIdItem[] = [];
+  const actionIds: string[] = [];
+  const targets: string[] = [];
+  const votingEsrow = await getVotingEscrow();
+
+  const items = await getActionItems(votingEsrow, 'VotingEscrow', [
     'admin_create_lock_for',
     'admin_increase_amount_for',
     'admin_increase_total_stake_for',
     'commit_smart_wallet_checker',
     'apply_smart_wallet_checker',
   ]);
+
+  actionItems = items
+    //.concat(await getVotinEscrowActionItems(votingEsrow))
+    .map((action) => {
+      actionIds.push(action.actionId);
+      targets.push(votingEsrow.address);
+      return action;
+    });
+
+  await grantVaultAuthorizerPermissions(actionIds, targets);
+
+  await addNewActionIds(actionItems);
 }
 
 async function getControllerActionItems(gaugeController: Contract) {

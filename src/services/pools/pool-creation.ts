@@ -29,8 +29,6 @@ export async function createMainPool(vertkAddress: string) {
   await updatePoolConfig(pool);
 
   await createConfigWeightedPool(0);
-
-  // Needs StakelessGauge then
 }
 
 export async function createConfigWeightedPool(poolConfigIndex: number) {
@@ -90,8 +88,15 @@ export async function completeWeightedSetup(poolAddress: string) {
     ...poolData,
   });
 
+  // Add to the list for frontend while we're here
+  const dexPoolData = await getDexPoolDataConfig();
+  dexPoolData.incentivizedPools.push(pool.poolId);
+  await updateDexPoolDataConfig(dexPoolData);
+}
+
+export async function doPoolInitJoin(pool: PoolCreationConfig) {
   await initWeightedJoin(
-    poolData.poolId,
+    pool.poolId,
     pool.deploymentArgs.tokens,
     pool.deploymentArgs.initialBalances,
     await getSignerAddress(),
@@ -99,11 +104,6 @@ export async function completeWeightedSetup(poolAddress: string) {
 
   pool.initJoinComplete = true;
   pool = await updatePoolConfig(pool);
-
-  // Add to the list for frontend while we're here
-  const dexPoolData = await getDexPoolDataConfig();
-  dexPoolData.incentivizedPools.push(pool.poolId);
-  await updateDexPoolDataConfig(dexPoolData);
 }
 
 async function tryGetPoolAddressFromReceipt(receipt: ContractReceipt) {
@@ -172,11 +172,7 @@ export function validatePoolConfig(pool: PoolCreationConfig) {
       _require(!!info.weight, '!token info weight');
     }
 
-    // Gov token gets auto added later
-    if (!pool.isVePool) {
-      _require(!!info.address, '!token info address');
-    }
-
+    _require(!!info.address, '!token info address');
     _require(!!info.initialBalance?.length, '!token info init balance');
   });
 
@@ -187,7 +183,7 @@ export function validatePoolConfig(pool: PoolCreationConfig) {
   _require(!!pool.deploymentArgs.swapFeePercentage, `!swapFeePercentage`);
   _require(!!pool.deploymentArgs.name, `!name`);
   _require(!!pool.deploymentArgs.symbol, `!symbol`);
-  // owner will be auto attached to deploy args later
+  _require(!!pool.deploymentArgs.owner, `!owner`);
 
   _require(!!pool.gauge, '!gauge info');
   _require(!!pool.gauge.startingWeight, '!gauge startingWeight');

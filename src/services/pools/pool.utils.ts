@@ -36,7 +36,7 @@ export function getWeightedPoolArgsFromConfig(
 ): CreateWeightedPoolArgs {
   pool.deploymentArgs.rateProviders = pool.deploymentArgs.rateProviders?.length
     ? pool.deploymentArgs.rateProviders
-    : pool.deploymentArgs.tokens.map((t) => ethers.constants.AddressZero);
+    : pool.tokenInfo.map((t) => ethers.constants.AddressZero);
 
   const sortedInfo = sortTokensWithInfo(pool.tokenInfo);
 
@@ -81,7 +81,8 @@ export function getDexPoolDataConfigPath() {
 }
 
 export async function getDexPoolDataConfig(): Promise<ProtocolPoolDataConfig> {
-  return fs.readJSON(getDexPoolDataConfigPath())[String(await getChainId())];
+  const data = await fs.readJSON(getDexPoolDataConfigPath());
+  return data[String(await getChainId())];
 }
 
 export async function updateDexPoolDataConfig(data) {

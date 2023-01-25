@@ -1,1 +1,161 @@
-[{"created":true,"initJoinComplete":true,"name":"The Vertek","symbol":"VRTK-BNB","assetManager":"0x0000000000000000000000000000000000000000","type":"Weighted","txHash":"0x49f80a35e543550c1e9031e6f5f91012d29f7cd7cdd49ea2bb45c606a401ec83","poolId":"0x11422d24858d9a7396a1533ab49f594699bc8ba0000200000000000000000000","poolAddress":"0x11422d24858d9a7396A1533AB49F594699bc8ba0","date":"1/24/2023, 3:36:06 PM","initialBalances":["",""],"tokenInfo":[{"address":"0xa5694789C0BaED77d16ca36edC45C9366DBFe0A9","weight":"0.8","initialBalance":"1800","symbol":"VRTK"},{"address":"0xe4E96Cf369D4d604Bedc4d7962F94D53E4B5e3C6","weight":"0.2","initialBalance":"10"}],"deploymentArgs":{"name":"That Vertek","symbol":"VRTK-BNB","tokens":["0xa5694789C0BaED77d16ca36edC45C9366DBFe0A9","0xe4E96Cf369D4d604Bedc4d7962F94D53E4B5e3C6"],"swapFeePercentage":"0.01","owner":"0x891eFc56f5CD6580b2fEA416adC960F2A6156494","rateProviders":["0x0000000000000000000000000000000000000000","0x0000000000000000000000000000000000000000"],"weights":["0.8","0.2"],"initialBalances":["1800","10"]},"gauge":{"address":"","startingWeight":"0.65","added":false,"controllerTxHash":"","txHash":""},"isVePool":true},{"created":false,"initJoinComplete":false,"chainId":5,"name":"A Share of Seigniorage","symbol":"ASHARE-BUSD","assetManager":"0x0000000000000000000000000000000000000000","type":"Weighted","txHash":"","poolId":"","poolAddress":"","date":"","initialBalances":["",""],"tokenInfo":[{"address":"0x626355410729525eec3fd5628D840d683F24456d","weight":"0.7","initialBalance":"","symbol":"ASHARE"},{"address":"0x7faA8158FaA037CC7516eF1f6864af44d75654AE","weight":"0.3","initialBalance":"","symbol":"BUSD"}],"deploymentArgs":{"name":"A Share of Seigniorage","symbol":"ASHARE-BUSD","tokens":["0x626355410729525eec3fd5628D840d683F24456d","0x7faA8158FaA037CC7516eF1f6864af44d75654AE"],"swapFeePercentage":"0.005","owner":"0x891eFc56f5CD6580b2fEA416adC960F2A6156494","rateProviders":["0x0000000000000000000000000000000000000000","0x0000000000000000000000000000000000000000"],"weights":["0.7","0.3"],"initialBalances":["",""]},"gauge":{"address":"","startingWeight":"0","added":false,"txHash":"","controllerTxHash":"","addedToController":false},"isVePool":false},{"created":false,"initJoinComplete":false,"chainId":5,"name":"Pegging Enthusiast","symbol":"AMES-BUSD","assetManager":"0x0000000000000000000000000000000000000000","type":"Weighted","txHash":"","poolId":"","poolAddress":"","date":"","initialBalances":["",""],"tokenInfo":[{"address":"0x7faA8158FaA037CC7516eF1f6864af44d75654AE","weight":"0.2","initialBalance":"13696","symbol":"BUSD"},{"address":"0xd71114b3AD1Ec657B4194E0B3b7C9fC71C7bdbEF","weight":"0.8","initialBalance":"6818","symbol":"AMES"}],"deploymentArgs":{"name":"Pegging Enthusiast","symbol":"AMES-BUSD","owner":"0x891eFc56f5CD6580b2fEA416adC960F2A6156494","tokens":["0x7faA8158FaA037CC7516eF1f6864af44d75654AE","0xd71114b3AD1Ec657B4194E0B3b7C9fC71C7bdbEF"],"swapFeePercentage":"0.01","weights":["0.2","0.8"],"assetManagers":["0x0000000000000000000000000000000000000000","0x0000000000000000000000000000000000000000"],"rateProviders":["0x0000000000000000000000000000000000000000","0x0000000000000000000000000000000000000000"],"initialBalances":["13696","6818"]},"gauge":{"address":"","startingWeight":"0","added":false,"txHash":"","controllerTxHash":"","addedToController":false},"isVePool":false}]
+[
+  {
+    "created": true,
+    "initJoinComplete": true,
+    "name": "The Vertek",
+    "symbol": "VRTK-BNB",
+    "assetManager": "0x0000000000000000000000000000000000000000",
+    "type": "Weighted",
+    "txHash": "0x4c3e13de72b4d72b4c97850bf3ff38988a05421a1e8a8b40a61c882e7e5ec390",
+    "poolId": "0xd0f30b415c65b99904caf716abc3da23f57d3cdd000200000000000000000000",
+    "poolAddress": "0xD0F30B415C65B99904caF716ABc3da23f57d3cdd",
+    "date": "1/24/2023, 5:53:27 PM",
+    "tokenInfo": [
+      {
+        "address": "0x5E1D334E7CFF8436bA39E24d452eB6E8451B5F9b",
+        "weight": "0.8",
+        "initialBalance": "1800",
+        "symbol": "VRTK"
+      },
+      {
+        "address": "0xe4E96Cf369D4d604Bedc4d7962F94D53E4B5e3C6",
+        "weight": "0.2",
+        "initialBalance": "10"
+      }
+    ],
+    "deploymentArgs": {
+      "name": "That Vertek",
+      "symbol": "VRTK-BNB",
+      "tokens": [
+        "0x5E1D334E7CFF8436bA39E24d452eB6E8451B5F9b",
+        "0xe4E96Cf369D4d604Bedc4d7962F94D53E4B5e3C6"
+      ],
+      "swapFeePercentage": "0.01",
+      "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
+      "rateProviders": [
+        "0x0000000000000000000000000000000000000000",
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "weights": ["0.8", "0.2"],
+      "initialBalances": ["1800", "10"]
+    },
+    "gauge": {
+      "address": "",
+      "startingWeight": "0.65",
+      "added": false,
+      "controllerTxHash": "",
+      "txHash": ""
+    },
+    "isVePool": true
+  },
+  {
+    "created": false,
+    "initJoinComplete": false,
+    "chainId": 5,
+    "name": "A Share of Seigniorage",
+    "symbol": "ASHARE-BUSD",
+    "assetManager": "0x0000000000000000000000000000000000000000",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "",
+    "poolAddress": "",
+    "date": "",
+    "initialBalances": ["", ""],
+    "tokenInfo": [
+      {
+        "address": "0x626355410729525eec3fd5628D840d683F24456d",
+        "weight": "0.7",
+        "initialBalance": "",
+        "symbol": "ASHARE"
+      },
+      {
+        "address": "0x7faA8158FaA037CC7516eF1f6864af44d75654AE",
+        "weight": "0.3",
+        "initialBalance": "",
+        "symbol": "BUSD"
+      }
+    ],
+    "deploymentArgs": {
+      "name": "A Share of Seigniorage",
+      "symbol": "ASHARE-BUSD",
+      "tokens": [
+        "0x626355410729525eec3fd5628D840d683F24456d",
+        "0x7faA8158FaA037CC7516eF1f6864af44d75654AE"
+      ],
+      "swapFeePercentage": "0.005",
+      "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
+      "rateProviders": [
+        "0x0000000000000000000000000000000000000000",
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "weights": ["0.7", "0.3"],
+      "initialBalances": ["", ""]
+    },
+    "gauge": {
+      "address": "",
+      "startingWeight": "0",
+      "added": false,
+      "txHash": "",
+      "controllerTxHash": "",
+      "addedToController": false
+    },
+    "isVePool": false
+  },
+  {
+    "created": false,
+    "initJoinComplete": false,
+    "chainId": 5,
+    "name": "Pegging Enthusiast",
+    "symbol": "AMES-BUSD",
+    "assetManager": "0x0000000000000000000000000000000000000000",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "",
+    "poolAddress": "",
+    "date": "",
+    "initialBalances": ["", ""],
+    "tokenInfo": [
+      {
+        "address": "0x7faA8158FaA037CC7516eF1f6864af44d75654AE",
+        "weight": "0.2",
+        "initialBalance": "13696",
+        "symbol": "BUSD"
+      },
+      {
+        "address": "0xd71114b3AD1Ec657B4194E0B3b7C9fC71C7bdbEF",
+        "weight": "0.8",
+        "initialBalance": "6818",
+        "symbol": "AMES"
+      }
+    ],
+    "deploymentArgs": {
+      "name": "Pegging Enthusiast",
+      "symbol": "AMES-BUSD",
+      "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
+      "tokens": [
+        "0x7faA8158FaA037CC7516eF1f6864af44d75654AE",
+        "0xd71114b3AD1Ec657B4194E0B3b7C9fC71C7bdbEF"
+      ],
+      "swapFeePercentage": "0.01",
+      "weights": ["0.2", "0.8"],
+      "assetManagers": [
+        "0x0000000000000000000000000000000000000000",
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "rateProviders": [
+        "0x0000000000000000000000000000000000000000",
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "initialBalances": ["13696", "6818"]
+    },
+    "gauge": {
+      "address": "",
+      "startingWeight": "0",
+      "added": false,
+      "txHash": "",
+      "controllerTxHash": "",
+      "addedToController": false
+    },
+    "isVePool": false
+  }
+]

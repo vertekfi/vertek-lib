@@ -3,35 +3,25 @@ import { config } from 'dotenv';
 import { join } from 'path';
 import {
   activateTokenAdmin,
-  approveTokenAdminActivation,
   initBaseAuthSetup,
+  setupTokenAdminBeforeActivation,
   updateVaultAuthorizer,
 } from './services/deployment/base-setup';
-import {
-  completeWeightedSetup,
-  createConfigWeightedPool,
-  createMainPool,
-} from './services/pools/pool-creation';
-import { getAddress } from '@ethersproject/address';
-import {
-  getAuthorizerAdapter,
-  getERC20,
-  getLiquidityGaugeInstance,
-  getSighash,
-  getVault,
-  getVotingEscrow,
-} from './utils/contract.utils';
-import { getPoolId } from './services/pools/pool.utils';
+import { createMainPool, doPoolInitJoin } from './services/pools/pool-creation';
 import { runPoolsSetup } from './services/pools/pools';
 import { runGaugeSetup } from './services/deployment/gauges-setup';
 import {
   addRewardTokenToGauge,
   deGaugeRewardTokenDeposit,
-  doGaugeDeposit,
 } from './services/gauges/gauge-utils';
 import { formatEther, parseEther, parseUnits } from 'ethers/lib/utils';
-import { stakeForUser } from './services/gauges/voting-escrow';
-import * as moment from 'moment-timezone';
+import {
+  doInitialVotingEscrowDeposit,
+  stakeForUser,
+} from './services/gauges/voting-escrow';
+import { getTokenAddress } from './utils/contract.utils';
+import { getMainPoolConfig } from './services/pools/pool.utils';
+import { getVotinEscrowActionItems } from './services/deployment/gauge-auth-setup';
 
 async function run() {
   console.log('VertekFi run:');
@@ -42,16 +32,25 @@ async function run() {
   // console.log(calcOutGivenIn(175, 0.8, 1, 0.2, 1));
   // console.log(calcInGivenOut(1, 0.2, 180, 0.8, 1));
 
-  await createMainPool('0xa5694789C0BaED77d16ca36edC45C9366DBFe0A9');
+  // await createMainPool();
+
+  await setupForNetwork();
 }
 
-async function setupBSC() {
-  // await updateVaultAuthorizer(); '✅'
+async function setupForNetwork() {
+  // await updateVaultAuthorizer(); // GOERLI -> '✅', BSC -> '✅'
+  // await setupTokenAdminBeforeActivation(); // GOERLI -> '✅'
+  // await activateTokenAdmin(); // GOERLI -> '✅'
+  // await createMainPool(getTokenAddress('VRTK')); // GOERLI -> '✅'
+  // await doPoolInitJoin(await getMainPoolConfig()); // GOERLI -> '✅'
+  // await doInitialVotingEscrowDeposit(); // GOERLI -> '✅'
+  // await getVotinEscrowActionItems(); // GOERLI -> '✅'
+  // await testVeStakeFor()
 }
 
 async function testVeStakeFor() {
   const niceTestAddy = '0x1555D126e096A296A5870A566db224FD9Cf72f03';
-  await stakeForUser(niceTestAddy, parseEther('10'), 30);
+  await stakeForUser(niceTestAddy, parseEther('1'), 365);
 }
 
 async function testGaugeRewardDeposits() {

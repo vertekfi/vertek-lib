@@ -1,18 +1,21 @@
 import { Contract } from 'ethers';
-import { parseEther } from 'ethers/lib/utils';
+import { formatEther, parseEther } from 'ethers/lib/utils';
 import * as moment from 'moment-timezone';
 import { getSigner, getSignerAddress } from 'src/utils/account.util';
 import { ZERO_BYTES32 } from 'src/utils/constants';
 import {
   getBalMinter,
   getContractAddress,
+  getERC20,
   getGovToken,
   getSighash,
   getTimelockAuthorizer,
+  getTokenAddress,
   getTokenAdmin,
   getVault,
   getVotingEscrow,
 } from 'src/utils/contract.utils';
+import { logger } from 'src/utils/logger';
 import { approveTokensIfNeeded } from 'src/utils/token.utils';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 import { performAuthEntrypointAction } from '../auth/auth';
@@ -54,7 +57,13 @@ export async function updateVaultAuthorizer() {
   );
 }
 
-export async function approveTokenAdminActivation() {
+/**
+ * Perform authorization sreps needed to setup BalancerTokenAdmin.
+ * BalancerTokenAdmin takes over full auth control of the protocol token (BAL/VRTK).
+ */
+export async function setupTokenAdminBeforeActivation() {
+  logger.info('setupTokenAdminBeforeActivation:');
+
   const tokenAdmin = await getTokenAdmin();
   const actionId = await tokenAdmin.getActionId(
     getSighash(tokenAdmin, 'activate'),
@@ -72,12 +81,28 @@ export async function approveTokenAdminActivation() {
     govToken.grantRole(ZERO_BYTES32, tokenAdmin.address),
   );
 
-  await awaitTransactionComplete(tokenAdmin.activate());
+  logger.success('BalancerTokenAdmin setup complete');
 }
 
+/**
+ * Authorization steps should have already been completed.
+ * This is so the setup and then activation step can happen at different times.
+ */
 export async function activateTokenAdmin() {
   const tokenAdmin = await getTokenAdmin();
-  await performAuthEntrypointAction(tokenAdmin, 'activate');
+  await awaitTransactionComplete(tokenAdmin.activate());
+
+  // The initial mint allowance should be transferred to admin caller account
+  const vrtk = await getERC20(getTokenAddress('VRTK'));
+  logger.info(
+    `Dev account VRTK balance after activation: ${formatEther(
+      await vrtk.balanceOf(await getSignerAddress()),
+    )}`,
+  );
+}
+
+export async function grantProtocolFeesPercentageItems() {
+  // TODO:
 }
 
 export async function giveBalMinterPermission() {
