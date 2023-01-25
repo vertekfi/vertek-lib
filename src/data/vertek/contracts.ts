@@ -45,40 +45,40 @@ export const CONTRACT_MAP = {
   },
   BalancerTokenAdmin: {
     5: '0xf4f37A6F5D836AB19f4C7Caf65c780108dB68e12',
-    56: '0x8A935a7c86CA749aD1C6fD7dAA0A916A0ACF8bF8',
+    56: '0x8A935a7c86CA749aD1C6fD7dAA0A916A0ACF8bF8', // block 25101885 (Jan-25-2023 08:43:47 PM +UTC)
   },
   BalancerMinter: {
     5: '0xd48397ad761D622AE42e551b8C1cb0E3C5a03E3B',
-    56: '',
+    56: '0xeF0bb9a74218649dE92C86FE0add74c5a03C4c09',
   },
 
   VotingEscrow: {
     5: '0x76B64524071b3e56EE8EFBc125a53BBbF04D41aB',
-    56: '',
+    56: '0x98A73443fb00EDC2EFF0520a00C53633226BF9ED', // block 25103953  (Jan-25-2023 10:27:21 PM +UTC)
   },
   VeBoostV2: {
     5: '0xB88683951708f05D89242BD4BEBD27ce0B884D29',
-    56: '',
+    56: '0xa823A1F9C77aaBFFb3f7Ae67e2D8dC085BEca1C5',
   },
   VotingEscrowDelegationProxy: {
     5: '0xcb180DFA6C96CC80c852C3493B19eEC52D68e46A',
-    56: '',
+    56: '0x4763Ef7835280D875Cb86cb5c41812e63A91217F',
   },
   VeBalHelper: {
     5: '0xf2Ac25c69b05C1a7560dECc7363c5150B24eD974',
-    56: '',
+    56: '0xab31C0E1019a8e08748235a76f94497AF9d8718E',
   },
   GaugeController: {
     5: '0x7bC6C2bF0c730E03285f673806586C60AC0B3205',
-    56: '',
+    56: '0x99bFf5953843A211792BF3715b1b3b4CBeE34CE6', // block 25104102 (Jan-25-2023 10:34:48 PM +UTC)
   },
   LiquidityGaugeFactory: {
     5: '0x70Bb570d76b3c83bcE8C36993fFC1aF7Ac407a63',
-    56: '',
+    56: '0xE7Eb5DcF8371746c8Aafd382E8Dd29F847966120',
   },
   LiquidityGaugeV5: {
     5: '0xf1b9BcA00a8E1574243D729dc0e2aEFc715Bc48f',
-    56: '',
+    56: '0x722c939f0447dBD32D089782E7452B38c12c1Cd4',
   },
   GaugeAdder: {
     5: '',
@@ -110,15 +110,15 @@ export const CONTRACT_MAP = {
   },
   SingleRecipientGauge: {
     5: '0x496f704178783eb7a3FaDA82De2d8e62bFd86800',
-    56: '',
+    56: '0x7c1f0f94c26CBef858F3278f92A884853c03dBe6',
   },
   SingleRecipientGaugeFactory: {
     5: '0x00534e6eAbB8Bc3e67cf8414F7D0D99Ba39837bb',
-    56: '',
+    56: '0x8D4816ee4EE4cDa7C90e85D9f894809914E695Df',
   },
   BalTokenHolder: {
     5: '0x8C5A8b10A34Ef7F0027F8672f0200751ff5117Db',
-    56: '',
+    56: '0xd19A924880f74E4e7e53D15aDEB11C6792313669',
   },
   MulticallV1: {
     5: '0x1050Bcfb2ec4CAe624BD1Eec5dadc2a3b4f4559a',

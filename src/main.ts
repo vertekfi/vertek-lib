@@ -3,6 +3,7 @@ import { config } from 'dotenv';
 import { join } from 'path';
 import {
   activateTokenAdmin,
+  giveBalMinterPermission,
   initBaseAuthSetup,
   setupTokenAdminBeforeActivation,
   updateVaultAuthorizer,
@@ -47,10 +48,7 @@ import {
   getPoolConfig,
   initWeightedJoin,
 } from './services/pools/pool.utils';
-import {
-  doAuthVotinEscrowActionItems,
-  initGaugeAuthItems,
-} from './services/deployment/gauge-auth-setup';
+import { initGaugeAuthItems } from './services/deployment/gauge-auth-setup';
 import { GaugeTypeNum } from './types/gauge.types';
 import { getSignerAddress } from './utils/account.util';
 import { awaitTransactionComplete } from './utils/transaction.utils';
@@ -86,33 +84,26 @@ async function setupForNetwork() {
   // await updateVaultPauseAuth();
   // await setupTokenAdminBeforeActivation();
   // await activateTokenAdmin();
-  // await initGaugeAuthItems()
-  // await doPoolInitJoin(await getMainPoolConfig());
-  // await doAuthVotinEscrowActionItems();
+  //  await initGaugeAuthItems();
   // await doInitialVotingEscrowDeposit();
-  // await createConfigWeightedPool(1);
-  // await createConfigWeightedPool(2);
-  // let pool = await getPoolConfig(1);
-  // await doPoolInitJoin(pool);;
-  // let pool = await getPoolConfig(2);
-  // await doPoolInitJoin(pool)
+  // await giveBalMinterPermission();
   // await runGaugeSetup();
   // await addMainPoolGaugeSetup();
   // await createConfigPoolGauges()
   //
-  const mainPool = await getMainPoolConfig();
+  // const mainPool = await getMainPoolConfig();
   // await createMainPool();
-  //  await authorizeToPauseWeightedPool(mainPool.poolAddress);
+  // await authorizeToPauseWeightedPool(mainPool.poolAddress);
   // await initWeightedJoin(
   //   mainPool.poolId,
   //   mainPool.deploymentArgs.tokens,
   //   mainPool.deploymentArgs.initialBalances,
   //   await getSignerAddress(),
   // );
-  const instance = await getWeightedPoolToken(mainPool.poolAddress);
+  // const instance = await getWeightedPoolToken(mainPool.poolAddress);
   // const action = await instance.getActionId(getSighash(instance, 'pause'));
   // await grantVaultAuthorizerPermissions([action], [instance.address]);
-  await awaitTransactionComplete(instance.pause());
+  // await awaitTransactionComplete(instance.pause());
 }
 
 async function testVeStakeFor() {

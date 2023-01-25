@@ -25,8 +25,8 @@ export async function initGaugeAuthItems() {
    */
 
   let actionItems: ActionIdItem[] = [];
-  const actionIds: string[] = [];
-  const targets: string[] = [];
+  let actionIds: string[] = [];
+  let targets: string[] = [];
 
   const gaugeController = await getGaugeController();
   actionItems = actionItems
@@ -37,15 +37,6 @@ export async function initGaugeAuthItems() {
       return action;
     });
 
-  // const votingEsrow = await getVotingEscrow();
-  // actionItems = actionItems
-  //   .concat(await getVotinEscrowActionItems(votingEsrow))
-  //   .map((action) => {
-  //     actionIds.push(action.actionId);
-  //     targets.push(votingEsrow.address);
-  //     return action;
-  //   });
-
   const gaugeTemplate = await getLiquidityGaugeTemplate();
   actionItems = actionItems
     .concat(await getLiquidityGaugeActionItems(gaugeTemplate))
@@ -55,22 +46,17 @@ export async function initGaugeAuthItems() {
       return action;
     });
 
-  // const gaugeAdder = await getGaugeAdder();
-  // actionItems = actionItems
-  //   .concat(await getGaugeAdderActionItems(gaugeAdder))
-  //   .map((action) => {
-  //     actionIds.push(action.actionId);
-  //     targets.push(gaugeAdder.address);
-  //     return action;
-  //   });
+  const { veActionIds, veTargets } = await dgetVotinEscrowActionItems();
+  actionIds = actionIds.concat(veActionIds);
+  targets = targets.concat(veTargets);
 
   await grantVaultAuthorizerPermissions(actionIds, targets);
 
   await addNewActionIds(actionItems);
 }
 
-export async function doAuthVotinEscrowActionItems() {
-  logger.info('doAuthVotinEscrowActionItems:');
+export async function dgetVotinEscrowActionItems() {
+  logger.info('getVotinEscrowActionItems:');
 
   let actionItems: ActionIdItem[] = [];
   const actionIds: string[] = [];
@@ -85,17 +71,19 @@ export async function doAuthVotinEscrowActionItems() {
     'apply_smart_wallet_checker',
   ]);
 
-  actionItems = items
-    //.concat(await getVotinEscrowActionItems(votingEsrow))
-    .map((action) => {
-      actionIds.push(action.actionId);
-      targets.push(votingEsrow.address);
-      return action;
-    });
+  actionItems = items.map((action) => {
+    actionIds.push(action.actionId);
+    targets.push(votingEsrow.address);
+    return action;
+  });
 
-  await grantVaultAuthorizerPermissions(actionIds, targets);
+  // await grantVaultAuthorizerPermissions(actionIds, targets);
+  // await addNewActionIds(actionItems);
 
-  await addNewActionIds(actionItems);
+  return {
+    veActionIds: actionIds,
+    veTargets: targets,
+  };
 }
 
 async function getControllerActionItems(gaugeController: Contract) {
