@@ -18,7 +18,10 @@ import {
 import { logger } from 'src/utils/logger';
 import { approveTokensIfNeeded } from 'src/utils/token.utils';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
-import { performAuthEntrypointAction } from '../auth/auth';
+import {
+  grantVaultAuthorizerPermissions,
+  performAuthEntrypointAction,
+} from '../auth/auth';
 import { doInitialVotingEscrowDeposit } from '../gauges/voting-escrow';
 import { getMainPoolConfig } from '../pools/pool.utils';
 
@@ -57,6 +60,12 @@ export async function updateVaultAuthorizer() {
   );
 }
 
+export async function updateVaultPauseAuth() {
+  const vault = await getVault();
+  const pauseId = await vault.getActionId(getSighash(vault, 'setPaused'));
+  await grantVaultAuthorizerPermissions([pauseId], [vault.address]);
+}
+
 /**
  * Perform authorization sreps needed to setup BalancerTokenAdmin.
  * BalancerTokenAdmin takes over full auth control of the protocol token (BAL/VRTK).
@@ -71,7 +80,7 @@ export async function setupTokenAdminBeforeActivation() {
 
   const authorizer = await getTimelockAuthorizer();
   await awaitTransactionComplete(
-    authorizer.grantPermissions([actionId], (await getSigner()).address, [
+    authorizer.grantPermissions([actionId], await getSignerAddress(), [
       tokenAdmin.address,
     ]),
   );
@@ -90,6 +99,9 @@ export async function setupTokenAdminBeforeActivation() {
  */
 export async function activateTokenAdmin() {
   const tokenAdmin = await getTokenAdmin();
+
+  console.log(await tokenAdmin.getBalancerToken());
+
   await awaitTransactionComplete(tokenAdmin.activate());
 
   // The initial mint allowance should be transferred to admin caller account

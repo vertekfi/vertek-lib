@@ -2,6 +2,8 @@ import { Contract, ContractReceipt, ethers } from 'ethers';
 import { defaultAbiCoder, getAddress, parseUnits } from 'ethers/lib/utils';
 import * as fs from 'fs-extra';
 import { join } from 'path';
+import { TOKENS } from 'src/data/token';
+import { calcOutGivenIn } from 'src/math';
 import {
   PoolTokenInfo,
   PoolCreationConfig,
@@ -9,14 +11,22 @@ import {
   StablePoolCreationArgs,
   JoinPoolRequest,
   PoolType,
+  WeightedTokenInfo,
 } from 'src/types/pool.types';
 import { ProtocolPoolDataConfig } from 'src/types/protocol.types';
 import { _require } from 'src/utils';
 import { CHAIN_KEYS, getChainId, getSigner } from 'src/utils/account.util';
-import { getLiquidityGaugeInstance, getVault } from 'src/utils/contract.utils';
+import {
+  getLiquidityGaugeInstance,
+  getSighash,
+  getTimelockAuthorizer,
+  getVault,
+  getWeightedPoolToken,
+} from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import { approveTokensIfNeeded } from 'src/utils/token.utils';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
+import { grantVaultAuthorizerPermissions } from '../auth/auth';
 
 /**
  * Sorts the tokens for a pool according to address as required by the vault.
@@ -170,7 +180,7 @@ export async function initWeightedJoin(
   tokens: string[],
   initialBalances: string[],
   recipient: string,
-): Promise<ContractReceipt> {
+) {
   try {
     logger.info('Starting INIT_JOIN for pool id: ' + poolId);
 
@@ -210,6 +220,13 @@ export async function initWeightedJoin(
   }
 }
 
+export async function authorizeToPauseWeightedPool(poolAddress: string) {
+  const pool = await getWeightedPoolToken(poolAddress);
+  const timelock = await getTimelockAuthorizer();
+  const action = await timelock.getActionId(getSighash(pool, 'pause'));
+  await grantVaultAuthorizerPermissions([action], [pool.address]);
+}
+
 export async function getPoolGaugeInstance(poolId: string) {
   const pools = await getAllPoolConfigs();
   const pool = pools.find((p) => p.poolId === poolId);
@@ -218,6 +235,36 @@ export async function getPoolGaugeInstance(poolId: string) {
   if (!pool.gauge.address) logger.error(`Pool does not have a gauge address`);
 
   return getLiquidityGaugeInstance(pool.gauge.address);
+}
+
+// When paired with a stable for now
+export function findOptimalBalancesForStablePriceTarget(
+  pool: PoolCreationConfig,
+) {
+  _require(pool.type === PoolType.Weighted, 'Not a weighted pool');
+  _require(!!pool.mainToken, 'Main token not set');
+  _require(
+    !!pool.mainTokenTargetPrice && pool.mainTokenTargetPrice > 0,
+    'Target price not set',
+  );
+  _require(
+    !!pool.amountOutOtherToken && pool.amountOutOtherToken > 0,
+    'Output amount not set',
+  );
+
+  const tokenIn = <WeightedTokenInfo>(
+    pool.tokenInfo.find((t) => t.address === pool.mainToken)
+  );
+  const weightIn = tokenIn.weight;
+  // some sort of while loop to find this
+  let amountOut = 0;
+  let initalBalanceIn = 1.1;
+  let initialBalanceOut = 1;
+  let closeEnough = false;
+
+  while (!closeEnough) {
+    // calcOutGivenIn();
+  }
 }
 
 /**
@@ -246,12 +293,33 @@ export function validatePoolConfig(pool: PoolCreationConfig) {
   _require(!!pool.deploymentArgs.swapFeePercentage, `!swapFeePercentage`);
   _require(!!pool.deploymentArgs.name, `!name`);
   _require(!!pool.deploymentArgs.symbol, `!symbol`);
+  // Owner is auto added from admin signer account if one is not assigned in config (eg. creating for someone else)
   _require(!!pool.deploymentArgs.owner, `!owner`);
 
   _require(!!pool.gauge, '!gauge info');
   _require(!!pool.gauge.startingWeight, '!gauge startingWeight');
-  _require(!!pool.gauge.depositFee, '!gauge depositFee');
-  _require(!!pool.gauge.withdrawFee, '!gauge withdrawFee');
+  if (!pool.isVePool) {
+    _require(!!pool.gauge.depositFee, '!gauge depositFee');
+    _require(!!pool.gauge.withdrawFee, '!gauge withdrawFee');
+  }
 
   logger.success(`validatePoolConfig: Validation all good`);
+}
+
+export async function replaceTokenAddressesForChain(pool: PoolCreationConfig) {
+  validatePoolConfig(pool);
+
+  const chainId = await getChainId();
+  for (const token of pool.tokenInfo) {
+    // These will have to match for this to work
+    const address = TOKENS[token.symbol][chainId];
+    if (!address)
+      throw new Error(
+        `No replacement address for ${token.symbol} - chain id: ${chainId}`,
+      );
+
+    token.address = address;
+  }
+
+  await updatePoolConfig(pool);
 }

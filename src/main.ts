@@ -6,6 +6,7 @@ import {
   initBaseAuthSetup,
   setupTokenAdminBeforeActivation,
   updateVaultAuthorizer,
+  updateVaultPauseAuth,
 } from './services/deployment/base-setup';
 import {
   createConfigWeightedPool,
@@ -34,15 +35,30 @@ import {
 import {
   getBalMinter,
   getGaugeController,
+  getSighash,
   getTokenAddress,
   getTokenAdmin,
+  getVault,
+  getWeightedPoolToken,
 } from './utils/contract.utils';
-import { getMainPoolConfig, getPoolConfig } from './services/pools/pool.utils';
+import {
+  authorizeToPauseWeightedPool,
+  getMainPoolConfig,
+  getPoolConfig,
+  initWeightedJoin,
+} from './services/pools/pool.utils';
 import {
   doAuthVotinEscrowActionItems,
   initGaugeAuthItems,
 } from './services/deployment/gauge-auth-setup';
 import { GaugeTypeNum } from './types/gauge.types';
+import { getSignerAddress } from './utils/account.util';
+import { awaitTransactionComplete } from './utils/transaction.utils';
+import {
+  canPerformAction,
+  grantVaultAuthorizerPermissions,
+} from './services/auth/auth';
+import { getActionId } from './services/auth/action-ids';
 
 async function run() {
   console.log('VertekFi run:');
@@ -50,30 +66,53 @@ async function run() {
 
   // BNB@~$310 vrtk@$7 = 0.0225806452 BNB -> 1 VRTK ---- RATIO 180 TO 1 (VRTK -> BNB)
   // 10 BNB = $3,100, Need then 1800 VRTK = $12,600 ($15,700 initial liquidity value)
-  // console.log(calcOutGivenIn(7000, 0.8, 2000, 0.2, 1));
-  // console.log(calcInGivenOut(1, 0.2, 180, 0.8, 1));
-
+  // console.log('ASHARE-BUSD: ~5' + calcOutGivenIn(10, 0.7, 16, 0.3, 1)); // want 5 busd out for 1 ashare
+  //console.log(calcOutGivenIn(42, 0.8, 0.25, 0.2, 1)); // want ~0.0222222 BNB for 1 vrtk
   await setupForNetwork();
 }
 
+async function fml() {
+  // This is good (just zeros of course)... why would init join fail with no message... over underflow? WeightedMath?
+  // const vault = await getVault();
+  // console.log(
+  //   await vault.getPoolTokens(
+  //     '0xdd64e2ec144571b4320f7bfb14a56b2b2cbf37ad000200000000000000000000',
+  //   ),
+  // );
+}
+
 async function setupForNetwork() {
-  // await updateVaultAuthorizer(); // GOERLI -> '✅', BSC -> '✅'
-  // await setupTokenAdminBeforeActivation(); // GOERLI -> '✅'
-  // await activateTokenAdmin(); // GOERLI -> '✅'
-  // await initGaugeAuthItems() // GOERLI -> '✅'
-  // await createMainPool(getTokenAddress('VRTK')); // GOERLI -> '✅'
-  // await doPoolInitJoin(await getMainPoolConfig()); // GOERLI -> '✅'
-  // await doAuthVotinEscrowActionItems(); // GOERLI -> '✅'
-  // await doInitialVotingEscrowDeposit(); // GOERLI -> '✅'
-  // await createConfigWeightedPool(1); // GOERLI -> '✅'
-  // await createConfigWeightedPool(2); // GOERLI -> '✅'
-  // let pool = await getPoolConfig(1);; // GOERLI -> '✅'
-  // await doPoolInitJoin(pool);; // GOERLI -> '✅'
-  // let pool = await getPoolConfig(2);; // GOERLI -> '✅'
-  // await doPoolInitJoin(pool);; // GOERLI -> '✅'
+  // await updateVaultAuthorizer();
+  // await updateVaultPauseAuth();
+  // await setupTokenAdminBeforeActivation();
+  // await activateTokenAdmin();
+  // await initGaugeAuthItems()
+  // await doPoolInitJoin(await getMainPoolConfig());
+  // await doAuthVotinEscrowActionItems();
+  // await doInitialVotingEscrowDeposit();
+  // await createConfigWeightedPool(1);
+  // await createConfigWeightedPool(2);
+  // let pool = await getPoolConfig(1);
+  // await doPoolInitJoin(pool);;
+  // let pool = await getPoolConfig(2);
+  // await doPoolInitJoin(pool)
   // await runGaugeSetup();
-  // await addMainPoolGaugeSetup(); // GOERLI -> '✅'
-  // await createConfigPoolGauges() // GOERLI -> '✅'
+  // await addMainPoolGaugeSetup();
+  // await createConfigPoolGauges()
+  //
+  const mainPool = await getMainPoolConfig();
+  // await createMainPool();
+  //  await authorizeToPauseWeightedPool(mainPool.poolAddress);
+  // await initWeightedJoin(
+  //   mainPool.poolId,
+  //   mainPool.deploymentArgs.tokens,
+  //   mainPool.deploymentArgs.initialBalances,
+  //   await getSignerAddress(),
+  // );
+  const instance = await getWeightedPoolToken(mainPool.poolAddress);
+  // const action = await instance.getActionId(getSighash(instance, 'pause'));
+  // await grantVaultAuthorizerPermissions([action], [instance.address]);
+  await awaitTransactionComplete(instance.pause());
 }
 
 async function testVeStakeFor() {

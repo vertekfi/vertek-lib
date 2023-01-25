@@ -15,17 +15,6 @@ import {
 import { ActionIdItem } from 'src/types/auth.types';
 import * as fs from 'fs-extra';
 
-export async function getActionId(
-  instance: Contract,
-  method: string,
-  contractInterface?: Interface,
-): Promise<string> {
-  const selector = (contractInterface ?? instance.interface).getSighash(method);
-  const actionId = await instance.getActionId(selector);
-  logger.info(`Action ID: ${actionId}`);
-  return actionId;
-}
-
 export async function grantVaultAuthorizerPermissions(
   actionIds: string[],
   targetContracts: string[],

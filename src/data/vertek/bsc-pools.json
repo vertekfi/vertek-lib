@@ -1,0 +1,104 @@
+[
+  {
+    "created": true,
+    "initJoinComplete": true,
+    "name": "Vi Vertek Vincit",
+    "symbol": "80-VRTK-20-BNB",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "0x8848be67e7a98f7f40316c54dfbd808f7b3e5e49676f9161167bc07f10e0d04e",
+    "poolId": "0xdd64e2ec144571b4320f7bfb14a56b2b2cbf37ad000200000000000000000000",
+    "poolAddress": "0xDD64E2EC144571b4320f7BFB14a56b2b2cBF37ad",
+    "date": "1/25/2023, 4:09:02 PM",
+    "tokenInfo": [
+      {
+        "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+        "weight": "0.2",
+        "initialBalance": "0.25",
+        "symbol": "WBNB"
+      },
+      {
+        "address": "0xeD236c32f695c83Efde232c288701d6f9C23E60E",
+        "weight": "0.8",
+        "initialBalance": "42",
+        "symbol": "VRTK"
+      }
+    ],
+    "deploymentArgs": {
+      "name": "Vi Vertek Vincit",
+      "symbol": "80-VRTK-20-BNB",
+      "tokens": [
+        "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+        "0xeD236c32f695c83Efde232c288701d6f9C23E60E"
+      ],
+      "swapFeePercentage": "0.01",
+      "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
+      "rateProviders": [
+        "0x0000000000000000000000000000000000000000",
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "weights": ["0.2", "0.8"],
+      "initialBalances": ["0.25", "42"]
+    },
+    "gauge": {
+      "address": "",
+      "startingWeight": "0.65",
+      "added": false,
+      "controllerTxHash": "",
+      "txHash": "",
+      "addedToController": false
+    },
+    "isVePool": true
+  },
+  {
+    "created": false,
+    "initJoinComplete": false,
+    "name": "A Share of Seigniorage",
+    "symbol": "70-ASHARE-30-BUSD",
+    "assetManager": "0x0000000000000000000000000000000000000000",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "",
+    "poolAddress": "",
+    "date": "1/24/2023, 8:00:43 PM",
+    "tokenInfo": [
+      {
+        "address": "0xFa4b16b0f63F5A6D0651592620D585D308F749A4",
+        "weight": "0.7",
+        "initialBalance": "10",
+        "symbol": "ASHARE"
+      },
+      {
+        "address": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+        "weight": "0.3",
+        "initialBalance": "16",
+        "symbol": "BUSD"
+      }
+    ],
+    "deploymentArgs": {
+      "name": "A Share of Seigniorage",
+      "symbol": "70-ASHARE-30-BUSD",
+      "tokens": [],
+      "swapFeePercentage": "0.01",
+      "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
+      "rateProviders": [
+        "0x0000000000000000000000000000000000000000",
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "weights": ["0.7", "0.3"],
+      "initialBalances": ["2300", "10000"]
+    },
+    "gauge": {
+      "address": "0x9b43D3cD933289653D87d0EdaBD970c33F59460a",
+      "startingWeight": "0",
+      "added": true,
+      "txHash": "0x2411f628d1094628f5b22e2afe011897e8cc4d453c5b5a2489e3f24f7e07de64",
+      "controllerTxHash": "0xba59b4f2594b9b5b4cc8f278e2a1bd072fc0f2e59ab17c7c0fd6ce4f7b085180",
+      "addedToController": true,
+      "depositFee": 100,
+      "withdrawFee": 100,
+      "initFeesSet": false
+    },
+    "isVePool": false
+  }
+]

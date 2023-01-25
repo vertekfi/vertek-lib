@@ -7,9 +7,14 @@ import {
 } from 'src/types/pool.types';
 import { _require } from 'src/utils';
 import { getSigner, getSignerAddress } from 'src/utils/account.util';
-import { getContractAddress } from 'src/utils/contract.utils';
+import {
+  getContractAddress,
+  getWeightedPoolToken,
+} from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
+import { getActionId } from '../auth/action-ids';
+import { grantVaultAuthorizerPermissions } from '../auth/auth';
 import {
   getAllPoolConfigs,
   getDexPoolDataConfig,
@@ -22,12 +27,10 @@ import {
   validatePoolConfig,
 } from './pool.utils';
 
-export async function createMainPool(vertkAddress: string) {
+export async function createMainPool() {
   const pool = await getMainPoolConfig();
 
-  const vrtkInfo = pool.tokenInfo.find((t) => t.symbol === 'VRTK');
-  vrtkInfo.address = vertkAddress;
-  await updatePoolConfig(pool);
+  validatePoolConfig(pool);
 
   await createConfigWeightedPool(0);
 }
@@ -46,14 +49,26 @@ export async function createConfigWeightedPool(poolConfigIndex: number) {
     return;
   }
 
+  if (!pool.deploymentArgs.owner) {
+    logger.warn(
+      `No owner set for pool "${pool.name}". Assigning local account as owner`,
+    );
+
+    pool.deploymentArgs.owner = await getSignerAddress();
+    await updatePoolConfig(pool);
+  }
+
   validatePoolConfig(pool);
 
+  // use util to format deployment args properly
   const args = getWeightedPoolArgsFromConfig(pool, await getSignerAddress());
   pool.deploymentArgs = args;
   await updatePoolConfig(pool);
 
+  // create the pool contract
   const receipt = await createWeightedPool(args);
 
+  // update local data for pool
   pool.created = true;
   pool.txHash = receipt.transactionHash;
   pool.deploymentArgs = {
@@ -96,10 +111,10 @@ export async function completeWeightedSetup(poolAddress: string) {
     ...poolData,
   });
 
-  // // Add to the list for frontend while we're here
-  // const dexPoolData = await getDexPoolDataConfig();
-  // dexPoolData.incentivizedPools.push(pool.poolId);
-  // await updateDexPoolDataConfig(dexPoolData);
+  // Add auth permissions for pause
+  // const poolInstance = await getWeightedPoolToken(pool.poolAddress);
+  // const action = await getActionId(poolInstance, 'pause');
+  // await grantVaultAuthorizerPermissions([action], [pool.poolAddress]);
 }
 
 export async function doPoolInitJoin(pool: PoolCreationConfig) {

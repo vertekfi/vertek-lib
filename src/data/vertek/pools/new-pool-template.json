@@ -1,6 +1,9 @@
 {
   "created": false,
   "initJoinComplete": false,
+  "mainToken": "",
+  "mainTokenTargetPrice": 0,
+  "amountOutOtherToken": 0,
   "name": "",
   "symbol": "",
   "assetManager": "0x0000000000000000000000000000000000000000",

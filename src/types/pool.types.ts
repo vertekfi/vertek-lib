@@ -105,6 +105,76 @@ export interface RewardPoolArgs {
   admin: string;
 }
 
+export interface PoolTokenInfo {
+  address: string;
+  initialBalance: string;
+  weight?: string;
+  symbol?: string;
+}
+
+export interface WeightedTokenInfo extends PoolTokenInfo {
+  weight: string;
+}
+
+export interface AssetManagerCreationArgs {
+  vault: string;
+  tokenToManage: string;
+  multisig: string;
+}
+
+export interface PoolCreationBaseData {
+  poolId: string;
+  poolAddress: string;
+  txHash: string;
+  date: string;
+}
+
+export interface PoolCreationConfig {
+  created: boolean;
+  initJoinComplete: boolean;
+  mainToken?: string;
+  mainTokenTargetPrice?: number;
+  amountOutOtherToken?: number;
+  isVePool?: boolean;
+  txHash: string;
+  chainId: number;
+  name: string;
+  symbol: string;
+  type: PoolType;
+  poolId: string;
+  poolAddress: string;
+  date: string;
+  initialBalances: string[];
+  assetManager: string;
+  tokenInfo: PoolTokenInfo[];
+  weights?: string[];
+  amp?: number;
+  deploymentArgs: {
+    name: string;
+    symbol: string;
+    tokens: string[];
+    owner: string;
+    swapFeePercentage: string;
+    assetManagers?: string[];
+    weights?: string[];
+    rateProviders?: string[];
+    amp?: number;
+    initialBalances?: string[];
+    // other things
+  };
+  gauge: {
+    address: string;
+    startingWeight: string;
+    added: Boolean;
+    txHash: string;
+    controllerTxHash: string;
+    addedToController: boolean;
+    depositFee: number; // max 1000 (10%)
+    withdrawFee: number; // max 1000 (10%)
+    initFeesSet: boolean;
+  };
+}
+
 export interface IRewardPool {
   address: string;
 
@@ -144,67 +214,4 @@ export interface IRewardPoolUserInfo {
   pendingRewards: string;
   pendingRewardValue: string;
   percentageOwned: string;
-}
-
-export interface PoolTokenInfo {
-  address: string;
-  initialBalance: string;
-  weight?: string;
-  symbol?: string;
-}
-
-export interface AssetManagerCreationArgs {
-  vault: string;
-  tokenToManage: string;
-  multisig: string;
-}
-
-export interface PoolCreationBaseData {
-  poolId: string;
-  poolAddress: string;
-  txHash: string;
-  date: string;
-}
-
-export interface PoolCreationConfig {
-  created: boolean;
-  initJoinComplete: boolean;
-  isVePool?: boolean;
-  txHash: string;
-  chainId: number;
-  name: string;
-  symbol: string;
-  type: PoolType;
-  poolId: string;
-  poolAddress: string;
-  date: string;
-  initialBalances: string[];
-  assetManager: string;
-  tokenInfo: PoolTokenInfo[];
-  weights?: string[];
-  amp?: number;
-  deploymentArgs: {
-    name: string;
-    symbol: string;
-    tokens: string[];
-    owner: string;
-    swapFeePercentage: string;
-    assetManagers?: string[];
-    weights?: string[];
-    rateProviders?: string[];
-    amp?: number;
-    initialBalances?: string[];
-    // other things
-  };
-  gauge: {
-    address: string;
-    startingWeight: string;
-    added: Boolean;
-    txHash: string;
-    controllerTxHash: string;
-    addedToController: boolean;
-    depositFee: number; // max 1000 (10%)
-    withdrawFee: number; // max 1000 (10%)
-    initFeesSet: boolean;
-  };
 }

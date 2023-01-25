@@ -14,6 +14,8 @@ import * as GaugeAbi from '../abis/LiquidityGaugeV5.json';
 import * as GaugeAdderAbi from '../abis/GaugeAdder.json';
 import * as GaugeFactoryAbi from '../abis/LiquidityGaugeFactory.json';
 import * as PoolTokenAbi from '../abis/BalancerPoolToken.json';
+import * as WeightedPoolAbi from '../abis/WeightedPool.json';
+import * as WeightedPoolFactoryAbi from '../abis/WeightedPoolFactory.json';
 
 import { getChainId, getSigner } from './account.util';
 import { ERC20_ABI } from 'src/abis/ERC20ABI';
@@ -89,6 +91,18 @@ export async function getERC20(address: string) {
 
 export async function getBalancerPoolToken(address: string) {
   return new Contract(address, PoolTokenAbi, await getSigner());
+}
+
+export async function getWeightedPoolToken(address: string) {
+  return new Contract(address, WeightedPoolAbi, await getSigner());
+}
+
+export async function getWeightedPoolFactory() {
+  return new Contract(
+    getContractAddress('WeightedPoolFactory'),
+    WeightedPoolFactoryAbi,
+    await getSigner(),
+  );
 }
 
 export async function getLiquidityGaugeTemplate() {

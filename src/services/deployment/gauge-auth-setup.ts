@@ -10,7 +10,7 @@ import {
 } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import {
-  getActionIds,
+  getActionIdsData,
   getAuthAdapterActionId,
   addNewActionIds,
 } from '../auth/action-ids';

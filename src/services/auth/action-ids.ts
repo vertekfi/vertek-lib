@@ -34,12 +34,12 @@ export async function getActionIdsPath(): Promise<string> {
   );
 }
 
-export async function getActionIds(): Promise<ActionIdItem[]> {
+export async function getActionIdsData(): Promise<ActionIdItem[]> {
   return fs.readJSON(await getActionIdsPath());
 }
 
 export async function addNewActionIds(actionItems: ActionIdItem[]) {
-  let ids = await getActionIds();
+  let ids = await getActionIdsData();
   ids = ids.concat(actionItems);
 
   await fs.writeJSON(await getActionIdsPath(), ids);
