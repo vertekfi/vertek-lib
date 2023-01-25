@@ -48,7 +48,7 @@ export const CONTRACT_MAP = {
     56: '0x14f20A699D23A6267A31b55eC21C62297DE52C9c',
   },
   BalancerMinter: {
-    5: '',
+    5: '0xd48397ad761D622AE42e551b8C1cb0E3C5a03E3B',
     56: '',
   },
   BalTokenHolder: {
@@ -60,15 +60,15 @@ export const CONTRACT_MAP = {
     56: '',
   },
   VeBoostV2: {
-    5: '',
+    5: '0xB88683951708f05D89242BD4BEBD27ce0B884D29',
     56: '',
   },
   VotingEscrowDelegationProxy: {
-    5: '',
+    5: '0xcb180DFA6C96CC80c852C3493B19eEC52D68e46A',
     56: '',
   },
   VeBalHelper: {
-    5: '',
+    5: '0xf2Ac25c69b05C1a7560dECc7363c5150B24eD974',
     56: '',
   },
   GaugeController: {
@@ -76,11 +76,11 @@ export const CONTRACT_MAP = {
     56: '',
   },
   LiquidityGaugeFactory: {
-    5: '',
+    5: '0x70Bb570d76b3c83bcE8C36993fFC1aF7Ac407a63',
     56: '',
   },
   LiquidityGaugeV5: {
-    5: '',
+    5: '0xf1b9BcA00a8E1574243D729dc0e2aEFc715Bc48f',
     56: '',
   },
   GaugeAdder: {
