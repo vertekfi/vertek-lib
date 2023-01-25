@@ -13,7 +13,10 @@ import {
   doPoolInitJoin,
 } from './services/pools/pool-creation';
 import { runPoolsSetup } from './services/pools/pools';
-import { runGaugeSetup } from './services/deployment/gauges-setup';
+import {
+  createConfigPoolGauges,
+  runGaugeSetup,
+} from './services/deployment/gauges-setup';
 import {
   addRewardTokenToGauge,
   deGaugeRewardTokenDeposit,
@@ -25,7 +28,10 @@ import {
 } from './services/gauges/voting-escrow';
 import { getTokenAddress } from './utils/contract.utils';
 import { getMainPoolConfig, getPoolConfig } from './services/pools/pool.utils';
-import { doAuthVotinEscrowActionItems } from './services/deployment/gauge-auth-setup';
+import {
+  doAuthVotinEscrowActionItems,
+  initGaugeAuthItems,
+} from './services/deployment/gauge-auth-setup';
 
 async function run() {
   console.log('VertekFi run:');
@@ -49,10 +55,13 @@ async function setupForNetwork() {
   // await doAuthVotinEscrowActionItems(); // GOERLI -> '✅'
   // await createConfigWeightedPool(1); // GOERLI -> '✅'
   // await createConfigWeightedPool(2); // GOERLI -> '✅'
-  // let pool = await getPoolConfig(1);
-  // await doPoolInitJoin(pool);
-  // let pool = await getPoolConfig(2);
-  // await doPoolInitJoin(pool);
+  // let pool = await getPoolConfig(1);; // GOERLI -> '✅'
+  // await doPoolInitJoin(pool);; // GOERLI -> '✅'
+  // let pool = await getPoolConfig(2);; // GOERLI -> '✅'
+  // await doPoolInitJoin(pool);; // GOERLI -> '✅'
+  // await initGaugeAuthItems(); // GOERLI -> '✅'
+  await runGaugeSetup();
+  // await createConfigPoolGauges()
 }
 
 async function testVeStakeFor() {

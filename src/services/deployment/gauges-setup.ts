@@ -20,8 +20,8 @@ export async function runGaugeSetup() {
   // await initGaugeAuthItems();
   // await addGaugeTypes();
   // await addGaugeFactories();
-  // await createConfigPoolGauges();
-  // await addConfigPoolGaugesToController();
+  await createConfigPoolGauges();
+  await addConfigPoolGaugesToController();
 }
 
 export async function addGaugeTypes() {
@@ -35,7 +35,7 @@ export async function addGaugeTypes() {
   // We do not have this "Liquidity Mining Committee" concept right now.
   // Its all ve holders (veBAL gauge type) and "Ethereum" voting gauges (65/35).
   // But adding here to index align with GaugeAdder GaugeType enum.
-  await addGaugeTypeToController(GaugeType.LiquidityMiningCommittee, 1);
+  await addGaugeTypeToController(GaugeType.LiquidityMiningCommittee, 0);
 
   // Should be third item in local enum, enum index 2, to line up with contract enum GaugeType.Ethereum
   await addGaugeTypeToController(GaugeType.Ethereum, 1);

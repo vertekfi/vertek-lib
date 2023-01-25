@@ -55,14 +55,14 @@ export async function initGaugeAuthItems() {
       return action;
     });
 
-  const gaugeAdder = await getGaugeAdder();
-  actionItems = actionItems
-    .concat(await getGaugeAdderActionItems(gaugeAdder))
-    .map((action) => {
-      actionIds.push(action.actionId);
-      targets.push(gaugeAdder.address);
-      return action;
-    });
+  // const gaugeAdder = await getGaugeAdder();
+  // actionItems = actionItems
+  //   .concat(await getGaugeAdderActionItems(gaugeAdder))
+  //   .map((action) => {
+  //     actionIds.push(action.actionId);
+  //     targets.push(gaugeAdder.address);
+  //     return action;
+  //   });
 
   await grantVaultAuthorizerPermissions(actionIds, targets);
 

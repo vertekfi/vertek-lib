@@ -66,8 +66,13 @@ export async function doGaugeDeposit(gaugeAddress: string, amount: BigNumber) {
 
 export async function createLiquidityGauge(pool: PoolCreationConfig) {
   const factory = await getLiquidityGaugeFactory();
-  if (pool.gauge.added || pool.isVePool) {
+  if (pool.gauge.added) {
     logger.error(`Pool ${pool.name} gauge already created`);
+    return;
+  }
+
+  if (pool.isVePool) {
+    logger.warn(`Skipping liquidity gauge creation for VE pool "${pool.name}"`);
     return;
   }
 
@@ -119,9 +124,9 @@ export async function addGaugeToController(pool: PoolCreationConfig) {
   logger.success(`Pool ${pool.name} gauge added to controller`);
 
   // Add to the list for frontend while we're here
-  const dexPoolData = await getDexPoolDataConfig();
-  dexPoolData.gauges.push(pool.poolId);
-  await updateDexPoolDataConfig(dexPoolData);
+  // const dexPoolData = await getDexPoolDataConfig();
+  // dexPoolData.gauges.push(pool.poolId);
+  // await updateDexPoolDataConfig(dexPoolData);
 }
 
 export async function addGaugeTypeToController(
