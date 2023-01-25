@@ -7,7 +7,11 @@ import {
   setupTokenAdminBeforeActivation,
   updateVaultAuthorizer,
 } from './services/deployment/base-setup';
-import { createMainPool, doPoolInitJoin } from './services/pools/pool-creation';
+import {
+  createConfigWeightedPool,
+  createMainPool,
+  doPoolInitJoin,
+} from './services/pools/pool-creation';
 import { runPoolsSetup } from './services/pools/pools';
 import { runGaugeSetup } from './services/deployment/gauges-setup';
 import {
@@ -20,8 +24,8 @@ import {
   stakeForUser,
 } from './services/gauges/voting-escrow';
 import { getTokenAddress } from './utils/contract.utils';
-import { getMainPoolConfig } from './services/pools/pool.utils';
-import { getVotinEscrowActionItems } from './services/deployment/gauge-auth-setup';
+import { getMainPoolConfig, getPoolConfig } from './services/pools/pool.utils';
+import { doAuthVotinEscrowActionItems } from './services/deployment/gauge-auth-setup';
 
 async function run() {
   console.log('VertekFi run:');
@@ -29,10 +33,8 @@ async function run() {
 
   // BNB@~$310 vrtk@$7 = 0.0225806452 BNB -> 1 VRTK ---- RATIO 180 TO 1 (VRTK -> BNB)
   // 10 BNB = $3,100, Need then 1800 VRTK = $12,600 ($15,700 initial liquidity value)
-  // console.log(calcOutGivenIn(175, 0.8, 1, 0.2, 1));
+  // console.log(calcOutGivenIn(7000, 0.8, 2000, 0.2, 1));
   // console.log(calcInGivenOut(1, 0.2, 180, 0.8, 1));
-
-  // await createMainPool();
 
   await setupForNetwork();
 }
@@ -44,8 +46,13 @@ async function setupForNetwork() {
   // await createMainPool(getTokenAddress('VRTK')); // GOERLI -> '✅'
   // await doPoolInitJoin(await getMainPoolConfig()); // GOERLI -> '✅'
   // await doInitialVotingEscrowDeposit(); // GOERLI -> '✅'
-  // await getVotinEscrowActionItems(); // GOERLI -> '✅'
-  await testVeStakeFor();
+  // await doAuthVotinEscrowActionItems(); // GOERLI -> '✅'
+  // await createConfigWeightedPool(1); // GOERLI -> '✅'
+  // await createConfigWeightedPool(2); // GOERLI -> '✅'
+  // let pool = await getPoolConfig(1);
+  // await doPoolInitJoin(pool);
+  // let pool = await getPoolConfig(2);
+  // await doPoolInitJoin(pool);
 }
 
 async function testVeStakeFor() {

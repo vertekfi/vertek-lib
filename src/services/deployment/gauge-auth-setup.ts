@@ -69,8 +69,8 @@ export async function initGaugeAuthItems() {
   await addNewActionIds(actionItems);
 }
 
-export async function getVotinEscrowActionItems() {
-  logger.info('getControllerActionItems');
+export async function doAuthVotinEscrowActionItems() {
+  logger.info('doAuthVotinEscrowActionItems:');
 
   let actionItems: ActionIdItem[] = [];
   const actionIds: string[] = [];

@@ -1,7 +1,7 @@
 {
   "created": false,
   "initJoinComplete": false,
-  "name": "The Vertek",
+  "name": "Vi Vertek Vincit",
   "symbol": "VRTK-BNB",
   "assetManager": "0x0000000000000000000000000000000000000000",
   "type": "Weighted",
@@ -24,7 +24,7 @@
     }
   ],
   "deploymentArgs": {
-    "name": "The Vertek",
+    "name": "Vi Vertek Vincit",
     "symbol": "VRTK-BNB",
     "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
     "tokens": ["", ""],

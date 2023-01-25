@@ -98,8 +98,13 @@ export async function getMainPoolConfig() {
   return poolConfigs.find((p) => p.isVePool);
 }
 
+export async function getPoolConfig(index: number) {
+  const poolConfigs = await getAllPoolConfigs();
+  return poolConfigs[index];
+}
+
 export async function updatePoolConfig(pool: PoolCreationConfig) {
-  logger.info(`updatePoolConfig: updating ${pool.name}`);
+  logger.info(`updatePoolConfig: updating "${pool.name}"`);
   const poolConfigs = await getAllPoolConfigs();
 
   let updating = poolConfigs.find((p) => p.name === pool.name);

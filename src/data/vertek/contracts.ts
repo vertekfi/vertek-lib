@@ -72,7 +72,7 @@ export const CONTRACT_MAP = {
     56: '',
   },
   GaugeController: {
-    5: '',
+    5: '0x7bC6C2bF0c730E03285f673806586C60AC0B3205',
     56: '',
   },
   LiquidityGaugeFactory: {

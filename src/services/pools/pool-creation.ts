@@ -35,6 +35,11 @@ export async function createConfigWeightedPool(poolConfigIndex: number) {
   const pools = await getAllPoolConfigs();
   const pool = pools[poolConfigIndex];
 
+  if (!pool) {
+    logger.error(`Invalis poolConfigIndex: ${poolConfigIndex}`);
+    return;
+  }
+
   if (pool.created) {
     logger.error(`Pool ${pool.name} already created`);
     return;
@@ -88,10 +93,10 @@ export async function completeWeightedSetup(poolAddress: string) {
     ...poolData,
   });
 
-  // Add to the list for frontend while we're here
-  const dexPoolData = await getDexPoolDataConfig();
-  dexPoolData.incentivizedPools.push(pool.poolId);
-  await updateDexPoolDataConfig(dexPoolData);
+  // // Add to the list for frontend while we're here
+  // const dexPoolData = await getDexPoolDataConfig();
+  // dexPoolData.incentivizedPools.push(pool.poolId);
+  // await updateDexPoolDataConfig(dexPoolData);
 }
 
 export async function doPoolInitJoin(pool: PoolCreationConfig) {
