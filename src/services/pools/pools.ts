@@ -1,18 +1,5 @@
-import { Contract, ContractReceipt } from 'ethers';
-import { parseUnits } from 'ethers/lib/utils';
-import { CreateWeightedPoolArgs } from 'src/types/pool.types';
-import { getSigner } from 'src/utils/account.util';
-import {
-  getContractAddress,
-  getWeightedPoolToken,
-} from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
-import { awaitTransactionComplete } from 'src/utils/transaction.utils';
-import {
-  completeWeightedSetup,
-  createConfigWeightedPool,
-  doPoolInitJoin,
-} from './pool-creation';
+import { createConfigWeightedPool, doPoolInitJoin } from './pool-creation';
 import { getAllPoolConfigs } from './pool.utils';
 
 export async function runPoolsSetup() {

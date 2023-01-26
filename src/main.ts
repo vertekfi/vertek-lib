@@ -5,73 +5,79 @@ import {
 } from './math';
 import { config } from 'dotenv';
 import { join } from 'path';
+import { createConfigWeightedPool } from './services/pools/pool-creation';
 import {
-  activateTokenAdmin,
-  giveBalMinterPermission,
-  initBaseAuthSetup,
-  setupTokenAdminBeforeActivation,
-  updateVaultAuthorizer,
-  updateVaultPauseAuth,
-} from './services/deployment/base-setup';
-import {
-  createConfigWeightedPool,
-  createMainPool,
-  doPoolInitJoin,
-} from './services/pools/pool-creation';
-import { runPoolsSetup } from './services/pools/pools';
-import {
-  addMainPoolGaugeSetup,
-  createConfigPoolGauges,
-  runGaugeSetup,
-  setGaugeFees,
-} from './services/deployment/gauges-setup';
-import {
-  addGaugeToController,
+  addLiquidityGaugeToController,
   addRewardTokenToGauge,
+  createLiquidityGauge,
   doGaugeRewardTokenDeposit,
-  GaugeFeeType,
-  updateGaugeFee,
+  setGaugeFees,
 } from './services/gauges/gauge-utils';
 import { formatEther, parseEther, parseUnits } from 'ethers/lib/utils';
+import { stakeForUser } from './services/gauges/voting-escrow';
 import {
-  doInitialVotingEscrowDeposit,
-  stakeForUser,
-} from './services/gauges/voting-escrow';
-import {
-  getBalMinter,
-  getGaugeController,
   getSighash,
-  getTokenAddress,
-  getTokenAdmin,
+  getTimelockAuthorizer,
   getVault,
   getWeightedPoolToken,
 } from './utils/contract.utils';
 import {
-  authorizeToPauseWeightedPool,
-  doPoolJoin,
+  getAllPoolConfigs,
   getMainPoolConfig,
   getPoolConfig,
   initWeightedJoin,
+  updatePoolConfig,
 } from './services/pools/pool.utils';
-import { initGaugeAuthItems } from './services/deployment/gauge-auth-setup';
-import { GaugeTypeNum } from './types/gauge.types';
 import { getSignerAddress } from './utils/account.util';
+import { GaugeTypeNum } from './types/gauge.types';
 import { awaitTransactionComplete } from './utils/transaction.utils';
-import {
-  canPerformAction,
-  grantVaultAuthorizerPermissions,
-} from './services/auth/auth';
-import { getActionId } from './services/auth/action-ids';
+import { grantVaultAuthorizerPermissions } from './services/auth/auth';
+
+config({ path: join(process.cwd(), '.env') });
 
 async function run() {
   console.log('VertekFi run:');
-  config({ path: join(process.cwd(), '.env') });
 
-  // BNB@~$310 vrtk@$7 = 0.0225806452 BNB -> 1 VRTK ---- RATIO 180 TO 1 (VRTK -> BNB)
-  // 10 BNB = $3,100, Need then 1800 VRTK = $12,600 ($15,700 initial liquidity value)
-  //console.log(calcOutGivenIn(1, 0.7, 6.3, 0.3, 1)); // want 5 busd out for 1 ashare
-  // console.log(calcOutGivenIn(42, 0.8, 0.25, 0.2, 1)); // want ~0.0222222 BNB for 1 vrtk
-  await setupForNetwork();
+  // const amountIn = 1;
+  // const balanceIn = 1;
+  // const weightIn = 0.7;
+  // const balanceOut = 6.25;
+  // const weightOut = 0.3;
+  // console.log(
+  //   calcOutGivenIn(balanceIn, weightIn, balanceOut, weightOut, amountIn),
+  // );
+  //
+  // await doPools();
+}
+
+async function doPools() {
+  // const idx = 5;
+  // const pool = await getPoolConfig(idx);
+  // await initWeightedJoin(
+  //   pool.poolId,
+  //   pool.deploymentArgs.tokens,
+  //   pool.deploymentArgs.initialBalances,
+  //   await getSignerAddress(),
+  // );
+  // pool.initJoinComplete = true;
+  // await updatePoolConfig(pool);
+  // await createLiquidityGauge(pool);
+  // await addLiquidityGaugeToController(pool, GaugeTypeNum.Ethereum);
+  // await setGaugeFees(pool);
+  // const pool = await getMainPoolConfig();
+  // const instance = await getWeightedPoolToken(pool.poolAddress);
+  // const pool = await getPoolConfig(4);
+  // const ids = [];
+  // const addies = [];
+  // const instance = await getWeightedPoolToken(pool.poolAddress);
+  // const pa = await instance.getActionId(getSighash(instance, 'pause'));
+  // const up = await instance.getActionId(getSighash(instance, 'unpause'));
+  // ids.push(pa);
+  // ids.push(up);
+  // addies.push(pool.poolAddress);
+  // addies.push(pool.poolAddress);
+  // await grantVaultAuthorizerPermissions(ids, addies);
+  // await awaitTransactionComplete(instance.pause());
 }
 
 async function setupForNetwork() {
@@ -86,36 +92,8 @@ async function setupForNetwork() {
   // await addMainPoolGaugeSetup();
   // await createConfigPoolGauges()
   //
-  await doPools();
   //  await doMainJoin();
   //
-  // const mainPool = await getMainPoolConfig();
-  // await createMainPool();
-  // await authorizeToPauseWeightedPool(mainPool.poolAddress);
-  // await initWeightedJoin(
-  //   mainPool.poolId,
-  //   mainPool.deploymentArgs.tokens,
-  //   mainPool.deploymentArgs.initialBalances,
-  //   await getSignerAddress(),
-  // );
-  // const instance = await getWeightedPoolToken(mainPool.poolAddress);
-  // const action = await instance.getActionId(getSighash(instance, 'pause'));
-  // await grantVaultAuthorizerPermissions([action], [instance.address]);
-  // await awaitTransactionComplete(instance.pause());
-  // await testVeStakeFor();
-}
-
-async function doPools() {
-  const idx = 1;
-
-  //  await createConfigWeightedPool(idx);
-  const pool = await getPoolConfig(idx);
-  await initWeightedJoin(
-    pool.poolId,
-    pool.deploymentArgs.tokens,
-    pool.deploymentArgs.initialBalances,
-    await getSignerAddress(),
-  );
 }
 
 async function doMainJoin() {

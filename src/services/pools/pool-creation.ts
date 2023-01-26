@@ -3,26 +3,18 @@ import { parseUnits } from 'ethers/lib/utils';
 import {
   CreateWeightedPoolArgs,
   PoolCreationConfig,
-  PoolType,
 } from 'src/types/pool.types';
 import { _require } from 'src/utils';
 import { getSigner, getSignerAddress } from 'src/utils/account.util';
-import {
-  getContractAddress,
-  getWeightedPoolToken,
-} from 'src/utils/contract.utils';
+import { getContractAddress } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
-import { getActionId } from '../auth/action-ids';
-import { grantVaultAuthorizerPermissions } from '../auth/auth';
+
 import {
   getAllPoolConfigs,
-  getDexPoolDataConfig,
   getMainPoolConfig,
-  getPoolCreationData,
   getWeightedPoolArgsFromConfig,
   initWeightedJoin,
-  updateDexPoolDataConfig,
   updatePoolConfig,
   validatePoolConfig,
 } from './pool.utils';
@@ -79,42 +71,16 @@ export async function createConfigWeightedPool(poolConfigIndex: number) {
   pool.symbol = pool.deploymentArgs.symbol;
   await updatePoolConfig(pool);
 
-  // Will have to etherscan it or run a function over the txHash after a delay
-  const poolData = await tryGetPoolAddressFromReceipt(receipt);
-  if (!poolData.poolAddress) {
-    pool.txHash = poolData.txHash;
-    await updatePoolConfig(pool);
-    return;
-  }
+  // Hard coded indexes by knowing the structure of this tx log
+  // (If it needed to change would mean a whole bunch of other shit would too)
+  const poolAddress = receipt.events[0].address;
+  console.log('poolAddress: ' + poolAddress);
+  const poolId = receipt.events[1].topics[1];
+  console.log('poolId: ' + poolId);
 
-  await updatePoolConfig({
-    ...pool,
-    ...poolData,
-  });
-
-  await completeWeightedSetup(poolData.poolAddress);
-}
-
-export async function completeWeightedSetup(poolAddress: string) {
-  const pools = await getAllPoolConfigs();
-  let pool = pools.find((p) => p.poolAddress === poolAddress);
-
-  _require(!!pool, 'Pool not found');
-
-  const poolData = await getPoolCreationData(poolAddress);
-  if (!poolData) {
-    return;
-  }
-
-  await updatePoolConfig({
-    ...pool,
-    ...poolData,
-  });
-
-  // Add auth permissions for pause
-  // const poolInstance = await getWeightedPoolToken(pool.poolAddress);
-  // const action = await getActionId(poolInstance, 'pause');
-  // await grantVaultAuthorizerPermissions([action], [pool.poolAddress]);
+  pool.poolId = poolId;
+  pool.poolAddress = poolAddress;
+  await updatePoolConfig(pool);
 }
 
 export async function doPoolInitJoin(pool: PoolCreationConfig) {
@@ -129,12 +95,22 @@ export async function doPoolInitJoin(pool: PoolCreationConfig) {
   pool = await updatePoolConfig(pool);
 }
 
-async function tryGetPoolAddressFromReceipt(receipt: ContractReceipt) {
+async function tryGetPoolAddressFromReceipt(
+  pool: PoolCreationConfig,
+  receipt: ContractReceipt,
+) {
   try {
+    // Hard coded indexes by knowing the structure of this tx log
+    // (If it needed to change would mean a whole bunch of other shit would too)
     const poolAddress = receipt.events[0].address;
     console.log('poolAddress: ' + poolAddress);
     const poolId = receipt.events[1].topics[1];
     console.log('poolId: ' + poolId);
+
+    pool.poolId = poolId;
+    pool.poolAddress = poolAddress;
+    await updatePoolConfig(pool);
+
     return {
       txHash: receipt.transactionHash,
       poolId,
@@ -143,7 +119,6 @@ async function tryGetPoolAddressFromReceipt(receipt: ContractReceipt) {
     };
   } catch (error) {
     logger.error(`Unable to get pool address`);
-    // console.log(receipt.events);
     return {
       txHash: receipt.transactionHash,
       date: new Date().toLocaleString(),

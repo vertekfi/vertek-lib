@@ -41,12 +41,12 @@
       "initialBalances": ["0.25", "42"]
     },
     "gauge": {
-      "address": "",
+      "address": "0x9740727f14461738AF5a37a433D397822380c637",
       "startingWeight": "0.65",
-      "added": false,
-      "controllerTxHash": "",
-      "txHash": "",
-      "addedToController": false
+      "added": true,
+      "controllerTxHash": "0x6c860fdf5ed9cd9d7d5421869cd79f558bc1e395f4e3b090b4472f3068187ce0",
+      "txHash": "0x384235a81de34af0765eaab9e54a821020d4e0058c6bf1048abdd84eef7d7749",
+      "addedToController": true
     },
     "isVePool": true
   },
@@ -92,15 +92,180 @@
       "initialBalances": ["6.3", "1"]
     },
     "gauge": {
-      "address": "",
+      "address": "0xE7A9d3F14A19E6CF1C482aB0e8c7aE40b40a61c0",
       "startingWeight": "0",
-      "added": false,
-      "txHash": "",
-      "controllerTxHash": "",
-      "addedToController": false,
+      "added": true,
+      "txHash": "0x6a84bb6e7e20f9e24dbfa63d27f3caaec7ed9de8d58aa5828c9fa2c3e6d39008",
+      "controllerTxHash": "0x971db179784c4d3c3667543354902021b63f780d9e58be87bd71e7e45c63b347",
+      "addedToController": true,
       "depositFee": 100,
       "withdrawFee": 100,
-      "initFeesSet": false
+      "initFeesSet": true
+    },
+    "isVePool": false
+  },
+  {
+    "created": true,
+    "initJoinComplete": true,
+    "mainToken": "",
+    "mainTokenTargetPrice": 0,
+    "amountOutOtherToken": 0,
+    "name": "Amesonian Apex",
+    "symbol": "80-AMES-20-BUSD",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "0x248d943b9d59c4be35d41b34f79370dfbf577b2b000200000000000000000002",
+    "poolAddress": "0x248D943B9d59c4BE35D41B34F79370dFBf577B2b",
+    "date": "1/25/2023, 10:41:43 PM",
+    "initialBalances": [],
+    "tokenInfo": [
+      {
+        "address": "0xb9E05B4C168B56F73940980aE6EF366354357009",
+        "weight": "0.8",
+        "initialBalance": "5.2",
+        "symbol": "AMES"
+      },
+      {
+        "address": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+        "weight": "0.2",
+        "initialBalance": "2",
+        "symbol": "BUSD"
+      }
+    ],
+    "deploymentArgs": {
+      "name": "Amesonian Apex",
+      "symbol": "80-AMES-20-BUSD",
+      "tokens": [
+        "0xb9E05B4C168B56F73940980aE6EF366354357009",
+        "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56"
+      ],
+      "swapFeePercentage": "0.01",
+      "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
+      "rateProviders": [
+        "0x0000000000000000000000000000000000000000",
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "weights": ["0.8", "0.2"],
+      "initialBalances": ["5.2", "2"]
+    },
+    "gauge": {
+      "address": "0x2dA4D175C614Fd758ecB90c5338458467dE869E4",
+      "startingWeight": "0",
+      "added": true,
+      "txHash": "0x2e5dccbbd924f1cc29011dd4799ba2db85bf766513be6eda8621f94a021b7c44",
+      "controllerTxHash": "0x51441e9fa284af2107acc5d7f0a7b184a21fa81f9e6f1f074267ea1fdca0bf62",
+      "addedToController": true,
+      "depositFee": 100,
+      "withdrawFee": 100,
+      "initFeesSet": true
+    },
+    "isVePool": false
+  },
+  {
+    "created": true,
+    "initJoinComplete": true,
+    "mainToken": "",
+    "mainTokenTargetPrice": 0,
+    "amountOutOtherToken": 0,
+    "name": "Lion the Professional",
+    "symbol": "70LION-30DAI",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "0x8e15953eba7d5f8f99853d8f3cb64fc73b3ba770000200000000000000000003",
+    "poolAddress": "0x8e15953eba7d5f8f99853d8f3cb64fc73b3ba770",
+    "date": "",
+    "initialBalances": [],
+    "tokenInfo": [
+      {
+        "address": "0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3",
+        "weight": "0.3",
+        "initialBalance": "6.25",
+        "symbol": "DAI"
+      },
+      {
+        "address": "0x3CC9E655B6c4f530DFc1b1fC51CeEa65c6344716",
+        "weight": "0.7",
+        "initialBalance": "1",
+        "symbol": "LION"
+      }
+    ],
+    "deploymentArgs": {
+      "name": "Lion the Professional",
+      "symbol": "70LION-30DAI",
+      "tokens": [],
+      "swapFeePercentage": "0.01",
+      "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
+      "rateProviders": [],
+      "weights": ["0.3", "0.7"],
+      "initialBalances": ["6.25", "1"]
+    },
+    "gauge": {
+      "address": "0xb5c57d37cc7cCEC7Cf22836A087DEC280daB99f5",
+      "startingWeight": "0",
+      "added": true,
+      "txHash": "0xf48472bae5179744451ea5c9abaab70e3b40a00a857dd43bb89439b9a0e4dc47",
+      "controllerTxHash": "0xd90b081e75b0499f683ce15c4613449c08a6909266ce11acaf622ccbaee56a1f",
+      "addedToController": true,
+      "depositFee": 100,
+      "withdrawFee": 100,
+      "initFeesSet": true
+    },
+    "isVePool": false
+  },
+  {
+    "created": true,
+    "initJoinComplete": true,
+    "mainToken": "",
+    "mainTokenTargetPrice": 0,
+    "amountOutOtherToken": 0,
+    "name": "Lions Den",
+    "symbol": "70LION-30DAI",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "0xeb49e7e8ebdd44651c53eca40a844866d8825ab3000200000000000000000005",
+    "poolAddress": "0xeb49e7e8ebdd44651c53eca40a844866d8825ab3",
+    "date": "",
+    "initialBalances": [],
+    "tokenInfo": [
+      {
+        "address": "0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3",
+        "weight": "0.3",
+        "initialBalance": "6.25",
+        "symbol": "DAI"
+      },
+      {
+        "address": "0x50d8D7F7CcEA28cc1C9dDb996689294dC62569cA",
+        "weight": "0.7",
+        "initialBalance": "1",
+        "symbol": "LION"
+      }
+    ],
+    "deploymentArgs": {
+      "name": "Lions Den",
+      "symbol": "70LION-30DAI",
+      "tokens": [
+        "0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3",
+        "0x50d8D7F7CcEA28cc1C9dDb996689294dC62569cA"
+      ],
+      "swapFeePercentage": "0.01",
+      "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
+      "rateProviders": [],
+      "weights": ["0.3", "0.7"],
+      "initialBalances": ["6.25", "1"]
+    },
+    "gauge": {
+      "address": "0x0213ca24Db35A40c22e7e39CC7Eb52743E328C98",
+      "startingWeight": "0",
+      "added": true,
+      "txHash": "0xbb5f9e24b6cb5c18008a4d1bfe9c72a687d6c9a01418f525935bc09176572e2b",
+      "controllerTxHash": "0x75a8e790c59c1f602b6c402d891886c3cf5710debdec18fe04f64fadfe1351b6",
+      "addedToController": true,
+      "depositFee": 100,
+      "withdrawFee": 100,
+      "initFeesSet": true
     },
     "isVePool": false
   }

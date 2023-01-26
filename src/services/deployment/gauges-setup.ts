@@ -1,12 +1,13 @@
 import { BigNumber, Contract } from 'ethers';
 import { parseUnits } from 'ethers/lib/utils';
 import { GaugeType, GaugeTypeNum } from 'src/types/gauge.types';
+import { PoolCreationConfig } from 'src/types/pool.types';
 import { getSigner } from 'src/utils/account.util';
 import { getContractAddress } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 import {
-  addGaugeToController,
+  addLiquidityGaugeToController,
   addGaugeTypeToController,
   createLiquidityGauge,
   GaugeFeeType,
@@ -25,55 +26,6 @@ export async function runGaugeSetup() {
   // await createConfigPoolGauges();
   // await addConfigPoolGaugesToController();
   // await setGaugeFees();
-}
-
-/**
- * Sets the deposit and withdraw fees for a gauge based on the pools config values.
- * Auth permissions should have already been granted to do so.
- */
-export async function setGaugeFees() {
-  logger.info(`setGaugeFees:`);
-
-  const pools = await getAllPoolConfigs();
-  for (const pool of pools) {
-    if (pool.isVePool) {
-      logger.error(`Can not set gauge fees for "${pool.name}"`);
-      continue;
-    }
-
-    if (!pool.gauge.added) {
-      logger.warn(
-        `Skipping gauge fee setting for pool "${pool.name}". Gauge not created`,
-      );
-      continue;
-    }
-
-    if (!pool.gauge.initFeesSet) {
-      logger.warn(
-        `Skipping gauge fee setting for pool "${pool.name}". Fees already set`,
-      );
-      continue;
-    }
-
-    if (pool.gauge.depositFee > 0) {
-      await updateGaugeFee(
-        pool.gauge.address,
-        GaugeFeeType.Deposit,
-        pool.gauge.depositFee,
-      );
-    }
-
-    if (pool.gauge.withdrawFee > 0) {
-      await updateGaugeFee(
-        pool.gauge.address,
-        GaugeFeeType.Withdraw,
-        pool.gauge.withdrawFee,
-      );
-    }
-
-    pool.gauge.initFeesSet = true;
-    await updatePoolConfig(pool);
-  }
 }
 
 export async function addGaugeTypes() {
@@ -103,12 +55,17 @@ export async function createConfigPoolGauges() {
 export async function addConfigPoolGaugesToController() {
   const pools = await getAllPoolConfigs();
   for (const pool of pools) {
-    await addGaugeToController(pool, GaugeTypeNum.Ethereum, BigNumber.from(0));
+    await addLiquidityGaugeToController(
+      pool,
+      GaugeTypeNum.Ethereum,
+      BigNumber.from(0),
+    );
   }
 }
 
 export async function addMainPoolGaugeSetup() {
   try {
+    console.log('u,,,');
     // SingleRecipientGauge type (can not be voted for)
     const mainPool = await getMainPoolConfig();
     if (mainPool.gauge.added) {
@@ -134,7 +91,7 @@ export async function addMainPoolGaugeSetup() {
     await updatePoolConfig(mainPool);
 
     // add to controller
-    await await addGaugeToController(
+    await await addLiquidityGaugeToController(
       mainPool,
       GaugeTypeNum.veBAL,
       parseUnits('0.65'),

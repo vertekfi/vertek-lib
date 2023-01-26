@@ -344,8 +344,8 @@ export function validatePoolConfig(pool: PoolCreationConfig) {
   _require(!!pool.gauge, '!gauge info');
   _require(!!pool.gauge.startingWeight, '!gauge startingWeight');
   if (!pool.isVePool) {
-    _require(!!pool.gauge.depositFee, '!gauge depositFee');
-    _require(!!pool.gauge.withdrawFee, '!gauge withdrawFee');
+    _require(pool.gauge.depositFee >= 0, '!gauge depositFee');
+    _require(pool.gauge.withdrawFee >= 0, '!gauge withdrawFee');
   }
 
   logger.success(`validatePoolConfig: Validation all good`);

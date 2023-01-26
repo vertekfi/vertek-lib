@@ -157,56 +157,5 @@
       "initFeesSet": false
     },
     "isVePool": false
-  },
-  {
-    "created": false,
-    "initJoinComplete": false,
-    "mainToken": "0xaBF069D9e88f810155D30b72f0502226ce381015",
-    "mainTokenTargetPrice": 0.1,
-    "name": "",
-    "symbol": "",
-    "assetManager": "0x0000000000000000000000000000000000000000",
-    "type": "Weighted",
-    "txHash": "",
-    "poolId": "",
-    "poolAddress": "",
-    "date": "",
-    "initialBalances": ["", ""],
-    "tokenInfo": [
-      {
-        "address": "0xaBF069D9e88f810155D30b72f0502226ce381015",
-        "weight": "0.8",
-        "initialBalance": "",
-        "symbol": "wAALTO"
-      },
-      {
-        "address": "0x7faA8158FaA037CC7516eF1f6864af44d75654AE",
-        "weight": "0.2",
-        "initialBalance": "",
-        "symbol": "BUSD"
-      }
-    ],
-    "deploymentArgs": {
-      "name": "Aaltonian Avatar",
-      "symbol": "80-wAALTO-20-BUSD",
-      "owner": "",
-      "tokens": [],
-      "swapFeePercentage": "0.15",
-      "weights": [],
-      "assetManagers": [],
-      "rateProviders": [],
-      "initialBalances": []
-    },
-    "gauge": {
-      "address": "",
-      "startingWeight": "0",
-      "added": false,
-      "txHash": "",
-      "controllerTxHash": "",
-      "addedToController": false,
-      "depositFee": 0,
-      "withdrawFee": 0
-    },
-    "isVePool": false
   }
 ]

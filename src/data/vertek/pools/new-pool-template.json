@@ -12,7 +12,7 @@
   "poolId": "",
   "poolAddress": "",
   "date": "",
-  "initialBalances": ["", ""],
+  "initialBalances": [],
   "tokenInfo": [
     {
       "address": "",
@@ -28,15 +28,15 @@
     }
   ],
   "deploymentArgs": {
-    "name": "P",
+    "name": "",
     "symbol": "",
     "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
-    "tokens": ["", ""],
+    "tokens": [],
     "swapFeePercentage": "",
-    "weights": ["", ""],
+    "weights": [],
     "assetManagers": [],
     "rateProviders": [],
-    "initialBalances": ["", ""]
+    "initialBalances": []
   },
   "gauge": {
     "address": "",

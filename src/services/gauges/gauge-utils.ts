@@ -1,7 +1,7 @@
 import { BigNumber } from 'ethers';
 import { GaugeType, GaugeTypeNum } from 'src/types/gauge.types';
 import { PoolCreationConfig } from 'src/types/pool.types';
-import { _require } from 'src/utils';
+import { ZERO, _require } from 'src/utils';
 import { getSignerAddress } from 'src/utils/account.util';
 import {
   getGaugeController,
@@ -99,10 +99,10 @@ export async function createLiquidityGauge(pool: PoolCreationConfig) {
  * @param pool
  * @returns
  */
-export async function addGaugeToController(
+export async function addLiquidityGaugeToController(
   pool: PoolCreationConfig,
   gaugeType: GaugeTypeNum,
-  startingWeight: BigNumber,
+  startingWeight = ZERO,
 ) {
   if (pool.gauge.addedToController) {
     logger.warn(`Pool ${pool.name} already added to controller. Skipping`);
@@ -118,7 +118,6 @@ export async function addGaugeToController(
 
   const gaugeController = await getGaugeController();
 
-  // Ethereum gauge types (can be voted for)
   const receipt = await performAuthEntrypointAction(
     gaugeController,
     'add_gauge',
@@ -168,4 +167,52 @@ export async function updateGaugeFee(
   } catch (error) {
     logger.error('Setting gauge fee failed');
   }
+}
+
+/**
+ * Sets the deposit and withdraw fees for a gauge based on the pools config values.
+ * Auth permissions should have already been granted to do so.
+ */
+export async function setGaugeFees(pool: PoolCreationConfig) {
+  logger.info(`setGaugeFees:`);
+
+  if (pool.isVePool) {
+    logger.error(`Can not set gauge fees for "${pool.name}"`);
+    return;
+  }
+
+  if (!pool.gauge.added) {
+    logger.warn(
+      `Skipping gauge fee setting for pool "${pool.name}". Gauge not created`,
+    );
+    return;
+  }
+
+  if (pool.gauge.initFeesSet) {
+    logger.warn(
+      `Skipping gauge fee setting for pool "${pool.name}". Fees already set`,
+    );
+    return;
+  }
+
+  if (pool.gauge.depositFee > 0) {
+    logger.success(`Setting gauge deposit fee..`);
+    await updateGaugeFee(
+      pool.gauge.address,
+      GaugeFeeType.Deposit,
+      pool.gauge.depositFee,
+    );
+  }
+
+  if (pool.gauge.withdrawFee > 0) {
+    logger.success(`Setting gauge withdraw fee..`);
+    await updateGaugeFee(
+      pool.gauge.address,
+      GaugeFeeType.Withdraw,
+      pool.gauge.withdrawFee,
+    );
+  }
+
+  pool.gauge.initFeesSet = true;
+  await updatePoolConfig(pool);
 }
