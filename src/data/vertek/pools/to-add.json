@@ -1,0 +1,55 @@
+[
+  {
+    "created": false,
+    "initJoinComplete": false,
+    "mainToken": "",
+    "mainTokenTargetPrice": 0,
+    "amountOutOtherToken": 0,
+    "name": "",
+    "symbol": "",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "",
+    "poolAddress": "",
+    "date": "",
+    "initialBalances": [],
+    "tokenInfo": [
+      {
+        "address": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+        "weight": "0.5",
+        "initialBalance": "",
+        "symbol": "BUSD"
+      },
+      {
+        "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+        "weight": "0.5",
+        "initialBalance": "",
+        "symbol": "WBNB"
+      }
+    ],
+    "deploymentArgs": {
+      "name": "CZ's Favorite Pool",
+      "symbol": "50-WBNB-50-BUSD",
+      "owner": "",
+      "tokens": [],
+      "swapFeePercentage": "0.003",
+      "weights": ["", ""],
+      "assetManagers": [],
+      "rateProviders": [],
+      "initialBalances": []
+    },
+    "gauge": {
+      "address": "",
+      "startingWeight": "0",
+      "added": false,
+      "txHash": "",
+      "controllerTxHash": "",
+      "addedToController": false,
+      "depositFee": 0,
+      "withdrawFee": 0,
+      "initFeesSet": false
+    },
+    "isVePool": false
+  }
+]

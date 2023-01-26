@@ -6,7 +6,7 @@
   "amountOutOtherToken": 0,
   "name": "",
   "symbol": "",
-  "assetManager": "0x0000000000000000000000000000000000000000",
+  "assetManager": "",
   "type": "Weighted",
   "txHash": "",
   "poolId": "",
@@ -30,18 +30,12 @@
   "deploymentArgs": {
     "name": "P",
     "symbol": "",
-    "owner": "",
+    "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
     "tokens": ["", ""],
     "swapFeePercentage": "",
     "weights": ["", ""],
-    "assetManagers": [
-      "0x0000000000000000000000000000000000000000",
-      "0x0000000000000000000000000000000000000000"
-    ],
-    "rateProviders": [
-      "0x0000000000000000000000000000000000000000",
-      "0x0000000000000000000000000000000000000000"
-    ],
+    "assetManagers": [],
+    "rateProviders": [],
     "initialBalances": ["", ""]
   },
   "gauge": {

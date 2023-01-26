@@ -1,4 +1,8 @@
-import { calcInGivenOut, calcOutGivenIn } from './math';
+import {
+  calcBptOutGivenExactTokensIn,
+  calcInGivenOut,
+  calcOutGivenIn,
+} from './math';
 import { config } from 'dotenv';
 import { join } from 'path';
 import {
@@ -44,6 +48,7 @@ import {
 } from './utils/contract.utils';
 import {
   authorizeToPauseWeightedPool,
+  doPoolJoin,
   getMainPoolConfig,
   getPoolConfig,
   initWeightedJoin,
@@ -64,19 +69,9 @@ async function run() {
 
   // BNB@~$310 vrtk@$7 = 0.0225806452 BNB -> 1 VRTK ---- RATIO 180 TO 1 (VRTK -> BNB)
   // 10 BNB = $3,100, Need then 1800 VRTK = $12,600 ($15,700 initial liquidity value)
-  // console.log('ASHARE-BUSD: ~5' + calcOutGivenIn(10, 0.7, 16, 0.3, 1)); // want 5 busd out for 1 ashare
-  //console.log(calcOutGivenIn(42, 0.8, 0.25, 0.2, 1)); // want ~0.0222222 BNB for 1 vrtk
+  //console.log(calcOutGivenIn(1, 0.7, 6.3, 0.3, 1)); // want 5 busd out for 1 ashare
+  // console.log(calcOutGivenIn(42, 0.8, 0.25, 0.2, 1)); // want ~0.0222222 BNB for 1 vrtk
   await setupForNetwork();
-}
-
-async function fml() {
-  // This is good (just zeros of course)... why would init join fail with no message... over underflow? WeightedMath?
-  // const vault = await getVault();
-  // console.log(
-  //   await vault.getPoolTokens(
-  //     '0xdd64e2ec144571b4320f7bfb14a56b2b2cbf37ad000200000000000000000000',
-  //   ),
-  // );
 }
 
 async function setupForNetwork() {
@@ -84,12 +79,15 @@ async function setupForNetwork() {
   // await updateVaultPauseAuth();
   // await setupTokenAdminBeforeActivation();
   // await activateTokenAdmin();
-  //  await initGaugeAuthItems();
+  // await initGaugeAuthItems();
   // await doInitialVotingEscrowDeposit();
   // await giveBalMinterPermission();
   // await runGaugeSetup();
   // await addMainPoolGaugeSetup();
   // await createConfigPoolGauges()
+  //
+  await doPools();
+  //  await doMainJoin();
   //
   // const mainPool = await getMainPoolConfig();
   // await createMainPool();
@@ -104,11 +102,39 @@ async function setupForNetwork() {
   // const action = await instance.getActionId(getSighash(instance, 'pause'));
   // await grantVaultAuthorizerPermissions([action], [instance.address]);
   // await awaitTransactionComplete(instance.pause());
+  // await testVeStakeFor();
+}
+
+async function doPools() {
+  const idx = 1;
+
+  //  await createConfigWeightedPool(idx);
+  const pool = await getPoolConfig(idx);
+  await initWeightedJoin(
+    pool.poolId,
+    pool.deploymentArgs.tokens,
+    pool.deploymentArgs.initialBalances,
+    await getSignerAddress(),
+  );
+}
+
+async function doMainJoin() {
+  const pool = await getMainPoolConfig();
+  const vault = await getVault();
+
+  const poolInfo = await vault.getPoolTokens(pool.poolId);
+  console.log(poolInfo.balances.map((b) => formatEther(b)));
+
+  // const idk = calcBptOutGivenExactTokensIn()
+
+  // const instance = await getWeightedPoolToken(pool.poolAddress);
+
+  // await doPoolJoin()
 }
 
 async function testVeStakeFor() {
   const niceTestAddy = '0x1555D126e096A296A5870A566db224FD9Cf72f03';
-  await stakeForUser(niceTestAddy, parseEther('1'), 365);
+  await stakeForUser(niceTestAddy, parseEther('1'), 30);
 }
 
 async function testGaugeRewardDeposits() {

@@ -12,6 +12,7 @@ import {
   JoinPoolRequest,
   PoolType,
   WeightedTokenInfo,
+  JoinKind,
 } from 'src/types/pool.types';
 import { ProtocolPoolDataConfig } from 'src/types/protocol.types';
 import { _require } from 'src/utils';
@@ -38,7 +39,7 @@ import { grantVaultAuthorizerPermissions } from '../auth/auth';
  */
 export function sortTokensWithInfo(tokens: PoolTokenInfo[]): PoolTokenInfo[] {
   return tokens.sort((t1, t2) =>
-    getAddress(t1.address) < getAddress(t2.address) ? -1 : 1,
+    t1.address.toLowerCase() < t2.address.toLowerCase() ? -1 : 1,
   );
 }
 
@@ -212,6 +213,50 @@ export async function initWeightedJoin(
     );
 
     logger.success('INIT_JOIN complete');
+
+    return rx;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function doPoolJoin(
+  poolId: string,
+  tokens: string[],
+  initialBalances: string[],
+  recipient: string,
+  joinKind: JoinKind,
+) {
+  try {
+    logger.info('Starting join for pool id: ' + poolId);
+
+    // convert to BigNumber before encoding
+    const balancesBN = initialBalances.map((a) => parseUnits(a));
+
+    // Must be encoded
+    const initUserData = defaultAbiCoder.encode(
+      ['uint256', 'uint256[]'],
+      [joinKind, balancesBN],
+    );
+
+    const joinPoolRequest: JoinPoolRequest = {
+      assets: tokens.map((t) => getAddress(t)),
+      maxAmountsIn: balancesBN,
+      userData: initUserData,
+      fromInternalBalance: false,
+    };
+
+    const vault = await getVault();
+
+    // Vault needs approval to pull the tokens in
+    await approveTokensIfNeeded(tokens, recipient, vault.address);
+
+    const rx = await awaitTransactionComplete(
+      await vault.joinPool(poolId, recipient, recipient, joinPoolRequest),
+    );
+
+    logger.success('Pool join complete');
 
     return rx;
   } catch (error) {

@@ -51,50 +51,53 @@
     "isVePool": true
   },
   {
-    "created": false,
-    "initJoinComplete": false,
+    "created": true,
+    "initJoinComplete": true,
     "name": "A Share of Seigniorage",
     "symbol": "70-ASHARE-30-BUSD",
-    "assetManager": "0x0000000000000000000000000000000000000000",
+    "assetManager": "",
     "type": "Weighted",
-    "txHash": "",
-    "poolId": "",
-    "poolAddress": "",
-    "date": "1/24/2023, 8:00:43 PM",
+    "txHash": "0x6329fd87317734fbbe6c18a56436c19776bb6e83e709ce09f70d36ea9522f748",
+    "poolId": "0x0db861235c7b90d419a64e1f71b3687db74d4477000200000000000000000001",
+    "poolAddress": "0x0dB861235C7b90D419a64e1f71B3687db74D4477",
+    "date": "1/25/2023, 10:03:53 PM",
     "tokenInfo": [
-      {
-        "address": "0xFa4b16b0f63F5A6D0651592620D585D308F749A4",
-        "weight": "0.7",
-        "initialBalance": "10",
-        "symbol": "ASHARE"
-      },
       {
         "address": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
         "weight": "0.3",
-        "initialBalance": "16",
+        "initialBalance": "6.3",
         "symbol": "BUSD"
+      },
+      {
+        "address": "0xFa4b16b0f63F5A6D0651592620D585D308F749A4",
+        "weight": "0.7",
+        "initialBalance": "1",
+        "symbol": "ASHARE"
       }
     ],
     "deploymentArgs": {
       "name": "A Share of Seigniorage",
       "symbol": "70-ASHARE-30-BUSD",
-      "tokens": [],
+      "tokens": [
+        "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+        "0xFa4b16b0f63F5A6D0651592620D585D308F749A4"
+      ],
       "swapFeePercentage": "0.01",
       "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
       "rateProviders": [
         "0x0000000000000000000000000000000000000000",
         "0x0000000000000000000000000000000000000000"
       ],
-      "weights": ["0.7", "0.3"],
-      "initialBalances": ["2300", "10000"]
+      "weights": ["0.3", "0.7"],
+      "initialBalances": ["6.3", "1"]
     },
     "gauge": {
-      "address": "0x9b43D3cD933289653D87d0EdaBD970c33F59460a",
+      "address": "",
       "startingWeight": "0",
-      "added": true,
-      "txHash": "0x2411f628d1094628f5b22e2afe011897e8cc4d453c5b5a2489e3f24f7e07de64",
-      "controllerTxHash": "0xba59b4f2594b9b5b4cc8f278e2a1bd072fc0f2e59ab17c7c0fd6ce4f7b085180",
-      "addedToController": true,
+      "added": false,
+      "txHash": "",
+      "controllerTxHash": "",
+      "addedToController": false,
       "depositFee": 100,
       "withdrawFee": 100,
       "initFeesSet": false

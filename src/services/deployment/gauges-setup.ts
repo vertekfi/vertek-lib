@@ -20,11 +20,11 @@ import {
 import { initGaugeAuthItems } from './gauge-auth-setup';
 
 export async function runGaugeSetup() {
-  await initGaugeAuthItems();
-  await addGaugeTypes();
-  await createConfigPoolGauges();
-  await addConfigPoolGaugesToController();
-  await setGaugeFees();
+  // await initGaugeAuthItems();
+  // await addGaugeTypes();
+  // await createConfigPoolGauges();
+  // await addConfigPoolGaugesToController();
+  // await setGaugeFees();
 }
 
 /**
