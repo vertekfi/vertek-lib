@@ -40,8 +40,13 @@ export const CONTRACT_MAP = {
     56: '0xDE8993Bf9D6Eb1e0d752fe56ccB85Ef76538ABb6',
   },
   StablePoolFactory: {
-    5: '',
-    56: '',
+    5: '0x7FB72Bf3F5b7f994CC1563FDd47E9Edc13b6Be15',
+    // 56: '0x072a48eEADd2eb0E44A0A1Fd237A87F3CBF81bDa', // V1
+    56: '0x9e2850729A4d44B1D862bEDF7CE458d71F10aC37',
+  },
+  StablePhantomPoolFactory: {
+    5: '0x7B10Ff68C0b6feB8E1C72D8657eCDF4e1b29fFb8',
+    56: '0x072a48eEADd2eb0E44A0A1Fd237A87F3CBF81bDa',
   },
   BalancerTokenAdmin: {
     5: '0xf4f37A6F5D836AB19f4C7Caf65c780108dB68e12',
@@ -54,7 +59,7 @@ export const CONTRACT_MAP = {
 
   VotingEscrow: {
     5: '0x76B64524071b3e56EE8EFBc125a53BBbF04D41aB',
-    56: '0x98A73443fb00EDC2EFF0520a00C53633226BF9ED', // block 25103953  (Jan-25-2023 10:27:21 PM +UTC)
+    56: '0x98A73443fb00EDC2EFF0520a00C53633226BF9ED', // block 25103953  (Jan-25-2023 10:27:21 PM +UTC) 5:27PM EST - 1674686088
   },
   VeBoostV2: {
     5: '0xB88683951708f05D89242BD4BEBD27ce0B884D29',
@@ -70,7 +75,7 @@ export const CONTRACT_MAP = {
   },
   GaugeController: {
     5: '0x7bC6C2bF0c730E03285f673806586C60AC0B3205',
-    56: '0x99bFf5953843A211792BF3715b1b3b4CBeE34CE6', // block 25104102 (Jan-25-2023 10:34:48 PM +UTC)
+    56: '0x99bFf5953843A211792BF3715b1b3b4CBeE34CE6', // block 25104102 (Jan-25-2023 10:34:48 PM +UTC) 5:34PM EST
   },
   LiquidityGaugeFactory: {
     5: '0x70Bb570d76b3c83bcE8C36993fFC1aF7Ac407a63',
@@ -101,10 +106,6 @@ export const CONTRACT_MAP = {
     56: '',
   },
   ERC4626LinearPoolFactory: {
-    5: '',
-    56: '',
-  },
-  StablePhantomPoolFactory: {
     5: '',
     56: '',
   },

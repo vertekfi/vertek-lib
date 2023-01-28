@@ -8,7 +8,7 @@ export const CHAIN_KEYS = {
   [56]: 'bsc',
 };
 
-const getDefaultAccount = async (): Promise<ChainProvider> => {
+export const getDefaultChainProvider = async (): Promise<ChainProvider> => {
   if (chainProvider) {
     return chainProvider;
   }
@@ -52,9 +52,14 @@ export function getChainId() {
 }
 
 export async function getSigner() {
-  return (await getDefaultAccount()).signer;
+  return (await getDefaultChainProvider()).signer;
 }
 
 export async function getSignerAddress() {
   return (await getSigner()).address;
+}
+
+export async function getBlockTimeStamp() {
+  const { provider } = await getDefaultChainProvider();
+  return (await provider.getBlock(await provider.getBlockNumber())).timestamp;
 }

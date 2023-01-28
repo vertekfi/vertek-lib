@@ -221,52 +221,199 @@
     "mainTokenTargetPrice": 0,
     "amountOutOtherToken": 0,
     "name": "Lions Den",
-    "symbol": "70LION-30DAI",
+    "symbol": "70LSHARE-30DAI",
     "assetManager": "",
     "type": "Weighted",
-    "txHash": "",
-    "poolId": "0xeb49e7e8ebdd44651c53eca40a844866d8825ab3000200000000000000000005",
-    "poolAddress": "0xeb49e7e8ebdd44651c53eca40a844866d8825ab3",
+    "txHash": "0x46d75124485648c0a3e4f37ae7edb3bff58a93366104ebcdc888b1fb4bb33915",
+    "poolId": "0x6e30ec031f2d94c397e469b40f86bff0be014124000200000000000000000006",
+    "poolAddress": "0x6E30Ec031f2D94c397E469b40f86bff0bE014124",
     "date": "",
     "initialBalances": [],
     "tokenInfo": [
       {
         "address": "0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3",
         "weight": "0.3",
-        "initialBalance": "6.25",
+        "initialBalance": "3",
         "symbol": "DAI"
       },
       {
         "address": "0x50d8D7F7CcEA28cc1C9dDb996689294dC62569cA",
         "weight": "0.7",
-        "initialBalance": "1",
-        "symbol": "LION"
+        "initialBalance": "1.4",
+        "symbol": "LSHARE"
       }
     ],
     "deploymentArgs": {
       "name": "Lions Den",
-      "symbol": "70LION-30DAI",
+      "symbol": "70LSHARE-30DAI",
       "tokens": [
         "0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3",
         "0x50d8D7F7CcEA28cc1C9dDb996689294dC62569cA"
       ],
       "swapFeePercentage": "0.01",
       "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
-      "rateProviders": [],
+      "rateProviders": [
+        "0x0000000000000000000000000000000000000000",
+        "0x0000000000000000000000000000000000000000"
+      ],
       "weights": ["0.3", "0.7"],
-      "initialBalances": ["6.25", "1"]
+      "initialBalances": ["3", "1.4"]
     },
     "gauge": {
-      "address": "0x0213ca24Db35A40c22e7e39CC7Eb52743E328C98",
+      "address": "0x9C4e2444d40508dF540466cCBD83855e39E5972B",
       "startingWeight": "0",
       "added": true,
-      "txHash": "0xbb5f9e24b6cb5c18008a4d1bfe9c72a687d6c9a01418f525935bc09176572e2b",
-      "controllerTxHash": "0x75a8e790c59c1f602b6c402d891886c3cf5710debdec18fe04f64fadfe1351b6",
+      "txHash": "",
+      "controllerTxHash": "",
       "addedToController": true,
       "depositFee": 100,
       "withdrawFee": 100,
-      "initFeesSet": true
+      "initFeesSet": false
+    },
+    "isVePool": false,
+    "idx": 5
+  },
+  {
+    "created": false,
+    "initJoinComplete": false,
+    "name": "",
+    "symbol": "",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "0x6f1a24488736d0a45d5cb9079bc3ce328b9c8254000200000000000000000009",
+    "poolAddress": "0x6F1A24488736D0A45D5Cb9079bC3Ce328B9C8254",
+    "date": "",
+    "initialBalances": [],
+    "tokenInfo": [
+      {
+        "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+        "weight": "0.5",
+        "initialBalance": "0.00322906",
+        "symbol": "WBNB"
+      },
+      {
+        "address": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+        "weight": "0.5",
+        "initialBalance": "1",
+        "symbol": "BUSD"
+      }
+    ],
+    "deploymentArgs": {
+      "name": "CZ's Favorite Pool",
+      "symbol": "50BUSD-50BNB",
+      "tokens": [
+        "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+        "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56"
+      ],
+      "swapFeePercentage": "0.003",
+      "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
+      "rateProviders": [
+        "0x0000000000000000000000000000000000000000",
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "weights": ["0.5", "0.5"],
+      "initialBalances": ["0.00322906", "1"]
+    },
+    "gauge": {
+      "address": "",
+      "startingWeight": "0",
+      "added": false,
+      "txHash": "",
+      "controllerTxHash": "",
+      "addedToController": false,
+      "depositFee": 0,
+      "withdrawFee": 0,
+      "initFeesSet": false
     },
     "isVePool": false
+  },
+  {
+    "created": true,
+    "initJoinComplete": true,
+    "name": "The Stable Alternative",
+    "symbol": "FRAX-BUSD-TUSD-DAI",
+    "assetManager": "",
+    "type": "Stable",
+    "txHash": "",
+    "poolId": "0xff99c17b4d778afaa6d80f59111a96178c71f59f000000000000000000000007",
+    "poolAddress": "0xFf99c17b4D778AFAA6D80f59111a96178C71f59F",
+    "gauge": {
+      "address": "0x35756EB391B93Fe3457aC4A7fae198552AC3AC28",
+      "startingWeight": "0",
+      "added": true,
+      "txHash": "",
+      "controllerTxHash": "",
+      "addedToController": true,
+      "depositFee": 0,
+      "withdrawFee": 0,
+      "initFeesSet": false
+    }
+  },
+  {
+    "created": true,
+    "initJoinComplete": true,
+    "name": "Tripoint Stability",
+    "symbol": "BUSD-USDC-USDT",
+    "assetManager": "",
+    "type": "Stable",
+    "txHash": "",
+    "poolId": "0x25b7dcdccaab62f4cacef8bc9ae20553eb1d9164000000000000000000000008",
+    "poolAddress": "0x25b7DcDCCAaB62F4cacEf8BC9ae20553eB1d9164",
+    "gauge": {
+      "address": "0xfB1B49d41E64D44eE5ab69cD6aC8576213CE2223",
+      "startingWeight": "0",
+      "added": true,
+      "txHash": "",
+      "controllerTxHash": "",
+      "addedToController": true,
+      "depositFee": 0,
+      "withdrawFee": 0,
+      "initFeesSet": false
+    }
+  },
+  {
+    "created": true,
+    "initJoinComplete": true,
+    "name": "",
+    "symbol": "wAALTO-BUSD",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "0x5deb10ed6a66a1e6188b7925a723b6bdfd97476500020000000000000000000a",
+    "poolAddress": "0x5DeB10Ed6A66a1E6188b7925a723B6BdfD974765"
+  },
+  {
+    "created": true,
+    "initJoinComplete": true,
+    "name": "",
+    "symbol": "SWORD-ETH",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "0x3700d8fadab83c14371d3f58d122d0c7f832e63f00020000000000000000000b",
+    "poolAddress": "0x3700D8FAdAb83c14371d3f58D122d0C7F832E63F"
+  },
+  {
+    "created": true,
+    "initJoinComplete": false,
+    "name": "",
+    "symbol": "SHIELD-CHAM-BNB",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "0x7278a73af8c788af1e2f53b7bcc138b4f641be3500010000000000000000000c",
+    "poolAddress": "0x7278A73aF8c788AF1e2f53b7BCc138B4F641BE35"
+  },
+  {
+    "created": true,
+    "initJoinComplete": true,
+    "name": "Pure Serenity",
+    "symbol": "70SRN-30ETH",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "0x32934c1122c0d7b0fc3daab588a4490b53c1568c00020000000000000000000e",
+    "poolAddress": "0x32934c1122c0d7B0Fc3DAAb588A4490B53c1568c"
   }
 ]
