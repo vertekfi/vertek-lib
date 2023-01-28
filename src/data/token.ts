@@ -105,6 +105,10 @@ export const TOKENS = {
   BNBx: {
     56: '0x1bdd3Cf7F79cfB8EdbB955f20ad99211551BA275',
   },
+  UP: {
+    5: '',
+    56: '0x5376A83112100Ff1567b2782e0d99c6d949b5509',
+  },
   wBNBx: {
     56: '',
   },

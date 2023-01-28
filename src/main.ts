@@ -78,51 +78,40 @@ async function run() {
 
   // await doPools();
 
-  // const idx = 5;
-  // const pool = await getPoolConfig(idx);
-  // console.log(pool);
-  // await createConfigWeightedPool(idx);
-  // await doPoolInitJoin(pool);
+  const factory = new Contract(
+    getContractAddress('WeightedPoolFactory'),
+    [
+      `function create(
+      string  name,
+      string  symbol,
+      address[]  tokens,
+      uint256[]  normalizedWeights,
+      address[]  rateProviders,
+      uint256 swapFeePercentage,
+      address owner
+  ) external returns (address) `,
+    ],
+    await getSigner(),
+  );
 
-  // const fml = await getWeightedPoolToken(
-  //   '0x6F1A24488736D0A45D5Cb9079bC3Ce328B9C8254',
-  // );
-  // console.log(await fml.getPoolId());
+  const tokens = [
+    '0x5376A83112100Ff1567b2782e0d99c6d949b5509',
+    '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
+  ];
 
-  // const factory = new Contract(
-  //   getContractAddress('WeightedPoolFactory'),
-  //   [
-  //     `function create(
-  //     string  name,
-  //     string  symbol,
-  //     address[]  tokens,
-  //     uint256[]  normalizedWeights,
-  //     address[]  rateProviders,
-  //     uint256 swapFeePercentage,
-  //     address owner
-  // ) external returns (address) `,
-  //   ],
-  //   await getSigner(),
-  // );
+  console.log(
+    tokens.sort((a1, a2) => (a1.toLowerCase() < a2.toLowerCase() ? -1 : 1)),
+  );
 
-  // const tokens = [
-  //   '0x2170Ed0880ac9A755fd29B2688956BD959F933F8',
-  //   '0x6640e6f8e3DD1Fb5D7361ee2249E1ea23cB2C297',
-  // ];
-
-  // console.log(
-  //   tokens.sort((a1, a2) => (a1.toLowerCase() < a2.toLowerCase() ? -1 : 1)),
-  // );
-
-  // const weights = [parseUnits('0.3'), parseUnits('0.7')];
-  // const providers = [ZERO_ADDRESS, ZERO_ADDRESS];
-  // const swapFeePercentage = parseEther('0.01');
-  // const initialBalances = ['0.001', '0.00233'];
+  const weights = [parseUnits('0.5'), parseUnits('0.5')];
+  const providers = [ZERO_ADDRESS, ZERO_ADDRESS];
+  const swapFeePercentage = parseEther('0.005');
+  const initialBalances = ['10', '10'];
 
   // const receipt = await awaitTransactionComplete(
   //   factory.create(
-  //     'Pure Serenity',
-  //     '70SRN-30ETH',
+  //     'Only UP',
+  //     '50UP-50BUSD',
   //     tokens,
   //     weights,
   //     providers,
@@ -136,7 +125,7 @@ async function run() {
   // console.log('poolId: ' + poolId);
 
   // await initWeightedJoin(
-  //   '',
+  //   poolId,
   //   tokens,
   //   initialBalances,
   //   await getSignerAddress(),
@@ -154,23 +143,27 @@ async function run() {
   //   [ANY_ADDRESS],
   // );
 
-  const factory = await getLiquidityGaugeFactory();
-  const receipt = await awaitTransactionComplete(
-    factory.create('0x25b7DcDCCAaB62F4cacEf8BC9ae20553eB1d9164', 0),
-  );
-
-  const gaugeAddress = receipt.events[0].args.gauge;
-  console.log('gauge: ' + gaugeAddress);
+  // const factory2 = await getLiquidityGaugeFactory();
+  // const receipt2 = await awaitTransactionComplete(
+  //   factory2.create('0x64bf08FAC067b25C77967AFfaFcE73760d8D0BDF', 0),
+  // );
+  // const gaugeAddress = receipt2.events[0].args.gauge;
+  // console.log('gauge: ' + gaugeAddress);
 
   const gaugeController = await getGaugeController();
   await performAuthEntrypointAction(gaugeController, 'add_gauge', [
-    gaugeAddress,
+    '0x64bf08FAC067b25C77967AFfaFcE73760d8D0BDF',
     GaugeTypeNum.Ethereum,
     0,
   ]);
 
   // await updateGaugeFee('', GaugeFeeType.Deposit, 100)
   // await updateGaugeFee('', GaugeFeeType.Withdraw, 100)
+
+  // const p = await getWeightedPoolToken(
+  //   '',
+  // );
+  // await awaitTransactionComplete(p.pause());
 }
 
 async function doStable() {

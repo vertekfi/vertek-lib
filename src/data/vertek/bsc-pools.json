@@ -381,7 +381,18 @@
     "type": "Weighted",
     "txHash": "",
     "poolId": "0x5deb10ed6a66a1e6188b7925a723b6bdfd97476500020000000000000000000a",
-    "poolAddress": "0x5DeB10Ed6A66a1E6188b7925a723B6BdfD974765"
+    "poolAddress": "0x5DeB10Ed6A66a1E6188b7925a723B6BdfD974765",
+    "gauge": {
+      "address": "0xacF489Bf54F6CC6bB8b910179Ee8509d19A738BA",
+      "startingWeight": "0",
+      "added": true,
+      "txHash": "",
+      "controllerTxHash": "",
+      "addedToController": true,
+      "depositFee": 0,
+      "withdrawFee": 0,
+      "initFeesSet": false
+    }
   },
   {
     "created": true,
@@ -392,7 +403,18 @@
     "type": "Weighted",
     "txHash": "",
     "poolId": "0x3700d8fadab83c14371d3f58d122d0c7f832e63f00020000000000000000000b",
-    "poolAddress": "0x3700D8FAdAb83c14371d3f58D122d0C7F832E63F"
+    "poolAddress": "0x3700D8FAdAb83c14371d3f58D122d0C7F832E63F",
+    "gauge": {
+      "address": "0x148708d34F797473Cad01AC113CFD4208a57C081",
+      "startingWeight": "0",
+      "added": true,
+      "txHash": "",
+      "controllerTxHash": "",
+      "addedToController": true,
+      "depositFee": 0,
+      "withdrawFee": 0,
+      "initFeesSet": false
+    }
   },
   {
     "created": true,
@@ -414,6 +436,61 @@
     "type": "Weighted",
     "txHash": "",
     "poolId": "0x32934c1122c0d7b0fc3daab588a4490b53c1568c00020000000000000000000e",
-    "poolAddress": "0x32934c1122c0d7B0Fc3DAAb588A4490B53c1568c"
+    "poolAddress": "0x32934c1122c0d7B0Fc3DAAb588A4490B53c1568c",
+    "gauge": {
+      "address": "0x9E7dF5b7B29d46B10C28b4AB5fb0E7b6A4ffAE55",
+      "startingWeight": "0",
+      "added": true,
+      "txHash": "",
+      "controllerTxHash": "",
+      "addedToController": true,
+      "depositFee": 0,
+      "withdrawFee": 0,
+      "initFeesSet": false
+    }
+  },
+  {
+    "created": true,
+    "initJoinComplete": true,
+    "name": "Blue and Yellow",
+    "symbol": "50USDC-50BNB",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "0x188a9e5a09bffbacb6712957e9dd06fec6b3eda900020000000000000000000f",
+    "poolAddress": "0x188a9e5A09BFFBacb6712957E9dd06FEC6b3Eda9",
+    "gauge": {
+      "address": "0x2837b3A08Cbfc3Eb3E1FFe363Fb1E443667e287f",
+      "startingWeight": "0",
+      "added": false,
+      "txHash": "",
+      "controllerTxHash": "",
+      "addedToController": false,
+      "depositFee": 0,
+      "withdrawFee": 0,
+      "initFeesSet": false
+    }
+  },
+  {
+    "created": true,
+    "initJoinComplete": true,
+    "name": "UP Only",
+    "symbol": "50UP-50BUSD",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "0x64bf08fac067b25c77967affafce73760d8d0bdf000200000000000000000011",
+    "poolAddress": "0x64bf08FAC067b25C77967AFfaFcE73760d8D0BDF",
+    "gauge": {
+      "address": "0xFf71E6499f492Ce41c84Eefbf727774165dC5aBa",
+      "startingWeight": "0",
+      "added": true,
+      "txHash": "",
+      "controllerTxHash": "",
+      "addedToController": true,
+      "depositFee": 0,
+      "withdrawFee": 0,
+      "initFeesSet": false
+    }
   }
 ]
