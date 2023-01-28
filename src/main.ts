@@ -59,10 +59,10 @@ config({ path: join(process.cwd(), '.env') });
 async function run() {
   console.log('VertekFi run:');
 
-  // const balanceIn = 1.4;
-  // const weightIn = 0.7;
-  // const balanceOut = 3;
-  // const weightOut = 0.3;
+  // const balanceIn = 7644;
+  // const weightIn = 0.8;
+  // const balanceOut = 45.5;
+  // const weightOut = 0.2;
 
   // const amountIn = 1;
 
@@ -78,40 +78,40 @@ async function run() {
 
   // await doPools();
 
-  const factory = new Contract(
-    getContractAddress('WeightedPoolFactory'),
-    [
-      `function create(
-      string  name,
-      string  symbol,
-      address[]  tokens,
-      uint256[]  normalizedWeights,
-      address[]  rateProviders,
-      uint256 swapFeePercentage,
-      address owner
-  ) external returns (address) `,
-    ],
-    await getSigner(),
-  );
+  // const factory = new Contract(
+  //   getContractAddress('WeightedPoolFactory'),
+  //   [
+  //     `function create(
+  //     string  name,
+  //     string  symbol,
+  //     address[]  tokens,
+  //     uint256[]  normalizedWeights,
+  //     address[]  rateProviders,
+  //     uint256 swapFeePercentage,
+  //     address owner
+  // ) external returns (address) `,
+  //   ],
+  //   await getSigner(),
+  // );
 
-  const tokens = [
-    '0x5376A83112100Ff1567b2782e0d99c6d949b5509',
-    '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
-  ];
+  // const tokens = [
+  //   '0x2170Ed0880ac9A755fd29B2688956BD959F933F8',
+  //   '0xd50c729cEbb64604b99E1243a54e840527360581',
+  // ];
 
-  console.log(
-    tokens.sort((a1, a2) => (a1.toLowerCase() < a2.toLowerCase() ? -1 : 1)),
-  );
+  // console.log(
+  //   tokens.sort((a1, a2) => (a1.toLowerCase() < a2.toLowerCase() ? -1 : 1)),
+  // );
 
-  const weights = [parseUnits('0.5'), parseUnits('0.5')];
-  const providers = [ZERO_ADDRESS, ZERO_ADDRESS];
-  const swapFeePercentage = parseEther('0.005');
-  const initialBalances = ['10', '10'];
+  // const weights = [parseUnits('0.2'), parseUnits('0.8')];
+  // const providers = [ZERO_ADDRESS, ZERO_ADDRESS];
+  // const swapFeePercentage = parseEther('0.01');
+  // const initialBalances = ['0.00124461', '1.6'];
 
   // const receipt = await awaitTransactionComplete(
   //   factory.create(
-  //     'Only UP',
-  //     '50UP-50BUSD',
+  //     'The Pebble Pile',
+  //     '80PEBBLE-20ETH',
   //     tokens,
   //     weights,
   //     providers,
@@ -143,22 +143,24 @@ async function run() {
   //   [ANY_ADDRESS],
   // );
 
+  // const poolAddress = '';
   // const factory2 = await getLiquidityGaugeFactory();
   // const receipt2 = await awaitTransactionComplete(
-  //   factory2.create('0x64bf08FAC067b25C77967AFfaFcE73760d8D0BDF', 0),
+  //   factory2.create(poolAddress, 0),
   // );
   // const gaugeAddress = receipt2.events[0].args.gauge;
   // console.log('gauge: ' + gaugeAddress);
 
-  const gaugeController = await getGaugeController();
-  await performAuthEntrypointAction(gaugeController, 'add_gauge', [
-    '0x64bf08FAC067b25C77967AFfaFcE73760d8D0BDF',
-    GaugeTypeNum.Ethereum,
-    0,
-  ]);
+  // const gaugeAddress = '0x7916972323a4e881eF4b12c6c6AED6e0C5C6377E';
+  // const gaugeController = await getGaugeController();
+  // await performAuthEntrypointAction(gaugeController, 'add_gauge', [
+  //   gaugeAddress,
+  //   GaugeTypeNum.Ethereum,
+  //   0,
+  // ]);
 
-  // await updateGaugeFee('', GaugeFeeType.Deposit, 100)
-  // await updateGaugeFee('', GaugeFeeType.Withdraw, 100)
+  // await updateGaugeFee(gaugeAddress, GaugeFeeType.Deposit, 100);
+  // await updateGaugeFee(gaugeAddress, GaugeFeeType.Withdraw, 100);
 
   // const p = await getWeightedPoolToken(
   //   '',

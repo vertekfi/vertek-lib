@@ -492,5 +492,27 @@
       "withdrawFee": 0,
       "initFeesSet": false
     }
+  },
+  {
+    "created": true,
+    "initJoinComplete": true,
+    "name": "The Pebble Pile",
+    "symbol": "80PEBBLE-20ETH",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "0xae42be6a9f75a2b53229e262e0488df6ecfeb53a000200000000000000000012",
+    "poolAddress": "0xAe42bE6a9F75a2B53229e262e0488dF6Ecfeb53A",
+    "gauge": {
+      "address": "0x7916972323a4e881eF4b12c6c6AED6e0C5C6377E",
+      "startingWeight": "0",
+      "added": true,
+      "txHash": "",
+      "controllerTxHash": "",
+      "addedToController": true,
+      "depositFee": 100,
+      "withdrawFee": 100,
+      "initFeesSet": true
+    }
   }
 ]
