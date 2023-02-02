@@ -24,6 +24,7 @@ export interface EscrowStakeForInfo {
   who: string;
   endTimestamp: number;
   type: VotingEscrowStakeType;
+  amountReceived: string;
 }
 
 /**
@@ -58,7 +59,7 @@ export async function stakeForUser(
   amount: BigNumber,
   endTimeDaysFromNow: number,
 ) {
-  const mainPool = await getMainPoolConfig();
+  //const mainPool = await getMainPoolConfig();
   const votingEsrow = await getVotingEscrow();
 
   // Could add certain checks here and account for contracts rounding of time to weeks, etc
@@ -69,11 +70,11 @@ export async function stakeForUser(
     .utc()
     .unix();
 
-  await approveTokensIfNeeded(
-    [mainPool.poolAddress],
-    await getSignerAddress(),
-    votingEsrow.address,
-  );
+  // await approveTokensIfNeeded(
+  //   [mainPool.poolAddress],
+  //   await getSignerAddress(),
+  //   votingEsrow.address,
+  // );
 
   const receipt = await performAuthEntrypointAction(
     votingEsrow,
@@ -81,10 +82,10 @@ export async function stakeForUser(
     [who, amount, unlockTime],
   );
 
-  logger.success(
-    'Stake for user balance: ' +
-      formatEther(await votingEsrow['balanceOf(address)'](who)),
+  const amountReceived = formatEther(
+    await votingEsrow['balanceOf(address)'](who),
   );
+  logger.success('Stake for user balance: ' + amountReceived);
 
   await saveStake(
     who,
@@ -92,6 +93,7 @@ export async function stakeForUser(
     unlockTime,
     VotingEscrowStakeType.CREATE,
     receipt,
+    amountReceived,
   );
 }
 
@@ -109,6 +111,7 @@ async function saveStake(
   endTimestamp: number,
   type: VotingEscrowStakeType,
   receipt: ContractReceipt,
+  amountReceived: string,
 ) {
   const dataPath = join(
     process.cwd(),
@@ -122,6 +125,7 @@ async function saveStake(
     endTimestamp,
     type,
     txHash: receipt.transactionHash,
+    amountReceived,
   });
 
   await fs.writeJson(dataPath, stakes);
