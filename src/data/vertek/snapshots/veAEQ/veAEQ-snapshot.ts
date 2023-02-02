@@ -3,8 +3,7 @@ import { gql } from 'graphql-request';
 import { join } from 'path';
 import { subgraphsClient } from 'src/services/subgraphs/subgraph-client';
 import { getSigner } from 'src/utils/account.util';
-import * as moment from 'moment-timezone';
-import { BigNumber, Contract } from 'ethers';
+import { Contract } from 'ethers';
 import { formatEther, parseUnits } from 'ethers/lib/utils';
 import { CsvHeader, csvService } from 'src/services/csv.service';
 

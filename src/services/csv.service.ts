@@ -1,3 +1,5 @@
+const csvParser = require('csv-parser');
+const fs = require('fs');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 export interface CsvHeader {
@@ -18,6 +20,19 @@ class CsvService {
     } catch (error) {
       throw error;
     }
+  }
+
+  async parseCSV(filePath: string): Promise<any[]> {
+    return new Promise((res, rej) => {
+      const results = [];
+      fs.createReadStream(filePath)
+        .pipe(csvParser())
+        .on('data', (data) => results.push(data))
+        .on('error', (err) => rej(err))
+        .on('end', () => {
+          res(results);
+        });
+    });
   }
 }
 

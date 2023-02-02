@@ -274,10 +274,10 @@
     "idx": 5
   },
   {
-    "created": false,
+    "created": true,
     "initJoinComplete": false,
-    "name": "",
-    "symbol": "",
+    "name": "CZ's Favorite Pool",
+    "symbol": "50BUSD-50BNB",
     "assetManager": "",
     "type": "Weighted",
     "txHash": "",
@@ -316,12 +316,12 @@
       "initialBalances": ["0.00322906", "1"]
     },
     "gauge": {
-      "address": "",
+      "address": "0xC32389561da25C3AD66aBd55A2db0B6172F9C759",
       "startingWeight": "0",
-      "added": false,
-      "txHash": "",
-      "controllerTxHash": "",
-      "addedToController": false,
+      "added": true,
+      "txHash": "0x2461a4d2b2e968db308a94c369ab4a4329d7b3d45058abb94113694b5643897c",
+      "controllerTxHash": "0xa059b067248e1fc437fc7bc6e0d3113736531318e5c8f5c95b2faffcb27ea3a4",
+      "addedToController": true,
       "depositFee": 0,
       "withdrawFee": 0,
       "initFeesSet": false
@@ -512,6 +512,28 @@
       "addedToController": true,
       "depositFee": 100,
       "withdrawFee": 100,
+      "initFeesSet": true
+    }
+  },
+  {
+    "created": true,
+    "initJoinComplete": false,
+    "name": "Blue Chip Buffet",
+    "symbol": "33ETH-33BTCB-33BNB",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "0x30d26ebd25b2719c43cbae3fb67fb1e17c789520000100000000000000000013",
+    "poolAddress": "0x30d26EBD25b2719c43CbAe3FB67fb1E17C789520",
+    "gauge": {
+      "address": "0xe05DE828EedCe4c4cAa532750F8f0d95a0Fd094e",
+      "startingWeight": "0",
+      "added": true,
+      "txHash": "",
+      "controllerTxHash": "",
+      "addedToController": true,
+      "depositFee": 0,
+      "withdrawFee": 0,
       "initFeesSet": true
     }
   }
