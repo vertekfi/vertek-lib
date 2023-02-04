@@ -17,6 +17,7 @@ import { approveTokensIfNeeded } from 'src/utils/token.utils';
 import {
   awaitTransactionComplete,
   doTransaction,
+  sleep,
 } from 'src/utils/transaction.utils';
 import { performAuthEntrypointAction } from '../auth/auth';
 import { updatePoolConfig, validatePoolConfig } from '../pools/pool.utils';
@@ -264,4 +265,20 @@ export async function getAllGaugePendingProtocolFees() {
       pendingFeePoolTokens: ethNum(feeInfo[1].pendingFees),
     };
   });
+}
+
+export async function checkpointGauge(address: string) {
+  const controller = await getGaugeController();
+  await doTransaction(controller.checkpoint_gauge(address));
+}
+
+export async function checkpointAllGauges() {
+  const pools = await getAllPoolsWithGauges();
+  for (const pool of pools) {
+    await checkpointGauge(pool.gauge.address);
+    await sleep();
+  }
+
+  const controller = await getGaugeController();
+  await doTransaction(controller.checkpoint());
 }

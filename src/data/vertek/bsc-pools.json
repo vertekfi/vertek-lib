@@ -530,5 +530,61 @@
       "withdrawFee": 0,
       "initFeesSet": true
     }
+  },
+  {
+    "created": false,
+    "initJoinComplete": false,
+    "name": "",
+    "symbol": "",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "",
+    "poolId": "",
+    "poolAddress": "",
+    "date": "",
+    "initialBalances": [],
+    "tokenInfo": [
+      {
+        "address": "0xD68F75b3aa54bee23e6Ac3AD4b3C28D3E6319725",
+        "weight": "0.6",
+        "initialBalance": "",
+        "symbol": "MAGIK"
+      },
+      {
+        "address": "0xAD29AbB318791D579433D831ed122aFeAf29dcfe",
+        "weight": "0.2",
+        "initialBalance": "",
+        "symbol": "FTM"
+      },
+      {
+        "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+        "weight": "0.2",
+        "initialBalance": "",
+        "symbol": "WBNB"
+      }
+    ],
+    "deploymentArgs": {
+      "name": "",
+      "symbol": "",
+      "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
+      "tokens": [],
+      "swapFeePercentage": "",
+      "weights": [],
+      "assetManagers": [],
+      "rateProviders": [],
+      "initialBalances": []
+    },
+    "gauge": {
+      "address": "",
+      "startingWeight": "0",
+      "added": false,
+      "txHash": "",
+      "controllerTxHash": "",
+      "addedToController": false,
+      "depositFee": 0,
+      "withdrawFee": 0,
+      "initFeesSet": false
+    },
+    "isVePool": false
   }
 ]

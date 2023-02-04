@@ -112,4 +112,8 @@ export const TOKENS = {
   wBNBx: {
     56: '',
   },
+  FTM: {
+    5: '',
+    56: '0xAD29AbB318791D579433D831ed122aFeAf29dcfe',
+  },
 };
