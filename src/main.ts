@@ -8,11 +8,22 @@ import { join } from 'path';
 import {
   addRewardTokenToGauge,
   doGaugeRewardTokenDeposit,
+  getAllGaugePendingProtocolFees,
 } from './services/gauges/gauge-utils';
 import { formatEther, parseEther, parseUnits } from 'ethers/lib/utils';
 import { stakeForUser } from './services/gauges/voting-escrow';
-import { getVault } from './utils/contract.utils';
+import {
+  getLiquidityGaugeInstance,
+  getVault,
+  getWeightedPoolToken,
+} from './utils/contract.utils';
 import { getMainPoolConfig } from './services/pools/pool.utils';
+import { doTransaction } from './utils/transaction.utils';
+import {
+  checkpointController,
+  checkpointGauge,
+} from './services/automation/gauges';
+import { subgraphService } from './services/subgraphs/subgraph-client';
 
 config({ path: join(process.cwd(), '.env') });
 
@@ -24,13 +35,21 @@ function sort(addies: string[]) {
 
 async function run() {
   console.log('VertekFi run:');
-  // const pools = await getAllPoolConfigs();
-  // for (const pool of pools) {
-  //   const p = await getWeightedPoolToken(pool.poolAddress);
-  //   if (pool.type == 'Stable') {
-  //     await doTransaction(p.pause());
-  //   }
-  // }
+
+  const fees = await getAllGaugePendingProtocolFees();
+  console.log(fees);
+
+  // Get BPT prices
+  const { vertekBackendClient } = subgraphService;
+
+  // const prv = amesGauge.provider;
+  // const block = await prv.getBlockNumber();
+  // const evts = amesGauge.filters.FeeCharged();
+  // const data = await amesGauge.queryFilter(evts, block - 600, block);
+  // console.log(data);
+
+  // console.log('Fee amount: ' + formatEther(data[0].args.fee_amount));
+  // console.log('Fee type: ' + 0);
 
   // const pool = await getWeightedPoolToken(
   //   '',

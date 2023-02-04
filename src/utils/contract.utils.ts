@@ -17,9 +17,11 @@ import * as PoolTokenAbi from '../abis/BalancerPoolToken.json';
 import * as WeightedPoolAbi from '../abis/WeightedPool.json';
 import * as WeightedPoolFactoryAbi from '../abis/WeightedPoolFactory.json';
 
-import { getChainId, getSigner } from './account.util';
+import { getChainId, getRpcProvider, getSigner } from './account.util';
 import { ERC20_ABI } from 'src/abis/ERC20ABI';
 import { TOKENS } from 'src/data/token';
+import { getAllPoolConfigs } from 'src/services/pools/pool.utils';
+import { Multicaller } from 'src/services/multicaller';
 
 export async function getTokenAdmin() {
   return new Contract(
@@ -165,4 +167,17 @@ export function getTokenAddress(tokenName: string): string {
 
 export function getSighash(instance: Contract, method: string) {
   return instance.interface.getSighash(method);
+}
+
+export async function getAllPoolsWithGauges() {
+  const pools = await getAllPoolConfigs();
+  return pools.filter((p) => p.gauge && p.gauge.address);
+}
+
+export async function getMulticaller(abi: any[]) {
+  return new Multicaller(
+    getContractAddress('Multicall'),
+    await getRpcProvider(),
+    abi,
+  );
 }

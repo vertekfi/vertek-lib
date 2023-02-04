@@ -121,9 +121,9 @@ export const CONTRACT_MAP = {
     5: '0x8C5A8b10A34Ef7F0027F8672f0200751ff5117Db',
     56: '0xd19A924880f74E4e7e53D15aDEB11C6792313669',
   },
-  MulticallV1: {
+  Multicall: {
     5: '0x1050Bcfb2ec4CAe624BD1Eec5dadc2a3b4f4559a',
-    56: '',
+    56: '0x4Ba82B21658CAE1975Fa26097d87bd48FF270124',
   },
   Relater: {
     5: '',

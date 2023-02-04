@@ -1,7 +1,7 @@
 import * as fs from 'fs-extra';
 import { gql } from 'graphql-request';
 import { join } from 'path';
-import { subgraphsClient } from 'src/services/subgraphs/subgraph-client';
+import { subgraphService } from 'src/services/subgraphs/subgraph-client';
 import { getSigner } from 'src/utils/account.util';
 import { Contract } from 'ethers';
 import { formatEther, parseUnits } from 'ethers/lib/utils';
@@ -28,7 +28,7 @@ export async function doVeAeqSnapshot() {
 }
 
 async function takeTotalSnapshot() {
-  const locks = await subgraphsClient.gaugeClientV1.request(gql`
+  const locks = await subgraphService.gaugeClientV1.request(gql`
     query {
       votingEscrowLocks(block: { number: ${blockNumber} }, first: 1000) {
         user {

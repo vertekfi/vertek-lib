@@ -18,7 +18,6 @@ import {
   getMainPoolConfig,
   updatePoolConfig,
 } from '../pools/pool.utils';
-import { initGaugeAuthItems } from './gauge-auth-setup';
 
 export async function runGaugeSetup() {
   // await initGaugeAuthItems();
@@ -65,7 +64,6 @@ export async function addConfigPoolGaugesToController() {
 
 export async function addMainPoolGaugeSetup() {
   try {
-    console.log('u,,,');
     // SingleRecipientGauge type (can not be voted for)
     const mainPool = await getMainPoolConfig();
     if (mainPool.gauge.added) {

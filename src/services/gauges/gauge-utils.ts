@@ -1,16 +1,23 @@
 import { BigNumber } from 'ethers';
+import { formatEther } from 'ethers/lib/utils';
 import { GaugeType, GaugeTypeNum } from 'src/types/gauge.types';
 import { PoolCreationConfig } from 'src/types/pool.types';
 import { ZERO, _require } from 'src/utils';
 import { getSignerAddress } from 'src/utils/account.util';
+import { ethNum } from 'src/utils/big-number.utils';
 import {
+  getAllPoolsWithGauges,
   getGaugeController,
   getLiquidityGaugeFactory,
   getLiquidityGaugeInstance,
+  getMulticaller,
 } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import { approveTokensIfNeeded } from 'src/utils/token.utils';
-import { awaitTransactionComplete } from 'src/utils/transaction.utils';
+import {
+  awaitTransactionComplete,
+  doTransaction,
+} from 'src/utils/transaction.utils';
 import { performAuthEntrypointAction } from '../auth/auth';
 import { updatePoolConfig, validatePoolConfig } from '../pools/pool.utils';
 
@@ -215,4 +222,46 @@ export async function setGaugeFees(pool: PoolCreationConfig) {
 
   pool.gauge.initFeesSet = true;
   await updatePoolConfig(pool);
+}
+
+export async function withdrawGaugeFeesToCollector(gaugeAddress: string) {
+  const gauge = await getLiquidityGaugeInstance(gaugeAddress);
+  await performAuthEntrypointAction(gauge, 'withdrawFees');
+}
+
+export async function getGaugePendingProtocolFees(gaugeAddress: string) {
+  const gauge = await getLiquidityGaugeInstance(gaugeAddress);
+  return formatEther(await gauge.getAccumulatedFees());
+}
+
+export async function getAllGaugePendingProtocolFees() {
+  const pools = await getAllPoolsWithGauges();
+  const multicall = await getMulticaller([
+    'function getAccumulatedFees() public view returns (uint256)',
+  ]);
+
+  const gauges = pools.map((p) => p.gauge);
+  gauges.forEach((gauge) => {
+    if (gauge.address !== '0x9740727f14461738AF5a37a433D397822380c637') {
+      multicall.call(
+        `${gauge.address}.pendingFees`,
+        gauge.address,
+        'getAccumulatedFees',
+      );
+    }
+  });
+
+  const result = await multicall.execute<
+    Record<string, { pendingFees: BigNumber }>
+  >();
+  return Object.entries(result).map((feeInfo) => {
+    const gaugeAddress = feeInfo[0];
+    const pool = pools.find((p) => p.gauge.address === gaugeAddress);
+    return {
+      poolId: pool.poolId,
+      gauge: pool.name,
+      gaugeAddress,
+      pendingFeePoolTokens: ethNum(feeInfo[1].pendingFees),
+    };
+  });
 }

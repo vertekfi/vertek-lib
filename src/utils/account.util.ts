@@ -55,6 +55,14 @@ export async function getSigner() {
   return (await getDefaultChainProvider()).signer;
 }
 
+export async function getRpcProvider(chainId?: number) {
+  if (chainId) {
+    return (await getChainProvider(chainId)).provider;
+  }
+
+  return (await getDefaultChainProvider()).provider;
+}
+
 export async function getSignerAddress() {
   return (await getSigner()).address;
 }

@@ -107,9 +107,6 @@
   {
     "created": true,
     "initJoinComplete": true,
-    "mainToken": "",
-    "mainTokenTargetPrice": 0,
-    "amountOutOtherToken": 0,
     "name": "Amesonian Apex",
     "symbol": "80-AMES-20-BUSD",
     "assetManager": "",
@@ -217,9 +214,6 @@
   {
     "created": true,
     "initJoinComplete": true,
-    "mainToken": "",
-    "mainTokenTargetPrice": 0,
-    "amountOutOtherToken": 0,
     "name": "Lions Den",
     "symbol": "70LSHARE-30DAI",
     "assetManager": "",
@@ -375,7 +369,7 @@
   {
     "created": true,
     "initJoinComplete": true,
-    "name": "",
+    "name": "wAALTO-BUSD",
     "symbol": "wAALTO-BUSD",
     "assetManager": "",
     "type": "Weighted",
@@ -397,7 +391,7 @@
   {
     "created": true,
     "initJoinComplete": true,
-    "name": "",
+    "name": "SWORD-ETH",
     "symbol": "SWORD-ETH",
     "assetManager": "",
     "type": "Weighted",
@@ -419,7 +413,7 @@
   {
     "created": true,
     "initJoinComplete": false,
-    "name": "",
+    "name": "SHIELD-CHAM-BNB",
     "symbol": "SHIELD-CHAM-BNB",
     "assetManager": "",
     "type": "Weighted",

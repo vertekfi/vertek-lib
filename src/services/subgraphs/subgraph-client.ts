@@ -8,6 +8,7 @@ export class SubgraphClient {
   readonly dexClientV1: GraphQLClient;
   readonly gaugeClientV2: GraphQLClient;
   readonly dexClientV2: GraphQLClient;
+  readonly vertekBackendClient: GraphQLClient;
 
   constructor() {
     config({ path: join(process.cwd(), '.env') });
@@ -21,10 +22,15 @@ export class SubgraphClient {
     this.gaugeClientV1 = new GraphQLClient(
       SUBGRAPHS.GAUGES[parseInt(process.env.CHAIN_ID)],
     );
-    this.dexClientV1 = new GraphQLClient(
-      SUBGRAPHS.BAL[parseInt(process.env.CHAIN_ID)],
+    this.vertekBackendClient = new GraphQLClient(
+      'https://vertek-backend.herokuapp.com/graphql',
+      {
+        headers: {
+          ADMIN_API_KEY: process.env.ADMIN_API_KEY,
+        },
+      },
     );
   }
 }
 
-export const subgraphsClient = new SubgraphClient();
+export const subgraphService = new SubgraphClient();
