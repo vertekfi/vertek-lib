@@ -6,8 +6,10 @@ import {
 import { config } from 'dotenv';
 import { join } from 'path';
 import {
+  addLiquidityGaugeToController,
   addRewardTokenToGauge,
   checkpointAllGauges,
+  createLiquidityGauge,
   doGaugeRewardTokenDeposit,
   getAllGaugePendingProtocolFees,
 } from './services/gauges/gauge-utils';
@@ -19,7 +21,12 @@ import {
   getVault,
   getWeightedPoolToken,
 } from './utils/contract.utils';
-import { getMainPoolConfig } from './services/pools/pool.utils';
+import {
+  getMainPoolConfig,
+  getPoolAddress,
+  getPoolConfig,
+  initWeightedJoin,
+} from './services/pools/pool.utils';
 import { doTransaction } from './utils/transaction.utils';
 import {
   checkpointController,
@@ -28,6 +35,9 @@ import {
 import { subgraphService } from './services/subgraphs/subgraph-client';
 import * as moment from 'moment-timezone';
 import { performAuthEntrypointAction } from './services/auth/auth';
+import { createConfigWeightedPool } from './services/pools/pool-creation';
+import { getSignerAddress } from './utils/account.util';
+import { GaugeTypeNum } from './types/gauge.types';
 
 config({ path: join(process.cwd(), '.env') });
 
@@ -39,6 +49,9 @@ function sort(addies: string[]) {
 
 async function run() {
   console.log('VertekFi run:');
+
+  // const out = calcOutGivenIn(21.6, 0.6, 0.01455, 0.2, 1);
+  // console.log(out);
 }
 
 run();

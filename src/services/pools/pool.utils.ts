@@ -368,3 +368,7 @@ export async function replaceTokenAddressesForChain(pool: PoolCreationConfig) {
 
   await updatePoolConfig(pool);
 }
+
+export function getPoolAddress(poolId: string) {
+  return poolId.slice(0, 42);
+}
