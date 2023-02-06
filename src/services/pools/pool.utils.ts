@@ -19,7 +19,6 @@ import { _require } from 'src/utils';
 import { CHAIN_KEYS, getChainId, getSigner } from 'src/utils/account.util';
 import {
   getLiquidityGaugeInstance,
-  getSighash,
   getTimelockAuthorizer,
   getVault,
   getWeightedPoolToken,
@@ -27,7 +26,7 @@ import {
 import { logger } from 'src/utils/logger';
 import { approveTokensIfNeeded } from 'src/utils/token.utils';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
-import { grantVaultAuthorizerPermissions } from '../auth/auth';
+import { getSighash, grantVaultAuthorizerPermissions } from '../auth/auth';
 
 /**
  * Sorts the tokens for a pool according to address as required by the vault.

@@ -16,6 +16,8 @@ import * as GaugeFactoryAbi from '../abis/LiquidityGaugeFactory.json';
 import * as PoolTokenAbi from '../abis/BalancerPoolToken.json';
 import * as WeightedPoolAbi from '../abis/WeightedPool.json';
 import * as WeightedPoolFactoryAbi from '../abis/WeightedPoolFactory.json';
+import * as FeeCollectorAbi from '../abis/ProtocolFeesCollector.json';
+import * as SingleRecipientAbi from '../abis/SingleRecipientGauge.json';
 
 import { getChainId, getRpcProvider, getSigner } from './account.util';
 import { ERC20_ABI } from 'src/abis/ERC20ABI';
@@ -165,10 +167,6 @@ export function getTokenAddress(tokenName: string): string {
   return address;
 }
 
-export function getSighash(instance: Contract, method: string) {
-  return instance.interface.getSighash(method);
-}
-
 export async function getAllPoolsWithGauges() {
   const pools = await getAllPoolConfigs();
   return pools.filter((p) => p.gauge && p.gauge.address);
@@ -179,5 +177,21 @@ export async function getMulticaller(abi: any[]) {
     getContractAddress('Multicall'),
     await getRpcProvider(),
     abi,
+  );
+}
+
+export async function getProtocolFeesCollector() {
+  return new Contract(
+    getContractAddress('ProtocolFeesCollector'),
+    FeeCollectorAbi,
+    await getSigner(),
+  );
+}
+
+export async function getSingleRecipientGauge() {
+  return new Contract(
+    getContractAddress('SingleRecipientGauge'),
+    SingleRecipientAbi,
+    await getSigner(),
   );
 }

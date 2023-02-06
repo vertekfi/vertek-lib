@@ -1,4 +1,3 @@
-import { Interface } from '@ethersproject/abi';
 import { Contract } from '@ethersproject/contracts';
 import {
   getAuthAdapterEntrypoint,
@@ -7,13 +6,7 @@ import {
 import { logger } from 'src/utils/logger';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 import { join } from 'path';
-import {
-  CHAIN_KEYS,
-  getChainId,
-  getSignerAddress,
-} from 'src/utils/account.util';
-import { ActionIdItem } from 'src/types/auth.types';
-import * as fs from 'fs-extra';
+import { getSignerAddress } from 'src/utils/account.util';
 
 export async function grantVaultAuthorizerPermissions(
   actionIds: string[],
@@ -54,4 +47,8 @@ export async function canPerformAction(
 ) {
   const authorizer = await getTimelockAuthorizer();
   return await authorizer.canPerform(actionId, who, whatContract);
+}
+
+export function getSighash(instance: Contract, method: string) {
+  return instance.interface.getSighash(method);
 }

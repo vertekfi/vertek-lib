@@ -5,7 +5,8 @@ import { join } from 'path';
 import { CHAIN_KEYS, getChainId } from 'src/utils/account.util';
 import { ActionIdItem } from 'src/types/auth.types';
 import * as fs from 'fs-extra';
-import { getAuthorizerAdapter, getSighash } from 'src/utils/contract.utils';
+import { getAuthorizerAdapter } from 'src/utils/contract.utils';
+import { getSighash } from './auth';
 
 export async function getActionId(
   instance: Contract,

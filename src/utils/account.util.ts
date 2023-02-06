@@ -16,7 +16,17 @@ export const getDefaultChainProvider = async (): Promise<ChainProvider> => {
   return getChainProvider(parseInt(process.env.CHAIN_ID));
 };
 
-export async function getChainProvider(chainId: number) {
+export async function getAccountSigner(
+  envAccountKey: 'DEV_KEY' | 'AALTO_DEV_KEY',
+) {
+  const account = await getChainProvider(getChainId(), envAccountKey);
+  return account.signer;
+}
+
+export async function getChainProvider(
+  chainId: number,
+  envAccountKey: 'DEV_KEY' | 'AALTO_DEV_KEY' = 'DEV_KEY',
+) {
   let rpcUrl = '';
   if (chainId === 5) {
     rpcUrl = process.env.GOERLI_RPC;
@@ -34,7 +44,7 @@ export async function getChainProvider(chainId: number) {
   await provider.ready;
   console.log('Using RPC: ' + rpcUrl);
 
-  let signer = new ethers.Wallet(process.env.DEV_KEY);
+  let signer = new ethers.Wallet(process.env[envAccountKey]);
   signer = signer.connect(provider);
 
   chainProvider = {

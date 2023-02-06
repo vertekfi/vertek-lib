@@ -11,6 +11,7 @@ import {
   getLiquidityGaugeFactory,
   getLiquidityGaugeInstance,
   getMulticaller,
+  getSingleRecipientGauge,
 } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import { approveTokensIfNeeded } from 'src/utils/token.utils';
@@ -281,4 +282,11 @@ export async function checkpointAllGauges() {
 
   const controller = await getGaugeController();
   await doTransaction(controller.checkpoint());
+}
+
+// Has it's own internal concerns from other gauges and needs to be checkpointed by itself
+export async function checkpointStakelessGauge() {
+  const stakeless = await getSingleRecipientGauge();
+  // Authorization was already given
+  await performAuthEntrypointAction(stakeless, 'checkpoint');
 }

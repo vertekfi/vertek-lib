@@ -8,7 +8,6 @@ import {
   getContractAddress,
   getERC20,
   getGovToken,
-  getSighash,
   getTimelockAuthorizer,
   getTokenAddress,
   getTokenAdmin,
@@ -19,6 +18,7 @@ import { logger } from 'src/utils/logger';
 import { approveTokensIfNeeded } from 'src/utils/token.utils';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 import {
+  getSighash,
   grantVaultAuthorizerPermissions,
   performAuthEntrypointAction,
 } from '../auth/auth';

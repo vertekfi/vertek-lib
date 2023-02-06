@@ -16,9 +16,14 @@ import {
 import { formatEther, parseEther, parseUnits } from 'ethers/lib/utils';
 import { stakeForUser } from './services/gauges/voting-escrow';
 import {
+  getAuthorizerAdapter,
   getGaugeController,
   getLiquidityGaugeInstance,
+  getProtocolFeesCollector,
+  getSingleRecipientGauge,
+  getTimelockAuthorizer,
   getVault,
+  getVotingEscrow,
   getWeightedPoolToken,
 } from './utils/contract.utils';
 import {
@@ -34,10 +39,22 @@ import {
 } from './services/automation/gauges';
 import { subgraphService } from './services/subgraphs/subgraph-client';
 import * as moment from 'moment-timezone';
-import { performAuthEntrypointAction } from './services/auth/auth';
+import {
+  grantVaultAuthorizerPermissions,
+  performAuthEntrypointAction,
+} from './services/auth/auth';
 import { createConfigWeightedPool } from './services/pools/pool-creation';
 import { getSignerAddress } from './utils/account.util';
 import { GaugeTypeNum } from './types/gauge.types';
+import {
+  getActionId,
+  getAuthAdapterActionId,
+} from './services/auth/action-ids';
+import {
+  updateListAaltoAndWrappedFeeExempt,
+  updateWrappedAaltoFeeExempt,
+} from './projects/aalto/services/admin.service';
+import { getWrappedAalto } from './projects/aalto/utils/aalto-contract.utils';
 
 config({ path: join(process.cwd(), '.env') });
 
@@ -49,9 +66,6 @@ function sort(addies: string[]) {
 
 async function run() {
   console.log('VertekFi run:');
-
-  // const out = calcOutGivenIn(21.6, 0.6, 0.01455, 0.2, 1);
-  // console.log(out);
 }
 
 run();
