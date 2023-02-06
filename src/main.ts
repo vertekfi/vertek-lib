@@ -11,7 +11,9 @@ import {
   checkpointAllGauges,
   createLiquidityGauge,
   doGaugeRewardTokenDeposit,
+  GaugeFeeType,
   getAllGaugePendingProtocolFees,
+  updateGaugeFee,
 } from './services/gauges/gauge-utils';
 import { formatEther, parseEther, parseUnits } from 'ethers/lib/utils';
 import { stakeForUser } from './services/gauges/voting-escrow';
@@ -40,6 +42,7 @@ import {
 import { subgraphService } from './services/subgraphs/subgraph-client';
 import * as moment from 'moment-timezone';
 import {
+  getSighash,
   grantVaultAuthorizerPermissions,
   performAuthEntrypointAction,
 } from './services/auth/auth';
@@ -55,6 +58,8 @@ import {
   updateWrappedAaltoFeeExempt,
 } from './projects/aalto/services/admin.service';
 import { getWrappedAalto } from './projects/aalto/utils/aalto-contract.utils';
+import { BigNumber } from 'ethers';
+import { ANY_ADDRESS } from './utils/constants';
 
 config({ path: join(process.cwd(), '.env') });
 
@@ -66,6 +71,9 @@ function sort(addies: string[]) {
 
 async function run() {
   console.log('VertekFi run:');
+
+  // const pool = await getPoolConfig(17);
+  // const wp = await getWeightedPoolToken(pool.poolAddress);
 }
 
 run();

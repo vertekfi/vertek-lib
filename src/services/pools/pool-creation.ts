@@ -6,30 +6,23 @@ import {
 } from 'src/types/pool.types';
 import { _require } from 'src/utils';
 import { getSigner, getSignerAddress } from 'src/utils/account.util';
-import { getContractAddress } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 
 import {
   getAllPoolConfigs,
-  getMainPoolConfig,
   getWeightedPoolArgsFromConfig,
   initWeightedJoin,
   updatePoolConfig,
   validatePoolConfig,
 } from './pool.utils';
 
-export async function createMainPool() {
-  const pool = await getMainPoolConfig();
-
-  validatePoolConfig(pool);
-
-  await createConfigWeightedPool(0);
-}
-
-export async function createConfigWeightedPool(poolConfigIndex: number) {
+export async function createConfigWeightedPool(
+  poolConfigIndex: number,
+  factoryAddress: string,
+) {
   const pools = await getAllPoolConfigs();
-  const pool = pools[poolConfigIndex];
+  let pool = pools[poolConfigIndex];
 
   if (!pool) {
     logger.error(`Invalis poolConfigIndex: ${poolConfigIndex}`);
@@ -47,7 +40,7 @@ export async function createConfigWeightedPool(poolConfigIndex: number) {
     );
 
     pool.deploymentArgs.owner = await getSignerAddress();
-    await updatePoolConfig(pool);
+    pool = await updatePoolConfig(pool);
   }
 
   validatePoolConfig(pool);
@@ -55,10 +48,10 @@ export async function createConfigWeightedPool(poolConfigIndex: number) {
   // use util to format deployment args properly
   const args = getWeightedPoolArgsFromConfig(pool, await getSignerAddress());
   pool.deploymentArgs = args;
-  await updatePoolConfig(pool);
+  pool = await updatePoolConfig(pool);
 
   // create the pool contract
-  const receipt = await createWeightedPool(args);
+  const receipt = await createWeightedPool(args, factoryAddress);
 
   // update local data for pool
   pool.created = true;
@@ -69,7 +62,7 @@ export async function createConfigWeightedPool(poolConfigIndex: number) {
   };
   pool.name = pool.deploymentArgs.name;
   pool.symbol = pool.deploymentArgs.symbol;
-  await updatePoolConfig(pool);
+  pool = await updatePoolConfig(pool);
 
   // Hard coded indexes by knowing the structure of this tx log
   // (If it needed to change would mean a whole bunch of other shit would too)
@@ -80,7 +73,8 @@ export async function createConfigWeightedPool(poolConfigIndex: number) {
 
   pool.poolId = poolId;
   pool.poolAddress = poolAddress;
-  await updatePoolConfig(pool);
+  pool = await updatePoolConfig(pool);
+  return pool;
 }
 
 export async function doPoolInitJoin(pool: PoolCreationConfig) {
@@ -95,43 +89,13 @@ export async function doPoolInitJoin(pool: PoolCreationConfig) {
   pool = await updatePoolConfig(pool);
 }
 
-async function tryGetPoolAddressFromReceipt(
-  pool: PoolCreationConfig,
-  receipt: ContractReceipt,
-) {
-  try {
-    // Hard coded indexes by knowing the structure of this tx log
-    // (If it needed to change would mean a whole bunch of other shit would too)
-    const poolAddress = receipt.events[0].address;
-    console.log('poolAddress: ' + poolAddress);
-    const poolId = receipt.events[1].topics[1];
-    console.log('poolId: ' + poolId);
-
-    pool.poolId = poolId;
-    pool.poolAddress = poolAddress;
-    await updatePoolConfig(pool);
-
-    return {
-      txHash: receipt.transactionHash,
-      poolId,
-      poolAddress,
-      date: new Date().toLocaleString(),
-    };
-  } catch (error) {
-    logger.error(`Unable to get pool address`);
-    return {
-      txHash: receipt.transactionHash,
-      date: new Date().toLocaleString(),
-    };
-  }
-}
-
 export async function createWeightedPool(
   args: CreateWeightedPoolArgs,
+  factoryAddress: string,
 ): Promise<ContractReceipt> {
   logger.info('createWeightedPool: creating pool...');
   const factory = new Contract(
-    getContractAddress('WeightedPoolFactory'),
+    factoryAddress,
     [
       `function create(
       string  name,

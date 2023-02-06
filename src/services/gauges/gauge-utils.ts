@@ -98,6 +98,7 @@ export async function createLiquidityGauge(pool: PoolCreationConfig) {
   pool.gauge.txHash = receipt.transactionHash;
   pool.gauge.added = true;
   pool.gauge.address = receipt.events[0].args.gauge;
+  console.log('Gauge address: ' + pool.gauge.address);
   await updatePoolConfig(pool);
 
   logger.success(`Pool ${pool.name} gauge created`);

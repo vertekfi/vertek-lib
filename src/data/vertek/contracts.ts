@@ -39,6 +39,9 @@ export const CONTRACT_MAP = {
     5: '0x94b67Ee1359A26E0527BFafD9C37aD84D9ABda77',
     56: '0xDE8993Bf9D6Eb1e0d752fe56ccB85Ef76538ABb6',
   },
+  WeightedFactoryHighFee: {
+    56: '0xb9C7a581F0792d667beb684Bab1AF4FFFa14DA98',
+  },
   StablePoolFactory: {
     5: '0x7FB72Bf3F5b7f994CC1563FDd47E9Edc13b6Be15',
     // 56: '0x072a48eEADd2eb0E44A0A1Fd237A87F3CBF81bDa', // V1

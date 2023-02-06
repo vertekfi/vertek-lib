@@ -119,7 +119,13 @@ export async function updatePoolConfig(pool: PoolCreationConfig) {
   logger.info(`updatePoolConfig: updating "${pool.name}"`);
   const poolConfigs = await getAllPoolConfigs();
 
-  let updating = poolConfigs.find((p) => p.name === pool.name);
+  const poolConfigsCopy = poolConfigs.filter((p) => p.deploymentArgs);
+  let updating = poolConfigsCopy.find(
+    (p) => p.deploymentArgs.name === pool.deploymentArgs.name,
+  );
+  if (!updating) {
+    throw new Error(`Pool name look up failed`);
+  }
   const idx = poolConfigs.indexOf(updating);
   updating = {
     ...updating,
@@ -279,36 +285,6 @@ export async function getPoolGaugeInstance(poolId: string) {
   if (!pool.gauge.address) logger.error(`Pool does not have a gauge address`);
 
   return getLiquidityGaugeInstance(pool.gauge.address);
-}
-
-// When paired with a stable for now
-export function findOptimalBalancesForStablePriceTarget(
-  pool: PoolCreationConfig,
-) {
-  _require(pool.type === PoolType.Weighted, 'Not a weighted pool');
-  _require(!!pool.mainToken, 'Main token not set');
-  _require(
-    !!pool.mainTokenTargetPrice && pool.mainTokenTargetPrice > 0,
-    'Target price not set',
-  );
-  _require(
-    !!pool.amountOutOtherToken && pool.amountOutOtherToken > 0,
-    'Output amount not set',
-  );
-
-  const tokenIn = <WeightedTokenInfo>(
-    pool.tokenInfo.find((t) => t.address === pool.mainToken)
-  );
-  const weightIn = tokenIn.weight;
-  // some sort of while loop to find this
-  let amountOut = 0;
-  let initalBalanceIn = 1.1;
-  let initialBalanceOut = 1;
-  let closeEnough = false;
-
-  while (!closeEnough) {
-    // calcOutGivenIn();
-  }
 }
 
 /**

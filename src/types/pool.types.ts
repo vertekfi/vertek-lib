@@ -139,9 +139,7 @@ export interface PoolCreationBaseData {
 export interface PoolCreationConfig {
   created: boolean;
   initJoinComplete: boolean;
-  mainToken?: string;
-  mainTokenTargetPrice?: number;
-  amountOutOtherToken?: number;
+  factory: string;
   isVePool?: boolean;
   txHash: string;
   chainId: number;
