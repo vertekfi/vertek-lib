@@ -20,6 +20,7 @@ import { stakeForUser } from './services/gauges/voting-escrow';
 import {
   getAuthorizerAdapter,
   getGaugeController,
+  getLiquidityGaugeFactory,
   getLiquidityGaugeInstance,
   getProtocolFeesCollector,
   getSingleRecipientGauge,
@@ -32,9 +33,14 @@ import {
   getMainPoolConfig,
   getPoolAddress,
   getPoolConfig,
+  getPoolConfigByName,
   initWeightedJoin,
+  updatePoolConfig,
 } from './services/pools/pool.utils';
-import { doTransaction } from './utils/transaction.utils';
+import {
+  awaitTransactionComplete,
+  doTransaction,
+} from './utils/transaction.utils';
 import {
   checkpointController,
   checkpointGauge,
@@ -71,9 +77,6 @@ function sort(addies: string[]) {
 
 async function run() {
   console.log('VertekFi run:');
-
-  // const pool = await getPoolConfig(17);
-  // const wp = await getWeightedPoolToken(pool.poolAddress);
 }
 
 run();

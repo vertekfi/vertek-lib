@@ -412,14 +412,45 @@
   },
   {
     "created": true,
-    "initJoinComplete": false,
-    "name": "SHIELD-CHAM-BNB",
+    "initJoinComplete": true,
+    "name": "Shield of Seigniorage",
     "symbol": "SHIELD-CHAM-BNB",
     "assetManager": "",
     "type": "Weighted",
     "txHash": "",
     "poolId": "0x7278a73af8c788af1e2f53b7bcc138b4f641be3500010000000000000000000c",
-    "poolAddress": "0x7278A73aF8c788AF1e2f53b7BCc138B4F641BE35"
+    "poolAddress": "0x7278A73aF8c788AF1e2f53b7BCc138B4F641BE35",
+    "tokenInfo": [
+      {
+        "address": "",
+        "weight": "0.2",
+        "initialBalance": "",
+        "symbol": ""
+      },
+      {
+        "address": "",
+        "weight": "0.2",
+        "initialBalance": "",
+        "symbol": ""
+      },
+      {
+        "address": "",
+        "weight": "0.6",
+        "initialBalance": "",
+        "symbol": ""
+      }
+    ],
+    "gauge": {
+      "address": "0xb49e0053C1d6ccF4250FCD21F3906f624727b722",
+      "startingWeight": "0",
+      "added": true,
+      "txHash": "0x072872a1b4cd878773fd1f3c26e56644387396d4f52965f7f9d6acc33d2c00bb",
+      "controllerTxHash": "",
+      "addedToController": false,
+      "depositFee": 0,
+      "withdrawFee": 0,
+      "initFeesSet": false
+    }
   },
   {
     "created": true,
@@ -456,10 +487,10 @@
     "gauge": {
       "address": "0x2837b3A08Cbfc3Eb3E1FFe363Fb1E443667e287f",
       "startingWeight": "0",
-      "added": false,
+      "added": true,
       "txHash": "",
       "controllerTxHash": "",
-      "addedToController": false,
+      "addedToController": true,
       "depositFee": 0,
       "withdrawFee": 0,
       "initFeesSet": false
