@@ -23,7 +23,7 @@ export class SubgraphClient {
       SUBGRAPHS.GAUGES[parseInt(process.env.CHAIN_ID)],
     );
     this.vertekBackendClient = new GraphQLClient(
-      'https://vertek-backend.herokuapp.com/graphql',
+      process.env.VERTEK_BACKEND_URL,
       {
         headers: {
           ADMIN_API_KEY: process.env.ADMIN_API_KEY,

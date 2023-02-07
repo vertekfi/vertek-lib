@@ -511,7 +511,7 @@
       "startingWeight": "0",
       "added": true,
       "txHash": "",
-      "controllerTxHash": "",
+      "controllerTxHash": "0x77e175c93a39d6fc84d3454fe40c6576d4a49bcc54b5bc42fe12e6d20e294788",
       "addedToController": true,
       "depositFee": 0,
       "withdrawFee": 0,

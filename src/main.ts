@@ -25,6 +25,7 @@ import {
   getProtocolFeesCollector,
   getSingleRecipientGauge,
   getTimelockAuthorizer,
+  getTokenAdmin,
   getVault,
   getVotingEscrow,
   getWeightedPoolToken,
@@ -41,10 +42,6 @@ import {
   awaitTransactionComplete,
   doTransaction,
 } from './utils/transaction.utils';
-import {
-  checkpointController,
-  checkpointGauge,
-} from './services/automation/gauges';
 import { subgraphService } from './services/subgraphs/subgraph-client';
 import * as moment from 'moment-timezone';
 import {
@@ -66,17 +63,20 @@ import {
 import { getWrappedAalto } from './projects/aalto/utils/aalto-contract.utils';
 import { BigNumber } from 'ethers';
 import { ANY_ADDRESS } from './utils/constants';
+import { ScheduledJobService } from './services/automation/scheduled-job.service';
 
 config({ path: join(process.cwd(), '.env') });
 
-function sort(addies: string[]) {
-  return addies.sort((a1, a2) =>
-    a1.toLowerCase() < a2.toLowerCase() ? -1 : 1,
-  );
-}
-
 async function run() {
   console.log('VertekFi run:');
+  runSetup();
+  //
+  //
+}
+
+async function runSetup() {
+  const jobService = new ScheduledJobService();
+  jobService.init();
 }
 
 run();

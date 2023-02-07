@@ -26,3 +26,9 @@ export async function approveTokensIfNeeded(
     throw error;
   }
 }
+
+function sortTokens(addies: { address: string }[]) {
+  return addies.sort((a1, a2) =>
+    a1.address.toLowerCase() < a2.address.toLowerCase() ? -1 : 1,
+  );
+}

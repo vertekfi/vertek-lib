@@ -18,7 +18,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "generate": "graphql-codegen --config codegen.yml -r dotenv/config"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
@@ -38,11 +39,17 @@
     "graphql": "^16.6.0",
     "graphql-request": "^5.1.0",
     "moment-timezone": "^0.5.40",
+    "node-schedule": "^2.1.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
   },
   "devDependencies": {
+    "@graphql-codegen/add": "^3.1.1",
+    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/schema-ast": "^2.4.1",
+    "@graphql-codegen/typescript-document-nodes": "^2.2.10",
+    "@graphql-codegen/typescript-operations": "^2.3.7",
     "@nestjs/cli": "^8.0.0",
     "@nestjs/schematics": "^8.0.0",
     "@nestjs/testing": "^8.0.0",
@@ -50,6 +57,7 @@
     "@types/fs-extra": "^11.0.1",
     "@types/jest": "27.5.0",
     "@types/node": "^16.0.0",
+    "@types/node-schedule": "^2.1.0",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",

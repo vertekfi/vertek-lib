@@ -142,7 +142,7 @@ export async function updatePoolConfig(pool: PoolCreationConfig) {
 
 export async function getPoolConfigByName(name: string) {
   const pools = await getAllPoolConfigs();
-  return pools.find((p) => p.name === name);
+  return pools.find((p) => p.name.toLowerCase() === name.toLowerCase());
 }
 
 export async function savePoolsData(pools: PoolCreationConfig[]) {
