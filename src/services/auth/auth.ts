@@ -1,12 +1,22 @@
 import { Contract } from '@ethersproject/contracts';
 import {
   getAuthAdapterEntrypoint,
+  getAuthorizerAdapter,
   getTimelockAuthorizer,
 } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
-import { join } from 'path';
 import { getSignerAddress } from 'src/utils/account.util';
+
+export async function getAdapterActionIdAndVaultGrantOnTarget(
+  targetContract: Contract,
+  method: string,
+  who?: string,
+) {
+  const adapter = await getAuthorizerAdapter();
+  const id = await adapter.getActionId(getSighash(targetContract, method));
+  await grantVaultAuthorizerPermissions([id], [targetContract.address], who);
+}
 
 export async function grantVaultAuthorizerPermissions(
   actionIds: string[],

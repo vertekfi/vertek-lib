@@ -41,11 +41,11 @@
       "initialBalances": ["0.25", "42"]
     },
     "gauge": {
-      "address": "0x9740727f14461738AF5a37a433D397822380c637",
-      "startingWeight": "0.65",
+      "address": "0x1DdAC329f570dF5d83DfAC1720828276Ca49b129",
+      "startingWeight": "0",
       "added": true,
-      "controllerTxHash": "0x6c860fdf5ed9cd9d7d5421869cd79f558bc1e395f4e3b090b4472f3068187ce0",
-      "txHash": "0x384235a81de34af0765eaab9e54a821020d4e0058c6bf1048abdd84eef7d7749",
+      "controllerTxHash": "",
+      "txHash": "",
       "addedToController": true
     },
     "isVePool": true

@@ -114,7 +114,8 @@ export const CONTRACT_MAP = {
   },
   SingleRecipientGauge: {
     5: '0x496f704178783eb7a3FaDA82De2d8e62bFd86800',
-    56: '0x7c1f0f94c26CBef858F3278f92A884853c03dBe6',
+    // 56: '0x7c1f0f94c26CBef858F3278f92A884853c03dBe6', // factory implementation
+    56: '0x1DdAC329f570dF5d83DfAC1720828276Ca49b129', // actual instance
   },
   SingleRecipientGaugeFactory: {
     5: '0x00534e6eAbB8Bc3e67cf8414F7D0D99Ba39837bb',
@@ -147,5 +148,8 @@ export const CONTRACT_MAP = {
   BNBxManager: {
     5: '',
     56: '',
+  },
+  VestingContract: {
+    56: '0xd4afeAe1D8E7b88F334d175c56604e2Bf34cc8eF',
   },
 };
