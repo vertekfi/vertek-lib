@@ -18,6 +18,7 @@ import * as WeightedPoolAbi from '../abis/WeightedPool.json';
 import * as WeightedPoolFactoryAbi from '../abis/WeightedPoolFactory.json';
 import * as FeeCollectorAbi from '../abis/ProtocolFeesCollector.json';
 import * as SingleRecipientAbi from '../abis/SingleRecipientGauge.json';
+import * as FeeDistAbi from '../abis/FeeDistributor.json';
 
 import { getChainId, getRpcProvider, getSigner } from './account.util';
 import { ERC20_ABI } from 'src/abis/ERC20ABI';
@@ -192,6 +193,14 @@ export async function getSingleRecipientGauge() {
   return new Contract(
     getContractAddress('SingleRecipientGauge'),
     SingleRecipientAbi,
+    await getSigner(),
+  );
+}
+
+export async function getFeeDistributor() {
+  return new Contract(
+    getContractAddress('FeeDistributor'),
+    FeeDistAbi,
     await getSigner(),
   );
 }

@@ -1,5 +1,5 @@
 import { BigNumber } from 'ethers';
-import { formatEther } from 'ethers/lib/utils';
+import { formatEther, parseEther } from 'ethers/lib/utils';
 import { GaugeType, GaugeTypeNum } from 'src/types/gauge.types';
 import { PoolCreationConfig } from 'src/types/pool.types';
 import { ZERO, _require } from 'src/utils';
@@ -92,7 +92,7 @@ export async function createLiquidityGauge(pool: PoolCreationConfig) {
   validatePoolConfig(pool);
 
   const receipt = await awaitTransactionComplete(
-    factory.create(pool.poolAddress, 0),
+    factory.create(pool.poolAddress, parseEther('1')),
   );
 
   pool.gauge.txHash = receipt.transactionHash;

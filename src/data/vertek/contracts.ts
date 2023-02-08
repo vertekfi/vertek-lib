@@ -96,9 +96,9 @@ export const CONTRACT_MAP = {
     5: '',
     56: '',
   },
-  FeeDistrinutor: {
+  FeeDistributor: {
     5: '0xd4ccC5b4d7085603BB03C366F25738494B12E8c9',
-    56: '',
+    56: '0x1ac7c3C34d03f0b4E97FB4a3F08dF4DE6989FfB3',
   },
   LiquidityBootstrappingPoolFactory: {
     5: '',

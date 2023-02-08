@@ -97,8 +97,44 @@ export async function stakeForUser(
   );
 }
 
-export async function increaseStakeForUser() {
-  //
+export async function increaseStakeForUser(who: string, amount: BigNumber) {
+  logger.info(`increaseStakeForUser: increasing stake amount for ${who}`);
+
+  const votingEsrow = await getVotingEscrow();
+
+  // Get current balance first to diff what they got afterwards
+  const cuurentLockInfo = await votingEsrow.locked(who);
+  const currentLockEnd = cuurentLockInfo.end.toNumber();
+
+  logger.info(`User current balance: ${formatEther(cuurentLockInfo.amount)}`);
+  logger.info(
+    `User current lock end: ${new Date(currentLockEnd * 1000).toUTCString()}`,
+  );
+
+  const receipt = await performAuthEntrypointAction(
+    votingEsrow,
+    'admin_increase_amount_for',
+    [who, amount],
+  );
+
+  const newTotalBalance: BigNumber = await votingEsrow['balanceOf(address)'](
+    who,
+  );
+  const amountReceived = formatEther(
+    newTotalBalance.sub(cuurentLockInfo.amount),
+  );
+
+  logger.success('Increased stake amount for user: ' + who);
+  logger.success('Additional veVRTK received: ' + amountReceived);
+
+  await saveStake(
+    who,
+    amount,
+    currentLockEnd, // end date doesn't change here
+    VotingEscrowStakeType.INCREASE_AMOUNT,
+    receipt,
+    amountReceived,
+  );
 }
 
 export async function increaseTotalStakeForUser() {
