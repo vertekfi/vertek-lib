@@ -173,6 +173,10 @@ export async function getAllPoolsWithGauges() {
   return pools.filter((p) => p.gauge && p.gauge.address);
 }
 
+export async function getNextPoolIndex() {
+  return (await getAllPoolConfigs()).length - 1;
+}
+
 export async function getMulticaller(abi: any[]) {
   return new Multicaller(
     getContractAddress('Multicall'),

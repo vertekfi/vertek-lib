@@ -421,24 +421,9 @@
     "poolId": "0x7278a73af8c788af1e2f53b7bcc138b4f641be3500010000000000000000000c",
     "poolAddress": "0x7278A73aF8c788AF1e2f53b7BCc138B4F641BE35",
     "tokenInfo": [
-      {
-        "address": "",
-        "weight": "0.2",
-        "initialBalance": "",
-        "symbol": ""
-      },
-      {
-        "address": "",
-        "weight": "0.2",
-        "initialBalance": "",
-        "symbol": ""
-      },
-      {
-        "address": "",
-        "weight": "0.6",
-        "initialBalance": "",
-        "symbol": ""
-      }
+      { "address": "", "weight": "0.2", "initialBalance": "", "symbol": "" },
+      { "address": "", "weight": "0.2", "initialBalance": "", "symbol": "" },
+      { "address": "", "weight": "0.6", "initialBalance": "", "symbol": "" }
     ],
     "gauge": {
       "address": "0xb49e0053C1d6ccF4250FCD21F3906f624727b722",
@@ -676,6 +661,124 @@
       "addedToController": true,
       "depositFee": 100,
       "withdrawFee": 100,
+      "initFeesSet": true
+    },
+    "isVePool": false
+  },
+  {
+    "created": true,
+    "initJoinComplete": true,
+    "name": "The Buddy System",
+    "symbol": "50VRTK-50BUSD",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "0x3c1231e03ffbf92676544d0306732d4cb3b87859a2997a314fcefe9f472cd0e2",
+    "poolId": "0xdb043d8a95ad4d3ae0be21a6b34484a345c93481000200000000000000000016",
+    "poolAddress": "0xdb043D8A95Ad4D3ae0be21A6b34484a345c93481",
+    "date": "",
+    "initialBalances": [],
+    "tokenInfo": [
+      {
+        "address": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+        "weight": "0.5",
+        "initialBalance": "100",
+        "symbol": "BUSD"
+      },
+      {
+        "address": "0xeD236c32f695c83Efde232c288701d6f9C23E60E",
+        "weight": "0.5",
+        "initialBalance": "48",
+        "symbol": "VRTK"
+      }
+    ],
+    "deploymentArgs": {
+      "name": "The Buddy System",
+      "symbol": "50VRTK-50BUSD",
+      "tokens": [
+        "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+        "0xeD236c32f695c83Efde232c288701d6f9C23E60E"
+      ],
+      "swapFeePercentage": "0.01",
+      "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
+      "rateProviders": [
+        "0x0000000000000000000000000000000000000000",
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "weights": ["0.5", "0.5"],
+      "initialBalances": ["100", "48"]
+    },
+    "gauge": {
+      "address": "0x8601DFCeE55E9e238f7ED7c42f8E46a7779e3f6f",
+      "startingWeight": "0",
+      "added": true,
+      "txHash": "0x8b9801952dcb190f1edde6903aa86a08a2c8f5984ce219ce4966b4bdff6ff0c6",
+      "controllerTxHash": "0x1673f761b6dc2c7c9dc20ae266bd40d6cb00f2914f6ad7ac14c06a7bd873daf0",
+      "addedToController": true,
+      "depositFee": 50,
+      "withdrawFee": 50,
+      "initFeesSet": true
+    },
+    "isVePool": false
+  },
+  {
+    "created": true,
+    "initJoinComplete": true,
+    "name": "The Three Amigos",
+    "symbol": "50VRTK-25ETH-25BTC",
+    "assetManager": "",
+    "type": "Weighted",
+    "txHash": "0x587ce952b00b62ac051c7447546b4d1e213a38d8a9143ddf9592b14111b1a5ff",
+    "poolId": "0x9ee22f8b21b53323ae34d153e475aea6363b3ba7000100000000000000000017",
+    "poolAddress": "0x9eE22F8B21b53323ae34D153e475aeA6363B3ba7",
+    "date": "",
+    "initialBalances": [],
+    "tokenInfo": [
+      {
+        "address": "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
+        "weight": "0.25",
+        "initialBalance": "0.056",
+        "symbol": "ETH"
+      },
+      {
+        "address": "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c",
+        "weight": "0.25",
+        "initialBalance": "0.004",
+        "symbol": "BTCB"
+      },
+      {
+        "address": "0xeD236c32f695c83Efde232c288701d6f9C23E60E",
+        "weight": "0.5",
+        "initialBalance": "100",
+        "symbol": "VRTK"
+      }
+    ],
+    "deploymentArgs": {
+      "name": "The Three Amigos",
+      "symbol": "50VRTK-25ETH-25BTC",
+      "tokens": [
+        "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
+        "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c",
+        "0xeD236c32f695c83Efde232c288701d6f9C23E60E"
+      ],
+      "swapFeePercentage": "0.003",
+      "owner": "0x891eFc56f5CD6580b2fEA416adC960F2A6156494",
+      "rateProviders": [
+        "0x0000000000000000000000000000000000000000",
+        "0x0000000000000000000000000000000000000000",
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "weights": ["0.25", "0.25", "0.5"],
+      "initialBalances": ["0.056", "0.004", "100"]
+    },
+    "gauge": {
+      "address": "0x9DAb43a1D850eC820C88a19561C1fD87dEC09193",
+      "startingWeight": "0",
+      "added": true,
+      "txHash": "0x29b74cdb9f392ef721a14f6901808717ee4926ae1259ae5fe8bf0bd0b3f3ac8f",
+      "controllerTxHash": "0x8576d86d5f3a78ef468414f24df4b7a86dd9cbfea3e99c4d553c435d60f031a0",
+      "addedToController": true,
+      "depositFee": 50,
+      "withdrawFee": 50,
       "initFeesSet": true
     },
     "isVePool": false

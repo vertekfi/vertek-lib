@@ -3,10 +3,14 @@ import { formatEther, parseEther } from 'ethers/lib/utils';
 import { GaugeType, GaugeTypeNum } from 'src/types/gauge.types';
 import { PoolCreationConfig } from 'src/types/pool.types';
 import { ZERO, _require } from 'src/utils';
-import { getSignerAddress } from 'src/utils/account.util';
+import {
+  getDefaultChainProvider,
+  getSignerAddress,
+} from 'src/utils/account.util';
 import { ethNum } from 'src/utils/big-number.utils';
 import {
   getAllPoolsWithGauges,
+  getContractAddress,
   getGaugeController,
   getLiquidityGaugeFactory,
   getLiquidityGaugeInstance,
@@ -21,6 +25,7 @@ import {
   sleep,
 } from 'src/utils/transaction.utils';
 import { performAuthEntrypointAction } from '../auth/auth';
+import { Multicaller } from '../multicaller';
 import { updatePoolConfig, validatePoolConfig } from '../pools/pool.utils';
 
 export enum GaugeFeeType {
@@ -28,11 +33,64 @@ export enum GaugeFeeType {
   Withdraw,
 }
 
+export async function setGaugeWeightCap(address: string, cap: BigNumber) {
+  const gauge = await getLiquidityGaugeInstance(address);
+  await performAuthEntrypointAction(gauge, 'setRelativeWeightCap', [cap]);
+}
+
+export async function getGaugeWeights(timestamp: number) {
+  const gaugeController = await getGaugeController();
+  const { provider } = await getDefaultChainProvider();
+
+  const multi = new Multicaller(getContractAddress('Multicall'), provider, [
+    'function gauge_relative_weight(address, uint256) public view returns (uint256)',
+    'function get_gauge_weight(address) public view returns (uint256)',
+  ]);
+
+  const pools = await getAllPoolsWithGauges();
+  for (const pool of pools) {
+    const gauge = pool.gauge.address;
+    multi.call(
+      `${gauge}.relative`,
+      gaugeController.address,
+      'gauge_relative_weight',
+      [gauge, timestamp],
+    );
+
+    multi.call(`${gauge}.bias`, gaugeController.address, 'get_gauge_weight', [
+      gauge,
+    ]);
+  }
+
+  const result = await multi.execute();
+  const arr = Object.entries(result);
+  const biases = [];
+  let totalWeight = 0;
+  let veWeight = 0;
+  for (const data of arr) {
+    const [gauge, info] = data;
+    console.log(gauge);
+    biases.push(info.bias);
+    console.log('relative: ' + formatEther(info.relative));
+    const weight = ethNum(info.bias);
+    totalWeight += weight;
+    console.log('bias: ' + formatEther(info.bias));
+
+    if (gauge === '0x1DdAC329f570dF5d83DfAC1720828276Ca49b129') {
+      veWeight = weight;
+    }
+  }
+
+  return {
+    totalWeight,
+    veWeight,
+  };
+}
+
 /**
  * Caller should already be Vault authorized to call this function.
  * @param address
  * @param token
- * @param distributor
  */
 export async function addRewardTokenToGauge(
   gaugeAddress: string,
@@ -274,7 +332,12 @@ export async function checkpointGauge(address: string) {
   await doTransaction(controller.checkpoint_gauge(address));
 }
 
+/**
+ * Will checkpoint stakless gauge as well the gauge controller itself
+ */
 export async function checkpointAllGauges() {
+  await checkpointStakelessGauge();
+
   const pools = await getAllPoolsWithGauges();
   for (const pool of pools) {
     await checkpointGauge(pool.gauge.address);
@@ -290,4 +353,16 @@ export async function checkpointStakelessGauge() {
   const stakeless = await getSingleRecipientGauge();
   // Authorization was already given
   await performAuthEntrypointAction(stakeless, 'checkpoint');
+}
+
+export async function updateGaugeKillStatus(
+  address: string,
+  isKilled: boolean,
+) {
+  const gauge = await getLiquidityGaugeInstance(address);
+
+  await performAuthEntrypointAction(
+    gauge,
+    isKilled ? 'killGauge' : 'unkillGauge',
+  );
 }

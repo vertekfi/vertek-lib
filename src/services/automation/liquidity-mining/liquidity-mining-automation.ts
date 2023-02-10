@@ -16,6 +16,7 @@ export class LiquidityMiningAutomation {
 
   // Weekly after admins weekly epoch ticks over
   // Not doing this(can't depend on external parties) will cause the end total supply to increase
+  // @note Other contracts can trigger this. So may fail
   async updateMiningParameters() {
     const tokenAdmin = await getTokenAdmin();
 
@@ -36,9 +37,6 @@ export class LiquidityMiningAutomation {
   // Before end of each epoch
   async checkpointGauges() {
     await checkpointAllGauges();
-    // Checkpoint controller while we're at it then
-    const controller = await getGaugeController();
-    await doTransaction(controller.checkpoint());
   }
 
   // Before end of each epoch?
@@ -51,7 +49,11 @@ export class LiquidityMiningAutomation {
 
   // Start of each epoch week
   async checkpointFeeDistributor() {
-    const feeDistributor = await getFeeDistributor();
-    await doTransaction(feeDistributor.checkpoint());
+    await checkpointFeeDistributor();
   }
+}
+
+export async function checkpointFeeDistributor() {
+  const feeDistributor = await getFeeDistributor();
+  await doTransaction(feeDistributor.checkpoint());
 }
