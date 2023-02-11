@@ -66,6 +66,10 @@ export async function getVault() {
   return new Contract(getContractAddress('Vault'), Vaultbi, await getSigner());
 }
 
+export async function getVaultByAddress(address: string) {
+  return new Contract(address, Vaultbi, await getSigner());
+}
+
 export async function getBalMinter() {
   return new Contract(
     getContractAddress('BalancerMinter'),

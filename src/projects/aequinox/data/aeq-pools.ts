@@ -1,0 +1,55 @@
+export const AEQ_POOL_TOKENS = {
+  AEQ_BNB_APT: {
+    [5]: '0x3a103f8614a9616af0706a729949fec8a81df05b',
+    [56]: '0x7a09ddF458FdA6e324A97D1a8E4304856fb3e702',
+  },
+  TRI_STABLES: {
+    5: '',
+    56: '0xb3A07a9CeF918b2ccEC4bC85C6F2A7975c5E83f9',
+  },
+  BLUE_CHIPS: {
+    5: '',
+    56: '0x0256c70b89b3c0ed888b7b7d7767a701b2a67bea',
+  },
+  AMES_BUSD: {
+    5: '',
+    56: '0x9AA867870d5775A3C155325DB0cb0B116bbF4b6a',
+  },
+  BNB_BUSD: {
+    5: '',
+    56: '0x5bA2bc395b511ECf3f7c7F4f6C5dE3c5586239aE',
+  },
+  ASHARE_BUSD: {
+    5: '',
+    56: '0x74154c70F113C2B603aa49899371D05eeEDd1E8c',
+  },
+  WRAPPED_AALTO_BUSD: {
+    5: '',
+    56: '0xe53896c872b39fa3254262d18157447504b211de',
+  },
+  USDC_BNB: {
+    5: '',
+    56: '0x276ab884805581b8e537c11e4906d545b295052f',
+  },
+  TECHNICOLOR: {
+    5: '',
+    56: '0x835ff599b9388e4f733C165a15a93e736ebf91D3',
+  },
+  BLUECHIP_MAXI: {
+    5: '',
+    56: '0xe263e513395ee7d9b0228ad22824f1a860ff85cc',
+  },
+};
+
+export const AEQ_PARTNER_POOLS = {
+  LION: {
+    DAI_LSHARE: '0x950667ef678bae44ef037c721e564c365fc8303e',
+    DAI_LION: '0x090B21E811daE70c0A83cBceA04553e9df2D1511',
+    TRI_POOL: '0xD203730861d8e4be87a439934C9416c819240344',
+    SERENE_ETH: '0x7de5d717696ed640c9af3f2dbb069d71bf874bee',
+    PEBBLE_ETH: '0x016fcb8c8cb43bd0afb0be7486aadee49783487c',
+  },
+  BANDIT: {
+    DEFI_CITY: '0x9562b8bc2ff2f3993137827f2da79b23c7a10b42',
+  },
+};

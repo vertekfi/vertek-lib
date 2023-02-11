@@ -1,6 +1,11 @@
 import { config } from 'dotenv';
 import { BigNumber, Contract } from 'ethers';
-import { formatEther, parseEther, parseUnits } from 'ethers/lib/utils';
+import {
+  formatEther,
+  getAddress,
+  parseEther,
+  parseUnits,
+} from 'ethers/lib/utils';
 import { join } from 'path';
 import { calcOutGivenIn } from './math';
 import { updateWrappedAaltoFeeExempt } from './projects/aalto/services/admin.service';
@@ -34,8 +39,14 @@ import {
   doPoolInitJoin,
 } from './services/pools/pool-creation';
 import { getPoolConfig } from './services/pools/pool.utils';
+import { getVaultInstanceByAddress } from './services/vault/vault';
+import { getDefaultSingleTokenExitRequest } from './services/vault/vault-utils';
 import { GaugeTypeNum } from './types/gauge.types';
-import { getDefaultChainProvider, getSigner } from './utils/account.util';
+import {
+  getDefaultChainProvider,
+  getSigner,
+  getSignerAddress,
+} from './utils/account.util';
 import { getCurrentBlockTimestamp } from './utils/block.utils';
 import {
   getAllPoolsWithGauges,
@@ -53,6 +64,7 @@ import {
   getVotingEscrow,
   getWeightedPoolToken,
 } from './utils/contract.utils';
+import { getBalanceForToken } from './utils/token.utils';
 import {
   awaitTransactionComplete,
   doTransaction,
@@ -73,54 +85,34 @@ async function run() {
   // const data = await feesManager.getFeeCollectorNonZeroTokenBalances();
   // console.log(data);
 
-  const nextIndex = await getNextPoolIndex();
+  const poolId =
+    '0x016fcb8c8cb43bd0afb0be7486aadee49783487c00020000000000000000002d'; // PEBBLE-ETH
+  const pool = await getWeightedPoolToken(
+    '0x016fcb8c8cb43bd0afb0be7486aadee49783487c',
+  );
+  const aeqVault = await getVaultInstanceByAddress(
+    '0xEE1c8DbfBf958484c6a4571F5FB7b99B74A54AA7',
+  );
 
-  const pool = await getPoolConfig(nextIndex);
-  //
-  // await doPoolCreationSteps();
-  //
-  // await addRewardTokenToGauge(pool.gauge.address, getTokenAddress('AMES'));
-  // await sleep();
-  // await addRewardTokenToGauge(
-  //   pool.gauge.address,
-  //   getTokenAddress('LION_SHARE'),
-  // );
-  // await sleep();
-  // await addRewardTokenToGauge(pool.gauge.address, getTokenAddress('ASHARE'));
-  // await sleep();
-  // await addRewardTokenToGauge(pool.gauge.address, getTokenAddress('LION'));
-  // await sleep();
-  // await addRewardTokenToGauge(pool.gauge.address, getTokenAddress('SERENE'));
+  const [tokenInfo, devBalance] = await Promise.all([
+    aeqVault.getPoolTokens(poolId),
+    pool.balanceOf(await getSignerAddress()),
+  ]);
 
-  // await doGaugeRewardTokenDeposit(
-  //   pool.gauge.address,
-  //   getTokenAddress('AMES'),
-  //   parseEther('7000'),
-  // );
-  // await sleep();
-  // await doGaugeRewardTokenDeposit(
-  //   pool.gauge.address,
-  //   getTokenAddress('LION_SHARE'),
-  //   parseEther('1250'),
-  // );
-  // await sleep();
-  // await doGaugeRewardTokenDeposit(
-  //   pool.gauge.address,
-  //   getTokenAddress('ASHARE'),
-  //   parseEther('500'),
-  // );
-  // await sleep();
-  // await doGaugeRewardTokenDeposit(
-  //   pool.gauge.address,
-  //   getTokenAddress('LION'),
-  //   parseEther('2000'),
-  // );
-  // await sleep();
-  // await doGaugeRewardTokenDeposit(
-  //   pool.gauge.address,
-  //   getTokenAddress('SERENE'),
-  //   parseEther('5'),
-  // );
+  const tokenOut = getTokenAddress('ETH');
+  const exitRequest = getDefaultSingleTokenExitRequest(
+    tokenInfo.tokens,
+    devBalance,
+    tokenInfo.tokens.indexOf(tokenOut),
+  );
+
+  console.log(exitRequest);
+
+  console.log(formatEther(await getBalanceForToken(tokenOut)));
+
+  await aeqVault.exitPool(poolId, exitRequest);
+
+  console.log(formatEther(await getBalanceForToken(tokenOut)));
 }
 
 async function doPoolCreationSteps() {
