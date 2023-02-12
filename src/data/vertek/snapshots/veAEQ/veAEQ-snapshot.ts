@@ -5,7 +5,10 @@ import { subgraphService } from 'src/services/subgraphs/subgraph-client';
 import { getSigner } from 'src/utils/account.util';
 import { Contract } from 'ethers';
 import { formatEther, parseUnits } from 'ethers/lib/utils';
-import { CsvHeader, csvService } from 'src/services/csv.service';
+import {
+  CsvHeader,
+  csvService,
+} from 'src/services/standalone-utils/csv.service';
 
 const blockNumber = 22721125;
 const blockTimestamp = 1667430905;

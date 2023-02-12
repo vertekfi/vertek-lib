@@ -83,22 +83,9 @@ export function getStablePoolCreationArgs(
 export async function getPoolConfigPath() {
   return join(
     process.cwd(),
-    'src/data/vertek',
+    'src/data/vertek/pools/',
     `${CHAIN_KEYS[await getChainId()]}-pools.json`,
   );
-}
-
-export function getDexPoolDataConfigPath() {
-  return join(process.cwd(), 'src/data/vertek/pool-data-config.json');
-}
-
-export async function getDexPoolDataConfig(): Promise<ProtocolPoolDataConfig> {
-  const data = await fs.readJSON(getDexPoolDataConfigPath());
-  return data[String(await getChainId())];
-}
-
-export async function updateDexPoolDataConfig(data) {
-  await fs.writeJSON(getDexPoolDataConfigPath(), data);
 }
 
 export async function getAllPoolConfigs(): Promise<PoolCreationConfig[]> {

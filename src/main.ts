@@ -15,6 +15,7 @@ import {
   grantVaultAuthorizerPermissions,
   performAuthEntrypointAction,
 } from './services/auth/auth';
+import { doPoolFeeWithdraw } from './services/automation/fees/fee-action.utils';
 import { FeeManagementAutomation } from './services/automation/fees/fees-automation';
 import { checkpointFeeDistributor } from './services/automation/liquidity-mining/liquidity-mining-automation';
 import { ScheduledJobService } from './services/automation/scheduled-job.service';
@@ -39,7 +40,6 @@ import {
   doPoolInitJoin,
 } from './services/pools/pool-creation';
 import { getPoolConfig } from './services/pools/pool.utils';
-import { getVaultInstanceByAddress } from './services/vault/vault';
 import { getDefaultSingleTokenExitRequest } from './services/vault/vault-utils';
 import { GaugeTypeNum } from './types/gauge.types';
 import {
@@ -76,43 +76,16 @@ config({ path: join(process.cwd(), '.env') });
 async function run() {
   console.log('VertekFi run:');
   await runSetup();
-  //
 
   // await checkpointAllGauges();
   // await checkpointFeeDistributor();
 
-  // const feesManager = new FeeManagementAutomation();
-  // const data = await feesManager.getFeeCollectorNonZeroTokenBalances();
-  // console.log(data);
+  // TODO: ....All this shit is coming to a point of needing a UI.
+  // Scheduled automation is fine, but need to be able to see/save/do things on a "click" as well now
 
   const poolId =
     '0x016fcb8c8cb43bd0afb0be7486aadee49783487c00020000000000000000002d'; // PEBBLE-ETH
-  const pool = await getWeightedPoolToken(
-    '0x016fcb8c8cb43bd0afb0be7486aadee49783487c',
-  );
-  const aeqVault = await getVaultInstanceByAddress(
-    '0xEE1c8DbfBf958484c6a4571F5FB7b99B74A54AA7',
-  );
-
-  const [tokenInfo, devBalance] = await Promise.all([
-    aeqVault.getPoolTokens(poolId),
-    pool.balanceOf(await getSignerAddress()),
-  ]);
-
-  const tokenOut = getTokenAddress('ETH');
-  const exitRequest = getDefaultSingleTokenExitRequest(
-    tokenInfo.tokens,
-    devBalance,
-    tokenInfo.tokens.indexOf(tokenOut),
-  );
-
-  console.log(exitRequest);
-
-  console.log(formatEther(await getBalanceForToken(tokenOut)));
-
-  await aeqVault.exitPool(poolId, exitRequest);
-
-  console.log(formatEther(await getBalanceForToken(tokenOut)));
+  await doPoolFeeWithdraw(poolId);
 }
 
 async function doPoolCreationSteps() {

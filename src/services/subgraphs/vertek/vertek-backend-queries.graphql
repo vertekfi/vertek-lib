@@ -1,0 +1,55 @@
+query GetPool($id: String!) {
+  poolGetPool(id: $id) {
+    ...GqlPoolBaseFragment
+  }
+}
+
+query GetAllPools {
+  poolGetPools {
+    id
+  }
+}
+
+query AdminGetAllPendingFeeData {
+  adminGetAllPendingFeeData(onlyWithBalances: true) {
+    totalValueUSD
+    gauges {
+      totalValueUSD
+      values {
+        poolId
+        gauge
+        pendingPoolTokensFee
+        valueUSD
+      }
+    }
+
+    feeCollector {
+      totalValueUSD
+      values {
+        poolId
+        token
+        amount
+        valueUSD
+      }
+    }
+  }
+}
+
+fragment GqlPoolBaseFragment on GqlPoolBase {
+  id
+  name
+  symbol
+  address
+  decimals
+  # owner: Bytes
+  # factory: Bytes
+  # createTime: Int!
+  # investConfig: GqlPoolInvestConfig!
+  # withdrawConfig: GqlPoolWithdrawConfig!
+
+  # displayTokens: [GqlPoolTokenDisplay!]!
+  # allTokens: [GqlPoolTokenExpanded!]!
+
+  # dynamicData: GqlPoolDynamicData!
+  #staking: GqlPoolStaking
+}

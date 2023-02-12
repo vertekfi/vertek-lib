@@ -1,6 +1,9 @@
 import { join } from 'path';
 import * as fs from 'fs-extra';
-import { CsvHeader, csvService } from 'src/services/csv.service';
+import {
+  CsvHeader,
+  csvService,
+} from 'src/services/standalone-utils/csv.service';
 import { parseUnits } from 'ethers/lib/utils';
 import { stakeForUser } from 'src/services/gauges/voting-escrow';
 import { logger } from 'src/utils/logger';

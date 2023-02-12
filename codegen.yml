@@ -3,9 +3,9 @@ hooks:
   afterAllFileWrite:
     - prettier --write
 generates:
-  src/services/subgraphs/generated/balancer-subgraph-types.ts:
+  src/services/subgraphs/balancer/generated/balancer-subgraph-types.ts:
     schema: ${BALANCER_SUBGRAPH}
-    documents: 'src/services/subgraphs/balancer-subgraph-queries.graphql'
+    documents: 'src/services/subgraphs/balancer/balancer-subgraph-queries.graphql'
     plugins:
       - typescript
       - typescript-operations
@@ -15,9 +15,9 @@ generates:
         BigInt: string
         Bytes: string
         BigDecimal: string
-  src/services/subgraphs/generated/gauge-subgraph-types.ts:
+  src/services/subgraphs/gauges/generated/gauge-subgraph-types.ts:
     schema: ${GAUGES_SUBGRAPH}
-    documents: 'src/services/subgraphs/gauge-subgraph-queries.graphql'
+    documents: 'src/services/subgraphs/gauges/gauge-subgraph-queries.graphql'
     plugins:
       - typescript
       - typescript-operations
@@ -27,9 +27,9 @@ generates:
         BigInt: string
         Bytes: string
         BigDecimal: string
-  src/services/subgraphs/generated/vertek-subgraph-types.ts:
+  src/services/subgraphs/vertek/generated/vertek-subgraph-types.ts:
     schema: ${VERTEK_BACKEND_URL}
-    documents: 'src/services/subgraphs/vertek-backend-queries.graphql'
+    documents: 'src/services/subgraphs/vertek/vertek-backend-queries.graphql'
     plugins:
       - typescript
       - typescript-operations

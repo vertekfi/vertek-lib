@@ -1,5 +1,5 @@
 import { Contract } from 'ethers';
-import { CONTRACT_MAP } from 'src/data/vertek/contracts';
+import { CONTRACT_MAP } from 'src/data/vertek/addresses/contracts';
 
 import * as TokenAdminAbi from '../abis/BalancerTokenAdmin.json';
 import * as TimelockAuthAbi from '../abis/TimelockAuthorizer.json';
@@ -24,7 +24,7 @@ import { getChainId, getRpcProvider, getSigner } from './account.util';
 import { ERC20_ABI } from 'src/abis/ERC20ABI';
 import { TOKENS } from 'src/data/token';
 import { getAllPoolConfigs } from 'src/services/pools/pool.utils';
-import { Multicaller } from 'src/services/multicaller';
+import { Multicaller } from 'src/services/standalone-utils/multicaller';
 
 export async function getTokenAdmin() {
   return new Contract(
@@ -66,8 +66,12 @@ export async function getVault() {
   return new Contract(getContractAddress('Vault'), Vaultbi, await getSigner());
 }
 
-export async function getVaultByAddress(address: string) {
-  return new Contract(address, Vaultbi, await getSigner());
+export async function getVaultV1() {
+  return new Contract(
+    getContractAddress('Vault_V1'),
+    Vaultbi,
+    await getSigner(),
+  );
 }
 
 export async function getBalMinter() {
@@ -160,13 +164,13 @@ export function getContractAddress(contractName: string): string {
 
 /**
  * Gets a token address for the current chain id.
- * @param tokenName
+ * @param symbol
  * @returns
  */
-export function getTokenAddress(tokenName: string): string {
-  const address = TOKENS[tokenName] ? TOKENS[tokenName][getChainId()] : null;
+export function getTokenAddress(symbol: string): string {
+  const address = TOKENS[symbol] ? TOKENS[symbol][getChainId()] : null;
   if (!address) {
-    throw new Error(`No address for contract: ${tokenName}`);
+    throw new Error(`No address for contract: ${symbol}`);
   }
 
   return address;

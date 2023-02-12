@@ -1535,6 +1535,71 @@ export type VotingEscrowLock = {
   votingEscrowID: VotingEscrow;
 };
 
+export type GetPoolQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+export type GetPoolQuery = {
+  __typename?: 'Query';
+  poolGetPool:
+    | {
+        __typename?: 'GqlPoolElement';
+        id: string;
+        name: string;
+        symbol: string;
+        address: string;
+        decimals: number;
+      }
+    | {
+        __typename?: 'GqlPoolLinear';
+        id: string;
+        name: string;
+        symbol: string;
+        address: string;
+        decimals: number;
+      }
+    | {
+        __typename?: 'GqlPoolLiquidityBootstrapping';
+        id: string;
+        name: string;
+        symbol: string;
+        address: string;
+        decimals: number;
+      }
+    | {
+        __typename?: 'GqlPoolMetaStable';
+        id: string;
+        name: string;
+        symbol: string;
+        address: string;
+        decimals: number;
+      }
+    | {
+        __typename?: 'GqlPoolPhantomStable';
+        id: string;
+        name: string;
+        symbol: string;
+        address: string;
+        decimals: number;
+      }
+    | {
+        __typename?: 'GqlPoolStable';
+        id: string;
+        name: string;
+        symbol: string;
+        address: string;
+        decimals: number;
+      }
+    | {
+        __typename?: 'GqlPoolWeighted';
+        id: string;
+        name: string;
+        symbol: string;
+        address: string;
+        decimals: number;
+      };
+};
+
 export type GetAllPoolsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetAllPoolsQuery = {
@@ -1576,6 +1641,95 @@ export type AdminGetAllPendingFeeDataQuery = {
   };
 };
 
+type GqlPoolBaseFragment_GqlPoolElement_Fragment = {
+  __typename?: 'GqlPoolElement';
+  id: string;
+  name: string;
+  symbol: string;
+  address: string;
+  decimals: number;
+};
+
+type GqlPoolBaseFragment_GqlPoolLinear_Fragment = {
+  __typename?: 'GqlPoolLinear';
+  id: string;
+  name: string;
+  symbol: string;
+  address: string;
+  decimals: number;
+};
+
+type GqlPoolBaseFragment_GqlPoolLiquidityBootstrapping_Fragment = {
+  __typename?: 'GqlPoolLiquidityBootstrapping';
+  id: string;
+  name: string;
+  symbol: string;
+  address: string;
+  decimals: number;
+};
+
+type GqlPoolBaseFragment_GqlPoolMetaStable_Fragment = {
+  __typename?: 'GqlPoolMetaStable';
+  id: string;
+  name: string;
+  symbol: string;
+  address: string;
+  decimals: number;
+};
+
+type GqlPoolBaseFragment_GqlPoolPhantomStable_Fragment = {
+  __typename?: 'GqlPoolPhantomStable';
+  id: string;
+  name: string;
+  symbol: string;
+  address: string;
+  decimals: number;
+};
+
+type GqlPoolBaseFragment_GqlPoolStable_Fragment = {
+  __typename?: 'GqlPoolStable';
+  id: string;
+  name: string;
+  symbol: string;
+  address: string;
+  decimals: number;
+};
+
+type GqlPoolBaseFragment_GqlPoolWeighted_Fragment = {
+  __typename?: 'GqlPoolWeighted';
+  id: string;
+  name: string;
+  symbol: string;
+  address: string;
+  decimals: number;
+};
+
+export type GqlPoolBaseFragmentFragment =
+  | GqlPoolBaseFragment_GqlPoolElement_Fragment
+  | GqlPoolBaseFragment_GqlPoolLinear_Fragment
+  | GqlPoolBaseFragment_GqlPoolLiquidityBootstrapping_Fragment
+  | GqlPoolBaseFragment_GqlPoolMetaStable_Fragment
+  | GqlPoolBaseFragment_GqlPoolPhantomStable_Fragment
+  | GqlPoolBaseFragment_GqlPoolStable_Fragment
+  | GqlPoolBaseFragment_GqlPoolWeighted_Fragment;
+
+export const GqlPoolBaseFragmentFragmentDoc = gql`
+  fragment GqlPoolBaseFragment on GqlPoolBase {
+    id
+    name
+    symbol
+    address
+    decimals
+  }
+`;
+export const GetPoolDocument = gql`
+  query GetPool($id: String!) {
+    poolGetPool(id: $id) {
+      ...GqlPoolBaseFragment
+    }
+  }
+  ${GqlPoolBaseFragmentFragmentDoc}
+`;
 export const GetAllPoolsDocument = gql`
   query GetAllPools {
     poolGetPools {
@@ -1626,6 +1780,20 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper,
 ) {
   return {
+    GetPool(
+      variables: GetPoolQueryVariables,
+      requestHeaders?: Dom.RequestInit['headers'],
+    ): Promise<GetPoolQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<GetPoolQuery>(GetPoolDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'GetPool',
+        'query',
+      );
+    },
     GetAllPools(
       variables?: GetAllPoolsQueryVariables,
       requestHeaders?: Dom.RequestInit['headers'],

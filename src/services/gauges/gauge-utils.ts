@@ -25,7 +25,7 @@ import {
   sleep,
 } from 'src/utils/transaction.utils';
 import { performAuthEntrypointAction } from '../auth/auth';
-import { Multicaller } from '../multicaller';
+import { Multicaller } from '../standalone-utils/multicaller';
 import { updatePoolConfig, validatePoolConfig } from '../pools/pool.utils';
 
 export enum GaugeFeeType {

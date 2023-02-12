@@ -13,8 +13,8 @@ import { BigNumber } from 'ethers';
 import { getRpcProvider, getSignerAddress } from 'src/utils/account.util';
 import { formatEther, parseUnits } from 'ethers/lib/utils';
 import { join } from 'path';
-import { csvService } from 'src/services/csv.service';
-import { Multicaller } from 'src/services/multicaller';
+import { csvService } from 'src/services/standalone-utils/csv.service';
+import { Multicaller } from 'src/services/standalone-utils/multicaller';
 import { getAllPendingProtocolFees } from 'src/services/subgraphs/subgraph.utils';
 
 interface TokenFeeInfo {

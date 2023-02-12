@@ -1,2 +1,0 @@
-// Thursday, January 26 2024 00:00:00 UTC
-export const FEE_DIST_START_TIME = 1674691200; // 2023-01-26T00:00:00Z

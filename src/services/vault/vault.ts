@@ -1,6 +1,6 @@
 import { BigNumber, Contract } from 'ethers';
 import { getSignerAddress } from 'src/utils/account.util';
-import { getVault, getVaultByAddress } from 'src/utils/contract.utils';
+import { getVault, getVaultV1 } from 'src/utils/contract.utils';
 import { doTransaction } from 'src/utils/transaction.utils';
 import {
   ExitPoolRequest,
@@ -118,6 +118,6 @@ export async function getVaultInstance() {
   return new Vault(await getVault());
 }
 
-export async function getVaultInstanceByAddress(address: string) {
-  return new Vault(await getVaultByAddress(address));
+export async function getVaultInstanceV1() {
+  return new Vault(await getVaultV1());
 }

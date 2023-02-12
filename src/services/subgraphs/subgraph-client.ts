@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 import { GraphQLClient } from 'graphql-request';
 import { join } from 'path';
-import { SUBGRAPHS, SUBGRAPHS_V2 } from 'src/data/vertek/addresses';
+import { SUBGRAPHS, SUBGRAPHS_V2 } from 'src/data/vertek/addresses/addresses';
 import { getChainId } from 'src/utils/account.util';
 
 export class SubgraphClient {

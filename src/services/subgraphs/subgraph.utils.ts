@@ -38,3 +38,7 @@ export async function getAllPendingProtocolFees(): Promise<
 
   return adminGetAllPendingFeeData;
 }
+
+export async function getVertekPool(poolId: string) {
+  //
+}
