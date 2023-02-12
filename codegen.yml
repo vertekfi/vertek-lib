@@ -1,47 +1,41 @@
-schema: ${VERTEK_BACKEND_URL}
-documents:
-  - 'src/**/*.gql'
+overwrite: true
 hooks:
   afterAllFileWrite:
-    - 'prettier --write'
-
+    - prettier --write
 generates:
-  # Generates a full copy of the remote schema
-  apollo/generated/schema.graphql:
+  src/services/subgraphs/generated/balancer-subgraph-types.ts:
+    schema: ${BALANCER_SUBGRAPH}
+    documents: 'src/services/subgraphs/balancer-subgraph-queries.graphql'
     plugins:
-      - schema-ast
-
-  # Generates query and mutation documents
-  apollo/generated/operations.ts:
-    plugins:
-      - typescript-document-nodes
-
-  # Generates query and mutation types
-  apollo/generated/graphql-codegen-generated.ts:
-    plugins:
-      - add:
-          content: '/* tslint:disable */'
       - typescript
       - typescript-operations
+      - typescript-graphql-request
     config:
-      # Use interfaces where possible, instead of type aliases
-      declarationKind: 'interface'
-
-      # Generate nullable fields as Maybe<T> (instead of { field?: Maybe<T> })
-      #avoidOptionals: true
-
-      # Use string literal types instead of enums, for compatibility with omni types
-      enumsAsTypes: true
-
-      # __typename is always fetched, so don’t mark it as optional in generated types
-      nonOptionalTypename: true
-
-      # Inline field selections in generated types, instead of using Pick<>
-      preResolveTypes: true
-
-      # Give scalars definite types, rather than 'any'
       scalars:
-        BigInt: 'string'
-        BigDecimal: 'string'
-        Bytes: 'string'
-        AmountHumanReadable: 'string'
+        BigInt: string
+        Bytes: string
+        BigDecimal: string
+  src/services/subgraphs/generated/gauge-subgraph-types.ts:
+    schema: ${GAUGES_SUBGRAPH}
+    documents: 'src/services/subgraphs/gauge-subgraph-queries.graphql'
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-graphql-request
+    config:
+      scalars:
+        BigInt: string
+        Bytes: string
+        BigDecimal: string
+  src/services/subgraphs/generated/vertek-subgraph-types.ts:
+    schema: ${VERTEK_BACKEND_URL}
+    documents: 'src/services/subgraphs/vertek-backend-queries.graphql'
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-graphql-request
+    config:
+      scalars:
+        BigInt: string
+        Bytes: string
+        BigDecimal: string

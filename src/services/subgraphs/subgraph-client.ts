@@ -2,6 +2,7 @@ import { config } from 'dotenv';
 import { GraphQLClient } from 'graphql-request';
 import { join } from 'path';
 import { SUBGRAPHS, SUBGRAPHS_V2 } from 'src/data/vertek/addresses';
+import { getChainId } from 'src/utils/account.util';
 
 export class SubgraphClient {
   readonly gaugeClientV1: GraphQLClient;
@@ -12,16 +13,15 @@ export class SubgraphClient {
 
   constructor() {
     config({ path: join(process.cwd(), '.env') });
-    console.log(SUBGRAPHS_V2.GAUGES[parseInt(process.env.CHAIN_ID)]);
-    this.gaugeClientV2 = new GraphQLClient(
-      SUBGRAPHS_V2.GAUGES[parseInt(process.env.CHAIN_ID)],
-    );
+
+    this.gaugeClientV2 = new GraphQLClient(SUBGRAPHS_V2.GAUGES[getChainId()]);
+
     this.dexSubgraphClientV2 = new GraphQLClient(
-      SUBGRAPHS_V2.BAL[parseInt(process.env.CHAIN_ID)],
+      SUBGRAPHS_V2.BAL[getChainId()],
     );
-    this.gaugeClientV1 = new GraphQLClient(
-      SUBGRAPHS.GAUGES[parseInt(process.env.CHAIN_ID)],
-    );
+
+    this.gaugeClientV1 = new GraphQLClient(SUBGRAPHS.GAUGES[getChainId()]);
+
     this.vertekBackendClient = new GraphQLClient(
       process.env.VERTEK_BACKEND_URL,
       {

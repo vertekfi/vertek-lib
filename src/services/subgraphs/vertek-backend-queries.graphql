@@ -1,0 +1,30 @@
+query GetAllPools {
+  poolGetPools {
+    id
+  }
+}
+
+query AdminGetAllPendingFeeData {
+  adminGetAllPendingFeeData(onlyWithBalances: true) {
+    totalValueUSD
+    gauges {
+      totalValueUSD
+      values {
+        poolId
+        gauge
+        pendingPoolTokensFee
+        valueUSD
+      }
+    }
+
+    feeCollector {
+      totalValueUSD
+      values {
+        poolId
+        token
+        amount
+        valueUSD
+      }
+    }
+  }
+}
