@@ -58,7 +58,7 @@ export async function getAuthorizerAdapter() {
   );
 }
 
-export async function getGovToken() {
+export async function getVRTK() {
   return new Contract(getTokenAddress('VRTK'), GovTokenAbi, await getSigner());
 }
 
@@ -213,6 +213,17 @@ export async function getFeeDistributor() {
   return new Contract(
     getContractAddress('FeeDistributor'),
     FeeDistAbi,
+    await getSigner(),
+  );
+}
+
+export async function getBalTokenHolder() {
+  return new Contract(
+    getContractAddress('BalTokenHolder'),
+    [
+      'function getActionId(bytes4) public view returns (bytes32)',
+      'function withdrawFunds(address recipient, uint256 amount) external',
+    ],
     await getSigner(),
   );
 }

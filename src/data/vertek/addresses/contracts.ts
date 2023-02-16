@@ -45,15 +45,7 @@ export const CONTRACT_MAP = {
   WeightedFactoryHighFee: {
     56: '0xb9C7a581F0792d667beb684Bab1AF4FFFa14DA98',
   },
-  StablePoolFactory: {
-    5: '0x7FB72Bf3F5b7f994CC1563FDd47E9Edc13b6Be15',
-    // 56: '0x072a48eEADd2eb0E44A0A1Fd237A87F3CBF81bDa', // V1
-    56: '0x9e2850729A4d44B1D862bEDF7CE458d71F10aC37',
-  },
-  StablePhantomPoolFactory: {
-    5: '0x7B10Ff68C0b6feB8E1C72D8657eCDF4e1b29fFb8',
-    56: '0x072a48eEADd2eb0E44A0A1Fd237A87F3CBF81bDa',
-  },
+
   BalancerTokenAdmin: {
     5: '0xf4f37A6F5D836AB19f4C7Caf65c780108dB68e12',
     56: '0x8A935a7c86CA749aD1C6fD7dAA0A916A0ACF8bF8', // block 25101885 (Jan-25-2023 08:43:47 PM +UTC)
@@ -107,9 +99,22 @@ export const CONTRACT_MAP = {
     5: '',
     56: '',
   },
+  StablePoolFactory: {
+    5: '0x7FB72Bf3F5b7f994CC1563FDd47E9Edc13b6Be15',
+    // 56: '0x072a48eEADd2eb0E44A0A1Fd237A87F3CBF81bDa', // V1
+    56: '0x9e2850729A4d44B1D862bEDF7CE458d71F10aC37',
+  },
+  StablePhantomPoolFactory: {
+    5: '0x7B10Ff68C0b6feB8E1C72D8657eCDF4e1b29fFb8',
+    56: '0x072a48eEADd2eb0E44A0A1Fd237A87F3CBF81bDa',
+  },
   MetaStablePoolFactory: {
     5: '',
-    56: '',
+    56: '0x1Af7cB48ACa54a3d94929204e7961B356FCA8636',
+  },
+  QueryProcessor: {
+    5: '',
+    56: '0x0ab5941D13c04A6Fa1c4F3F0a500d0c827145aDC',
   },
   ERC4626LinearPoolFactory: {
     5: '',
@@ -141,10 +146,6 @@ export const CONTRACT_MAP = {
     56: '',
   },
   RewardBridge: {
-    5: '',
-    56: '',
-  },
-  QueryProcessor: {
     5: '',
     56: '',
   },

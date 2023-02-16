@@ -16,6 +16,7 @@ import {
   getLiquidityGaugeInstance,
   getMulticaller,
   getSingleRecipientGauge,
+  getVRTK,
 } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import { approveTokensIfNeeded } from 'src/utils/token.utils';
@@ -62,7 +63,7 @@ export async function getGaugeWeights(timestamp: number) {
     ]);
   }
 
-  const result = await multi.execute();
+  const result = await multi.execute('getGaugeWeights');
   const arr = Object.entries(result);
   const biases = [];
   let totalWeight = 0;
@@ -215,6 +216,17 @@ export async function addGaugeTypeToController(
   ]);
 }
 
+export async function changeGaugeTypeWeight(
+  type: GaugeTypeNum,
+  weight: number,
+) {
+  const gaugeController = await getGaugeController();
+  await performAuthEntrypointAction(gaugeController, 'change_type_weight', [
+    type,
+    weight,
+  ]);
+}
+
 export async function updateGaugeFee(
   gaugeAddress: string,
   feeType: GaugeFeeType,
@@ -314,7 +326,7 @@ export async function getAllGaugePendingProtocolFees() {
 
   const result = await multicall.execute<
     Record<string, { pendingFees: BigNumber }>
-  >();
+  >('getAllGaugePendingProtocolFees');
   return Object.entries(result).map((feeInfo) => {
     const gaugeAddress = feeInfo[0];
     const pool = pools.find((p) => p.gauge.address === gaugeAddress);
@@ -333,10 +345,10 @@ export async function checkpointGauge(address: string) {
 }
 
 /**
- * Will checkpoint stakless gauge as well the gauge controller itself
+ * Will checkpoint the stakelesss and gauge controller itself also
  */
 export async function checkpointAllGauges() {
-  await checkpointStakelessGauge();
+  // await checkpointStakelessGauge();
 
   const pools = await getAllPoolsWithGauges();
   for (const pool of pools) {
@@ -344,15 +356,31 @@ export async function checkpointAllGauges() {
     await sleep();
   }
 
+  await checkpointGaugeController();
+}
+
+export async function checkpointGaugeController() {
   const controller = await getGaugeController();
   await doTransaction(controller.checkpoint());
 }
 
 // Has it's own internal concerns from other gauges and needs to be checkpointed by itself
 export async function checkpointStakelessGauge() {
+  const vrtk = await getVRTK();
+  console.log(
+    `token holder balance: ${formatEther(
+      await vrtk.balanceOf(getContractAddress('BalTokenHolder')),
+    )}`,
+  );
   const stakeless = await getSingleRecipientGauge();
   // Authorization was already given
   await performAuthEntrypointAction(stakeless, 'checkpoint');
+  await sleep();
+  console.log(
+    `token holder balance: ${formatEther(
+      await vrtk.balanceOf(getContractAddress('BalTokenHolder')),
+    )}`,
+  );
 }
 
 export async function updateGaugeKillStatus(

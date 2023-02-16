@@ -1,7 +1,10 @@
 import { BigNumber } from 'ethers';
 import { formatEther } from 'ethers/lib/utils';
+import { Multicaller } from 'src/services/standalone-utils/multicaller';
+import { GqlProtocolFeesCollectorAmounts } from 'src/services/subgraphs/vertek/generated/vertek-subgraph-types';
+import { getRpcProvider, getSignerAddress } from './account.util';
 import { MAX_UINT256 } from './constants';
-import { getERC20 } from './contract.utils';
+import { getContractAddress, getERC20 } from './contract.utils';
 import { logger } from './logger';
 import { awaitTransactionComplete } from './transaction.utils';
 
@@ -26,6 +29,40 @@ export async function approveTokensIfNeeded(
   } catch (error) {
     throw error;
   }
+}
+
+export async function getAccountTokenBalances(
+  addressMap: { address: string }[],
+  who: string,
+  onlyNonZeroBalance = true,
+) {
+  const multicall = new Multicaller(
+    getContractAddress('Multicall'),
+    await getRpcProvider(),
+    ['function balanceOf(address) public view returns (uint256)'],
+  );
+
+  addressMap.forEach((d) =>
+    multicall.call(`${d.address}.balanceBN`, d.address, 'balanceOf', [who]),
+  );
+
+  const balances = await multicall.execute<
+    Record<string, { balanceBN: BigNumber }>
+  >('getAccountPoolTokenBalances');
+
+  const data = onlyNonZeroBalance
+    ? Object.entries(balances).filter((bal) => !bal[1].balanceBN.isZero())
+    : Object.entries(balances);
+
+  const mapped = data.map((bal) => {
+    return {
+      address: bal[0],
+      balanceBN: bal[1].balanceBN,
+      balance: formatEther(bal[1].balanceBN),
+    };
+  });
+
+  return mapped;
 }
 
 export async function getBalanceForToken(token: string, who?: string) {

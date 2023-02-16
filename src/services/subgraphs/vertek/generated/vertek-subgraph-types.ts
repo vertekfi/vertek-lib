@@ -874,6 +874,7 @@ export type GqlPoolWithdrawOption = {
 export type GqlProtocolFeesCollectorAmounts = {
   __typename?: 'GqlProtocolFeesCollectorAmounts';
   amount: Scalars['String'];
+  poolAddress: Scalars['String'];
   poolId: Scalars['String'];
   poolName: Scalars['String'];
   token: Scalars['String'];
@@ -1622,6 +1623,7 @@ export type AdminGetAllPendingFeeDataQuery = {
       values: Array<{
         __typename?: 'GqlProtocolPendingGaugeFee';
         poolId: string;
+        poolAddress: string;
         gauge: string;
         pendingPoolTokensFee: number;
         valueUSD: number;
@@ -1633,6 +1635,7 @@ export type AdminGetAllPendingFeeDataQuery = {
       values: Array<{
         __typename?: 'GqlProtocolFeesCollectorAmounts';
         poolId: string;
+        poolAddress: string;
         token: string;
         amount: string;
         valueUSD: string;
@@ -1745,6 +1748,7 @@ export const AdminGetAllPendingFeeDataDocument = gql`
         totalValueUSD
         values {
           poolId
+          poolAddress
           gauge
           pendingPoolTokensFee
           valueUSD
@@ -1754,6 +1758,7 @@ export const AdminGetAllPendingFeeDataDocument = gql`
         totalValueUSD
         values {
           poolId
+          poolAddress
           token
           amount
           valueUSD

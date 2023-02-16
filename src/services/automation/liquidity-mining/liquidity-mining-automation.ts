@@ -1,14 +1,20 @@
+import { formatEther } from 'ethers/lib/utils';
 import { performAuthEntrypointAction } from 'src/services/auth/auth';
 import { checkpointAllGauges } from 'src/services/gauges/gauge-utils';
 import { ChainProvider } from 'src/types/account.types';
 import { _require } from 'src/utils';
+import { getSignerAddress } from 'src/utils/account.util';
 import { getCurrentBlockTimestamp } from 'src/utils/block.utils';
 import {
+  getBalTokenHolder,
+  getContractAddress,
   getFeeDistributor,
   getGaugeController,
   getSingleRecipientGauge,
   getTokenAdmin,
+  getVRTK,
 } from 'src/utils/contract.utils';
+import { logger } from 'src/utils/logger';
 import { doTransaction } from 'src/utils/transaction.utils';
 
 export class LiquidityMiningAutomation {
@@ -39,7 +45,7 @@ export class LiquidityMiningAutomation {
     await checkpointAllGauges();
   }
 
-  // Before end of each epoch?
+  // At the start of a new epoch this should claim it's rewards (if it was checkpointed in last epoch)
   async checkpointStakelessGauge() {
     await performAuthEntrypointAction(
       await getSingleRecipientGauge(),
@@ -53,7 +59,29 @@ export class LiquidityMiningAutomation {
   }
 }
 
+// Will checkpoint voting escrow in the process
 export async function checkpointFeeDistributor() {
   const feeDistributor = await getFeeDistributor();
   await doTransaction(feeDistributor.checkpoint());
+}
+
+export async function withdrawTokenHolderBalance() {
+  const vrtk = await getVRTK();
+  const holderBalance = await vrtk.balanceOf(
+    getContractAddress('BalTokenHolder'),
+  );
+  const devAddress = await getSignerAddress();
+  const devAccountBalance = await vrtk.balanceOf(devAddress);
+  logger.info(`token holder balance: ${formatEther(holderBalance)}`);
+
+  logger.info(`dev account balance: ${formatEther(devAccountBalance)}`);
+
+  const tokenHolder = await getBalTokenHolder();
+  await doTransaction(
+    tokenHolder.withdrawFunds(await getSignerAddress(), holderBalance),
+  );
+
+  logger.success(
+    `new dev account balance: ${formatEther(await vrtk.balanceOf(devAddress))}`,
+  );
 }

@@ -7,7 +7,7 @@ import {
   getBalMinter,
   getContractAddress,
   getERC20,
-  getGovToken,
+  getVRTK,
   getTimelockAuthorizer,
   getTokenAddress,
   getTokenAdmin,
@@ -85,7 +85,7 @@ export async function setupTokenAdminBeforeActivation() {
     ]),
   );
 
-  const govToken = await getGovToken();
+  const govToken = await getVRTK();
   await awaitTransactionComplete(
     govToken.grantRole(ZERO_BYTES32, tokenAdmin.address),
   );

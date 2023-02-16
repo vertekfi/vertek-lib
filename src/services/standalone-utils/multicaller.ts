@@ -40,7 +40,10 @@ export class Multicaller {
     return this;
   }
 
-  async execute<T extends Record<string, any>>(from = {}): Promise<T> {
+  async execute<T extends Record<string, any>>(
+    callId: string,
+    from = {},
+  ): Promise<T> {
     const obj = from;
     // not print the full exception for now, not polluting the log too much
     try {
@@ -50,6 +53,7 @@ export class Multicaller {
       });
     } catch (err) {
       console.log('multicall error', err);
+      console.log(`callIdL ${callId}`);
       throw `Non-stacktrace multicall error`;
     }
     this.calls = [];

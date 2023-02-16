@@ -1,12 +1,18 @@
 import { join } from 'path';
 import * as fs from 'fs-extra';
 import { FeePoolWithdrawConfig } from './fee.types';
-import { vertekBackendClient } from 'src/services/subgraphs/vertek/vertek-backend-gql-client';
+import {
+  GqlProtocolFeesCollectorAmounts,
+  GqlProtocolPendingGaugeFee,
+} from 'src/services/subgraphs/vertek/generated/vertek-subgraph-types';
+import { logger } from 'src/utils/logger';
 
-const feePoolConfigPath = join(
-  process.cwd(),
-  'src/data/vertek/fees/fee-automation.config.json',
-);
+const basePath = join(process.cwd(), 'src/data/vertek/fees/');
+
+const feePoolConfigPath = join(basePath, 'fee-automation.config.json');
+
+const gaugeFeeDataPath = join(basePath, 'gauges');
+const poolsFeeDataPath = join(basePath, 'pool-fees');
 
 export function getFeePoolConfigs(): FeePoolWithdrawConfig[] {
   return fs.readJSONSync(feePoolConfigPath);
@@ -34,4 +40,22 @@ function getConfig(configs: FeePoolWithdrawConfig[], poolId: string) {
   }
 
   return instance;
+}
+
+export function saveGaugeFeesData(data: any[]) {
+  fs.writeJSONSync(join(gaugeFeeDataPath, `${Date.now()}.json`), {
+    datetime: new Date().toUTCString(),
+    data,
+  });
+
+  logger.success(`saveGaugeFeesData complete`);
+}
+
+export function saveProtocolFeesData(data: GqlProtocolFeesCollectorAmounts[]) {
+  fs.writeJSONSync(join(poolsFeeDataPath, `${Date.now()}.json`), {
+    datetime: new Date().toUTCString(),
+    data,
+  });
+
+  logger.success(`saveProtocolFeesData complete`);
 }
