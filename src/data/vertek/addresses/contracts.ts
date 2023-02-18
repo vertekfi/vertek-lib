@@ -99,6 +99,12 @@ export const CONTRACT_MAP = {
     5: '',
     56: '',
   },
+  ComposableStablePoolFactoryV3: {
+    56: '0xfD50F5eAd870bdCFa69940c41a5C10f015b419e7',
+  },
+  ComposableStablePool: {
+    56: '0x93C9655dD045cd7f5255354cC6F95e21c0C6520f',
+  },
   StablePoolFactory: {
     5: '0x7FB72Bf3F5b7f994CC1563FDd47E9Edc13b6Be15',
     // 56: '0x072a48eEADd2eb0E44A0A1Fd237A87F3CBF81bDa', // V1
