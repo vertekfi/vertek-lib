@@ -6,165 +6,317 @@
       "poolAddress": "0x0db861235c7b90d419a64e1f71b3687db74d4477",
       "gauge": "70-ASHARE-30-BUSD-gauge",
       "gaugeAddress": "0xE7A9d3F14A19E6CF1C482aB0e8c7aE40b40a61c0",
-      "amount": "442.35126068145547",
-      "valueUSD": "478.2749466622511"
+      "amount": 442.35126068145547,
+      "valueUSD": 478.2749466622511
     },
     {
       "poolId": "0x188a9e5a09bffbacb6712957e9dd06fec6b3eda900020000000000000000000f",
       "poolAddress": "0x188a9e5a09bffbacb6712957e9dd06fec6b3eda9",
       "gauge": "50USDC-50BNB-gauge",
       "gaugeAddress": "0x2837b3A08Cbfc3Eb3E1FFe363Fb1E443667e287f",
-      "amount": "0",
-      "valueUSD": "0"
+      "amount": 0,
+      "valueUSD": 0
     },
     {
       "poolId": "0x248d943b9d59c4be35d41b34f79370dfbf577b2b000200000000000000000002",
       "poolAddress": "0x248d943b9d59c4be35d41b34f79370dfbf577b2b",
       "gauge": "80-AMES-20-BUSD-gauge",
       "gaugeAddress": "0x2dA4D175C614Fd758ecB90c5338458467dE869E4",
-      "amount": "3873.990281546",
-      "valueUSD": "510.292647626235"
+      "amount": 3873.990281546,
+      "valueUSD": 510.292647626235
     },
     {
       "poolId": "0x25b7dcdccaab62f4cacef8bc9ae20553eb1d9164000000000000000000000008",
       "poolAddress": "0x25b7dcdccaab62f4cacef8bc9ae20553eb1d9164",
       "gauge": "BUSD-USDC-USDT-gauge",
       "gaugeAddress": "0xfB1B49d41E64D44eE5ab69cD6aC8576213CE2223",
-      "amount": "0",
-      "valueUSD": "0"
+      "amount": 0,
+      "valueUSD": 0
     },
     {
       "poolId": "0x30d26ebd25b2719c43cbae3fb67fb1e17c789520000100000000000000000013",
       "poolAddress": "0x30d26ebd25b2719c43cbae3fb67fb1e17c789520",
       "gauge": "33ETH-33BTCB-33BNB-gauge",
       "gaugeAddress": "0xe05DE828EedCe4c4cAa532750F8f0d95a0Fd094e",
-      "amount": "0",
-      "valueUSD": "0"
+      "amount": 0,
+      "valueUSD": 0
     },
     {
       "poolId": "0x32934c1122c0d7b0fc3daab588a4490b53c1568c00020000000000000000000e",
       "poolAddress": "0x32934c1122c0d7b0fc3daab588a4490b53c1568c",
       "gauge": "70SRN-30ETH-gauge",
       "gaugeAddress": "0x9E7dF5b7B29d46B10C28b4AB5fb0E7b6A4ffAE55",
-      "amount": "0.8852816448110864",
-      "valueUSD": "203.40289442543943"
+      "amount": 0.8852816448110864,
+      "valueUSD": 203.40289442543943
     },
     {
       "poolId": "0x3700d8fadab83c14371d3f58d122d0c7f832e63f00020000000000000000000b",
       "poolAddress": "0x3700d8fadab83c14371d3f58d122d0c7f832e63f",
       "gauge": "50SWORD-50ETH-gauge",
       "gaugeAddress": "0x148708d34F797473Cad01AC113CFD4208a57C081",
-      "amount": "0",
-      "valueUSD": "0"
+      "amount": 0,
+      "valueUSD": 0
     },
     {
       "poolId": "0x64bf08fac067b25c77967affafce73760d8d0bdf000200000000000000000011",
       "poolAddress": "0x64bf08fac067b25c77967affafce73760d8d0bdf",
       "gauge": "50UP-50BUSD-gauge",
       "gaugeAddress": "0xFf71E6499f492Ce41c84Eefbf727774165dC5aBa",
-      "amount": "1811.6673123051846",
-      "valueUSD": "1910.2203312485435"
+      "amount": 1811.6673123051846,
+      "valueUSD": 1910.2203312485435
     },
     {
       "poolId": "0x6e30ec031f2d94c397e469b40f86bff0be014124000200000000000000000006",
       "poolAddress": "0x6e30ec031f2d94c397e469b40f86bff0be014124",
       "gauge": "70LSHARE-30DAI-gauge",
       "gaugeAddress": "0x9C4e2444d40508dF540466cCBD83855e39E5972B",
-      "amount": "595.7637871868193",
-      "valueUSD": "255.2444207112388"
+      "amount": 595.7637871868193,
+      "valueUSD": 255.2444207112388
     },
     {
       "poolId": "0x6f1a24488736d0a45d5cb9079bc3ce328b9c8254000200000000000000000009",
       "poolAddress": "0x6f1a24488736d0a45d5cb9079bc3ce328b9c8254",
       "gauge": "50BUSD-50BNB-gauge",
       "gaugeAddress": "0xC32389561da25C3AD66aBd55A2db0B6172F9C759",
-      "amount": "0",
-      "valueUSD": "0"
+      "amount": 0,
+      "valueUSD": 0
     },
     {
       "poolId": "0x7278a73af8c788af1e2f53b7bcc138b4f641be3500010000000000000000000c",
       "poolAddress": "0x7278a73af8c788af1e2f53b7bcc138b4f641be35",
       "gauge": "70SHDB-15CHAM-15BNB-gauge",
       "gaugeAddress": "0xb49e0053C1d6ccF4250FCD21F3906f624727b722",
-      "amount": "0",
-      "valueUSD": "0"
+      "amount": 0,
+      "valueUSD": 0
     },
     {
       "poolId": "0x8e15953eba7d5f8f99853d8f3cb64fc73b3ba770000200000000000000000003",
       "poolAddress": "0x8e15953eba7d5f8f99853d8f3cb64fc73b3ba770",
       "gauge": "70LION-30DAI-gauge",
       "gaugeAddress": "0xb5c57d37cc7cCEC7Cf22836A087DEC280daB99f5",
-      "amount": "371.9465406393068",
-      "valueUSD": "102.06499075877072"
+      "amount": 371.9465406393068,
+      "valueUSD": 102.06499075877072
     },
     {
       "poolId": "0x9ee22f8b21b53323ae34d153e475aea6363b3ba7000100000000000000000017",
       "poolAddress": "0x9ee22f8b21b53323ae34d153e475aea6363b3ba7",
       "gauge": "50VRTK-25ETH-25BTC-gauge",
       "gaugeAddress": "0x9DAb43a1D850eC820C88a19561C1fD87dEC09193",
-      "amount": "2.657101495520657",
-      "valueUSD": "194.82240956350756"
+      "amount": 2.657101495520657,
+      "valueUSD": 194.82240956350756
     },
     {
       "poolId": "0xa237bd3b190f12661ed838033b7228e7dc9c78d8000100000000000000000014",
       "poolAddress": "0xa237bd3b190f12661ed838033b7228e7dc9c78d8",
       "gauge": "60MAGIC-20FTM-20BNB-gauge",
       "gaugeAddress": "0xEAaECFEc3DC43c1702A477D8CbC7c92749adCD87",
-      "amount": "0",
-      "valueUSD": "0"
+      "amount": 0,
+      "valueUSD": 0
     },
     {
       "poolId": "0xae42be6a9f75a2b53229e262e0488df6ecfeb53a000200000000000000000012",
       "poolAddress": "0xae42be6a9f75a2b53229e262e0488df6ecfeb53a",
       "gauge": "80PEBBLE-20ETH-gauge",
       "gaugeAddress": "0x7916972323a4e881eF4b12c6c6AED6e0C5C6377E",
-      "amount": "39.07887363659345",
-      "valueUSD": "474.3168137706298"
+      "amount": 39.07887363659345,
+      "valueUSD": 474.3168137706298
     },
     {
       "poolId": "0xcf61cf9654f5536b8d6c93f09a0308ff3c2650f9000200000000000000000015",
       "poolAddress": "0xcf61cf9654f5536b8d6c93f09a0308ff3c2650f9",
       "gauge": "wAALTO-BUSD-gauge",
       "gaugeAddress": "0x355827abb16998a07700FAF52AeE09f2b01Fad4C",
-      "amount": "2556.8709800156075",
-      "valueUSD": "171.28942606182508"
+      "amount": 2556.8709800156075,
+      "valueUSD": 171.28942606182508
     },
     {
       "poolId": "0xdb043d8a95ad4d3ae0be21a6b34484a345c93481000200000000000000000016",
       "poolAddress": "0xdb043d8a95ad4d3ae0be21a6b34484a345c93481",
       "gauge": "50VRTK-50BUSD-gauge",
       "gaugeAddress": "0x8601DFCeE55E9e238f7ED7c42f8E46a7779e3f6f",
-      "amount": "118.67042856727583",
-      "valueUSD": "118.40957439946602"
+      "amount": 118.67042856727583,
+      "valueUSD": 118.40957439946602
     },
     {
       "poolId": "0xdd64e2ec144571b4320f7bfb14a56b2b2cbf37ad000200000000000000000000",
       "poolAddress": "0xdd64e2ec144571b4320f7bfb14a56b2b2cbf37ad",
       "token": "0xdd64e2ec144571b4320f7bfb14a56b2b2cbf37ad",
-      "amount": "33000",
-      "valueUSD": "26400"
+      "amount": 33000,
+      "valueUSD": 26400
     },
     {
       "poolId": "0xff99c17b4d778afaa6d80f59111a96178c71f59f000000000000000000000007",
       "poolAddress": "0xff99c17b4d778afaa6d80f59111a96178c71f59f",
       "gauge": "BUSD-DAI-TUSD-FRAX-gauge",
       "gaugeAddress": "0x35756EB391B93Fe3457aC4A7fae198552AC3AC28",
-      "amount": "0",
-      "valueUSD": "0"
+      "amount": 0,
+      "valueUSD": 0
     },
     {
       "poolId": "0x74154c70f113c2b603aa49899371d05eeedd1e8c000200000000000000000003",
       "poolAddress": "0x74154c70f113c2b603aa49899371d05eeedd1e8c",
       "token": "0x74154c70f113c2b603aa49899371d05eeedd1e8c",
-      "amount": "0",
-      "valueUSD": "0"
+      "amount": 0,
+      "valueUSD": 0
     },
     {
       "poolId": "0xb3a07a9cef918b2ccec4bc85c6f2a7975c5e83f9000000000000000000000001",
       "poolAddress": "0xb3a07a9cef918b2ccec4bc85c6f2a7975c5e83f9",
       "token": "0xb3a07a9cef918b2ccec4bc85c6f2a7975c5e83f9",
-      "amount": "0",
-      "valueUSD": "0"
+      "amount": 0,
+      "valueUSD": 0
+    },
+    {
+      "poolId": "0x0db861235c7b90d419a64e1f71b3687db74d4477000200000000000000000001",
+      "poolAddress": "0x0db861235c7b90d419a64e1f71b3687db74d4477",
+      "gauge": "70-ASHARE-30-BUSD-gauge",
+      "gaugeAddress": "0xE7A9d3F14A19E6CF1C482aB0e8c7aE40b40a61c0",
+      "pendingPoolTokensFee": 441.832944047345,
+      "valueUSD": 477.71453713577785
+    },
+    {
+      "poolId": "0x188a9e5a09bffbacb6712957e9dd06fec6b3eda900020000000000000000000f",
+      "poolAddress": "0x188a9e5a09bffbacb6712957e9dd06fec6b3eda9",
+      "gauge": "50USDC-50BNB-gauge",
+      "gaugeAddress": "0x2837b3A08Cbfc3Eb3E1FFe363Fb1E443667e287f",
+      "pendingPoolTokensFee": 0,
+      "valueUSD": 0
+    },
+    {
+      "poolId": "0x248d943b9d59c4be35d41b34f79370dfbf577b2b000200000000000000000002",
+      "poolAddress": "0x248d943b9d59c4be35d41b34f79370dfbf577b2b",
+      "gauge": "80-AMES-20-BUSD-gauge",
+      "gaugeAddress": "0x2dA4D175C614Fd758ecB90c5338458467dE869E4",
+      "pendingPoolTokensFee": 3873.317542928827,
+      "valueUSD": 510.2040326465452
+    },
+    {
+      "poolId": "0x25b7dcdccaab62f4cacef8bc9ae20553eb1d9164000000000000000000000008",
+      "poolAddress": "0x25b7dcdccaab62f4cacef8bc9ae20553eb1d9164",
+      "gauge": "BUSD-USDC-USDT-gauge",
+      "gaugeAddress": "0xfB1B49d41E64D44eE5ab69cD6aC8576213CE2223",
+      "pendingPoolTokensFee": 0,
+      "valueUSD": 0
+    },
+    {
+      "poolId": "0x30d26ebd25b2719c43cbae3fb67fb1e17c789520000100000000000000000013",
+      "poolAddress": "0x30d26ebd25b2719c43cbae3fb67fb1e17c789520",
+      "gauge": "33ETH-33BTCB-33BNB-gauge",
+      "gaugeAddress": "0xe05DE828EedCe4c4cAa532750F8f0d95a0Fd094e",
+      "pendingPoolTokensFee": 0,
+      "valueUSD": 0
+    },
+    {
+      "poolId": "0x32934c1122c0d7b0fc3daab588a4490b53c1568c00020000000000000000000e",
+      "poolAddress": "0x32934c1122c0d7b0fc3daab588a4490b53c1568c",
+      "gauge": "70SRN-30ETH-gauge",
+      "gaugeAddress": "0x9E7dF5b7B29d46B10C28b4AB5fb0E7b6A4ffAE55",
+      "pendingPoolTokensFee": 0.4882090495759451,
+      "valueUSD": 112.17123313296611
+    },
+    {
+      "poolId": "0x3700d8fadab83c14371d3f58d122d0c7f832e63f00020000000000000000000b",
+      "poolAddress": "0x3700d8fadab83c14371d3f58d122d0c7f832e63f",
+      "gauge": "50SWORD-50ETH-gauge",
+      "gaugeAddress": "0x148708d34F797473Cad01AC113CFD4208a57C081",
+      "pendingPoolTokensFee": 0,
+      "valueUSD": 0
+    },
+    {
+      "poolId": "0x5deb10ed6a66a1e6188b7925a723b6bdfd97476500020000000000000000000a",
+      "poolAddress": "0x5deb10ed6a66a1e6188b7925a723b6bdfd974765",
+      "gauge": "80wAALTO-20BUSD-gauge",
+      "gaugeAddress": "0xacF489Bf54F6CC6bB8b910179Ee8509d19A738BA",
+      "pendingPoolTokensFee": 0,
+      "valueUSD": 0
+    },
+    {
+      "poolId": "0x64bf08fac067b25c77967affafce73760d8d0bdf000200000000000000000011",
+      "poolAddress": "0x64bf08fac067b25c77967affafce73760d8d0bdf",
+      "gauge": "50UP-50BUSD-gauge",
+      "gaugeAddress": "0xFf71E6499f492Ce41c84Eefbf727774165dC5aBa",
+      "pendingPoolTokensFee": 1811.1256748274873,
+      "valueUSD": 1909.6492291951831
+    },
+    {
+      "poolId": "0x6e30ec031f2d94c397e469b40f86bff0be014124000200000000000000000006",
+      "poolAddress": "0x6e30ec031f2d94c397e469b40f86bff0be014124",
+      "gauge": "70LSHARE-30DAI-gauge",
+      "gaugeAddress": "0x9C4e2444d40508dF540466cCBD83855e39E5972B",
+      "pendingPoolTokensFee": 595.3968051948443,
+      "valueUSD": 255.08719379015415
+    },
+    {
+      "poolId": "0x6f1a24488736d0a45d5cb9079bc3ce328b9c8254000200000000000000000009",
+      "poolAddress": "0x6f1a24488736d0a45d5cb9079bc3ce328b9c8254",
+      "gauge": "50BUSD-50BNB-gauge",
+      "gaugeAddress": "0xC32389561da25C3AD66aBd55A2db0B6172F9C759",
+      "pendingPoolTokensFee": 0,
+      "valueUSD": 0
+    },
+    {
+      "poolId": "0x7278a73af8c788af1e2f53b7bcc138b4f641be3500010000000000000000000c",
+      "poolAddress": "0x7278a73af8c788af1e2f53b7bcc138b4f641be35",
+      "gauge": "70SHDB-15CHAM-15BNB-gauge",
+      "gaugeAddress": "0xb49e0053C1d6ccF4250FCD21F3906f624727b722",
+      "pendingPoolTokensFee": 0,
+      "valueUSD": 0
+    },
+    {
+      "poolId": "0x8e15953eba7d5f8f99853d8f3cb64fc73b3ba770000200000000000000000003",
+      "poolAddress": "0x8e15953eba7d5f8f99853d8f3cb64fc73b3ba770",
+      "gauge": "70LION-30DAI-gauge",
+      "gaugeAddress": "0xb5c57d37cc7cCEC7Cf22836A087DEC280daB99f5",
+      "pendingPoolTokensFee": 371.73164747398744,
+      "valueUSD": 102.00602242182975
+    },
+    {
+      "poolId": "0x9ee22f8b21b53323ae34d153e475aea6363b3ba7000100000000000000000017",
+      "poolAddress": "0x9ee22f8b21b53323ae34d153e475aea6363b3ba7",
+      "gauge": "50VRTK-25ETH-25BTC-gauge",
+      "gaugeAddress": "0x9DAb43a1D850eC820C88a19561C1fD87dEC09193",
+      "pendingPoolTokensFee": 2.385223281704607,
+      "valueUSD": 174.88791748153074
+    },
+    {
+      "poolId": "0xa237bd3b190f12661ed838033b7228e7dc9c78d8000100000000000000000014",
+      "poolAddress": "0xa237bd3b190f12661ed838033b7228e7dc9c78d8",
+      "gauge": "60MAGIC-20FTM-20BNB-gauge",
+      "gaugeAddress": "0xEAaECFEc3DC43c1702A477D8CbC7c92749adCD87",
+      "pendingPoolTokensFee": 0,
+      "valueUSD": 0
+    },
+    {
+      "poolId": "0xae42be6a9f75a2b53229e262e0488df6ecfeb53a000200000000000000000012",
+      "poolAddress": "0xae42be6a9f75a2b53229e262e0488df6ecfeb53a",
+      "gauge": "80PEBBLE-20ETH-gauge",
+      "gaugeAddress": "0x7916972323a4e881eF4b12c6c6AED6e0C5C6377E",
+      "pendingPoolTokensFee": 38.837059364897236,
+      "valueUSD": 471.38181170424957
+    },
+    {
+      "poolId": "0xcf61cf9654f5536b8d6c93f09a0308ff3c2650f9000200000000000000000015",
+      "poolAddress": "0xcf61cf9654f5536b8d6c93f09a0308ff3c2650f9",
+      "gauge": "wAALTO-BUSD-gauge",
+      "gaugeAddress": "0x355827abb16998a07700FAF52AeE09f2b01Fad4C",
+      "pendingPoolTokensFee": 2283.9431182805893,
+      "valueUSD": 153.00549341200986
+    },
+    {
+      "poolId": "0xdb043d8a95ad4d3ae0be21a6b34484a345c93481000200000000000000000016",
+      "poolAddress": "0xdb043d8a95ad4d3ae0be21a6b34484a345c93481",
+      "gauge": "50VRTK-50BUSD-gauge",
+      "gaugeAddress": "0x8601DFCeE55E9e238f7ED7c42f8E46a7779e3f6f",
+      "pendingPoolTokensFee": 113.30628730077535,
+      "valueUSD": 113.05722426427754
+    },
+    {
+      "poolId": "0xff99c17b4d778afaa6d80f59111a96178c71f59f000000000000000000000007",
+      "poolAddress": "0xff99c17b4d778afaa6d80f59111a96178c71f59f",
+      "gauge": "BUSD-DAI-TUSD-FRAX-gauge",
+      "gaugeAddress": "0x35756EB391B93Fe3457aC4A7fae198552AC3AC28",
+      "pendingPoolTokensFee": 0,
+      "valueUSD": 0
     }
   ]
 }

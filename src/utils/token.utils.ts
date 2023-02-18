@@ -33,9 +33,10 @@ export async function approveTokensIfNeeded(
 
 export async function getAccountTokenBalances(
   addressMap: { address: string }[],
-  who: string,
+  who?: string,
   onlyNonZeroBalance = true,
 ) {
+  who = who || (await getSignerAddress());
   const multicall = new Multicaller(
     getContractAddress('Multicall'),
     await getRpcProvider(),

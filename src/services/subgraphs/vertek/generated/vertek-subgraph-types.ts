@@ -873,7 +873,7 @@ export type GqlPoolWithdrawOption = {
 
 export type GqlProtocolFeesCollectorAmounts = {
   __typename?: 'GqlProtocolFeesCollectorAmounts';
-  amount: Scalars['String'];
+  amount: Scalars['Float'];
   poolAddress: Scalars['String'];
   poolId: Scalars['String'];
   poolName: Scalars['String'];
@@ -899,9 +899,9 @@ export type GqlProtocolMetrics = {
 
 export type GqlProtocolPendingGaugeFee = {
   __typename?: 'GqlProtocolPendingGaugeFee';
+  amount: Scalars['Float'];
   gauge: Scalars['String'];
   gaugeAddress: Scalars['String'];
-  pendingPoolTokensFee: Scalars['Float'];
   poolAddress: Scalars['String'];
   poolId: Scalars['String'];
   poolName: Scalars['String'];
@@ -1625,7 +1625,7 @@ export type AdminGetAllPendingFeeDataQuery = {
         poolId: string;
         poolAddress: string;
         gauge: string;
-        pendingPoolTokensFee: number;
+        amount: number;
         valueUSD: number;
       } | null>;
     };
@@ -1637,7 +1637,7 @@ export type AdminGetAllPendingFeeDataQuery = {
         poolId: string;
         poolAddress: string;
         token: string;
-        amount: string;
+        amount: number;
         valueUSD: string;
       } | null>;
     };
@@ -1750,7 +1750,7 @@ export const AdminGetAllPendingFeeDataDocument = gql`
           poolId
           poolAddress
           gauge
-          pendingPoolTokensFee
+          amount
           valueUSD
         }
       }

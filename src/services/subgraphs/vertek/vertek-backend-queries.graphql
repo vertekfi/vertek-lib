@@ -19,7 +19,7 @@ query AdminGetAllPendingFeeData {
         poolId
         poolAddress
         gauge
-        pendingPoolTokensFee
+        amount
         valueUSD
       }
     }

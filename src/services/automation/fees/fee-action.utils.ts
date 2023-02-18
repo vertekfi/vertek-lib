@@ -1,5 +1,6 @@
 import { BigNumber, Contract } from 'ethers';
 import { parseUnits } from 'ethers/lib/utils';
+import { VERTEK_TREASURY_ADDRESS } from 'src/data/vertek/addresses/addresses';
 import { performAuthEntrypointAction } from 'src/services/auth/auth';
 import { Multicaller } from 'src/services/standalone-utils/multicaller';
 import {
@@ -19,6 +20,7 @@ import {
 } from 'src/utils/account.util';
 import {
   getContractAddress,
+  getERC20,
   getFeeDistributor,
   getLiquidityGaugeInstance,
   getProtocolFeesCollector,
@@ -73,11 +75,22 @@ export async function doPoolFeeWithdraw(poolId: string) {
 }
 
 export async function withdrawFeesFromCollector(
-  data: GqlProtocolFeesCollectorAmounts[],
+  data: { address: string; amount: number }[],
 ) {
   try {
-    const tokens = data.map((d) => d.token);
-    const amounts = data.map((d) => parseUnits(d.amount.split('.')[0]));
+    logger.info('withdrawFeesFromCollector: starting fee withdraw');
+    data = data.filter((d) => d.amount > 0);
+    const tokens = data.map((d) => d.address);
+    // Avoid balance too low errors from decimal precision
+    const amounts = data.map((d) => {
+      const isDecimalCase = d.amount < 1;
+      const amountStr = String(d.amount);
+      const finalAmount = isDecimalCase
+        ? amountStr.slice(0, amountStr.length - 4)
+        : amountStr.split('.')[0].slice(0, amountStr.length - 4);
+
+      return parseUnits(finalAmount);
+    });
 
     const feeCollector = await getProtocolFeesCollector();
     await doTransaction(
@@ -87,6 +100,8 @@ export async function withdrawFeesFromCollector(
         await getSignerAddress(),
       ),
     );
+
+    logger.success('Fee withdraw successful');
   } catch (error) {
     logger.error('withdrawFeesFromCollector failed');
     console.log(error);
@@ -114,7 +129,7 @@ export async function doGaugeFeeWithdraws(
     `saveGaugeFeesData: starting fee withdraws for ${gauges.length} gauges`,
   );
   for (const gauge of gauges) {
-    if (gauge.pendingPoolTokensFee > 0) {
+    if (gauge.amount > 0) {
       logger.success(`Start fee withdraw for ${gauge.gauge}`);
       const instance = await getLiquidityGaugeInstance(gauge.gaugeAddress);
       await performAuthEntrypointAction(instance, 'withdrawFees');
@@ -126,18 +141,20 @@ export async function doGaugeFeeWithdraws(
   logger.success(`doGaugeFeeWithdraws complete`);
 }
 
-export async function doVertekPoolFeeWithdraws(pools: { address: string }[]) {
-  //
-}
+// This should include the full amounts for ashare, ames, aalto pool tokens
+export async function sendFeesToTreasury(
+  data: { address: string; amount: BigNumber }[],
+) {
+  logger.info('sendFeesToTreasury: starting fee transfers');
+  for (const transfer of data) {
+    await sleep(1000);
+    logger.info('starting transfer for token: ' + transfer.address);
+    const token = await getERC20(transfer.address);
+    await doTransaction(
+      token.transfer(VERTEK_TREASURY_ADDRESS, transfer.amount),
+    );
+    logger.success('Transfer successful');
+  }
 
-export async function doVertekPoolFeeWithdraw(poolId: string) {
-  const pool = await vertekBackendClient.getPool(poolId);
-  console.log(pool);
-
-  // // do withdraw, get tokens
-  // for (const pool of someshit) {
-  // }
-
-  // const feeCollector = await getProtocolFeesCollector();
-  // const vault = await getVaultInstance();
+  logger.success('Fee transfers complete');
 }

@@ -21,3 +21,6 @@ export const SUBGRAPHS_V2 = {
     56: 'https://api.thegraph.com/subgraphs/name/vertekfi/vertek-gauges-subgraph',
   },
 };
+
+export const VERTEK_TREASURY_ADDRESS =
+  '0xA8AAe7bEB83d62eb908F8F1F833A83407e0E04a6';

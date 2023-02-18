@@ -8,6 +8,11 @@ import {
 } from 'ethers/lib/utils';
 import { join } from 'path';
 import {
+  updateAaltoFeeExempt,
+  updateListAaltoAndWrappedFeeExempt,
+  updateWrappedAaltoFeeExempt,
+} from './projects/aalto/services/admin.service';
+import {
   getAdapterActionIdAndVaultGrantOnTarget,
   getSighash,
   grantVaultAuthorizerPermissions,
@@ -17,10 +22,12 @@ import {
   depositVeFees,
   doGaugeFeeWithdraws,
   doPoolFeeWithdraw,
-  doVertekPoolFeeWithdraw,
   withdrawFeesFromCollector,
 } from './services/automation/fees/fee-action.utils';
-import { saveGaugeFeesData } from './services/automation/fees/fee-data.utils';
+import {
+  getGaugeFeeDistributionAmounts,
+  saveGaugeFeesData,
+} from './services/automation/fees/fee-data.utils';
 import { FeeManagementAutomation } from './services/automation/fees/fees-automation';
 import {
   checkpointFeeDistributor,
@@ -50,7 +57,6 @@ import {
   doPoolInitJoin,
 } from './services/pools/pool-creation';
 import { getPoolConfig } from './services/pools/pool.utils';
-import { getAllPendingProtocolFees } from './services/subgraphs/subgraph.utils';
 import { getDefaultSingleTokenExitRequest } from './services/vault/vault-utils';
 import { GaugeTypeNum } from './types/gauge.types';
 import {
@@ -65,6 +71,7 @@ import {
   getBalMinter,
   getBalTokenHolder,
   getContractAddress,
+  getERC20,
   getFeeDistributor,
   getGaugeController,
   getLiquidityGaugeInstance,
@@ -79,14 +86,12 @@ import {
   getWeightedPoolToken,
 } from './utils/contract.utils';
 import {
+  approveTokensIfNeeded,
   getAccountTokenBalances,
   getBalanceForToken,
 } from './utils/token.utils';
-import {
-  awaitTransactionComplete,
-  doTransaction,
-  sleep,
-} from './utils/transaction.utils';
+import { doTransaction, sleep } from './utils/transaction.utils';
+import * as moment from 'moment-timezone';
 
 config({ path: join(process.cwd(), '.env') });
 
@@ -102,11 +107,7 @@ async function run() {
   // await checkpointFeeDistributor();
   // await checkpointGaugeController();
 
-  // const poolId =
-  //   '0x016fcb8c8cb43bd0afb0be7486aadee49783487c00020000000000000000002d'; // PEBBLE-ETH
-  // await doPoolFeeWithdraw(poolId);
-
-  const feeData = await getAllPendingProtocolFees();
+  // const feeData = await getAllPendingProtocolFees();
   // console.log(feeData.feeCollector.values);
   // const data = await getAccountTokenBalances(
   //   feeData.feeCollector.values.map((p) => {
@@ -119,16 +120,33 @@ async function run() {
 
   // console.log(data);
   // await withdrawFeesFromCollector(feeData.feeCollector.values);
-  await saveGaugeFeesData(feeData.feeCollector.values);
+  // await saveGaugeFeesData(feeData.feeCollector.values);
   // await doGaugeFeeWithdraws(feeData.gauges.values);
 
   // await withdrawTokenHolderBalance();
   // await depositVeFees([getTokenAddress('VRTK')], [parseUnits('0')]);
 
-  // const feeDist = await getFeeDistributor();
-  // await doTransaction(feeDist.checkpointToken(vrtk.address));
-  // const ts = (await feeDist.getTokenTimeCursor(vrtk.address)).toNumber();
-  // console.log(new Date(ts * 1000).to());
+  // const amounts = getGaugeFeeDistributionAmounts();
+  // console.log(amounts);
+
+  // const tokens = amounts.amounts.map((amt) => amt.poolAddress);
+  // const amountsTo = amounts.amounts.map((amt) => {
+  //   const str = String(amt.amount);
+  //   //  console.log(str.slice(0, str.length - 2));
+  //   return parseUnits(str.slice(0, str.length - 2));
+  // });
+  // console.log(tokens);
+  // console.log(amountsTo);
+
+  // const balances = await getAccountTokenBalances(
+  //   amounts.amounts.map((t) => {
+  //     return {
+  //       address: t.poolAddress,
+  //     };
+  //   }),
+  // );
+
+  // console.log(balances);
 }
 
 async function doPoolCreationSteps() {

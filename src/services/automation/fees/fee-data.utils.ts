@@ -6,13 +6,26 @@ import {
   GqlProtocolPendingGaugeFee,
 } from 'src/services/subgraphs/vertek/generated/vertek-subgraph-types';
 import { logger } from 'src/utils/logger';
+import {
+  VE_FEE_EXCLUDED_POOL_IDS,
+  VE_HOLDER_FEE_PERCENT,
+  VRTK_BNB_POOL_ID,
+} from 'src/data/vertek/constants/fees';
 
-const basePath = join(process.cwd(), 'src/data/vertek/fees/');
+export const baseFeeDataPath = join(process.cwd(), 'src/data/vertek/fees/');
+const feePoolConfigPath = join(baseFeeDataPath, 'fee-automation.config.json');
+export const gaugeFeeDataPath = join(baseFeeDataPath, 'gauges');
+export const poolsFeeDataPath = join(baseFeeDataPath, 'pool-fees');
+export const feeDistributionsPath = join(baseFeeDataPath, 'distributions');
 
-const feePoolConfigPath = join(basePath, 'fee-automation.config.json');
+interface FeeSavedDataFormat<T> {
+  datetime: string;
+  data: T[];
+}
 
-const gaugeFeeDataPath = join(basePath, 'gauges');
-const poolsFeeDataPath = join(basePath, 'pool-fees');
+function getJoinedPath(base: string, ext: string) {
+  return join(base, ext);
+}
 
 export function getFeePoolConfigs(): FeePoolWithdrawConfig[] {
   return fs.readJSONSync(feePoolConfigPath);
@@ -42,7 +55,7 @@ function getConfig(configs: FeePoolWithdrawConfig[], poolId: string) {
   return instance;
 }
 
-export function saveGaugeFeesData(data: any[]) {
+export function saveGaugeFeesData(data: GqlProtocolPendingGaugeFee[]) {
   fs.writeJSONSync(join(gaugeFeeDataPath, `${Date.now()}.json`), {
     datetime: new Date().toUTCString(),
     data,
@@ -58,4 +71,52 @@ export function saveProtocolFeesData(data: GqlProtocolFeesCollectorAmounts[]) {
   });
 
   logger.success(`saveProtocolFeesData complete`);
+}
+
+export function saveFeeDistributionData(
+  data: { amount: string; usdValue: string; txHash: string }[],
+) {
+  fs.writeJSONSync(join(poolsFeeDataPath, `${Date.now()}.json`), {
+    datetime: new Date().toUTCString(),
+    data,
+  });
+
+  logger.success(`saveProtocolFeesData complete`);
+}
+
+export function getGaugeFeeDistributionAmounts() {
+  const dir = fs.readdirSync(gaugeFeeDataPath);
+
+  const currentFeeFile = dir[dir.length - 1];
+
+  const currentFeeData: FeeSavedDataFormat<GqlProtocolPendingGaugeFee> =
+    fs.readJSONSync(getJoinedPath(gaugeFeeDataPath, currentFeeFile));
+
+  console.log(currentFeeData.data.filter((d) => d.amount > 0));
+
+  const feeItems = currentFeeData.data.filter(
+    (d) =>
+      !VE_FEE_EXCLUDED_POOL_IDS.includes(d.poolId) &&
+      d.amount > 0 &&
+      d.poolId !== VRTK_BNB_POOL_ID,
+  );
+
+  console.log(feeItems);
+  logger.info(`Calculating fee amounts for ${feeItems.length} fee items`);
+
+  let totalValueUSD = 0;
+  const amounts = feeItems.map((itm) => {
+    const valueUSD = itm.valueUSD * VE_HOLDER_FEE_PERCENT;
+    totalValueUSD += valueUSD;
+    return {
+      ...itm,
+      amount: itm.amount * VE_HOLDER_FEE_PERCENT,
+      valueUSD,
+    };
+  });
+
+  return {
+    totalValueUSD,
+    amounts,
+  };
 }

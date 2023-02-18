@@ -15,7 +15,7 @@ import { formatEther, parseUnits } from 'ethers/lib/utils';
 import { join } from 'path';
 import { csvService } from 'src/services/standalone-utils/csv.service';
 import { Multicaller } from 'src/services/standalone-utils/multicaller';
-import { getAllPendingProtocolFees } from 'src/services/subgraphs/subgraph.utils';
+import { vertekBackendClient } from 'src/services/subgraphs/vertek/vertek-backend-gql-client';
 
 interface TokenFeeInfo {
   token: string;
@@ -126,7 +126,7 @@ export class FeeManagementAutomation {
   }
 
   async getFeeCollectorNonZeroTokenBalances() {
-    return getAllPendingProtocolFees();
+    return vertekBackendClient.getAllPendingProtocolFees();
   }
 
   async saveToCSV(info: { fileName: string; filePath: string }) {
