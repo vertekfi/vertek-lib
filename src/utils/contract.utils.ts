@@ -19,12 +19,21 @@ import * as WeightedPoolFactoryAbi from '../abis/WeightedPoolFactory.json';
 import * as FeeCollectorAbi from '../abis/ProtocolFeesCollector.json';
 import * as SingleRecipientAbi from '../abis/SingleRecipientGauge.json';
 import * as FeeDistAbi from '../abis/FeeDistributor.json';
+import * as FeeManagerDistAbi from '../abis/VertekFeeManagement.json';
 
 import { getChainId, getRpcProvider, getSigner } from './account.util';
 import { ERC20_ABI } from 'src/abis/ERC20ABI';
 import { TOKENS } from 'src/data/token';
 import { getAllPoolConfigs } from 'src/services/pools/pool.utils';
 import { Multicaller } from 'src/services/standalone-utils/multicaller';
+
+export async function getVertekFeeManager() {
+  return new Contract(
+    getContractAddress('VertekFeeManagement'),
+    FeeManagerDistAbi,
+    await getSigner(),
+  );
+}
 
 export async function getTokenAdmin() {
   return new Contract(

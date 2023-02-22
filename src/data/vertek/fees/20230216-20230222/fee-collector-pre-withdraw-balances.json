@@ -1,0 +1,77 @@
+[
+  {
+    "address": "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
+    "balanceBN": { "type": "BigNumber", "hex": "0x240c45add191a161" },
+    "balance": "2.597527697933574497"
+  },
+  {
+    "address": "0x55d398326f99059ff775485246999027b3197955",
+    "balanceBN": { "type": "BigNumber", "hex": "0x02619c524bc41e05" },
+    "balance": "0.171590138089184773"
+  },
+  {
+    "address": "0xe9e7cea3dedca5984780bafc599bd69add087d56",
+    "balanceBN": { "type": "BigNumber", "hex": "0xa5feae140769a48e" },
+    "balance": "11.961189061389558926"
+  },
+  {
+    "address": "0x90c97f71e18723b0cf0dfa30ee176ab653e89f40",
+    "balanceBN": { "type": "BigNumber", "hex": "0x67071270a4b4b99c" },
+    "balance": "7.42392278575249654"
+  },
+  {
+    "address": "0x14016e85a25aeb13065688cafb43044c2ef86784",
+    "balanceBN": { "type": "BigNumber", "hex": "0x0beef11b571bbb29" },
+    "balance": "0.859889678602189609"
+  },
+  {
+    "address": "0x0db861235c7b90d419a64e1f71b3687db74d4477",
+    "balanceBN": { "type": "BigNumber", "hex": "0x0481be48dccc12104c" },
+    "balance": "83.135966284459675724"
+  },
+  {
+    "address": "0x248d943b9d59c4be35d41b34f79370dfbf577b2b",
+    "balanceBN": { "type": "BigNumber", "hex": "0x4663d061d1cd2eddcb" },
+    "balance": "1298.464441318297755083"
+  },
+  {
+    "address": "0x8e15953eba7d5f8f99853d8f3cb64fc73b3ba770",
+    "balanceBN": { "type": "BigNumber", "hex": "0x6829a4058fc8d4eb" },
+    "balance": "7.505710597783737579"
+  },
+  {
+    "address": "0x6e30ec031f2d94c397e469b40f86bff0be014124",
+    "balanceBN": { "type": "BigNumber", "hex": "0x0128d82bcbbf67ea48" },
+    "balance": "21.389894584285784648"
+  },
+  {
+    "address": "0x32934c1122c0d7b0fc3daab588a4490b53c1568c",
+    "balanceBN": { "type": "BigNumber", "hex": "0x01ae6b0414011438" },
+    "balance": "0.121151905245238328"
+  },
+  {
+    "address": "0x64bf08fac067b25c77967affafce73760d8d0bdf",
+    "balanceBN": { "type": "BigNumber", "hex": "0x0f7740a41de86f476a" },
+    "balance": "285.294209643026794346"
+  },
+  {
+    "address": "0xae42be6a9f75a2b53229e262e0488df6ecfeb53a",
+    "balanceBN": { "type": "BigNumber", "hex": "0x014deeb601300f2c35" },
+    "balance": "24.062369975304662069"
+  },
+  {
+    "address": "0xcf61cf9654f5536b8d6c93f09a0308ff3c2650f9",
+    "balanceBN": { "type": "BigNumber", "hex": "0x8fb9882c6f4f119abf" },
+    "balance": "2651.253386890894744255"
+  },
+  {
+    "address": "0xdb043d8a95ad4d3ae0be21a6b34484a345c93481",
+    "balanceBN": { "type": "BigNumber", "hex": "0x0ce99160bceca3a21c" },
+    "balance": "238.191268531515138588"
+  },
+  {
+    "address": "0x9ee22f8b21b53323ae34d153e475aea6363b3ba7",
+    "balanceBN": { "type": "BigNumber", "hex": "0x345f7c38854b485f" },
+    "balance": "3.773871594956081247"
+  }
+]

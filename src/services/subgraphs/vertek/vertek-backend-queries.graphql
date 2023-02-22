@@ -6,19 +6,31 @@ query GetPool($id: String!) {
 
 query GetAllPools {
   poolGetPools {
-    id
+    ...GqlPoolMinimalFragment
+  }
+}
+
+query GetAllTokens {
+  tokenGetTokens {
+    address
+    name
+    symbol
+    chainId
+    logoURI
   }
 }
 
 query AdminGetAllPendingFeeData {
-  adminGetAllPendingFeeData(onlyWithBalances: true) {
+  adminGetAllPendingFeeData {
     totalValueUSD
     gauges {
       totalValueUSD
       values {
         poolId
         poolAddress
+        poolName
         gauge
+        gaugeAddress
         amount
         valueUSD
       }
@@ -29,6 +41,7 @@ query AdminGetAllPendingFeeData {
       values {
         poolId
         poolAddress
+        poolName
         token
         amount
         valueUSD
@@ -43,6 +56,36 @@ fragment GqlPoolBaseFragment on GqlPoolBase {
   symbol
   address
   decimals
+  displayTokens {
+    address
+    symbol
+    name
+  }
+  # owner: Bytes
+  # factory: Bytes
+  # createTime: Int!
+  # investConfig: GqlPoolInvestConfig!
+  # withdrawConfig: GqlPoolWithdrawConfig!
+
+  # displayTokens: [GqlPoolTokenDisplay!]!
+  # allTokens: [GqlPoolTokenExpanded!]!
+
+  # dynamicData: GqlPoolDynamicData!
+  #staking: GqlPoolStaking
+}
+
+fragment GqlPoolMinimalFragment on GqlPoolMinimal {
+  id
+  name
+  symbol
+  address
+  decimals
+  displayTokens {
+    id
+    address
+    symbol
+    name
+  }
   # owner: Bytes
   # factory: Bytes
   # createTime: Int!

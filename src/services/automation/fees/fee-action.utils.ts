@@ -28,7 +28,7 @@ import {
 import { logger } from 'src/utils/logger';
 import { approveTokensIfNeeded } from 'src/utils/token.utils';
 import { doTransaction, sleep } from 'src/utils/transaction.utils';
-import { getFeePoolConfig, saveGaugeFeesData } from './fee-data.utils';
+import { getFeePoolConfig } from './fee-data.utils';
 
 /**
  * Pull the config for the pool(from JSON file for now)
@@ -109,6 +109,9 @@ export async function withdrawFeesFromCollector(
 }
 
 export async function depositVeFees(tokens: string[], amount: BigNumber[]) {
+  logger.info(
+    `depositVeFees: depositing ${tokens.length} tokens to fee dist..`,
+  );
   const feeDist = await getFeeDistributor();
 
   await approveTokensIfNeeded(
@@ -118,27 +121,29 @@ export async function depositVeFees(tokens: string[], amount: BigNumber[]) {
   );
 
   await doTransaction(await feeDist.depositTokens(tokens, amount));
+
+  logger.success('depositVeFees: deposit successful');
 }
 
 export async function doGaugeFeeWithdraws(
   gauges: GqlProtocolPendingGaugeFee[],
 ) {
+  throw new Error(`Fee management contract ready?`);
   // Save first in case of tx failure during the process
-  saveGaugeFeesData(gauges);
-  logger.info(
-    `saveGaugeFeesData: starting fee withdraws for ${gauges.length} gauges`,
-  );
-  for (const gauge of gauges) {
-    if (gauge.amount > 0) {
-      logger.success(`Start fee withdraw for ${gauge.gauge}`);
-      const instance = await getLiquidityGaugeInstance(gauge.gaugeAddress);
-      await performAuthEntrypointAction(instance, 'withdrawFees');
-      logger.success(`${gauge.gauge} withdraw complete`);
-      await sleep();
-    }
-  }
-
-  logger.success(`doGaugeFeeWithdraws complete`);
+  // saveGaugeFeesData(gauges);
+  // logger.info(
+  //   `saveGaugeFeesData: starting fee withdraws for ${gauges.length} gauges`,
+  // );
+  // for (const gauge of gauges) {
+  //   if (gauge.amount > 0) {
+  //     logger.success(`Start fee withdraw for ${gauge.gauge}`);
+  //     const instance = await getLiquidityGaugeInstance(gauge.gaugeAddress);
+  //     await performAuthEntrypointAction(instance, 'withdrawFees');
+  //     logger.success(`${gauge.gauge} withdraw complete`);
+  //     await sleep();
+  //   }
+  // }
+  // logger.success(`doGaugeFeeWithdraws complete`);
 }
 
 // This should include the full amounts for ashare, ames, aalto pool tokens

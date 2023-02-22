@@ -11,6 +11,7 @@ import {
   VE_HOLDER_FEE_PERCENT,
   VRTK_BNB_POOL_ID,
 } from 'src/data/vertek/constants/fees';
+import * as moment from 'moment-timezone';
 
 export const baseFeeDataPath = join(process.cwd(), 'src/data/vertek/fees/');
 const feePoolConfigPath = join(baseFeeDataPath, 'fee-automation.config.json');
@@ -53,24 +54,6 @@ function getConfig(configs: FeePoolWithdrawConfig[], poolId: string) {
   }
 
   return instance;
-}
-
-export function saveGaugeFeesData(data: GqlProtocolPendingGaugeFee[]) {
-  fs.writeJSONSync(join(gaugeFeeDataPath, `${Date.now()}.json`), {
-    datetime: new Date().toUTCString(),
-    data,
-  });
-
-  logger.success(`saveGaugeFeesData complete`);
-}
-
-export function saveProtocolFeesData(data: GqlProtocolFeesCollectorAmounts[]) {
-  fs.writeJSONSync(join(poolsFeeDataPath, `${Date.now()}.json`), {
-    datetime: new Date().toUTCString(),
-    data,
-  });
-
-  logger.success(`saveProtocolFeesData complete`);
 }
 
 export function saveFeeDistributionData(
@@ -119,4 +102,27 @@ export function getGaugeFeeDistributionAmounts() {
     totalValueUSD,
     amounts,
   };
+}
+
+export function createWeekDataDirectory() {
+  const range = moment().utc();
+  const dirName = getEpochRangeLabel(
+    moment(range).utc().subtract(6, 'days').unix(),
+    range.unix(),
+  );
+
+  const dirPath = join(baseFeeDataPath, dirName);
+  fs.ensureDirSync(dirPath);
+
+  return dirPath;
+}
+
+export function getEpochRangeLabel(
+  startTimestamp: number,
+  endTimestamp: number,
+) {
+  return `${moment.unix(startTimestamp).utc().format('yyyyMMDD')}-${moment
+    .unix(endTimestamp)
+    .utc()
+    .format('yyyyMMDD')}`;
 }

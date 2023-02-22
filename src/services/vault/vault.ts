@@ -33,6 +33,27 @@ export class Vault {
     }
   }
 
+  async tryExitPool(
+    poolId: string,
+    request: ExitPoolRequest,
+    sender?: string,
+    recipient?: string,
+  ) {
+    try {
+      const admin = await getSignerAddress();
+      const result = await this.instance.callStatic.exitPool(
+        poolId,
+        sender || admin,
+        recipient || admin,
+        request,
+      );
+
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async joinPool(request: JoinPoolRequest) {
     try {
       // vault.joinPool(

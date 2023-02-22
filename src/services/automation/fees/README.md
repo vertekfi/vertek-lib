@@ -1,0 +1,3 @@
+- For the 25% portion that goes to veVRTK holders, DO NOT break into single tokens. Give them VPTs
+- For the 50% that goes to stablecoin exchange contract: Yes, break to single tokens, we have to melt them down to USDC (just break to single tokens and send to a separate wallet. i will give u an address later. dont have the conversion to USDC as automated, we want to manage this somewhat)
+- For the 25% that goes to treasury: Break and convert anything that is NOT VRTK into stables or bluechips. You can use automation for this one. We want fries.

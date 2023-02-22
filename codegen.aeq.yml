@@ -1,0 +1,17 @@
+overwrite: true
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+generates:
+  src/services/subgraphs/aequinox/generated/aequinox-subgraph-types.ts:
+    schema: ${AEQ_SUBGRAPH_URL}
+    documents: 'src/services/subgraphs/aequinox/aeq-queries.graphql'
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-graphql-request
+    config:
+      scalars:
+        BigInt: string
+        Bytes: string
+        BigDecimal: string

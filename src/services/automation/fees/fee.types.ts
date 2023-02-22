@@ -1,3 +1,5 @@
+import { BigNumber } from 'ethers';
+
 export interface FeeWithdrawInfo {
   poolId: string;
   tokenOut: string;
@@ -13,4 +15,22 @@ export interface FeePoolWithdrawConfig {
   tokenOut: string; // single asset pool withdraw
   lastWithdraw: string; // date/time stamp of last withdraw action for the pool
   keepPoolToken?: boolean; // In case the swap out shouldn't happen for some reason. Assume tokenOut
+}
+
+export interface TokenFeeInfo {
+  amountBN: BigNumber;
+  address: string;
+  balance: string;
+  amount: number;
+}
+
+export interface FeeDistributionRecord {
+  distributedAt: string;
+  txHash: string;
+  data: TokenFeeInfo[];
+}
+export interface FeeDistributionInfo {
+  veVRTK: FeeDistributionRecord;
+  treasury: FeeDistributionRecord;
+  stableGaugeFund: FeeDistributionRecord;
 }

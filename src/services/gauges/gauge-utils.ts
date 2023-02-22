@@ -96,11 +96,15 @@ export async function getGaugeWeights(timestamp: number) {
 export async function addRewardTokenToGauge(
   gaugeAddress: string,
   token: string,
+  distributor: string,
 ) {
   const gauge = await getLiquidityGaugeInstance(gaugeAddress);
-  const distributor = await getSignerAddress();
 
-  await approveTokensIfNeeded([token], distributor, gauge.address);
+  const admin = await getSignerAddress();
+  if (distributor.toLocaleLowerCase() === admin.toLocaleLowerCase()) {
+    await approveTokensIfNeeded([token], distributor, gauge.address);
+  }
+
   // Registering a token requires going through auth adapter
   await performAuthEntrypointAction(gauge, 'add_reward', [token, distributor]);
 }

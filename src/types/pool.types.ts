@@ -220,3 +220,8 @@ export interface IRewardPoolUserInfo {
   pendingRewardValue: string;
   percentageOwned: string;
 }
+
+export interface ComposableStableV3Params extends StablePoolCreationArgs {
+  tokenRateCacheDurations: BigNumber[];
+  exemptFromYieldProtocolFeeFlags: boolean[];
+}

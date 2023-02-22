@@ -143,9 +143,13 @@ export const CONTRACT_MAP = {
     5: '0x1050Bcfb2ec4CAe624BD1Eec5dadc2a3b4f4559a',
     56: '0x4Ba82B21658CAE1975Fa26097d87bd48FF270124',
   },
-  Relater: {
+  BatchRelayerLibrary: {
     5: '',
-    56: '',
+    56: '0x5BcB2fBa3f757FF32cf3BB508790EeD51C05155b',
+  },
+  BalancerRelayer: {
+    // deployed by BatchRelayerLibrary
+    56: '0x558BDC96018B9C3dc46481c04B212465D6A69fF0',
   },
   BalHelpers: {
     5: '',
@@ -161,5 +165,8 @@ export const CONTRACT_MAP = {
   },
   VestingContract: {
     56: '0xd4afeAe1D8E7b88F334d175c56604e2Bf34cc8eF',
+  },
+  VertekFeeManagement: {
+    56: '0xd035fBFEd790cbfD48d947d755fD46cece3AB96d',
   },
 };

@@ -1,0 +1,7 @@
+query GetPools {
+  pools {
+    id
+    address
+    poolType
+  }
+}

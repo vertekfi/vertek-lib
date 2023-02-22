@@ -1,19 +1,68 @@
 import * as schedule from 'node-schedule';
 import { logger } from 'src/utils/logger';
+import { feeAutomation } from './fees/fees-automation';
+
+const utcZone = 'Etc/UTC';
 
 export class ScheduledJobService {
   readonly jobs = [];
 
   constructor() {}
 
-  init() {}
+  async init() {
+    logger.info(
+      'ScheduledJobService: initializing workers - ' + new Date().toUTCString(),
+    );
+    const feesJob = this.initFeeWithdrawJob();
+    feesJob.handler();
+    // schedule.scheduleJob(feesJob.rule, function () {
+    //   feesJob.handler();
+    // });
+
+    logger.success('ScheduledJobService: all workers scheduled');
+  }
+
+  // Starting it early so things are ready at epoch start
+  private initFeeWithdrawJob() {
+    // Wednesdays 11:00pm UTC
+    const feeWithdrawRule = new schedule.RecurrenceRule();
+    feeWithdrawRule.dayOfWeek = 3; // Wednesday
+    feeWithdrawRule.hour = 23; // 11pm UTC
+    feeWithdrawRule.minute = 0;
+    feeWithdrawRule.tz = utcZone;
+
+    async function handler() {
+      try {
+        logger.info(
+          'Running fee automation job - ' + new Date().toLocaleString(),
+        );
+        // collect and save data
+        // do withdraw
+        // exit through vault (Guess we're keeping BPT's instead though)
+        // deposit to fee dist
+        // part of this is also getting the VRTK from checkpoint stakeless gauge
+        // (token holder) to the fee dist for veVRTK people as well then
+
+        await feeAutomation.run();
+      } catch (error) {
+        console.log(error);
+        logger.error('Fee automation job: failed');
+      }
+    }
+
+    return {
+      rule: feeWithdrawRule,
+      handler,
+    };
+  }
 
   private initGaugeEpochEndCheckpointJob() {
-    // Wednesdays 6:30pm EST
+    // Wednesdays 11:30pm UTC
     const gaugeCheckpointRule = new schedule.RecurrenceRule();
     gaugeCheckpointRule.dayOfWeek = 3; // Wednesday
-    gaugeCheckpointRule.hour = 16; // 6pm EST
+    gaugeCheckpointRule.hour = 23; // 11pm UTC
     gaugeCheckpointRule.minute = 30; // Leave time for retries
+    gaugeCheckpointRule.tz = utcZone;
 
     async function handler() {
       // checkpoint all gauges (or just the stakeless? All for now)
@@ -35,11 +84,12 @@ export class ScheduledJobService {
   }
 
   private initEpochStartCheckpointsJob() {
-    // Thursdays 12:30am EST
+    // Thursdays 12:15am UTC
     const checkpointsRule = new schedule.RecurrenceRule();
     checkpointsRule.dayOfWeek = 4; // Thursday
-    checkpointsRule.hour = 0; // 12am EST
+    checkpointsRule.hour = 0; // 12am UTC
     checkpointsRule.minute = 15; // Give RPC node time/space in case
+    checkpointsRule.tz = utcZone;
 
     async function handler() {
       logger.info(
@@ -62,38 +112,6 @@ export class ScheduledJobService {
 
     return {
       rule: checkpointsRule,
-      handler,
-    };
-  }
-
-  // TODO: Need to finalize and test this flow
-  // Starting it early so things are ready at epoch start
-  private initFeeWithdrawJob() {
-    // Wednesdays 6:00pm EST
-    const feeWithdrawRule = new schedule.RecurrenceRule();
-    feeWithdrawRule.dayOfWeek = 3; // Thursday
-    feeWithdrawRule.hour = 16; // 6pm EST
-    feeWithdrawRule.minute = 0;
-
-    async function handler() {
-      try {
-        logger.info(
-          'Running fee with draw job - ' + new Date().toLocaleString(),
-        );
-        // collect and save data
-        // do withdraw
-        // exit through vault (Guess we're keeping BPT's instead though)
-        // deposit to fee dist
-        // part of this is also getting the VRTK from checkpoint stakeless gauge
-        // (token holder) to the fee dist for veVRTK people as well then
-      } catch (error) {
-        console.log(error);
-        logger.error('Gauge Epoch End Checkpoint Job: failed');
-      }
-    }
-
-    return {
-      rule: feeWithdrawRule,
       handler,
     };
   }

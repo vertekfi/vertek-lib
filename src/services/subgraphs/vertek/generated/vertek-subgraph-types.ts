@@ -908,6 +908,12 @@ export type GqlProtocolPendingGaugeFee = {
   valueUSD: Scalars['Float'];
 };
 
+export type GqlProtocolRewardTokenInfo = {
+  __typename?: 'GqlProtocolRewardTokenInfo';
+  logoURI?: Maybe<Scalars['String']>;
+  valueUSD: Scalars['String'];
+};
+
 export type GqlSorGetBatchSwapForTokensInResponse = {
   __typename?: 'GqlSorGetBatchSwapForTokensInResponse';
   assets: Array<Scalars['String']>;
@@ -1117,6 +1123,16 @@ export type GqlUserPortfolioSnapshot = {
   walletBalance: Scalars['AmountHumanReadable'];
 };
 
+export type GqlUserProtocolReward = {
+  __typename?: 'GqlUserProtocolReward';
+  amount: Scalars['String'];
+  isBPT: Scalars['Boolean'];
+  poolId: Scalars['String'];
+  token: Scalars['String'];
+  tokenInfo: GqlProtocolRewardTokenInfo;
+  tokenList: Array<GqlToken>;
+};
+
 export enum GqlUserSnapshotDataRange {
   AllTime = 'ALL_TIME',
   NinetyDays = 'NINETY_DAYS',
@@ -1295,6 +1311,7 @@ export type Query = {
   userGetPoolBalances: Array<GqlUserPoolBalance>;
   userGetPoolJoinExits: Array<GqlPoolJoinExit>;
   userGetPortfolioSnapshots: Array<GqlUserPortfolioSnapshot>;
+  userGetProtocolRewardInfo: Array<Maybe<GqlUserProtocolReward>>;
   userGetStaking: Array<GqlPoolStaking>;
   userGetSwaps: Array<GqlPoolSwap>;
   userGetVeLockInfo: GqlUserVoteEscrowInfo;
@@ -1550,6 +1567,12 @@ export type GetPoolQuery = {
         symbol: string;
         address: string;
         decimals: number;
+        displayTokens: Array<{
+          __typename?: 'GqlPoolTokenDisplay';
+          address: string;
+          symbol: string;
+          name: string;
+        }>;
       }
     | {
         __typename?: 'GqlPoolLinear';
@@ -1558,6 +1581,12 @@ export type GetPoolQuery = {
         symbol: string;
         address: string;
         decimals: number;
+        displayTokens: Array<{
+          __typename?: 'GqlPoolTokenDisplay';
+          address: string;
+          symbol: string;
+          name: string;
+        }>;
       }
     | {
         __typename?: 'GqlPoolLiquidityBootstrapping';
@@ -1566,6 +1595,12 @@ export type GetPoolQuery = {
         symbol: string;
         address: string;
         decimals: number;
+        displayTokens: Array<{
+          __typename?: 'GqlPoolTokenDisplay';
+          address: string;
+          symbol: string;
+          name: string;
+        }>;
       }
     | {
         __typename?: 'GqlPoolMetaStable';
@@ -1574,6 +1609,12 @@ export type GetPoolQuery = {
         symbol: string;
         address: string;
         decimals: number;
+        displayTokens: Array<{
+          __typename?: 'GqlPoolTokenDisplay';
+          address: string;
+          symbol: string;
+          name: string;
+        }>;
       }
     | {
         __typename?: 'GqlPoolPhantomStable';
@@ -1582,6 +1623,12 @@ export type GetPoolQuery = {
         symbol: string;
         address: string;
         decimals: number;
+        displayTokens: Array<{
+          __typename?: 'GqlPoolTokenDisplay';
+          address: string;
+          symbol: string;
+          name: string;
+        }>;
       }
     | {
         __typename?: 'GqlPoolStable';
@@ -1590,6 +1637,12 @@ export type GetPoolQuery = {
         symbol: string;
         address: string;
         decimals: number;
+        displayTokens: Array<{
+          __typename?: 'GqlPoolTokenDisplay';
+          address: string;
+          symbol: string;
+          name: string;
+        }>;
       }
     | {
         __typename?: 'GqlPoolWeighted';
@@ -1598,6 +1651,12 @@ export type GetPoolQuery = {
         symbol: string;
         address: string;
         decimals: number;
+        displayTokens: Array<{
+          __typename?: 'GqlPoolTokenDisplay';
+          address: string;
+          symbol: string;
+          name: string;
+        }>;
       };
 };
 
@@ -1605,7 +1664,35 @@ export type GetAllPoolsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetAllPoolsQuery = {
   __typename?: 'Query';
-  poolGetPools: Array<{ __typename?: 'GqlPoolMinimal'; id: string }>;
+  poolGetPools: Array<{
+    __typename?: 'GqlPoolMinimal';
+    id: string;
+    name: string;
+    symbol: string;
+    address: string;
+    decimals: number;
+    displayTokens: Array<{
+      __typename?: 'GqlPoolTokenDisplay';
+      id: string;
+      address: string;
+      symbol: string;
+      name: string;
+    }>;
+  }>;
+};
+
+export type GetAllTokensQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetAllTokensQuery = {
+  __typename?: 'Query';
+  tokenGetTokens: Array<{
+    __typename?: 'GqlToken';
+    address: string;
+    name: string;
+    symbol: string;
+    chainId: number;
+    logoURI?: string | null;
+  }>;
 };
 
 export type AdminGetAllPendingFeeDataQueryVariables = Exact<{
@@ -1624,7 +1711,9 @@ export type AdminGetAllPendingFeeDataQuery = {
         __typename?: 'GqlProtocolPendingGaugeFee';
         poolId: string;
         poolAddress: string;
+        poolName: string;
         gauge: string;
+        gaugeAddress: string;
         amount: number;
         valueUSD: number;
       } | null>;
@@ -1636,6 +1725,7 @@ export type AdminGetAllPendingFeeDataQuery = {
         __typename?: 'GqlProtocolFeesCollectorAmounts';
         poolId: string;
         poolAddress: string;
+        poolName: string;
         token: string;
         amount: number;
         valueUSD: string;
@@ -1651,6 +1741,12 @@ type GqlPoolBaseFragment_GqlPoolElement_Fragment = {
   symbol: string;
   address: string;
   decimals: number;
+  displayTokens: Array<{
+    __typename?: 'GqlPoolTokenDisplay';
+    address: string;
+    symbol: string;
+    name: string;
+  }>;
 };
 
 type GqlPoolBaseFragment_GqlPoolLinear_Fragment = {
@@ -1660,6 +1756,12 @@ type GqlPoolBaseFragment_GqlPoolLinear_Fragment = {
   symbol: string;
   address: string;
   decimals: number;
+  displayTokens: Array<{
+    __typename?: 'GqlPoolTokenDisplay';
+    address: string;
+    symbol: string;
+    name: string;
+  }>;
 };
 
 type GqlPoolBaseFragment_GqlPoolLiquidityBootstrapping_Fragment = {
@@ -1669,6 +1771,12 @@ type GqlPoolBaseFragment_GqlPoolLiquidityBootstrapping_Fragment = {
   symbol: string;
   address: string;
   decimals: number;
+  displayTokens: Array<{
+    __typename?: 'GqlPoolTokenDisplay';
+    address: string;
+    symbol: string;
+    name: string;
+  }>;
 };
 
 type GqlPoolBaseFragment_GqlPoolMetaStable_Fragment = {
@@ -1678,6 +1786,12 @@ type GqlPoolBaseFragment_GqlPoolMetaStable_Fragment = {
   symbol: string;
   address: string;
   decimals: number;
+  displayTokens: Array<{
+    __typename?: 'GqlPoolTokenDisplay';
+    address: string;
+    symbol: string;
+    name: string;
+  }>;
 };
 
 type GqlPoolBaseFragment_GqlPoolPhantomStable_Fragment = {
@@ -1687,6 +1801,12 @@ type GqlPoolBaseFragment_GqlPoolPhantomStable_Fragment = {
   symbol: string;
   address: string;
   decimals: number;
+  displayTokens: Array<{
+    __typename?: 'GqlPoolTokenDisplay';
+    address: string;
+    symbol: string;
+    name: string;
+  }>;
 };
 
 type GqlPoolBaseFragment_GqlPoolStable_Fragment = {
@@ -1696,6 +1816,12 @@ type GqlPoolBaseFragment_GqlPoolStable_Fragment = {
   symbol: string;
   address: string;
   decimals: number;
+  displayTokens: Array<{
+    __typename?: 'GqlPoolTokenDisplay';
+    address: string;
+    symbol: string;
+    name: string;
+  }>;
 };
 
 type GqlPoolBaseFragment_GqlPoolWeighted_Fragment = {
@@ -1705,6 +1831,12 @@ type GqlPoolBaseFragment_GqlPoolWeighted_Fragment = {
   symbol: string;
   address: string;
   decimals: number;
+  displayTokens: Array<{
+    __typename?: 'GqlPoolTokenDisplay';
+    address: string;
+    symbol: string;
+    name: string;
+  }>;
 };
 
 export type GqlPoolBaseFragmentFragment =
@@ -1716,6 +1848,22 @@ export type GqlPoolBaseFragmentFragment =
   | GqlPoolBaseFragment_GqlPoolStable_Fragment
   | GqlPoolBaseFragment_GqlPoolWeighted_Fragment;
 
+export type GqlPoolMinimalFragmentFragment = {
+  __typename?: 'GqlPoolMinimal';
+  id: string;
+  name: string;
+  symbol: string;
+  address: string;
+  decimals: number;
+  displayTokens: Array<{
+    __typename?: 'GqlPoolTokenDisplay';
+    id: string;
+    address: string;
+    symbol: string;
+    name: string;
+  }>;
+};
+
 export const GqlPoolBaseFragmentFragmentDoc = gql`
   fragment GqlPoolBaseFragment on GqlPoolBase {
     id
@@ -1723,6 +1871,26 @@ export const GqlPoolBaseFragmentFragmentDoc = gql`
     symbol
     address
     decimals
+    displayTokens {
+      address
+      symbol
+      name
+    }
+  }
+`;
+export const GqlPoolMinimalFragmentFragmentDoc = gql`
+  fragment GqlPoolMinimalFragment on GqlPoolMinimal {
+    id
+    name
+    symbol
+    address
+    decimals
+    displayTokens {
+      id
+      address
+      symbol
+      name
+    }
   }
 `;
 export const GetPoolDocument = gql`
@@ -1736,20 +1904,34 @@ export const GetPoolDocument = gql`
 export const GetAllPoolsDocument = gql`
   query GetAllPools {
     poolGetPools {
-      id
+      ...GqlPoolMinimalFragment
+    }
+  }
+  ${GqlPoolMinimalFragmentFragmentDoc}
+`;
+export const GetAllTokensDocument = gql`
+  query GetAllTokens {
+    tokenGetTokens {
+      address
+      name
+      symbol
+      chainId
+      logoURI
     }
   }
 `;
 export const AdminGetAllPendingFeeDataDocument = gql`
   query AdminGetAllPendingFeeData {
-    adminGetAllPendingFeeData(onlyWithBalances: true) {
+    adminGetAllPendingFeeData {
       totalValueUSD
       gauges {
         totalValueUSD
         values {
           poolId
           poolAddress
+          poolName
           gauge
+          gaugeAddress
           amount
           valueUSD
         }
@@ -1759,6 +1941,7 @@ export const AdminGetAllPendingFeeDataDocument = gql`
         values {
           poolId
           poolAddress
+          poolName
           token
           amount
           valueUSD
@@ -1810,6 +1993,20 @@ export function getSdk(
             ...wrappedRequestHeaders,
           }),
         'GetAllPools',
+        'query',
+      );
+    },
+    GetAllTokens(
+      variables?: GetAllTokensQueryVariables,
+      requestHeaders?: Dom.RequestInit['headers'],
+    ): Promise<GetAllTokensQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<GetAllTokensQuery>(GetAllTokensDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'GetAllTokens',
         'query',
       );
     },

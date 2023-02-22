@@ -1,11 +1,14 @@
 import { Contract, ContractReceipt } from 'ethers';
 import { parseUnits } from 'ethers/lib/utils';
 import {
+  ComposableStableV3Params,
   CreateWeightedPoolArgs,
   PoolCreationConfig,
 } from 'src/types/pool.types';
+import * as ComposableStablePoolFactoryV3Abi from '../../abis/ComposableStablePoolFactoryV3.json';
 import { _require } from 'src/utils';
 import { getSigner, getSignerAddress } from 'src/utils/account.util';
+import { getContractAddress } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
 import { awaitTransactionComplete } from 'src/utils/transaction.utils';
 
@@ -121,4 +124,28 @@ export async function createWeightedPool(
   );
 
   return await awaitTransactionComplete(tx);
+}
+
+export async function createComposableStableV3() {
+  // const params: ComposableStableV3Params = {
+  //   name: string;
+  //   symbol: string;
+  //   tokens: string[];
+  //   swapFeePercentage: string;
+  //   owner: string;
+  //   rateProviders?: string[];
+  //   assetManagers?: string[];
+  //   initialBalances?: string[];
+  //   amplificationParameter: number;
+  //   tokenRateCacheDurations: BigNumber[];
+  //   exemptFromYieldProtocolFeeFlags: boolean[];
+  // };
+
+  const params = {};
+
+  const factory = new Contract(
+    getContractAddress('ComposableStablePoolFactoryV3'),
+    ComposableStablePoolFactoryV3Abi,
+    await getSigner(),
+  );
 }

@@ -53,7 +53,7 @@ export class Multicaller {
       });
     } catch (err) {
       console.log('multicall error', err);
-      console.log(`callIdL ${callId}`);
+      console.log(`callId: ${callId}`);
       throw `Non-stacktrace multicall error`;
     }
     this.calls = [];

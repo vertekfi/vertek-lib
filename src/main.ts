@@ -1,5 +1,5 @@
 import { config } from 'dotenv';
-import { BigNumber, Contract } from 'ethers';
+import { BigNumber, Contract, ethers } from 'ethers';
 import {
   formatEther,
   getAddress,
@@ -24,11 +24,11 @@ import {
   doPoolFeeWithdraw,
   withdrawFeesFromCollector,
 } from './services/automation/fees/fee-action.utils';
+import { getGaugeFeeDistributionAmounts } from './services/automation/fees/fee-data.utils';
 import {
-  getGaugeFeeDistributionAmounts,
-  saveGaugeFeesData,
-} from './services/automation/fees/fee-data.utils';
-import { FeeManagementAutomation } from './services/automation/fees/fees-automation';
+  feeAutomation,
+  FeeManagementAutomation,
+} from './services/automation/fees/fees-automation';
 import {
   checkpointFeeDistributor,
   withdrawTokenHolderBalance,
@@ -85,11 +85,7 @@ import {
   getVRTK,
   getWeightedPoolToken,
 } from './utils/contract.utils';
-import {
-  approveTokensIfNeeded,
-  getAccountTokenBalances,
-  getBalanceForToken,
-} from './utils/token.utils';
+import { approveTokensIfNeeded, getBalanceForToken } from './utils/token.utils';
 import { doTransaction, sleep } from './utils/transaction.utils';
 import * as moment from 'moment-timezone';
 
@@ -97,7 +93,7 @@ config({ path: join(process.cwd(), '.env') });
 
 async function run() {
   console.log('VertekFi run:');
-  //  await runSetup();
+  await runSetup();
 
   // Type weight can be used to keep the emissions ratio for veVRTK
   // await changeGaugeTypeWeight(GaugeTypeNum.veVRTK, 8);
