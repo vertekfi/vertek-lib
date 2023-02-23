@@ -352,7 +352,7 @@ export async function checkpointGauge(address: string) {
  * Will checkpoint the stakelesss and gauge controller itself also
  */
 export async function checkpointAllGauges() {
-  // await checkpointStakelessGauge();
+  //  await checkpointStakelessGauge();
 
   const pools = await getAllPoolsWithGauges();
   for (const pool of pools) {

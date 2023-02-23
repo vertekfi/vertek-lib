@@ -93,56 +93,23 @@ config({ path: join(process.cwd(), '.env') });
 
 async function run() {
   console.log('VertekFi run:');
-  await runSetup();
+  // await runSetup();
 
   // Type weight can be used to keep the emissions ratio for veVRTK
   // await changeGaugeTypeWeight(GaugeTypeNum.veVRTK, 8);
-  // await getGaugeWeights(1676505600); // TODO: Have to set a watcher for votes to update type weight on the fly
+
+  // const gc = await getGaugeController();
+  // const tt = (await gc.time_total()).toNumber();
+  // console.log(tt);
+
+  // await getGaugeWeights(1677110400);
+
+  // TODO: Have to set a watcher for votes to update type weight on the fly
+  // await changeGaugeTypeWeight(GaugeTypeNum.veVRTK, 16);
   // await checkpointAllGauges();
   // await checkpointStakelessGauge();
   // await checkpointFeeDistributor();
   // await checkpointGaugeController();
-
-  // const feeData = await getAllPendingProtocolFees();
-  // console.log(feeData.feeCollector.values);
-  // const data = await getAccountTokenBalances(
-  //   feeData.feeCollector.values.map((p) => {
-  //     return {
-  //       address: p.poolAddress,
-  //     };
-  //   }),
-  //   getContractAddress('ProtocolFeesCollector'),
-  // );
-
-  // console.log(data);
-  // await withdrawFeesFromCollector(feeData.feeCollector.values);
-  // await saveGaugeFeesData(feeData.feeCollector.values);
-  // await doGaugeFeeWithdraws(feeData.gauges.values);
-
-  // await withdrawTokenHolderBalance();
-  // await depositVeFees([getTokenAddress('VRTK')], [parseUnits('0')]);
-
-  // const amounts = getGaugeFeeDistributionAmounts();
-  // console.log(amounts);
-
-  // const tokens = amounts.amounts.map((amt) => amt.poolAddress);
-  // const amountsTo = amounts.amounts.map((amt) => {
-  //   const str = String(amt.amount);
-  //   //  console.log(str.slice(0, str.length - 2));
-  //   return parseUnits(str.slice(0, str.length - 2));
-  // });
-  // console.log(tokens);
-  // console.log(amountsTo);
-
-  // const balances = await getAccountTokenBalances(
-  //   amounts.amounts.map((t) => {
-  //     return {
-  //       address: t.poolAddress,
-  //     };
-  //   }),
-  // );
-
-  // console.log(balances);
 }
 
 async function doPoolCreationSteps() {

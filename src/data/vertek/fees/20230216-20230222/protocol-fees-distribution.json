@@ -1,1 +1,228 @@
-{"veVRTK":{"distributedAt":"Wed, 22 Feb 2023 21:08:39 GMT","data":[{"address":"0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d","amount":0.6493819244833936,"amountBN":{"type":"BigNumber","hex":"0x0903116b74646840"}},{"address":"0x55d398326f99059ff775485246999027b3197955","amount":0.04289753452229619,"amountBN":{"type":"BigNumber","hex":"0x98671492f1077e"}},{"address":"0xe9e7cea3dedca5984780bafc599bd69add087d56","amount":2.99029726534739,"amountBN":{"type":"BigNumber","hex":"0x297fab8501da6a30"}},{"address":"0x90c97f71e18723b0cf0dfa30ee176ab653e89f40","amount":1.8559806964381242,"amountBN":{"type":"BigNumber","hex":"0x19c1c49c292d2ea8"}},{"address":"0x14016e85a25aeb13065688cafb43044c2ef86784","amount":0.2149724196505474,"amountBN":{"type":"BigNumber","hex":"0x02fbbc46d5c6eec8"}},{"address":"0x0db861235c7b90d419a64e1f71b3687db74d4477","amount":20.783991571114917,"amountBN":{"type":"BigNumber","hex":"0x01206f923733047c88"}},{"address":"0x248d943b9d59c4be35d41b34f79370dfbf577b2b","amount":324.61611032957444,"amountBN":{"type":"BigNumber","hex":"0x1198f41874734bbc40"}},{"address":"0x8e15953eba7d5f8f99853d8f3cb64fc73b3ba770","amount":1.8764276494459344,"amountBN":{"type":"BigNumber","hex":"0x1a0a690163f23540"}},{"address":"0x6e30ec031f2d94c397e469b40f86bff0be014124","amount":5.347473646071446,"amountBN":{"type":"BigNumber","hex":"0x4a360af2efd9f9f0"}},{"address":"0x32934c1122c0d7b0fc3daab588a4490b53c1568c","amount":0.030287976311309583,"amountBN":{"type":"BigNumber","hex":"0x6b9ac10500450f"}},{"address":"0x64bf08fac067b25c77967affafce73760d8d0bdf","amount":71.3235524107567,"amountBN":{"type":"BigNumber","hex":"0x03ddd029077a1bd760"}},{"address":"0xae42be6a9f75a2b53229e262e0488df6ecfeb53a","amount":6.015592493826166,"amountBN":{"type":"BigNumber","hex":"0x537bad804c03ccf0"}},{"address":"0xcf61cf9654f5536b8d6c93f09a0308ff3c2650f9","amount":662.8133467227237,"amountBN":{"type":"BigNumber","hex":"0x23ee620b1bd3c49d20"}},{"address":"0xdb043d8a95ad4d3ae0be21a6b34484a345c93481","amount":59.547817132878784,"amountBN":{"type":"BigNumber","hex":"0x033a64582f3b28e600"}},{"address":"0x9ee22f8b21b53323ae34d153e475aea6363b3ba7","amount":0.9434678987390203,"amountBN":{"type":"BigNumber","hex":"0x0d17df0e2152d20c"}}],"txHash":"0x15a1648873c7baca07265a2d5d4a445b99e2d4b4d9628a00d93b635d4ca76f37"},"treasury":{"distributedAt":"","data":[{"address":"0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d","amount":0.6493819244833936,"amountBN":{"type":"BigNumber","hex":"0x0903116b74646840"}},{"address":"0x55d398326f99059ff775485246999027b3197955","amount":0.04289753452229619,"amountBN":{"type":"BigNumber","hex":"0x98671492f1077e"}},{"address":"0xe9e7cea3dedca5984780bafc599bd69add087d56","amount":2.99029726534739,"amountBN":{"type":"BigNumber","hex":"0x297fab8501da6a30"}},{"address":"0x90c97f71e18723b0cf0dfa30ee176ab653e89f40","amount":1.8559806964381242,"amountBN":{"type":"BigNumber","hex":"0x19c1c49c292d2ea8"}},{"address":"0x14016e85a25aeb13065688cafb43044c2ef86784","amount":0.2149724196505474,"amountBN":{"type":"BigNumber","hex":"0x02fbbc46d5c6eec8"}},{"address":"0x0db861235c7b90d419a64e1f71b3687db74d4477","amount":20.783991571114917,"amountBN":{"type":"BigNumber","hex":"0x01206f923733047c88"}},{"address":"0x248d943b9d59c4be35d41b34f79370dfbf577b2b","amount":324.61611032957444,"amountBN":{"type":"BigNumber","hex":"0x1198f41874734bbc40"}},{"address":"0x8e15953eba7d5f8f99853d8f3cb64fc73b3ba770","amount":1.8764276494459344,"amountBN":{"type":"BigNumber","hex":"0x1a0a690163f23540"}},{"address":"0x6e30ec031f2d94c397e469b40f86bff0be014124","amount":5.347473646071446,"amountBN":{"type":"BigNumber","hex":"0x4a360af2efd9f9f0"}},{"address":"0x32934c1122c0d7b0fc3daab588a4490b53c1568c","amount":0.030287976311309583,"amountBN":{"type":"BigNumber","hex":"0x6b9ac10500450f"}},{"address":"0x64bf08fac067b25c77967affafce73760d8d0bdf","amount":71.3235524107567,"amountBN":{"type":"BigNumber","hex":"0x03ddd029077a1bd760"}},{"address":"0xae42be6a9f75a2b53229e262e0488df6ecfeb53a","amount":6.015592493826166,"amountBN":{"type":"BigNumber","hex":"0x537bad804c03ccf0"}},{"address":"0xcf61cf9654f5536b8d6c93f09a0308ff3c2650f9","amount":662.8133467227237,"amountBN":{"type":"BigNumber","hex":"0x23ee620b1bd3c49d20"}},{"address":"0xdb043d8a95ad4d3ae0be21a6b34484a345c93481","amount":59.547817132878784,"amountBN":{"type":"BigNumber","hex":"0x033a64582f3b28e600"}},{"address":"0x9ee22f8b21b53323ae34d153e475aea6363b3ba7","amount":0.9434678987390203,"amountBN":{"type":"BigNumber","hex":"0x0d17df0e2152d20c"}}]},"stableGaugeFund":{"distributedAt":"","data":[{"address":"0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d","amount":1.2987638489667872,"amountBN":{"type":"BigNumber","hex":"0x120622d6e8c8d080"}},{"address":"0x55d398326f99059ff775485246999027b3197955","amount":0.08579506904459239,"amountBN":{"type":"BigNumber","hex":"0x0130ce2925e20f06"}},{"address":"0xe9e7cea3dedca5984780bafc599bd69add087d56","amount":5.98059453069478,"amountBN":{"type":"BigNumber","hex":"0x52ff570a03b4d460"}},{"address":"0x90c97f71e18723b0cf0dfa30ee176ab653e89f40","amount":3.7119613928762485,"amountBN":{"type":"BigNumber","hex":"0x33838938525a5db4"}},{"address":"0x14016e85a25aeb13065688cafb43044c2ef86784","amount":0.4299448393010948,"amountBN":{"type":"BigNumber","hex":"0x05f7788dab8ddd90"}},{"address":"0x0db861235c7b90d419a64e1f71b3687db74d4477","amount":41.567983142229835,"amountBN":{"type":"BigNumber","hex":"0x0240df246e6608fcf8"}},{"address":"0x248d943b9d59c4be35d41b34f79370dfbf577b2b","amount":649.2322206591489,"amountBN":{"type":"BigNumber","hex":"0x2331e830e8e697c6a0"}},{"address":"0x8e15953eba7d5f8f99853d8f3cb64fc73b3ba770","amount":3.752855298891869,"amountBN":{"type":"BigNumber","hex":"0x3414d202c7e46b48"}},{"address":"0x6e30ec031f2d94c397e469b40f86bff0be014124","amount":10.694947292142892,"amountBN":{"type":"BigNumber","hex":"0x946c15e5dfb3f3e0"}},{"address":"0x32934c1122c0d7b0fc3daab588a4490b53c1568c","amount":0.06057595262261917,"amountBN":{"type":"BigNumber","hex":"0xd735820a008a22"}},{"address":"0x64bf08fac067b25c77967affafce73760d8d0bdf","amount":142.6471048215134,"amountBN":{"type":"BigNumber","hex":"0x07bba0520ef437aec0"}},{"address":"0xae42be6a9f75a2b53229e262e0488df6ecfeb53a","amount":12.031184987652331,"amountBN":{"type":"BigNumber","hex":"0xa6f75b00980795f8"}},{"address":"0xcf61cf9654f5536b8d6c93f09a0308ff3c2650f9","amount":1325.6266934454475,"amountBN":{"type":"BigNumber","hex":"0x47dcc41637a78ac0e0"}},{"address":"0xdb043d8a95ad4d3ae0be21a6b34484a345c93481","amount":119.09563426575757,"amountBN":{"type":"BigNumber","hex":"0x0674c8b05e7651d3d0"}},{"address":"0x9ee22f8b21b53323ae34d153e475aea6363b3ba7","amount":1.8869357974780405,"amountBN":{"type":"BigNumber","hex":"0x1a2fbe1c42a5a3b4"}}]}}
+{
+  "veVRTK": {
+    "distributedAt": "Wed, 22 Feb 2023 21:08:39 GMT",
+    "data": [
+      {
+        "address": "0x90c97f71e18723b0cf0dfa30ee176ab653e89f40",
+        "amount": 1.8559806964381242,
+        "amountBN": { "type": "BigNumber", "hex": "0x19c1c49c292d2ea8" }
+      },
+      {
+        "address": "0x14016e85a25aeb13065688cafb43044c2ef86784",
+        "amount": 0.2149724196505474,
+        "amountBN": { "type": "BigNumber", "hex": "0x02fbbc46d5c6eec8" }
+      },
+      {
+        "address": "0x0db861235c7b90d419a64e1f71b3687db74d4477",
+        "amount": 20.783991571114917,
+        "amountBN": { "type": "BigNumber", "hex": "0x01206f923733047c88" }
+      },
+      {
+        "address": "0x248d943b9d59c4be35d41b34f79370dfbf577b2b",
+        "amount": 324.61611032957444,
+        "amountBN": { "type": "BigNumber", "hex": "0x1198f41874734bbc40" }
+      },
+      {
+        "address": "0x8e15953eba7d5f8f99853d8f3cb64fc73b3ba770",
+        "amount": 1.8764276494459344,
+        "amountBN": { "type": "BigNumber", "hex": "0x1a0a690163f23540" }
+      },
+      {
+        "address": "0x6e30ec031f2d94c397e469b40f86bff0be014124",
+        "amount": 5.347473646071446,
+        "amountBN": { "type": "BigNumber", "hex": "0x4a360af2efd9f9f0" }
+      },
+      {
+        "address": "0x32934c1122c0d7b0fc3daab588a4490b53c1568c",
+        "amount": 0.030287976311309583,
+        "amountBN": { "type": "BigNumber", "hex": "0x6b9ac10500450f" }
+      },
+      {
+        "address": "0x64bf08fac067b25c77967affafce73760d8d0bdf",
+        "amount": 71.3235524107567,
+        "amountBN": { "type": "BigNumber", "hex": "0x03ddd029077a1bd760" }
+      },
+      {
+        "address": "0xae42be6a9f75a2b53229e262e0488df6ecfeb53a",
+        "amount": 6.015592493826166,
+        "amountBN": { "type": "BigNumber", "hex": "0x537bad804c03ccf0" }
+      },
+      {
+        "address": "0xcf61cf9654f5536b8d6c93f09a0308ff3c2650f9",
+        "amount": 662.8133467227237,
+        "amountBN": { "type": "BigNumber", "hex": "0x23ee620b1bd3c49d20" }
+      },
+      {
+        "address": "0xdb043d8a95ad4d3ae0be21a6b34484a345c93481",
+        "amount": 59.547817132878784,
+        "amountBN": { "type": "BigNumber", "hex": "0x033a64582f3b28e600" }
+      },
+      {
+        "address": "0x9ee22f8b21b53323ae34d153e475aea6363b3ba7",
+        "amount": 0.9434678987390203,
+        "amountBN": { "type": "BigNumber", "hex": "0x0d17df0e2152d20c" }
+      }
+    ],
+    "txHash": "0x15a1648873c7baca07265a2d5d4a445b99e2d4b4d9628a00d93b635d4ca76f37"
+  },
+  "treasury": {
+    "distributedAt": "",
+    "data": [
+      {
+        "address": "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
+        "amount": 0.6493819244833936,
+        "amountBN": { "type": "BigNumber", "hex": "0x0903116b74646840" }
+      },
+      {
+        "address": "0x55d398326f99059ff775485246999027b3197955",
+        "amount": 0.04289753452229619,
+        "amountBN": { "type": "BigNumber", "hex": "0x98671492f1077e" }
+      },
+      {
+        "address": "0xe9e7cea3dedca5984780bafc599bd69add087d56",
+        "amount": 2.99029726534739,
+        "amountBN": { "type": "BigNumber", "hex": "0x297fab8501da6a30" }
+      },
+      {
+        "address": "0x90c97f71e18723b0cf0dfa30ee176ab653e89f40",
+        "amount": 1.8559806964381242,
+        "amountBN": { "type": "BigNumber", "hex": "0x19c1c49c292d2ea8" }
+      },
+      {
+        "address": "0x14016e85a25aeb13065688cafb43044c2ef86784",
+        "amount": 0.2149724196505474,
+        "amountBN": { "type": "BigNumber", "hex": "0x02fbbc46d5c6eec8" }
+      },
+      {
+        "address": "0x0db861235c7b90d419a64e1f71b3687db74d4477",
+        "amount": 20.783991571114917,
+        "amountBN": { "type": "BigNumber", "hex": "0x01206f923733047c88" }
+      },
+      {
+        "address": "0x248d943b9d59c4be35d41b34f79370dfbf577b2b",
+        "amount": 324.61611032957444,
+        "amountBN": { "type": "BigNumber", "hex": "0x1198f41874734bbc40" }
+      },
+      {
+        "address": "0x8e15953eba7d5f8f99853d8f3cb64fc73b3ba770",
+        "amount": 1.8764276494459344,
+        "amountBN": { "type": "BigNumber", "hex": "0x1a0a690163f23540" }
+      },
+      {
+        "address": "0x6e30ec031f2d94c397e469b40f86bff0be014124",
+        "amount": 5.347473646071446,
+        "amountBN": { "type": "BigNumber", "hex": "0x4a360af2efd9f9f0" }
+      },
+      {
+        "address": "0x32934c1122c0d7b0fc3daab588a4490b53c1568c",
+        "amount": 0.030287976311309583,
+        "amountBN": { "type": "BigNumber", "hex": "0x6b9ac10500450f" }
+      },
+      {
+        "address": "0x64bf08fac067b25c77967affafce73760d8d0bdf",
+        "amount": 71.3235524107567,
+        "amountBN": { "type": "BigNumber", "hex": "0x03ddd029077a1bd760" }
+      },
+      {
+        "address": "0xae42be6a9f75a2b53229e262e0488df6ecfeb53a",
+        "amount": 6.015592493826166,
+        "amountBN": { "type": "BigNumber", "hex": "0x537bad804c03ccf0" }
+      },
+      {
+        "address": "0xcf61cf9654f5536b8d6c93f09a0308ff3c2650f9",
+        "amount": 662.8133467227237,
+        "amountBN": { "type": "BigNumber", "hex": "0x23ee620b1bd3c49d20" }
+      },
+      {
+        "address": "0xdb043d8a95ad4d3ae0be21a6b34484a345c93481",
+        "amount": 59.547817132878784,
+        "amountBN": { "type": "BigNumber", "hex": "0x033a64582f3b28e600" }
+      },
+      {
+        "address": "0x9ee22f8b21b53323ae34d153e475aea6363b3ba7",
+        "amount": 0.9434678987390203,
+        "amountBN": { "type": "BigNumber", "hex": "0x0d17df0e2152d20c" }
+      }
+    ]
+  },
+  "stableGaugeFund": {
+    "distributedAt": "",
+    "data": [
+      {
+        "address": "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
+        "amount": 1.2987638489667872,
+        "amountBN": { "type": "BigNumber", "hex": "0x120622d6e8c8d080" }
+      },
+      {
+        "address": "0x55d398326f99059ff775485246999027b3197955",
+        "amount": 0.08579506904459239,
+        "amountBN": { "type": "BigNumber", "hex": "0x0130ce2925e20f06" }
+      },
+      {
+        "address": "0xe9e7cea3dedca5984780bafc599bd69add087d56",
+        "amount": 5.98059453069478,
+        "amountBN": { "type": "BigNumber", "hex": "0x52ff570a03b4d460" }
+      },
+      {
+        "address": "0x90c97f71e18723b0cf0dfa30ee176ab653e89f40",
+        "amount": 3.7119613928762485,
+        "amountBN": { "type": "BigNumber", "hex": "0x33838938525a5db4" }
+      },
+      {
+        "address": "0x14016e85a25aeb13065688cafb43044c2ef86784",
+        "amount": 0.4299448393010948,
+        "amountBN": { "type": "BigNumber", "hex": "0x05f7788dab8ddd90" }
+      },
+      {
+        "address": "0x0db861235c7b90d419a64e1f71b3687db74d4477",
+        "amount": 41.567983142229835,
+        "amountBN": { "type": "BigNumber", "hex": "0x0240df246e6608fcf8" }
+      },
+      {
+        "address": "0x248d943b9d59c4be35d41b34f79370dfbf577b2b",
+        "amount": 649.2322206591489,
+        "amountBN": { "type": "BigNumber", "hex": "0x2331e830e8e697c6a0" }
+      },
+      {
+        "address": "0x8e15953eba7d5f8f99853d8f3cb64fc73b3ba770",
+        "amount": 3.752855298891869,
+        "amountBN": { "type": "BigNumber", "hex": "0x3414d202c7e46b48" }
+      },
+      {
+        "address": "0x6e30ec031f2d94c397e469b40f86bff0be014124",
+        "amount": 10.694947292142892,
+        "amountBN": { "type": "BigNumber", "hex": "0x946c15e5dfb3f3e0" }
+      },
+      {
+        "address": "0x32934c1122c0d7b0fc3daab588a4490b53c1568c",
+        "amount": 0.06057595262261917,
+        "amountBN": { "type": "BigNumber", "hex": "0xd735820a008a22" }
+      },
+      {
+        "address": "0x64bf08fac067b25c77967affafce73760d8d0bdf",
+        "amount": 142.6471048215134,
+        "amountBN": { "type": "BigNumber", "hex": "0x07bba0520ef437aec0" }
+      },
+      {
+        "address": "0xae42be6a9f75a2b53229e262e0488df6ecfeb53a",
+        "amount": 12.031184987652331,
+        "amountBN": { "type": "BigNumber", "hex": "0xa6f75b00980795f8" }
+      },
+      {
+        "address": "0xcf61cf9654f5536b8d6c93f09a0308ff3c2650f9",
+        "amount": 1325.6266934454475,
+        "amountBN": { "type": "BigNumber", "hex": "0x47dcc41637a78ac0e0" }
+      },
+      {
+        "address": "0xdb043d8a95ad4d3ae0be21a6b34484a345c93481",
+        "amount": 119.09563426575757,
+        "amountBN": { "type": "BigNumber", "hex": "0x0674c8b05e7651d3d0" }
+      },
+      {
+        "address": "0x9ee22f8b21b53323ae34d153e475aea6363b3ba7",
+        "amount": 1.8869357974780405,
+        "amountBN": { "type": "BigNumber", "hex": "0x1a2fbe1c42a5a3b4" }
+      }
+    ]
+  }
+}

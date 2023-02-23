@@ -167,6 +167,6 @@ export const CONTRACT_MAP = {
     56: '0xd4afeAe1D8E7b88F334d175c56604e2Bf34cc8eF',
   },
   VertekFeeManagement: {
-    56: '0xd035fBFEd790cbfD48d947d755fD46cece3AB96d',
+    56: '0x7aa7423541fBC1Cf7Fb2F5d979f39aF00ED50eeE',
   },
 };

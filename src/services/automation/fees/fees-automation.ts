@@ -24,12 +24,19 @@ import {
   mapTokensToAddressObjectMap,
 } from 'src/utils/token.utils';
 import { logger } from 'src/utils/logger';
-import { TREASURY_PERCENT, VEVRTK_PERCENT } from './data';
+import {
+  STABLE_GAUGE_TOKEN_HOLDER_ACCOUNT,
+  TREASURY_PERCENT,
+  VEVRTK_PERCENT,
+} from './data';
 import { FeeDistributionInfo, TokenFeeInfo } from './fee.types';
 import { feeVaultService } from './fee-vault.service';
 import { GqlPoolMinimal } from 'src/services/subgraphs/vertek/generated/vertek-subgraph-types';
 import { getVaultInstance } from 'src/services/vault/vault';
 import { getDefaultAllTokensExitRequest } from 'src/services/vault/vault-utils';
+import { getAuthAdapterActionId } from 'src/services/auth/action-ids';
+import { grantVaultAuthorizerPermissions } from 'src/services/auth/auth';
+import { ANY_ADDRESS } from 'src/utils/constants';
 
 const tradingFeesFileName = 'trading-fees.json';
 const gaugeFeesFileName = 'gauge-fees.json';
@@ -114,40 +121,15 @@ export class FeeManagementAutomation {
       // );
 
       // Fee dist deposits for VE (Include VRTK after this week. Already there for this week)
-      const distPath = join(dataDir, feeDistributionFileName);
+      // const distPath = join(dataDir, feeDistributionFileName);
 
-      // Need pool id's
-      const { poolGetPools } = await vertekBackendClient.sdk.GetAllPools();
+      // // Need pool id's
+      // const { poolGetPools } = await vertekBackendClient.sdk.GetAllPools();
 
-      // await this.doVeFeeDistribution(distPath);
-      await this.doStableGaugeFundDistribution(dataDir, poolGetPools);
+      await this.doVeFeeDistribution(join(dataDir, feeDistributionFileName));
+      // await this.doStableGaugeFundDistribution(dataDir, poolGetPools);
 
       //  await v1FeeAutomation.run()
-
-      // await withdrawTokenHolderBalance(); // stakeless
-      // await depositVeFees([getTokenAddress('VRTK')], [parseUnits('0')]);
-
-      // const amounts = getGaugeFeeDistributionAmounts();
-      // console.log(amounts);
-
-      // const tokens = amounts.amounts.map((amt) => amt.poolAddress);
-      // const amountsTo = amounts.amounts.map((amt) => {
-      //   const str = String(amt.amount);
-      //   //  console.log(str.slice(0, str.length - 2));
-      //   return parseUnits(str.slice(0, str.length - 2));
-      // });
-      // console.log(tokens);
-      // console.log(amountsTo);
-
-      // const balances = await getAccountTokenBalances(
-      //   amounts.amounts.map((t) => {
-      //     return {
-      //       address: t.poolAddress,
-      //     };
-      //   }),
-      // );
-
-      // console.log(balances);
 
       logger.success('Fee automation complete');
     } catch (error) {
@@ -158,20 +140,24 @@ export class FeeManagementAutomation {
   private async doVeFeeDistribution(dataPath: string) {
     const data: FeeDistributionInfo = fs.readJSONSync(dataPath);
     // TODO: Next week, checkpoint stakeless and add to ve deposit tokens
+    // await withdrawTokenHolderBalance(); // stakeless
+    // await depositVeFees([getTokenAddress('VRTK')], [parseUnits('0')]);
 
     const feeDist = await getFeeDistributor();
     const tokens = data.veVRTK.data.map((d) => d.address);
     const amountsBN = data.veVRTK.data.map((d) => d.amountBN);
 
-    await approveTokensIfNeeded(
-      tokens,
-      await getSignerAddress(),
-      feeDist.address,
-    );
-    const tx = await doTransaction(feeDist.depositTokens(tokens, amountsBN));
-    data.veVRTK.txHash = tx.transactionHash;
-    data.veVRTK.distributedAt = new Date().toUTCString();
-    fs.writeJsonSync(dataPath, data);
+    console.log(tokens);
+
+    // await approveTokensIfNeeded(
+    //   tokens,
+    //   await getSignerAddress(),
+    //   feeDist.address,
+    // );
+    // const tx = await doTransaction(feeDist.depositTokens(tokens, amountsBN));
+    // data.veVRTK.txHash = tx.transactionHash;
+    // data.veVRTK.distributedAt = new Date().toUTCString();
+    // fs.writeJsonSync(dataPath, data);
   }
 
   private async doStableGaugeFundDistribution(
@@ -181,73 +167,158 @@ export class FeeManagementAutomation {
     const data: FeeDistributionInfo = fs.readJSONSync(
       join(dataDir, feeDistributionFileName),
     );
-    const stableData = data.stableGaugeFund;
-
-    const vault = await getVaultInstance();
-
     // Use this higher level then after testing this
     const tmpDirPath = join(dataDir, 'tmp');
     fs.ensureDirSync(tmpDirPath);
+
+    const exitsDataPath = join(dataDir, 'pool-exits');
+    fs.ensureDirSync(exitsDataPath);
+
+    // const stableData = data.stableGaugeFund;
+    // const vault = await getVaultInstance();
     const account = await getSignerAddress();
 
-    for (const info of stableData.data.slice(5, 6)) {
-      const pool = pools.find((p) => p.address === info.address);
-      if (!pool) {
-        // TODO: Just working with BPT's for now but will want to account for pools
-        // that pay in single tokens like old stable pools
-        logger.warn(`No matching pool for fee info address: ${info.address}`);
-        continue;
-      }
+    // for (const info of stableData.data) {
+    //   const pool = pools.find((p) => p.address === info.address);
+    //   if (!pool) {
+    //     // TODO: Just working with BPT's for now but will want to account for pools
+    //     // that pay in single tokens like old stable pools
+    //     logger.warn(`No matching pool for fee info address: ${info.address}`);
+    //     continue;
+    //   }
 
-      const tokens = pool.displayTokens.map((t) => t.address);
-      const exitRequest = getDefaultAllTokensExitRequest(tokens, info.amountBN);
+    //   const poolExitPath = join(exitsDataPath, `${pool.id}-stable.json`);
+    //   fs.ensureFileSync(poolExitPath);
 
-      // Save and delete right after or something?
-      const preBalances = await getAccountTokenBalances(
-        mapTokensToAddressObjectMap(tokens),
-        account,
-        false,
-      );
+    //   const tokens = pool.displayTokens.map((t) => t.address);
 
-      // HMM WILL HAVE OVER LAPPING TOKENS FROM DIFFERENT POOLS
-      // SO SNAPSHOT ONE AT A TIME PER POOL
-      console.log(tokens);
-      console.log(preBalances);
+    //   const preBalances = await getAccountTokenBalances(
+    //     mapTokensToAddressObjectMap(tokens),
+    //     account,
+    //     false,
+    //   );
 
-      const preFile = join(tmpDirPath, `${pool.id}-pre.json`);
-      fs.writeJSONSync(preFile, {
-        poolId: pool.id,
-        preBalances,
-      });
+    //   console.log('pre balances:');
+    //   console.log(preBalances);
 
-      //  console.log(exitRequest);
+    //   const preFile = join(tmpDirPath, `${pool.id}-pre.json`);
+    //   fs.writeJSONSync(preFile, {
+    //     poolId: pool.id,
+    //     preBalances,
+    //   });
 
-      try {
-        const tx = await vault.exitPool(pool.id, exitRequest);
-        console.log(tx);
-      } catch (error) {
-        console.error(error);
-        fs.removeSync(preFile);
-      }
+    //   try {
+    //     const exitRequest = getDefaultAllTokensExitRequest(
+    //       tokens,
+    //       info.amountBN,
+    //     );
+    //     await vault.exitPool(pool.id, exitRequest);
 
-      const postBalances = await getAccountTokenBalances(
-        mapTokensToAddressObjectMap(tokens),
-        account,
-        false,
-      );
+    //     const postBalances = await getAccountTokenBalances(
+    //       mapTokensToAddressObjectMap(tokens),
+    //       account,
+    //       false,
+    //     );
 
-      const postFile = join(tmpDirPath, `${pool.id}-post.json`);
-      fs.writeJSONSync(postFile, {
-        poolId: pool.id,
-        postBalances,
-      });
-    }
+    //     console.log('post balances:');
+    //     console.log(postBalances);
 
-    // TODO: Tally up amounts received for each token and save record of all amounts before sending
-    // Multicall balance for each token before and after
+    //     const postFile = join(tmpDirPath, `${pool.id}-post.json`);
+    //     fs.writeJSONSync(postFile, {
+    //       poolId: pool.id,
+    //       postBalances,
+    //     });
 
-    // Amounts to stable fund. Need to break lp's first
-    // Then send all single token amounts to fund handler account
+    //     const preData: any[] = fs.readJSONSync(preFile).preBalances;
+    //     const postData: any[] = fs.readJSONSync(postFile).postBalances;
+
+    //     const diffs = [];
+    //     preData.forEach((pre) => {
+    //       const post = postData.find((d) => d.address === pre.address);
+    //       const gain = parseFloat(post.balance) - parseFloat(pre.balance);
+    //       diffs.push({
+    //         address: pre.address,
+    //         amount: gain,
+    //       });
+    //     });
+
+    //     console.log(diffs);
+    //     fs.writeJSONSync(poolExitPath, diffs);
+    //   } catch (error) {
+    //     console.error(error);
+    //     fs.removeSync(preFile);
+    //   }
+    // }
+
+    // Need to aggregate token amounts after exits
+    // const files = fs.readdirSync(exitsDataPath);
+    // const records: { [token: string]: number } = {};
+
+    // for (const file of files) {
+    //   const data: any[] = fs.readJSONSync(join(exitsDataPath, file));
+
+    //   data.forEach((amt) => {
+    //     if (!records[amt.address]) {
+    //       records[amt.address] = 0;
+    //     }
+
+    //     records[amt.address] += amt.amount;
+    //   });
+    // }
+
+    // const stableFundAmounts = Object.entries(records).map((obj) => {
+    //   return {
+    //     address: obj[0],
+    //     amount: obj[1],
+    //   };
+    // });
+
+    const stableAmountsPath = join(dataDir, 'stable-gauge-fund-amounts.json');
+    // fs.writeJSONSync(
+    //   stableAmountsPath,
+    //   stableFundAmounts,
+    // );
+
+    const stableFundAmounts = fs.readJSONSync(stableAmountsPath);
+
+    const tokens = stableFundAmounts
+      .filter(
+        (amt) => amt.address !== '0xed236c32f695c83efde232c288701d6f9c23e60e',
+      )
+      .map((amt) => amt.address);
+    const amountsBN = stableFundAmounts.map((amt) =>
+      parseUnits(String(amt.amount)),
+    );
+    // await approveTokensIfNeeded(
+    //  tokens,
+    //   '0x7aa7423541fBC1Cf7Fb2F5d979f39aF00ED50eeE',
+    //   account,
+    // );
+
+    // Send all single token amounts to fund handler account
+    // TODO: Handle this in the contract like most other things
+    const feeManager = await getVertekFeeManager();
+
+    await approveTokensIfNeeded(tokens, account, feeManager.address);
+
+    // console.log(
+    //   await feeManager.isValidRecipient(STABLE_GAUGE_TOKEN_HOLDER_ACCOUNT),
+    // );
+
+    // const tk = await getERC20(tokens[2]);
+    // console.log(
+    //   formatEther(await tk.balanceOf(STABLE_GAUGE_TOKEN_HOLDER_ACCOUNT)),
+    // );
+    // await doTransaction(
+    //   feeManager.transferAmountsToRecipient(
+    //     [tokens[2]],
+    //     [amountsBN[2]],
+    //     STABLE_GAUGE_TOKEN_HOLDER_ACCOUNT,
+    //   ),
+    // );
+    // console.log(
+    //   formatEther(await tk.balanceOf(STABLE_GAUGE_TOKEN_HOLDER_ACCOUNT)),
+    // );
   }
 
   private async TreasuryDistribution(

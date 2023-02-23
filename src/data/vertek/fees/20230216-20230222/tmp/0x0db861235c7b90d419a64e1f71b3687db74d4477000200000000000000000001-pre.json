@@ -1,0 +1,15 @@
+{
+  "poolId": "0x0db861235c7b90d419a64e1f71b3687db74d4477000200000000000000000001",
+  "preBalances": [
+    {
+      "address": "0xe9e7cea3dedca5984780bafc599bd69add087d56",
+      "balanceBN": { "type": "BigNumber", "hex": "0x016b492ae0321917df" },
+      "balance": "26.177501451469264863"
+    },
+    {
+      "address": "0xfa4b16b0f63f5a6d0651592620d585d308f749a4",
+      "balanceBN": { "type": "BigNumber", "hex": "0x00" },
+      "balance": "0.0"
+    }
+  ]
+}
