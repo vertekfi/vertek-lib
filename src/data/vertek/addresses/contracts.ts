@@ -169,4 +169,13 @@ export const CONTRACT_MAP = {
   VertekFeeManagement: {
     56: '0x7aa7423541fBC1Cf7Fb2F5d979f39aF00ED50eeE',
   },
+  VertekAdminActions: {
+    56: '0x85b3062122Dda49002471500C0F559C776FfD8DD', // Impl: 0x9aad96b85dafe8c2f5d9f74f9de93c9784c8c6db, proxy admin: 0xdD2EfD2e3D0C02FF339080CC8ceFE91369b460be
+  },
+  BribeManager: {
+    56: '0xe1f6A52798b54D07E0Bed1d16e23897E0B336FDD',
+  },
+  MerkleOrchard: {
+    56: '0xf774745E9aDb7f82c461b04bef02AF1E00043386',
+  },
 };

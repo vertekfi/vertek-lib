@@ -110,6 +110,8 @@ async function run() {
   // await checkpointStakelessGauge();
   // await checkpointFeeDistributor();
   // await checkpointGaugeController();
+  const votingEsrow = await getVotingEscrow();
+  console.log(await votingEsrow.getStakingAdmin());
 }
 
 async function doPoolCreationSteps() {

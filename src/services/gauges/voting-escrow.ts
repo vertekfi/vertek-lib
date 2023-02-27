@@ -117,9 +117,7 @@ export async function increaseStakeForUser(who: string, amount: BigNumber) {
     [who, amount],
   );
 
-  const newTotalBalance: BigNumber = await votingEsrow['balanceOf(address)'](
-    who,
-  );
+  const newTotalBalance: BigNumber = await votingEsrow.balanceOf(who);
   const amountReceived = formatEther(
     newTotalBalance.sub(cuurentLockInfo.amount),
   );
