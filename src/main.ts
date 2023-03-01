@@ -61,6 +61,7 @@ import { getDefaultSingleTokenExitRequest } from './services/vault/vault-utils';
 import { GaugeTypeNum } from './types/gauge.types';
 import {
   getDefaultChainProvider,
+  getRpcProvider,
   getSigner,
   getSignerAddress,
 } from './utils/account.util';
@@ -88,6 +89,12 @@ import {
 import { approveTokensIfNeeded, getBalanceForToken } from './utils/token.utils';
 import { doTransaction, sleep } from './utils/transaction.utils';
 import * as moment from 'moment-timezone';
+import {
+  addBribeGauges,
+  addBribeTokenOptions,
+} from './services/bribes/bribe.utils';
+import { getEventData } from './utils/event-scraping';
+import { vertekBackendClient } from './services/subgraphs/vertek/vertek-backend-gql-client';
 
 config({ path: join(process.cwd(), '.env') });
 
@@ -110,8 +117,21 @@ async function run() {
   // await checkpointStakelessGauge();
   // await checkpointFeeDistributor();
   // await checkpointGaugeController();
-  const votingEsrow = await getVotingEscrow();
-  console.log(await votingEsrow.getStakingAdmin());
+
+  // const feeCollector = await getProtocolFeesCollector();
+  // const provider = await getRpcProvider();
+  // const endBlock = await provider.getBlockNumber();
+  // const startBlock = endBlock - 6048000;
+  // await getEventData(
+  //   feeCollector,
+  //   'SwapFeePercentageChanged',
+  //   startBlock,
+  //   endBlock,
+  //   5000,
+  //   (evt) => {
+  //     console.log(evt);
+  //   },
+  // );
 }
 
 async function doPoolCreationSteps() {
