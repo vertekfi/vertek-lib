@@ -1,6 +1,17 @@
 import * as schedule from 'node-schedule';
+import { join } from 'path';
+import { getSignerAddress } from 'src/utils/account.util';
+import { getContractAddress } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
-import { feeAutomation } from './fees/fees-automation';
+import { vertekBackendClient } from '../subgraphs/vertek/vertek-backend-gql-client';
+import { createWeekDataDirectory } from './fees/fee-data.utils';
+import {
+  devAccountPostBalancesFileName,
+  devAccountPreBalancesFileName,
+  feeAutomation,
+  feeCollectorPreWithdrawTotalsName,
+  feeDistributionFileName,
+} from './fees/fees-automation';
 
 const utcZone = 'Etc/UTC';
 
@@ -36,14 +47,78 @@ export class ScheduledJobService {
         logger.info(
           'Running fee automation job - ' + new Date().toLocaleString(),
         );
-        // collect and save data
-        // do withdraw
-        // exit through vault (Guess we're keeping BPT's instead though)
-        // deposit to fee dist
-        // part of this is also getting the VRTK from checkpoint stakeless gauge
-        // (token holder) to the fee dist for veVRTK people as well then
 
-        await feeAutomation.run();
+        const dataDir = createWeekDataDirectory();
+        // Save raw trading and gauge fees from the start
+        // const { tradePath, gaugePath } = await feeAutomation.saveRawFeeData(
+        //   dataDir,
+        // );
+
+        // // Save total trading and gauge fees per BPT
+        // feeAutomation.saveTotalFeesPerToken(dataDir, tradePath, gaugePath);
+
+        // // Snapshot dev account balances before fee withdraw
+        // // Need to be able to properly account for any amounts already in the account
+        // await feeAutomation.doAccountBalanceSnapshot(
+        //   join(dataDir, devAccountPreBalancesFileName),
+        //   await getSignerAddress(),
+        // );
+
+        // Needs to happen first so they go to fee collector
+        // Will use the helper contract to withdraw for all gauges
+        // TODO: DO NOT UPDATE FEE FILE DATA AFTER THIS
+        // await feeAutomation.withdrawGaugeFees(dataDir);
+
+        // Snapshot the balances of the fee collector before
+        // withdraw so we know exactly the amounts we're
+        // calculating for fees then afterwards
+        // const finalCollectorAmountsPath = join(
+        //   dataDir,
+        //   feeCollectorPreWithdrawTotalsName,
+        // );
+        // await feeAutomation.doAccountBalanceSnapshot(
+        //   finalCollectorAmountsPath,
+        //   getContractAddress('ProtocolFeesCollector'),
+        // );
+
+        // Then we can trigger the actual withdraw
+        // await feeAutomation.doFeeCollectorWithdraw(finalCollectorAmountsPath);
+
+        // Snapshot admin account again in case amounts are needed for reference
+        // await feeAutomation.doAccountBalanceSnapshot(
+        //   join(dataDir, devAccountPostBalancesFileName),
+        //   await getSignerAddress(),
+        // );
+
+        // Break up amounts to where they go (stable fund, treasury, veVRTK)
+        // feeAutomation.saveFeeDistributionData(
+        //   join(dataDir, feeCollectorPreWithdrawTotalsName),
+        //   dataDir,
+        // );
+
+        // VE holders deposit flow
+        // BPT's and VRTK
+        // await feeAutomation.doVeFeeDistribution(
+        //   join(dataDir, feeDistributionFileName),
+        // );
+
+        // This is currently just doing stable fund
+        // TODO: Still need to add the one to exit and swap to stables/blue chips for our treasury
+        // Do pool exits for stable fund.
+        // const { poolGetPools } = await vertekBackendClient.sdk.GetAllPools();
+        // await feeAutomation.doPoolTokenExitsForStableFund(
+        //   dataDir,
+        //   poolGetPools,
+        // );
+
+        // const stableAmountsPath =
+        //   feeAutomation.saveStableGaugeFundDistribution(dataDir);
+        // await feeAutomation.doStableGaugeDistribution(stableAmountsPath);
+
+        const { tokenGetTokens } = await vertekBackendClient.sdk.GetAllTokens();
+        await feeAutomation.doTreasurySwaps(dataDir, tokenGetTokens);
+
+        // await feeAutomation.run();
       } catch (error) {
         console.log(error);
         logger.error('Fee automation job: failed');
@@ -84,11 +159,12 @@ export class ScheduledJobService {
   }
 
   private initEpochStartCheckpointsJob() {
-    // Thursdays 12:15am UTC
+    // Thursdays 12:00:30am UTC
     const checkpointsRule = new schedule.RecurrenceRule();
     checkpointsRule.dayOfWeek = 4; // Thursday
     checkpointsRule.hour = 0; // 12am UTC
-    checkpointsRule.minute = 15; // Give RPC node time/space in case
+    checkpointsRule.minute = 0; // Give RPC node time/space in case
+    checkpointsRule.second = 30;
     checkpointsRule.tz = utcZone;
 
     async function handler() {

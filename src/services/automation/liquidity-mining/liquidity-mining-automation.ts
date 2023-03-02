@@ -45,12 +45,14 @@ export class LiquidityMiningAutomation {
     await checkpointAllGauges();
   }
 
-  // At the start of a new epoch this should claim it's rewards (if it was checkpointed in last epoch)
+  // At the end of a new epoch this should claim it's rewards (if it was checkpointed in last epoch)
   async checkpointStakelessGauge() {
-    await performAuthEntrypointAction(
-      await getSingleRecipientGauge(),
-      'checkpoint',
-    );
+    const stakless = await getSingleRecipientGauge();
+    await doTransaction(stakless.checkpoint());
+    // await performAuthEntrypointAction(
+    //   await getSingleRecipientGauge(),
+    //   'checkpoint',
+    // );
   }
 
   // Start of each epoch week
@@ -67,9 +69,11 @@ export async function checkpointFeeDistributor() {
 
 export async function withdrawTokenHolderBalance() {
   const vrtk = await getVRTK();
+
   const holderBalance = await vrtk.balanceOf(
     getContractAddress('BalTokenHolder'),
   );
+
   const devAddress = await getSignerAddress();
   const devAccountBalance = await vrtk.balanceOf(devAddress);
   logger.info(`token holder balance: ${formatEther(holderBalance)}`);
@@ -84,4 +88,6 @@ export async function withdrawTokenHolderBalance() {
   logger.success(
     `new dev account balance: ${formatEther(await vrtk.balanceOf(devAddress))}`,
   );
+
+  return holderBalance;
 }

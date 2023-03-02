@@ -30,7 +30,7 @@ export interface FeeDistributionRecord {
   data: TokenFeeInfo[];
 }
 export interface FeeDistributionInfo {
-  veVRTK: FeeDistributionRecord;
-  treasury: FeeDistributionRecord;
-  stableGaugeFund: FeeDistributionRecord;
+  veVRTK: TokenFeeInfo[];
+  treasury: TokenFeeInfo[];
+  stableGaugeFund: TokenFeeInfo[];
 }

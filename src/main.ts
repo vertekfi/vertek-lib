@@ -100,19 +100,26 @@ config({ path: join(process.cwd(), '.env') });
 
 async function run() {
   console.log('VertekFi run:');
-  // await runSetup();
 
-  // Type weight can be used to keep the emissions ratio for veVRTK
-  // await changeGaugeTypeWeight(GaugeTypeNum.veVRTK, 8);
+  // runSetup();
+
+  // const pool = await getWeightedPoolToken(
+  //   '0xDD64E2EC144571b4320f7BFB14a56b2b2cBF37ad',
+  // );
+  // const fee = await pool.balanceOf(
+  //   '0xAc8E65B3B925bf09a330549ed092E2ECE2B38712',
+  // );
+  // console.log(formatEther(fee));
 
   // const gc = await getGaugeController();
   // const tt = (await gc.time_total()).toNumber();
+  // console.log(new Date(tt * 1000).toUTCString());
   // console.log(tt);
 
-  // await getGaugeWeights(1677110400);
+  // await getGaugeWeights(1678320000);
 
-  // TODO: Have to set a watcher for votes to update type weight on the fly
-  // await changeGaugeTypeWeight(GaugeTypeNum.veVRTK, 16);
+  // await changeGaugeTypeWeight(GaugeTypeNum.veVRTK, 32);
+  // await getGaugeWeights(1677715200);
   // await checkpointAllGauges();
   // await checkpointStakelessGauge();
   // await checkpointFeeDistributor();
@@ -158,7 +165,7 @@ async function doPoolCreationSteps() {
   // await addLiquidityGaugeToController(pool, GaugeTypeNum.Ethereum);
 }
 
-async function runSetup() {
+function runSetup() {
   const jobService = new ScheduledJobService();
   jobService.init();
 }

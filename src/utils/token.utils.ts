@@ -51,18 +51,6 @@ export async function approveTokensIfNeeded(
         logger.success('Token approval complete');
       }
     }
-
-    // for (const address of tokens) {
-    //   const token = await getERC20(address);
-    //   const allowance: BigNumber = await token.allowance(owner, spender);
-    //   if (allowance.isZero()) {
-    //     logger.info(`Approving token: ${address} - for spender ${spender}`);
-    //     await awaitTransactionComplete(
-    //       await token.approve(spender, MAX_UINT256),
-    //     );
-    //     logger.success('Token approval complete');
-    //   }
-    // }
   } catch (error) {
     logger.error('approveTokensIfNeeded failed');
     throw error;

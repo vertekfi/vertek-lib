@@ -28,6 +28,17 @@ export type Scalars = {
   JSON: any;
 };
 
+export type GaugeBribe = {
+  __typename?: 'GaugeBribe';
+  amount: Scalars['String'];
+  briber: Scalars['String'];
+  epochStartTime: Scalars['Int'];
+  epochWeekLabel: Scalars['String'];
+  gauge: Scalars['String'];
+  token: GqlToken;
+  valueUSD: Scalars['Float'];
+};
+
 export type GaugeFactory = {
   __typename?: 'GaugeFactory';
   id: Scalars['String'];
@@ -1163,12 +1174,15 @@ export type LiquidityGauge = {
   __typename?: 'LiquidityGauge';
   /**  Address of the pool (lp_token of the gauge)  */
   address: Scalars['String'];
+  bribes: Array<Maybe<GaugeBribe>>;
+  currentEpochBribes: Array<Maybe<GaugeBribe>>;
   depositFee: Scalars['Int'];
   factory?: Maybe<GaugeFactory>;
   /**  LiquidityGauge contract address  */
   id: Scalars['ID'];
   /**  Whether Balancer DAO killed the gauge  */
   isKilled: Scalars['Boolean'];
+  nextEpochBribes: Array<Maybe<GaugeBribe>>;
   /**  Reference to Pool entity  */
   pool: GaugePool;
   /**  Pool ID if lp_token is a Balancer pool; null otherwise  */
@@ -1275,6 +1289,8 @@ export type Query = {
   blocksGetBlocksPerSecond: Scalars['Float'];
   blocksGetBlocksPerYear: Scalars['Float'];
   contentGetNewsItems: Array<Maybe<GqlContentNewsItem>>;
+  get24HourGaugeFees?: Maybe<Array<Maybe<Scalars['String']>>>;
+  getGaugeBribes: Array<Maybe<GaugeBribe>>;
   getLiquidityGauges: Array<Maybe<LiquidityGauge>>;
   getProtocolPoolData: Array<Maybe<GqlProtocolGaugeInfo>>;
   getProtocolTokenList?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -1319,6 +1335,14 @@ export type Query = {
 
 export type QueryAdminGetAllPendingFeeDataArgs = {
   onlyWithBalances?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type QueryGet24HourGaugeFeesArgs = {
+  hoursInPast?: InputMaybe<Scalars['Int']>;
+};
+
+export type QueryGetGaugeBribesArgs = {
+  epoch?: InputMaybe<Scalars['Int']>;
 };
 
 export type QueryGetRewardPoolsArgs = {
@@ -1692,6 +1716,9 @@ export type GetAllTokensQuery = {
     symbol: string;
     chainId: number;
     logoURI?: string | null;
+    decimals: number;
+    tradable: boolean;
+    priority: number;
   }>;
 };
 
@@ -1917,6 +1944,9 @@ export const GetAllTokensDocument = gql`
       symbol
       chainId
       logoURI
+      decimals
+      tradable
+      priority
     }
   }
 `;

@@ -17,6 +17,9 @@ query GetAllTokens {
     symbol
     chainId
     logoURI
+    decimals
+    tradable
+    priority
   }
 }
 

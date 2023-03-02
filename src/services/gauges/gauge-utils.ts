@@ -371,15 +371,17 @@ export async function checkpointGaugeController() {
 // Has it's own internal concerns from other gauges and needs to be checkpointed by itself
 export async function checkpointStakelessGauge() {
   const vrtk = await getVRTK();
+
   console.log(
     `token holder balance: ${formatEther(
       await vrtk.balanceOf(getContractAddress('BalTokenHolder')),
     )}`,
   );
+
   const stakeless = await getSingleRecipientGauge();
-  // Authorization was already given
-  await performAuthEntrypointAction(stakeless, 'checkpoint');
+  await doTransaction(stakeless.checkpoint());
   await sleep();
+
   console.log(
     `token holder balance: ${formatEther(
       await vrtk.balanceOf(getContractAddress('BalTokenHolder')),
