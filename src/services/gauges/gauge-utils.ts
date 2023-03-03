@@ -379,7 +379,7 @@ export async function checkpointStakelessGauge() {
   );
 
   const stakeless = await getSingleRecipientGauge();
-  await doTransaction(stakeless.checkpoint());
+  await performAuthEntrypointAction(stakeless, 'checkpoint');
   await sleep();
 
   console.log(

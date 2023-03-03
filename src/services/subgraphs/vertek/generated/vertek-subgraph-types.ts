@@ -1722,6 +1722,17 @@ export type GetAllTokensQuery = {
   }>;
 };
 
+export type GetTokenPricesQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetTokenPricesQuery = {
+  __typename?: 'Query';
+  tokenGetCurrentPrices: Array<{
+    __typename?: 'GqlTokenPrice';
+    address: string;
+    price: number;
+  }>;
+};
+
 export type AdminGetAllPendingFeeDataQueryVariables = Exact<{
   [key: string]: never;
 }>;
@@ -1758,6 +1769,202 @@ export type AdminGetAllPendingFeeDataQuery = {
         valueUSD: string;
       } | null>;
     };
+  };
+};
+
+export type GetSorSwapsQueryVariables = Exact<{
+  tokenIn: Scalars['String'];
+  tokenOut: Scalars['String'];
+  swapType: GqlSorSwapType;
+  swapAmount: Scalars['BigDecimal'];
+  swapOptions: GqlSorSwapOptionsInput;
+}>;
+
+export type GetSorSwapsQuery = {
+  __typename?: 'Query';
+  swaps: {
+    __typename?: 'GqlSorGetSwapsResponse';
+    tokenIn: string;
+    tokenOut: string;
+    swapAmount: any;
+    tokenAddresses: Array<string>;
+    swapType: GqlSorSwapType;
+    marketSp: string;
+    returnAmount: any;
+    returnAmountScaled: string;
+    returnAmountFromSwaps?: string | null;
+    returnAmountConsideringFees: string;
+    swapAmountScaled: string;
+    swapAmountForSwaps?: string | null;
+    tokenInAmount: any;
+    tokenOutAmount: any;
+    effectivePrice: any;
+    effectivePriceReversed: any;
+    priceImpact: any;
+    swaps: Array<{
+      __typename?: 'GqlSorSwap';
+      poolId: string;
+      amount: string;
+      userData: string;
+      assetInIndex: number;
+      assetOutIndex: number;
+    }>;
+    routes: Array<{
+      __typename?: 'GqlSorSwapRoute';
+      tokenIn: string;
+      tokenOut: string;
+      tokenInAmount: string;
+      tokenOutAmount: string;
+      share: number;
+      hops: Array<{
+        __typename?: 'GqlSorSwapRouteHop';
+        poolId: string;
+        tokenIn: string;
+        tokenOut: string;
+        tokenInAmount: string;
+        tokenOutAmount: string;
+        pool: {
+          __typename?: 'GqlPoolMinimal';
+          id: string;
+          name: string;
+          type: GqlPoolMinimalType;
+          symbol: string;
+          dynamicData: {
+            __typename?: 'GqlPoolDynamicData';
+            totalLiquidity: string;
+          };
+          allTokens: Array<{
+            __typename?: 'GqlPoolTokenExpanded';
+            address: string;
+            isNested: boolean;
+            isPhantomBpt: boolean;
+            weight?: string | null;
+          }>;
+        };
+      }>;
+    }>;
+  };
+};
+
+export type GqlSorGetSwapsResponseFragment = {
+  __typename?: 'GqlSorGetSwapsResponse';
+  tokenIn: string;
+  tokenOut: string;
+  swapAmount: any;
+  tokenAddresses: Array<string>;
+  swapType: GqlSorSwapType;
+  marketSp: string;
+  returnAmount: any;
+  returnAmountScaled: string;
+  returnAmountFromSwaps?: string | null;
+  returnAmountConsideringFees: string;
+  swapAmountScaled: string;
+  swapAmountForSwaps?: string | null;
+  tokenInAmount: any;
+  tokenOutAmount: any;
+  effectivePrice: any;
+  effectivePriceReversed: any;
+  priceImpact: any;
+  swaps: Array<{
+    __typename?: 'GqlSorSwap';
+    poolId: string;
+    amount: string;
+    userData: string;
+    assetInIndex: number;
+    assetOutIndex: number;
+  }>;
+  routes: Array<{
+    __typename?: 'GqlSorSwapRoute';
+    tokenIn: string;
+    tokenOut: string;
+    tokenInAmount: string;
+    tokenOutAmount: string;
+    share: number;
+    hops: Array<{
+      __typename?: 'GqlSorSwapRouteHop';
+      poolId: string;
+      tokenIn: string;
+      tokenOut: string;
+      tokenInAmount: string;
+      tokenOutAmount: string;
+      pool: {
+        __typename?: 'GqlPoolMinimal';
+        id: string;
+        name: string;
+        type: GqlPoolMinimalType;
+        symbol: string;
+        dynamicData: {
+          __typename?: 'GqlPoolDynamicData';
+          totalLiquidity: string;
+        };
+        allTokens: Array<{
+          __typename?: 'GqlPoolTokenExpanded';
+          address: string;
+          isNested: boolean;
+          isPhantomBpt: boolean;
+          weight?: string | null;
+        }>;
+      };
+    }>;
+  }>;
+};
+
+export type GqlSorSwapRouteFragment = {
+  __typename?: 'GqlSorSwapRoute';
+  tokenIn: string;
+  tokenOut: string;
+  tokenInAmount: string;
+  tokenOutAmount: string;
+  share: number;
+  hops: Array<{
+    __typename?: 'GqlSorSwapRouteHop';
+    poolId: string;
+    tokenIn: string;
+    tokenOut: string;
+    tokenInAmount: string;
+    tokenOutAmount: string;
+    pool: {
+      __typename?: 'GqlPoolMinimal';
+      id: string;
+      name: string;
+      type: GqlPoolMinimalType;
+      symbol: string;
+      dynamicData: {
+        __typename?: 'GqlPoolDynamicData';
+        totalLiquidity: string;
+      };
+      allTokens: Array<{
+        __typename?: 'GqlPoolTokenExpanded';
+        address: string;
+        isNested: boolean;
+        isPhantomBpt: boolean;
+        weight?: string | null;
+      }>;
+    };
+  }>;
+};
+
+export type GqlSorSwapRouteHopFragment = {
+  __typename?: 'GqlSorSwapRouteHop';
+  poolId: string;
+  tokenIn: string;
+  tokenOut: string;
+  tokenInAmount: string;
+  tokenOutAmount: string;
+  pool: {
+    __typename?: 'GqlPoolMinimal';
+    id: string;
+    name: string;
+    type: GqlPoolMinimalType;
+    symbol: string;
+    dynamicData: { __typename?: 'GqlPoolDynamicData'; totalLiquidity: string };
+    allTokens: Array<{
+      __typename?: 'GqlPoolTokenExpanded';
+      address: string;
+      isNested: boolean;
+      isPhantomBpt: boolean;
+      weight?: string | null;
+    }>;
   };
 };
 
@@ -1891,6 +2098,76 @@ export type GqlPoolMinimalFragmentFragment = {
   }>;
 };
 
+export const GqlSorSwapRouteHopFragmentDoc = gql`
+  fragment GqlSorSwapRouteHop on GqlSorSwapRouteHop {
+    poolId
+    pool {
+      id
+      name
+      type
+      symbol
+      dynamicData {
+        totalLiquidity
+      }
+      allTokens {
+        address
+        isNested
+        isPhantomBpt
+        weight
+      }
+    }
+    tokenIn
+    tokenOut
+    tokenInAmount
+    tokenOutAmount
+  }
+`;
+export const GqlSorSwapRouteFragmentDoc = gql`
+  fragment GqlSorSwapRoute on GqlSorSwapRoute {
+    tokenIn
+    tokenOut
+    tokenInAmount
+    tokenOutAmount
+    share
+    hops {
+      ...GqlSorSwapRouteHop
+    }
+  }
+  ${GqlSorSwapRouteHopFragmentDoc}
+`;
+export const GqlSorGetSwapsResponseFragmentDoc = gql`
+  fragment GqlSorGetSwapsResponse on GqlSorGetSwapsResponse {
+    tokenIn
+    tokenOut
+    swapAmount
+    tokenAddresses
+    swapType
+    marketSp
+    swaps {
+      poolId
+      amount
+      userData
+      assetInIndex
+      assetOutIndex
+    }
+    returnAmount
+    returnAmountScaled
+    returnAmountFromSwaps
+    returnAmountConsideringFees
+    swapAmount
+    swapAmountScaled
+    swapAmountForSwaps
+    tokenInAmount
+    tokenOutAmount
+    effectivePrice
+    effectivePriceReversed
+    priceImpact
+    routes {
+      ...GqlSorSwapRoute
+    }
+  }
+  ${GqlSorSwapRouteFragmentDoc}
+`;
 export const GqlPoolBaseFragmentFragmentDoc = gql`
   fragment GqlPoolBaseFragment on GqlPoolBase {
     id
@@ -1950,6 +2227,14 @@ export const GetAllTokensDocument = gql`
     }
   }
 `;
+export const GetTokenPricesDocument = gql`
+  query GetTokenPrices {
+    tokenGetCurrentPrices {
+      address
+      price
+    }
+  }
+`;
 export const AdminGetAllPendingFeeDataDocument = gql`
   query AdminGetAllPendingFeeData {
     adminGetAllPendingFeeData {
@@ -1979,6 +2264,26 @@ export const AdminGetAllPendingFeeDataDocument = gql`
       }
     }
   }
+`;
+export const GetSorSwapsDocument = gql`
+  query GetSorSwaps(
+    $tokenIn: String!
+    $tokenOut: String!
+    $swapType: GqlSorSwapType!
+    $swapAmount: BigDecimal!
+    $swapOptions: GqlSorSwapOptionsInput!
+  ) {
+    swaps: sorGetSwaps(
+      tokenIn: $tokenIn
+      tokenOut: $tokenOut
+      swapType: $swapType
+      swapAmount: $swapAmount
+      swapOptions: $swapOptions
+    ) {
+      ...GqlSorGetSwapsResponse
+    }
+  }
+  ${GqlSorGetSwapsResponseFragmentDoc}
 `;
 
 export type SdkFunctionWrapper = <T>(
@@ -2040,6 +2345,21 @@ export function getSdk(
         'query',
       );
     },
+    GetTokenPrices(
+      variables?: GetTokenPricesQueryVariables,
+      requestHeaders?: Dom.RequestInit['headers'],
+    ): Promise<GetTokenPricesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<GetTokenPricesQuery>(
+            GetTokenPricesDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        'GetTokenPrices',
+        'query',
+      );
+    },
     AdminGetAllPendingFeeData(
       variables?: AdminGetAllPendingFeeDataQueryVariables,
       requestHeaders?: Dom.RequestInit['headers'],
@@ -2052,6 +2372,20 @@ export function getSdk(
             { ...requestHeaders, ...wrappedRequestHeaders },
           ),
         'AdminGetAllPendingFeeData',
+        'query',
+      );
+    },
+    GetSorSwaps(
+      variables: GetSorSwapsQueryVariables,
+      requestHeaders?: Dom.RequestInit['headers'],
+    ): Promise<GetSorSwapsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<GetSorSwapsQuery>(GetSorSwapsDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'GetSorSwaps',
         'query',
       );
     },

@@ -106,17 +106,31 @@ export class ScheduledJobService {
         // TODO: Still need to add the one to exit and swap to stables/blue chips for our treasury
         // Do pool exits for stable fund.
         // const { poolGetPools } = await vertekBackendClient.sdk.GetAllPools();
+
         // await feeAutomation.doPoolTokenExitsForStableFund(
         //   dataDir,
         //   poolGetPools,
         // );
+
+        const tempDir = join(
+          process.cwd(),
+          'src/data/vertek/fees/20230223-20230301',
+        );
+
+        const { tokenGetCurrentPrices } =
+          await vertekBackendClient.sdk.GetTokenPrices();
 
         // const stableAmountsPath =
         //   feeAutomation.saveStableGaugeFundDistribution(dataDir);
         // await feeAutomation.doStableGaugeDistribution(stableAmountsPath);
 
         const { tokenGetTokens } = await vertekBackendClient.sdk.GetAllTokens();
-        await feeAutomation.doTreasurySwaps(dataDir, tokenGetTokens);
+        // await feeAutomation.doTreasuryPoolExits(tempDir, poolGetPools);
+        await feeAutomation.doTreasurySwaps(
+          tempDir,
+          tokenGetTokens,
+          tokenGetCurrentPrices,
+        );
 
         // await feeAutomation.run();
       } catch (error) {

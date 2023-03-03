@@ -20,7 +20,10 @@ import {
 } from 'src/utils/token.utils';
 import { logger } from 'src/utils/logger';
 import {
+  BLUECHIP_ADDRESSES,
+  STABLE_ADDRESSES,
   STABLE_GAUGE_TOKEN_HOLDER_ACCOUNT,
+  SWAP_CONFIGS,
   TREASURY_PERCENT,
   VEVRTK_PERCENT,
 } from './data';
@@ -28,6 +31,7 @@ import { FeeDistributionInfo, TokenFeeInfo } from './fee.types';
 import {
   GqlPoolMinimal,
   GqlPoolToken,
+  GqlSorSwapType,
   GqlToken,
 } from 'src/services/subgraphs/vertek/generated/vertek-subgraph-types';
 import { getVaultInstance } from 'src/services/vault/vault';
@@ -278,6 +282,147 @@ export class FeeManagementAutomation {
     logger.success(`doStableGaugeDistribution complete`);
   }
 
+  private savePoolExitBalanceDiffs(
+    preFilePath: string,
+    postFilePath: string,
+    poolExitPath: string,
+  ) {
+    const preData: any[] = fs.readJSONSync(preFilePath).balances;
+    const postData: any[] = fs.readJSONSync(postFilePath).balances;
+
+    const diffs = [];
+    preData.forEach((pre) => {
+      const post = postData.find((d) => d.address === pre.address);
+      const gain = parseFloat(post.balance) - parseFloat(pre.balance);
+      diffs.push({
+        address: pre.address,
+        amount: gain,
+      });
+    });
+
+    console.log('Balance diffs:');
+    console.log(diffs);
+
+    fs.writeJSONSync(poolExitPath, diffs);
+  }
+
+  async doTreasuryPoolExits(dataDir: string, pools: Partial<GqlPoolMinimal>[]) {
+    logger.success(`doTreasuryPoolExits`);
+
+    const data: FeeDistributionInfo = fs.readJSONSync(
+      join(dataDir, feeDistributionFileName),
+    );
+
+    const vault = await getVaultInstance();
+
+    for (const info of data.treasury) {
+      const pool = pools.find((p) => p.address === info.address);
+      if (!pool) {
+        // Just working with BPT's for now but will want to account for pools
+        // that pay in single tokens like old stable pools
+        logger.warn(`No matching pool for fee info address: ${info.address}`);
+        continue;
+      }
+
+      const {
+        tokens,
+        poolExitPath,
+        poolFilePath: preFile,
+      } = await this.writePoolTokensBalances(pool, dataDir, 'treasury', 'pre');
+
+      try {
+        const exitRequest = getDefaultAllTokensExitRequest(
+          tokens,
+          info.amountBN,
+        );
+        await vault.exitPool(pool.id, exitRequest);
+
+        const { poolFilePath: postFile } = await this.writePoolTokensBalances(
+          pool,
+          dataDir,
+          'treasury',
+          'post',
+        );
+
+        this.savePoolExitBalanceDiffs(preFile, postFile, poolExitPath);
+      } catch (error) {
+        console.error(error);
+        fs.removeSync(preFile);
+      }
+    }
+
+    logger.success(`doTreasuryPoolExits: Pool exits complete`);
+  }
+
+  async doTreasurySwaps(
+    dataDir: string,
+    tokens: GqlToken[],
+    prices: { address: string; price: number }[],
+  ) {
+    logger.success(`doTreasurySwaps`);
+    //Need to exit and swap
+    // Need to find swap paths for each token (EXCEPT VRTK) to either a stable or blue chip
+    // Save results and then transfer to treasury
+    // Then swap into a stable or blue chip depending on best swap return (Can query backend SOR for this)
+
+    const exitsDataPath = join(dataDir, 'pool-exits/treasury');
+    const tokenAmounts = fs.readdirSync(exitsDataPath);
+
+    // const tokenAmount: { address: string; amount: number } = {}
+
+    const vault = await getVaultInstance();
+    const adminAddress = await getSignerAddress();
+
+    for (const file of tokenAmounts) {
+      const tokenInfo: { address: string; amount: number } = fs.readJSONSync(
+        join(exitsDataPath, file),
+      )[0];
+
+      const tokenAddress = tokenInfo.address.toLowerCase();
+      // filter out vrtk
+      if (tokenAddress === '0xed236c32f695c83efde232c288701d6f9c23e60e') {
+        continue;
+      }
+
+      // We want stable or blue chips out
+      if (
+        STABLE_ADDRESSES.includes(tokenAddress) ||
+        BLUECHIP_ADDRESSES.includes(tokenAddress)
+      ) {
+        continue;
+      }
+
+      // at this point we know we have a token we want to swap into something else
+      // determine if stable or blue chip gives best return
+      // attempt stable outputs first
+      // use current price data to compare against blue chips, etc
+
+      const poolId = file.split('.')[0];
+      const price = prices.find((p) => p.address === tokenAddress);
+      const tokenGql = tokens.find((t) => t.address === tokenAddress);
+      const valueUSD = tokenInfo.amount * price.price;
+      const swapConfig = SWAP_CONFIGS.find((c) => c.tokenIn === tokenAddress);
+
+      if (!swapConfig) {
+        logger.warn(`No swap config for token: ${tokenGql.symbol}`);
+        continue;
+      }
+
+      console.log(tokenAddress);
+      console.log(`Value: ${valueUSD}`);
+
+      const swapInfo = await vertekBackendClient.sdk.GetSorSwaps({
+        tokenIn: swapConfig.tokenIn,
+        tokenOut: swapConfig.tokenOut,
+        swapType: GqlSorSwapType.ExactIn,
+        swapAmount: String(tokenInfo.amount),
+        swapOptions: {},
+      });
+
+      console.log(swapInfo);
+    }
+  }
+
   private async writePoolTokensBalances(
     pool: Partial<GqlPoolMinimal>,
     dataDir: string,
@@ -315,63 +460,6 @@ export class FeeManagementAutomation {
       poolExitPath,
       poolFilePath,
     };
-  }
-
-  private savePoolExitBalanceDiffs(
-    preFilePath: string,
-    postFilePath: string,
-    poolExitPath: string,
-  ) {
-    const preData: any[] = fs.readJSONSync(preFilePath).balances;
-    const postData: any[] = fs.readJSONSync(postFilePath).balances;
-
-    const diffs = [];
-    preData.forEach((pre) => {
-      const post = postData.find((d) => d.address === pre.address);
-      const gain = parseFloat(post.balance) - parseFloat(pre.balance);
-      diffs.push({
-        address: pre.address,
-        amount: gain,
-      });
-    });
-
-    console.log('Balance diffs:');
-    console.log(diffs);
-
-    fs.writeJSONSync(poolExitPath, diffs);
-  }
-
-  async doTreasurySwaps(dataDir: string, tokens: GqlToken[]) {
-    logger.success(`doTreasurySwaps`);
-    //Need to exit and swap
-    // Need to find swap paths for each token (EXCEPT VRTK) to either a stable or blue chip
-    // Save results and then transfer to treasury
-    // Then swap into a stable or blue chip depending on best swap return (Can query backend SOR for this)
-
-    const data: FeeDistributionInfo = fs.readJSONSync(
-      join(dataDir, feeDistributionFileName),
-    );
-
-    const vault = await getVaultInstance();
-    const adminAddress = await getSignerAddress();
-
-    // const {
-    //   tokens,
-    //   poolExitPath,
-    //   poolFilePath: preFile,
-    // } = await this.writePoolTokensBalances(pool, dataDir, 'stable', 'pre');
-
-    for (const info of data.treasury) {
-      const token = tokens.find(
-        (t) => t.address === info.address.toLowerCase(),
-      );
-
-      if (token) {
-        console.log(`Searching swaps for ${token.symbol}`);
-      } else {
-        console.log(`${info.address} not found`);
-      }
-    }
   }
 
   saveFeeDistributionData(feeDataFilePath: string, dataDir: string) {
