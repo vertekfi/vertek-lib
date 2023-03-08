@@ -46,6 +46,17 @@ export async function doInitialVotingEscrowDeposit() {
   );
 }
 
+export async function getUserVeInfo(user: string) {
+  const votingEsrow = await getVotingEscrow();
+  const lock = await votingEsrow.locked(user);
+  console.log('User VE amount: ' + formatEther(lock.amount));
+  console.log(
+    'User VE lock end: ' + new Date(lock.end.toNumber() * 1000).toUTCString(),
+  );
+
+  return lock;
+}
+
 /**
  * Permissioned call. Authorization should already have been given.
  * The account calling this will need to set as the "staking admin" in the contract.

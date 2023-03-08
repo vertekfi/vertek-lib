@@ -49,6 +49,7 @@ import {
   updateGaugeFee,
 } from './services/gauges/gauge-utils';
 import {
+  getUserVeInfo,
   increaseStakeForUser,
   stakeForUser,
 } from './services/gauges/voting-escrow';
@@ -92,38 +93,20 @@ import * as moment from 'moment-timezone';
 import {
   addBribeGauges,
   addBribeTokenOptions,
+  getMerkleOrchard,
 } from './services/bribes/bribe.utils';
 import { getEventData } from './utils/event-scraping';
 import { vertekBackendClient } from './services/subgraphs/vertek/vertek-backend-gql-client';
+import { MAX_UINT256 } from './utils/constants';
 
 config({ path: join(process.cwd(), '.env') });
 
 async function run() {
   console.log('VertekFi run:');
 
-  // runSetup();
+  runSetup();
 
-  // const pool = await getWeightedPoolToken(
-  //   '0xDD64E2EC144571b4320f7BFB14a56b2b2cBF37ad',
-  // );
-  // const fee = await pool.balanceOf(
-  //   '0xAc8E65B3B925bf09a330549ed092E2ECE2B38712',
-  // );
-  // console.log(formatEther(fee));
-
-  // const gc = await getGaugeController();
-  // const tt = (await gc.time_total()).toNumber();
-  // console.log(new Date(tt * 1000).toUTCString());
-  // console.log(tt);
-
-  // await getGaugeWeights(1678320000);
-
-  // await changeGaugeTypeWeight(GaugeTypeNum.veVRTK, 32);
-  // await getGaugeWeights(1677715200);
-  // await checkpointAllGauges();
-  // await checkpointStakelessGauge();
-  // await checkpointFeeDistributor();
-  // await checkpointGaugeController();
+  // await runEpochClose();
 
   // const feeCollector = await getProtocolFeesCollector();
   // const provider = await getRpcProvider();
@@ -140,6 +123,22 @@ async function run() {
   //   },
   // );
   //
+}
+
+async function runEpochClose() {
+  // const gc = await getGaugeController();
+  // const tt = (await gc.time_total()).toNumber();
+  // console.log(new Date(tt * 1000).toUTCString());
+  // console.log(tt);
+  // await getGaugeWeights(1678320000);
+  // await changeGaugeTypeWeight(GaugeTypeNum.veVRTK, 32);
+  // await getGaugeWeights(1677715200);
+  // await checkpointAllGauges();
+  // await checkpointStakelessGauge();
+  //
+  // Epoch start items
+  // await checkpointFeeDistributor();
+  // await checkpointAllGauges();
 }
 
 async function doPoolCreationSteps() {

@@ -3,6 +3,10 @@ import { join } from 'path';
 import { getSignerAddress } from 'src/utils/account.util';
 import { getContractAddress } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
+import {
+  checkpointAllGauges,
+  checkpointStakelessGauge,
+} from '../gauges/gauge-utils';
 import { vertekBackendClient } from '../subgraphs/vertek/vertek-backend-gql-client';
 import { createWeekDataDirectory } from './fees/fee-data.utils';
 import {
@@ -12,6 +16,7 @@ import {
   feeCollectorPreWithdrawTotalsName,
   feeDistributionFileName,
 } from './fees/fees-automation';
+import { checkpointFeeDistributor } from './liquidity-mining/liquidity-mining-automation';
 
 const utcZone = 'Etc/UTC';
 
@@ -24,11 +29,16 @@ export class ScheduledJobService {
     logger.info(
       'ScheduledJobService: initializing workers - ' + new Date().toUTCString(),
     );
-    const feesJob = this.initFeeWithdrawJob();
-    feesJob.handler();
+    //  const feesJob = this.initFeeWithdrawJob();
+    // feesJob.handler();
     // schedule.scheduleJob(feesJob.rule, function () {
     //   feesJob.handler();
     // });
+
+    const epochStartJob = this.initEpochStartCheckpointsJob();
+    schedule.scheduleJob(epochStartJob.rule, function () {
+      epochStartJob.handler();
+    });
 
     logger.success('ScheduledJobService: all workers scheduled');
   }
@@ -76,6 +86,7 @@ export class ScheduledJobService {
         //   dataDir,
         //   feeCollectorPreWithdrawTotalsName,
         // );
+
         // await feeAutomation.doAccountBalanceSnapshot(
         //   finalCollectorAmountsPath,
         //   getContractAddress('ProtocolFeesCollector'),
@@ -105,32 +116,27 @@ export class ScheduledJobService {
         // This is currently just doing stable fund
         // TODO: Still need to add the one to exit and swap to stables/blue chips for our treasury
         // Do pool exits for stable fund.
-        // const { poolGetPools } = await vertekBackendClient.sdk.GetAllPools();
+        //  const { poolGetPools } = await vertekBackendClient.sdk.GetAllPools();
 
         // await feeAutomation.doPoolTokenExitsForStableFund(
         //   dataDir,
         //   poolGetPools,
         // );
 
-        const tempDir = join(
-          process.cwd(),
-          'src/data/vertek/fees/20230223-20230301',
-        );
-
-        const { tokenGetCurrentPrices } =
-          await vertekBackendClient.sdk.GetTokenPrices();
-
         // const stableAmountsPath =
         //   feeAutomation.saveStableGaugeFundDistribution(dataDir);
         // await feeAutomation.doStableGaugeDistribution(stableAmountsPath);
 
-        const { tokenGetTokens } = await vertekBackendClient.sdk.GetAllTokens();
-        // await feeAutomation.doTreasuryPoolExits(tempDir, poolGetPools);
-        await feeAutomation.doTreasurySwaps(
-          tempDir,
-          tokenGetTokens,
-          tokenGetCurrentPrices,
-        );
+        // const { tokenGetCurrentPrices } =
+        //   await vertekBackendClient.sdk.GetTokenPrices();
+
+        //  const { tokenGetTokens } = await vertekBackendClient.sdk.GetAllTokens();
+        // await feeAutomation.doTreasuryPoolExits(dataDir, poolGetPools);
+        // await feeAutomation.doTreasurySwaps(
+        //   dataDir,
+        //   tokenGetTokens,
+        //   tokenGetCurrentPrices,
+        // );
 
         // await feeAutomation.run();
       } catch (error) {
@@ -183,17 +189,15 @@ export class ScheduledJobService {
 
     async function handler() {
       logger.info(
-        'Running epoch start checkpoints job - ' + new Date().toLocaleString(),
+        `Running epoch start checkpoints job - ${new Date().toLocaleString()}/${new Date().toUTCString()}`,
       );
       // TODO: This is where adjustments to type weight would happen to keep ve gauge at 65% (manual for now I guess to not fuck it up)
       // fee dist checkpoint. Will also checkpoint voting escrow in the process in the contract
-      // checkpoint controller to next epoch start
-      // gauges also?
 
       try {
-        // await checkpointAllGauges();
-        // await checkpointStakelessGauge();
-        // await checkpointFeeDistributor();
+        await checkpointAllGauges();
+        await checkpointStakelessGauge();
+        await checkpointFeeDistributor();
       } catch (error) {
         console.log(error);
         logger.error('Epoch start checkpoints job: failed');

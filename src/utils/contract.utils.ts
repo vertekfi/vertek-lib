@@ -20,6 +20,7 @@ import * as FeeCollectorAbi from '../abis/ProtocolFeesCollector.json';
 import * as SingleRecipientAbi from '../abis/SingleRecipientGauge.json';
 import * as FeeDistAbi from '../abis/FeeDistributor.json';
 import * as FeeManagerDistAbi from '../abis/VertekFeeManagement.json';
+import * as adminAbi from '../abis/VertekAdminActions.json';
 
 import { getChainId, getRpcProvider, getSigner } from './account.util';
 import { ERC20_ABI } from 'src/abis/ERC20ABI';
@@ -233,6 +234,14 @@ export async function getBalTokenHolder() {
       'function getActionId(bytes4) public view returns (bytes32)',
       'function withdrawFunds(address recipient, uint256 amount) external',
     ],
+    await getSigner(),
+  );
+}
+
+export async function getVertekAdminActions() {
+  return new Contract(
+    getContractAddress('VertekAdminActions'),
+    adminAbi,
     await getSigner(),
   );
 }

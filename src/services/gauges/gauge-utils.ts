@@ -16,6 +16,7 @@ import {
   getLiquidityGaugeInstance,
   getMulticaller,
   getSingleRecipientGauge,
+  getVertekAdminActions,
   getVRTK,
 } from 'src/utils/contract.utils';
 import { logger } from 'src/utils/logger';
@@ -354,13 +355,24 @@ export async function checkpointGauge(address: string) {
 export async function checkpointAllGauges() {
   //  await checkpointStakelessGauge();
 
-  const pools = await getAllPoolsWithGauges();
-  for (const pool of pools) {
-    await checkpointGauge(pool.gauge.address);
-    await sleep();
-  }
+  const admin = await getVertekAdminActions();
 
-  await checkpointGaugeController();
+  const pools = await getAllPoolsWithGauges();
+  const gaugeAddresses = pools.map((pool) => pool.gauge.address);
+
+  await doTransaction(
+    admin.checkpointGauges(
+      getContractAddress('GaugeController'),
+      gaugeAddresses,
+    ),
+  );
+
+  // for (const pool of pools) {
+  //   await checkpointGauge(pool.gauge.address);
+  //   await sleep();
+  // }
+
+  //  await checkpointGaugeController();
 }
 
 export async function checkpointGaugeController() {

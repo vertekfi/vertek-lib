@@ -235,28 +235,16 @@ export class FeeManagementAutomation {
     const amountsBN: BigNumber[] = stableFundAmounts.map((amt) => {
       const amtStr = String(amt.amount);
       const strAmt = amtStr.slice(0, amtStr.length - 2);
-      const bn = parseUnits(strAmt);
-      return bn;
+
+      return parseUnits(strAmt);
     });
 
-    let index = 2;
-    for (const token of tokens.slice(2)) {
+    let index = 0;
+    for (const token of tokens) {
       const tk = await getERC20(token);
-
-      console.log(token);
-      console.log('dist amount: ' + formatEther(amountsBN[index]));
-      console.log(
-        'Balance before: ' +
-          formatEther(await tk.balanceOf(STABLE_GAUGE_TOKEN_HOLDER_ACCOUNT)),
-      );
 
       await doTransaction(
         tk.transfer(STABLE_GAUGE_TOKEN_HOLDER_ACCOUNT, amountsBN[index]),
-      );
-
-      console.log(
-        'Balance after: ' +
-          formatEther(await tk.balanceOf(STABLE_GAUGE_TOKEN_HOLDER_ACCOUNT)),
       );
 
       index++;

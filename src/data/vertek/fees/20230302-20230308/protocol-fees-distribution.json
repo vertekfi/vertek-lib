@@ -1,0 +1,233 @@
+{
+  "veVRTK": [
+    {
+      "address": "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
+      "amount": 0.07108645086641892,
+      "amountBN": { "type": "BigNumber", "hex": "0xfc8cc01c3c74e8" }
+    },
+    {
+      "address": "0x55d398326f99059ff775485246999027b3197955",
+      "amount": 0.04548854062240976,
+      "amountBN": { "type": "BigNumber", "hex": "0xa19b9631265020" }
+    },
+    {
+      "address": "0xe9e7cea3dedca5984780bafc599bd69add087d56",
+      "amount": 0.5538588579787934,
+      "amountBN": { "type": "BigNumber", "hex": "0x07afb3b265878db8" }
+    },
+    {
+      "address": "0x90c97f71e18723b0cf0dfa30ee176ab653e89f40",
+      "amount": 0.6117062016687491,
+      "amountBN": { "type": "BigNumber", "hex": "0x087d378ca95e872c" }
+    },
+    {
+      "address": "0x14016e85a25aeb13065688cafb43044c2ef86784",
+      "amount": 1.0013793575284329,
+      "amountBN": { "type": "BigNumber", "hex": "0x0de59d385ae42104" }
+    },
+    {
+      "address": "0x0db861235c7b90d419a64e1f71b3687db74d4477",
+      "amount": 40.949006124342084,
+      "amountBN": { "type": "BigNumber", "hex": "0x023848181ceab481a0" }
+    },
+    {
+      "address": "0x248d943b9d59c4be35d41b34f79370dfbf577b2b",
+      "amount": 54.445525397116796,
+      "amountBN": { "type": "BigNumber", "hex": "0x02f3955ce248a7bc60" }
+    },
+    {
+      "address": "0x8e15953eba7d5f8f99853d8f3cb64fc73b3ba770",
+      "amount": 3.1029965209894765,
+      "amountBN": { "type": "BigNumber", "hex": "0x2b100ee53cd9c694" }
+    },
+    {
+      "address": "0x6e30ec031f2d94c397e469b40f86bff0be014124",
+      "amount": 0.5750279361337927,
+      "amountBN": { "type": "BigNumber", "hex": "0x07fae8dc7d2e43bc" }
+    },
+    {
+      "address": "0x32934c1122c0d7b0fc3daab588a4490b53c1568c",
+      "amount": 0.004873800130450745,
+      "amountBN": { "type": "BigNumber", "hex": "0x1150b2057b5539" }
+    },
+    {
+      "address": "0x64bf08fac067b25c77967affafce73760d8d0bdf",
+      "amount": 153.62490957343206,
+      "amountBN": { "type": "BigNumber", "hex": "0x0853f951513feca860" }
+    },
+    {
+      "address": "0xae42be6a9f75a2b53229e262e0488df6ecfeb53a",
+      "amount": 2.2613870031080907,
+      "amountBN": { "type": "BigNumber", "hex": "0x1f620f7f7bf1634c" }
+    },
+    {
+      "address": "0xcf61cf9654f5536b8d6c93f09a0308ff3c2650f9",
+      "amount": 1095.0148756360218,
+      "amountBN": { "type": "BigNumber", "hex": "0x3b5c6253c0e59f2c40" }
+    },
+    {
+      "address": "0xdb043d8a95ad4d3ae0be21a6b34484a345c93481",
+      "amount": 49.87932176506032,
+      "amountBN": { "type": "BigNumber", "hex": "0x02b436f2df93d49b00" }
+    },
+    {
+      "address": "0x9ee22f8b21b53323ae34d153e475aea6363b3ba7",
+      "amount": 0.29010908155941234,
+      "amountBN": { "type": "BigNumber", "hex": "0x0406acac3076ae74" }
+    }
+  ],
+  "treasury": [
+    {
+      "address": "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
+      "amount": 0.07108645086641892,
+      "amountBN": { "type": "BigNumber", "hex": "0xfc8cc01c3c74e8" }
+    },
+    {
+      "address": "0x55d398326f99059ff775485246999027b3197955",
+      "amount": 0.04548854062240976,
+      "amountBN": { "type": "BigNumber", "hex": "0xa19b9631265020" }
+    },
+    {
+      "address": "0xe9e7cea3dedca5984780bafc599bd69add087d56",
+      "amount": 0.5538588579787934,
+      "amountBN": { "type": "BigNumber", "hex": "0x07afb3b265878db8" }
+    },
+    {
+      "address": "0x90c97f71e18723b0cf0dfa30ee176ab653e89f40",
+      "amount": 0.6117062016687491,
+      "amountBN": { "type": "BigNumber", "hex": "0x087d378ca95e872c" }
+    },
+    {
+      "address": "0x14016e85a25aeb13065688cafb43044c2ef86784",
+      "amount": 1.0013793575284329,
+      "amountBN": { "type": "BigNumber", "hex": "0x0de59d385ae42104" }
+    },
+    {
+      "address": "0x0db861235c7b90d419a64e1f71b3687db74d4477",
+      "amount": 40.949006124342084,
+      "amountBN": { "type": "BigNumber", "hex": "0x023848181ceab481a0" }
+    },
+    {
+      "address": "0x248d943b9d59c4be35d41b34f79370dfbf577b2b",
+      "amount": 54.445525397116796,
+      "amountBN": { "type": "BigNumber", "hex": "0x02f3955ce248a7bc60" }
+    },
+    {
+      "address": "0x8e15953eba7d5f8f99853d8f3cb64fc73b3ba770",
+      "amount": 3.1029965209894765,
+      "amountBN": { "type": "BigNumber", "hex": "0x2b100ee53cd9c694" }
+    },
+    {
+      "address": "0x6e30ec031f2d94c397e469b40f86bff0be014124",
+      "amount": 0.5750279361337927,
+      "amountBN": { "type": "BigNumber", "hex": "0x07fae8dc7d2e43bc" }
+    },
+    {
+      "address": "0x32934c1122c0d7b0fc3daab588a4490b53c1568c",
+      "amount": 0.004873800130450745,
+      "amountBN": { "type": "BigNumber", "hex": "0x1150b2057b5539" }
+    },
+    {
+      "address": "0x64bf08fac067b25c77967affafce73760d8d0bdf",
+      "amount": 153.62490957343206,
+      "amountBN": { "type": "BigNumber", "hex": "0x0853f951513feca860" }
+    },
+    {
+      "address": "0xae42be6a9f75a2b53229e262e0488df6ecfeb53a",
+      "amount": 2.2613870031080907,
+      "amountBN": { "type": "BigNumber", "hex": "0x1f620f7f7bf1634c" }
+    },
+    {
+      "address": "0xcf61cf9654f5536b8d6c93f09a0308ff3c2650f9",
+      "amount": 1095.0148756360218,
+      "amountBN": { "type": "BigNumber", "hex": "0x3b5c6253c0e59f2c40" }
+    },
+    {
+      "address": "0xdb043d8a95ad4d3ae0be21a6b34484a345c93481",
+      "amount": 49.87932176506032,
+      "amountBN": { "type": "BigNumber", "hex": "0x02b436f2df93d49b00" }
+    },
+    {
+      "address": "0x9ee22f8b21b53323ae34d153e475aea6363b3ba7",
+      "amount": 0.29010908155941234,
+      "amountBN": { "type": "BigNumber", "hex": "0x0406acac3076ae74" }
+    }
+  ],
+  "stableGaugeFund": [
+    {
+      "address": "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
+      "amount": 0.14217290173283784,
+      "amountBN": { "type": "BigNumber", "hex": "0x01f919803878e9d0" }
+    },
+    {
+      "address": "0x55d398326f99059ff775485246999027b3197955",
+      "amount": 0.09097708124481951,
+      "amountBN": { "type": "BigNumber", "hex": "0x0143372c624ca036" }
+    },
+    {
+      "address": "0xe9e7cea3dedca5984780bafc599bd69add087d56",
+      "amount": 1.1077177159575868,
+      "amountBN": { "type": "BigNumber", "hex": "0x0f5f6764cb0f1b70" }
+    },
+    {
+      "address": "0x90c97f71e18723b0cf0dfa30ee176ab653e89f40",
+      "amount": 1.2234124033374982,
+      "amountBN": { "type": "BigNumber", "hex": "0x10fa6f1952bd0e58" }
+    },
+    {
+      "address": "0x14016e85a25aeb13065688cafb43044c2ef86784",
+      "amount": 2.0027587150568658,
+      "amountBN": { "type": "BigNumber", "hex": "0x1bcb3a70b5c84208" }
+    },
+    {
+      "address": "0x0db861235c7b90d419a64e1f71b3687db74d4477",
+      "amount": 81.89801224868417,
+      "amountBN": { "type": "BigNumber", "hex": "0x0470903039d5690b10" }
+    },
+    {
+      "address": "0x248d943b9d59c4be35d41b34f79370dfbf577b2b",
+      "amount": 108.89105079423359,
+      "amountBN": { "type": "BigNumber", "hex": "0x05e72ab9c4914f70f0" }
+    },
+    {
+      "address": "0x8e15953eba7d5f8f99853d8f3cb64fc73b3ba770",
+      "amount": 6.205993041978953,
+      "amountBN": { "type": "BigNumber", "hex": "0x56201dca79b38d28" }
+    },
+    {
+      "address": "0x6e30ec031f2d94c397e469b40f86bff0be014124",
+      "amount": 1.1500558722675853,
+      "amountBN": { "type": "BigNumber", "hex": "0x0ff5d1b8fa5c8714" }
+    },
+    {
+      "address": "0x32934c1122c0d7b0fc3daab588a4490b53c1568c",
+      "amount": 0.00974760026090149,
+      "amountBN": { "type": "BigNumber", "hex": "0x22a1640af6aa72" }
+    },
+    {
+      "address": "0x64bf08fac067b25c77967affafce73760d8d0bdf",
+      "amount": 307.2498191468641,
+      "amountBN": { "type": "BigNumber", "hex": "0x10a7f2a2a27fd902a0" }
+    },
+    {
+      "address": "0xae42be6a9f75a2b53229e262e0488df6ecfeb53a",
+      "amount": 4.522774006216181,
+      "amountBN": { "type": "BigNumber", "hex": "0x3ec41efef7e2c508" }
+    },
+    {
+      "address": "0xcf61cf9654f5536b8d6c93f09a0308ff3c2650f9",
+      "amount": 2190.0297512720435,
+      "amountBN": { "type": "BigNumber", "hex": "0x76b8c4a781cb3cd1e0" }
+    },
+    {
+      "address": "0xdb043d8a95ad4d3ae0be21a6b34484a345c93481",
+      "amount": 99.75864353012064,
+      "amountBN": { "type": "BigNumber", "hex": "0x05686de5bf27a93600" }
+    },
+    {
+      "address": "0x9ee22f8b21b53323ae34d153e475aea6363b3ba7",
+      "amount": 0.5802181631188247,
+      "amountBN": { "type": "BigNumber", "hex": "0x080d595860ed5cfc" }
+    }
+  ]
+}
