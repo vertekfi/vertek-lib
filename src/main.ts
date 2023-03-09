@@ -126,11 +126,11 @@ async function run() {
 }
 
 async function runEpochClose() {
-  // const gc = await getGaugeController();
-  // const tt = (await gc.time_total()).toNumber();
-  // console.log(new Date(tt * 1000).toUTCString());
-  // console.log(tt);
-  // await getGaugeWeights(1678320000);
+  const gc = await getGaugeController();
+  const tt = (await gc.time_total()).toNumber();
+  console.log(new Date(tt * 1000).toUTCString());
+  console.log(tt);
+  await getGaugeWeights(tt);
   // await changeGaugeTypeWeight(GaugeTypeNum.veVRTK, 32);
   // await getGaugeWeights(1677715200);
   // await checkpointAllGauges();

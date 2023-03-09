@@ -183,7 +183,7 @@ export class ScheduledJobService {
     const checkpointsRule = new schedule.RecurrenceRule();
     checkpointsRule.dayOfWeek = 4; // Thursday
     checkpointsRule.hour = 0; // 12am UTC
-    checkpointsRule.minute = 0; // Give RPC node time/space in case
+    checkpointsRule.minute = 0;
     checkpointsRule.second = 30;
     checkpointsRule.tz = utcZone;
 
